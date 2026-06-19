@@ -1183,70 +1183,126 @@
     }
 
     /* pipeline kanban */
-    .kanban {
+    /* Sales Pipeline Kanban (Rich Industrial Style) */
+    .pipe-kb {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
+      margin-top: 4px;
     }
 
-    .kanban-col {
+    .pipe-kb-col {
       background: #f4f6f9;
-      border: 1px solid #E7E5E4;
-      border-radius: 10px;
-      padding: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
-    .kanban-head {
+    .pipe-kb-head {
+      padding: 12px 14px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid #E7E5E4;
+      border-bottom: 1px solid #e2e8f0;
+      background: rgba(255, 255, 255, 0.4);
     }
 
-    .kanban-title {
-      font-size: 12px;
+    .pipe-kb-title {
+      font-size: 11px;
       font-weight: 700;
-      color: #0A1628;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.8px;
+      color: #1c1917;
     }
 
-    .kanban-card {
-      background: #FFFFFF;
-      border: 1px solid #E7E5E4;
-      border-radius: 8px;
+    .pipe-kb-body {
       padding: 10px;
-      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
     }
 
-    .kanban-card:last-child {
-      margin-bottom: 0;
+    .pipe-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
 
-    .kc-name {
-      font-size: 12px;
+    .pipe-card:hover {
+      border-color: #C9A84C;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .pc-customer {
+      font-size: 10px;
       font-weight: 600;
-      color: #0A1628;
+      color: #78716c;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
       margin-bottom: 4px;
     }
 
-    .kc-meta {
-      font-size: 11px;
-      color: #6a7f96;
-    }
-
-    .kc-val {
-      font-size: 12px;
+    .pc-name {
+      font-size: 13px;
       font-weight: 700;
-      color: #1D9E75;
-      margin-top: 5px;
+      color: #1c1917;
+      line-height: 1.3;
+      margin-bottom: 6px;
     }
 
-    .kanban-won .kanban-card {
-      background: #f0faf5;
-      border-color: #9FE1CB;
+    .pc-meta {
+      font-size: 11px;
+      color: #5a7080;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pc-val-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .pc-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: #1D9E75;
+    }
+
+    .pc-se {
+      font-size: 10px;
+      color: #9aaabb;
+      font-weight: 500;
+    }
+
+    .pipe-kb-col.won .pipe-card {
+      border-left: 4px solid #16A34A;
+    }
+
+    .pipe-kb-col.negotiation .pipe-card {
+      border-left: 4px solid #F59E0B;
+    }
+
+    .pipe-kb-col.quoted .pipe-card {
+      border-left: 4px solid #3b82f6;
+    }
+
+    .pipe-kb-col.lead .pipe-card {
+      border-left: 4px solid #94a3b8;
     }
 
     /* catalog */
@@ -3044,9 +3100,10 @@
     [data-tooltip] {
       position: relative;
       cursor: help;
-      border-bottom: 1px dashed rgba(201,168,76,0.5);
+      border-bottom: 1px dashed rgba(201, 168, 76, 0.5);
       display: inline;
     }
+
     /* Tooltip boxes are rendered as real divs via JS — see bottom of file */
   </style>
 </head>
@@ -3151,24 +3208,13 @@
               class="ti ti-refresh" style="font-size:13px;"></i>Active Contracts</a>
         </div>
 
-        <a class="nav-link" id="nl-solar" onclick="toggleSub('sub-solar','arr-solar',this)"><i
-            class="ti ti-stack-2"></i>Project Management<i class="ti ti-chevron-right" id="arr-solar"
-            style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
-        <div style="display:none;padding-left:18px;" id="sub-solar">
-          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('solar-quotes',this)"><i
-              class="ti ti-file-text" style="font-size:13px;"></i>Project Quotes</a>
-          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('solar-bom',this)"><i
-              class="ti ti-list-check" style="font-size:13px;"></i>Execution BOM</a>
-          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('solar-delivery',this)"><i
-              class="ti ti-truck-delivery" style="font-size:13px;"></i>Execution Log</a>
-        </div>
 
         <a class="nav-link" id="nl-att" onclick="toggleSub('sub-att','arr-att',this)"><i
             class="ti ti-clock"></i>Attendance & Leave<i class="ti ti-chevron-right" id="arr-att"
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
         <div style="display:none;padding-left:18px;" id="sub-att">
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('att-today',this)"><i
-              class="ti ti-calendar-today" style="font-size:13px;"></i>Today's Log</a>
+              class="ti ti-calendar-event" style="font-size:13px;"></i>Today's Log</a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('leave-req',this)"><i
               class="ti ti-plane-departure" style="font-size:13px;"></i>Leave Management</a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('permission-req',this)"><i
@@ -3177,7 +3223,7 @@
 
 
         <a class="nav-link" onclick="goPage('usagelog',this)"><i class="ti ti-list-details"></i>Usage Log</a>
-        <a class="nav-link" onclick="goPage('settings',this)"><i class="ti ti-settings"></i>Settings</a>
+        <a class="nav-link" onclick="goPage('settings',this)"><i class="ti ti-settings"></i>Master Settings</a>
       </div>
 
       <div class="sb-user">
@@ -3208,7 +3254,6 @@
           <i class="ti ti-bell"></i>
           <div class="notif-dot"></div>
         </div>
-        <div class="topbar-icon-btn"><i class="ti ti-settings"></i></div>
         <button class="ai-btn" onclick="toggleAI()">
           <i class="ti ti-sparkles"></i>Ask AI
         </button>
@@ -3225,15 +3270,19 @@
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
               <div>
                 <div style="font-size:15px;font-weight:700;color:#1a2332;">Good morning, Sara 👋</div>
-                <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Thursday, 18 Jun 2026 · <span data-tooltip="DIP 2 = Dubai Industrial Park Phase 2 — Zaker's main warehouse &amp; operations hub located in Dubai">DIP 2</span>, Dubai · Admin
+                <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Thursday, 18 Jun 2026 · <span
+                    data-tooltip="DIP 2 = Dubai Industrial Park Phase 2 — Zaker's main warehouse &amp; operations hub located in Dubai">DIP
+                    2</span>, Dubai · Admin
                   view
                 </div>
               </div>
               <div style="display:flex;gap:8px;">
                 <button class="btn-secondary" style="font-size:12px;padding:7px 14px;"><i class="ti ti-file-export"
                     style="font-size:13px;margin-right:4px;"></i>Export report</button>
-                <button class="btn-p" style="font-size:12px;padding:7px 14px;"><i class="ti ti-sparkles"
-                    style="font-size:13px;margin-right:4px;"></i><span data-tooltip="AI-generated daily briefing: SLA breaches, overdue demos, top pipeline deals &amp; SE performance highlights">AI summary</span></button>
+                <button class="btn-p" style="font-size:12px;padding:7px 14px;" onclick="showAISummary()"><i
+                    class="ti ti-sparkles" style="font-size:13px;margin-right:4px;"></i><span
+                    data-tooltip="AI-generated daily briefing: SLA breaches, overdue demos, top pipeline deals &amp; SE performance highlights">AI
+                    summary</span></button>
               </div>
             </div>
 
@@ -3241,9 +3290,13 @@
             <div
               style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:#FCEBEB;border:1px solid #f5c4c4;border-radius:9px;margin-bottom:16px;">
               <i class="ti ti-alert-triangle" style="font-size:18px;color:#A32D2D;flex-shrink:0;"></i>
-              <div style="font-size:12px;color:#6b1a1a;flex:1;line-height:1.5;"><strong>4 <span data-tooltip="SLA = Service Level Agreement. A breach means the contractual response/resolution time has been exceeded — this triggers escalation obligations" style="border-bottom:1px dashed #A32D2D;">SLA breaches</span> require immediate
-                  action.</strong> TKT-0284 &amp; TKT-0281 are critical — assign engineers now. Also: 2 <span data-tooltip="Equipment units loaned to a customer for evaluation that have not been returned by their agreed due date" style="border-bottom:1px dashed #A32D2D;">demo units
-                overdue for return</span>.</div>
+              <div style="font-size:12px;color:#6b1a1a;flex:1;line-height:1.5;"><strong>4 <span
+                    data-tooltip="SLA = Service Level Agreement. A breach means the contractual response/resolution time has been exceeded — this triggers escalation obligations"
+                    style="border-bottom:1px dashed #A32D2D;">SLA breaches</span> require immediate
+                  action.</strong> TKT-0284 &amp; TKT-0281 are critical — assign engineers now. Also: 2 <span
+                  data-tooltip="Equipment units loaned to a customer for evaluation that have not been returned by their agreed due date"
+                  style="border-bottom:1px dashed #A32D2D;">demo units
+                  overdue for return</span>.</div>
               <button onclick="goPage('tickets',null)"
                 style="padding:5px 12px;background:#A32D2D;border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;">View
                 tickets →</button>
@@ -3253,7 +3306,9 @@
             <div class="kpi-grid" style="margin-bottom:14px;">
               <div class="kpi-card gold" style="cursor:pointer;" onclick="goPage('att-today',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Sales Executives (SEs) who have checked in and are active in the field today">SEs active today</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Sales Executives (SEs) who have checked in and are active in the field today">SEs
+                      active today</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(201,168,76,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-users" style="font-size:14px;color:#C9A84C;"></i>
@@ -3267,7 +3322,9 @@
               </div>
               <div class="kpi-card blue" style="cursor:pointer;" onclick="goPage('an-visitsummary',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Total customer site visits logged by all SEs today — each visit requires a submitted visit report">Team visits today</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Total customer site visits logged by all SEs today — each visit requires a submitted visit report">Team
+                      visits today</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(55,138,221,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-clipboard-check" style="font-size:14px;color:#378ADD;"></i>
@@ -3281,7 +3338,9 @@
               </div>
               <div class="kpi-card red" style="cursor:pointer;" onclick="goPage('tickets',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Customer service requests that are unresolved — each ticket has an SLA deadline for response &amp; resolution">Open service tickets</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Customer service requests that are unresolved — each ticket has an SLA deadline for response &amp; resolution">Open
+                      service tickets</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(226,75,74,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-tools" style="font-size:14px;color:#E24B4A;"></i>
@@ -3295,7 +3354,9 @@
               </div>
               <div class="kpi-card amber" style="cursor:pointer;" onclick="goPage('pipeline',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Total AED value of all active deals currently in the Sales Pipeline (Lead through Negotiation stages)">Pipeline value</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Total AED value of all active deals currently in the Sales Pipeline (Lead through Negotiation stages)">Pipeline
+                      value</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(239,159,39,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-git-merge" style="font-size:14px;color:#EF9F27;"></i>
@@ -3328,7 +3389,9 @@
               </div>
               <div class="kpi-card" style="border-top:3px solid #534AB7;cursor:pointer;" onclick="goPage('demos',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Equipment units currently on loan to customers for product evaluation — must be returned by the due date">Active demos</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Equipment units currently on loan to customers for product evaluation — must be returned by the due date">Active
+                      demos</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(83,74,183,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-device-laptop" style="font-size:14px;color:#534AB7;"></i>
@@ -3342,7 +3405,9 @@
               </div>
               <div class="kpi-card" style="border-top:3px solid #C9A84C;">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Percentage of this month's sales target achieved by the team so far">Monthly target</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Percentage of this month's sales target achieved by the team so far">Monthly
+                      target</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(201,168,76,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-target" style="font-size:14px;color:#C9A84C;"></i>
@@ -3357,7 +3422,9 @@
               <div class="kpi-card" style="border-top:3px solid #378ADD;cursor:pointer;"
                 onclick="goPage('accounts',null)">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                  <div class="kpi-label"><span data-tooltip="Total Sales Executives (SEs) on the team — field staff responsible for customer visits, demos &amp; deal closures">Total SEs</span></div>
+                  <div class="kpi-label"><span
+                      data-tooltip="Total Sales Executives (SEs) on the team — field staff responsible for customer visits, demos &amp; deal closures">Total
+                      SEs</span></div>
                   <div
                     style="width:28px;height:28px;background:rgba(55,138,221,0.12);border-radius:7px;display:flex;align-items:center;justify-content:center;">
                     <i class="ti ti-user-check" style="font-size:14px;color:#378ADD;"></i>
@@ -3382,11 +3449,15 @@
                   <thead>
                     <tr>
                       <th>SE Name</th>
-                      <th><span data-tooltip="Geographic sales area assigned exclusively to this SE">Territory</span></th>
+                      <th><span data-tooltip="Geographic sales area assigned exclusively to this SE">Territory</span>
+                      </th>
                       <th><span data-tooltip="Number of customer site visits logged this month">Visits</span></th>
                       <th><span data-tooltip="Percentage of monthly sales target achieved so far">Target</span></th>
-                      <th><span data-tooltip="Number of deals closed (purchase orders received) this month">Deals</span></th>
-                      <th><span data-tooltip="Composite performance score (0–10) based on visits, target achievement &amp; deals closed">Score</span></th>
+                      <th><span data-tooltip="Number of deals closed (purchase orders received) this month">Deals</span>
+                      </th>
+                      <th><span
+                          data-tooltip="Composite performance score (0–10) based on visits, target achievement &amp; deals closed">Score</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -3610,8 +3681,11 @@
                     <th>Customer</th>
                     <th>Industry</th>
                     <th>Location</th>
-                    <th><span data-tooltip="Date of the most recent in-person SE visit to this customer's site">Last visit</span></th>
-                    <th><span data-tooltip="AI-generated relationship health score (0–10) based on visit frequency, purchase history &amp; engagement">AI score</span></th>
+                    <th><span data-tooltip="Date of the most recent in-person SE visit to this customer's site">Last
+                        visit</span></th>
+                    <th><span
+                        data-tooltip="AI-generated relationship health score (0–10) based on visit frequency, purchase history &amp; engagement">AI
+                        score</span></th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -3648,7 +3722,9 @@
                     <td style="font-size:12px;color:#5a7080;">Dubai</td>
                     <td><span class="pill pill-red">3 days ago</span></td>
                     <td><span class="score-badge score-h">8.7</span></td>
-                    <td><span class="pill pill-amber" data-tooltip="A scheduled follow-up call or visit is overdue — SE must contact this customer to maintain the relationship">Follow-up due</span></td>
+                    <td><span class="pill pill-amber"
+                        data-tooltip="A scheduled follow-up call or visit is overdue — SE must contact this customer to maintain the relationship">Follow-up
+                        due</span></td>
                     <td><span class="tbl-action">View →</span></td>
                   </tr>
                   <tr>
@@ -3661,7 +3737,9 @@
                         </div>
                       </div>
                     </td>
-                    <td><span class="pill pill-purple" data-tooltip="MRO = Maintenance, Repair &amp; Operations. Aerospace MRO customers need specialist tooling, safety gear &amp; certified consumables for aircraft servicing">Aerospace MRO</span></td>
+                    <td><span class="pill pill-purple"
+                        data-tooltip="MRO = Maintenance, Repair &amp; Operations. Aerospace MRO customers need specialist tooling, safety gear &amp; certified consumables for aircraft servicing">Aerospace
+                        MRO</span></td>
                     <td style="font-size:12px;color:#5a7080;">Abu Dhabi</td>
                     <td><span class="pill pill-amber">5 days ago</span></td>
                     <td><span class="score-badge score-m">7.1</span></td>
@@ -3699,7 +3777,9 @@
                     <td style="font-size:12px;color:#5a7080;">Dubai</td>
                     <td><span class="pill pill-red">35 days ago</span></td>
                     <td><span class="score-badge score-l">4.2</span></td>
-                    <td><span class="pill pill-red" data-tooltip="Customer relationship flagged as at risk — no visit in 35+ days. Needs urgent outreach to prevent losing the account">At risk</span></td>
+                    <td><span class="pill pill-red"
+                        data-tooltip="Customer relationship flagged as at risk — no visit in 35+ days. Needs urgent outreach to prevent losing the account">At
+                        risk</span></td>
                     <td><span class="tbl-action">View →</span></td>
                   </tr>
                 </tbody>
@@ -3816,7 +3896,9 @@
                   </div>
                   <div class="gps-bar">
                     <div class="gps-dot"></div>
-                    <div class="gps-txt"><span data-tooltip="GPS coordinates automatically captured from the SE's mobile device at the time of check-in — confirms the visit actually occurred at the customer location">GPS locked</span> · Jebel Ali Free Zone · 25.0084°N, 55.0663°E</div>
+                    <div class="gps-txt"><span
+                        data-tooltip="GPS coordinates automatically captured from the SE's mobile device at the time of check-in — confirms the visit actually occurred at the customer location">GPS
+                        locked</span> · Jebel Ali Free Zone · 25.0084°N, 55.0663°E</div>
                   </div>
                   <div class="btn-row">
                     <button class="btn-secondary">Save draft</button>
@@ -3924,12 +4006,16 @@
                 <div class="kpi-sub up">↑ 3 vs May</div>
               </div>
               <div class="kpi-card amber">
-                <div class="kpi-label"><span data-tooltip="Number of sales deals formally submitted to management for approval or invoice generation this month">Deals submitted</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Number of sales deals formally submitted to management for approval or invoice generation this month">Deals
+                    submitted</span></div>
                 <div class="kpi-val">4</div>
                 <div class="kpi-sub warn">Target: 8</div>
               </div>
               <div class="kpi-card blue">
-                <div class="kpi-label"><span data-tooltip="Percentage of customer visits that result in a submitted deal or closed sale — measures SE effectiveness">Conversion rate</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Percentage of customer visits that result in a submitted deal or closed sale — measures SE effectiveness">Conversion
+                    rate</span></div>
                 <div class="kpi-val">24%</div>
                 <div class="kpi-sub up">↑ 4% vs last month</div>
               </div>
@@ -3961,7 +4047,9 @@
                 </div>
               </div>
               <div class="card">
-                <div class="card-head"><span class="card-title"><span data-tooltip="Field intelligence collected by SEs during visits — competitor products mentioned, pricing, and customer objections">Competitor intel</span> — June</span></div>
+                <div class="card-head"><span class="card-title"><span
+                      data-tooltip="Field intelligence collected by SEs during visits — competitor products mentioned, pricing, and customer objections">Competitor
+                      intel</span> — June</span></div>
                 <div class="comp-item"><span class="comp-name">Esab</span>
                   <div class="comp-track">
                     <div class="comp-bar-fill" style="width:78%;background:#C9A84C;"></div>
@@ -4095,7 +4183,9 @@
                   </div>
                   <div class="gps-bar">
                     <div class="gps-dot"></div>
-                    <div class="gps-txt"><span data-tooltip="GPS coordinates automatically captured from the SE's mobile device at the time of check-in — confirms the visit actually occurred at the customer location">GPS locked</span> · Jebel Ali Free Zone · 25.0084°N, 55.0663°E</div>
+                    <div class="gps-txt"><span
+                        data-tooltip="GPS coordinates automatically captured from the SE's mobile device at the time of check-in — confirms the visit actually occurred at the customer location">GPS
+                        locked</span> · Jebel Ali Free Zone · 25.0084°N, 55.0663°E</div>
                   </div>
                   <div class="btn-row">
                     <button class="btn-secondary">Save draft</button>
@@ -4203,12 +4293,16 @@
                 <div class="kpi-sub up">↑ 3 vs May</div>
               </div>
               <div class="kpi-card amber">
-                <div class="kpi-label"><span data-tooltip="Number of sales deals formally submitted to management for approval or invoice generation this month">Deals submitted</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Number of sales deals formally submitted to management for approval or invoice generation this month">Deals
+                    submitted</span></div>
                 <div class="kpi-val">4</div>
                 <div class="kpi-sub warn">Target: 8</div>
               </div>
               <div class="kpi-card blue">
-                <div class="kpi-label"><span data-tooltip="Percentage of customer visits that result in a submitted deal or closed sale — measures SE effectiveness">Conversion rate</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Percentage of customer visits that result in a submitted deal or closed sale — measures SE effectiveness">Conversion
+                    rate</span></div>
                 <div class="kpi-val">24%</div>
                 <div class="kpi-sub up">↑ 4% vs last month</div>
               </div>
@@ -4240,7 +4334,9 @@
                 </div>
               </div>
               <div class="card">
-                <div class="card-head"><span class="card-title"><span data-tooltip="Field intelligence collected by SEs during visits — competitor products mentioned, pricing, and customer objections">Competitor intel</span> — June</span></div>
+                <div class="card-head"><span class="card-title"><span
+                      data-tooltip="Field intelligence collected by SEs during visits — competitor products mentioned, pricing, and customer objections">Competitor
+                      intel</span> — June</span></div>
                 <div class="comp-item"><span class="comp-name">Esab</span>
                   <div class="comp-track">
                     <div class="comp-bar-fill" style="width:78%;background:#C9A84C;"></div>
@@ -4267,55 +4363,111 @@
 
           <!-- ── PIPELINE ── -->
           <div class="page" id="p-pipeline">
-            <div class="filter-bar">
-              <span style="font-size:13px;font-weight:600;color:#0A1628;">Sales Pipeline — June 2026</span>
-              <span style="font-size:12px;color:#1D9E75;margin-left:auto;font-weight:600;">Total: AED 63,900</span>
+            <div class="pg-header" style="border:none;margin-bottom:12px;">
+              <div>
+                <div class="pg-header-title">Sales Pipeline</div>
+                <div class="pg-header-sub">Deal progression tracker — <span
+                    style="color:#1D9E75;font-weight:600;">Total: AED 63,900</span></div>
+              </div>
+              <div class="pg-header-actions">
+                <button class="btn-secondary" style="padding:7px 12px;"><i class="ti ti-download"
+                    style="margin-right:5px;"></i>Export</button>
+              </div>
             </div>
-            <div class="kanban">
-              <div class="kanban-col">
-                <div class="kanban-head"><span class="kanban-title"><span data-tooltip="Potential deal identified — initial contact made, customer interest confirmed, not yet quoted">Lead</span></span><span class="pill pill-blue">3</span>
+
+            <div class="pipe-kb">
+              <!-- LEAD -->
+              <div class="pipe-kb-col lead">
+                <div class="pipe-kb-head">
+                  <span class="pipe-kb-title">Lead</span>
+                  <span class="pill pill-blue">2</span>
                 </div>
-                <div class="kanban-card">
-                  <div class="kc-name">PetroGulf Services</div>
-                  <div class="kc-meta">Hand tools · Oil &amp; gas</div>
-                  <div class="kc-val">AED 12,000</div>
-                </div>
-                <div class="kanban-card">
-                  <div class="kc-name"><span data-tooltip="JAFZA = Jebel Ali Free Zone Authority — a major industrial free zone in Dubai with 9,000+ companies; a key target area for Zaker SEs">JAFZA</span> New Contact</div>
-                  <div class="kc-meta">Safety PPE · New account</div>
-                  <div class="kc-val">AED 5,500</div>
-                </div>
-              </div>
-              <div class="kanban-col">
-                <div class="kanban-head"><span class="kanban-title"><span data-tooltip="Formal quotation sent to customer — awaiting their review or response">Quoted</span></span><span class="pill pill-amber">2</span>
-                </div>
-                <div class="kanban-card">
-                  <div class="kc-name">Desert Shield Safety</div>
-                  <div class="kc-meta">PPE bulk order · Sharjah</div>
-                  <div class="kc-val">AED 18,000</div>
-                </div>
-              </div>
-              <div class="kanban-col">
-                <div class="kanban-head"><span class="kanban-title"><span data-tooltip="Customer is reviewing the quote — active discussion on price, terms, or delivery in progress">Negotiation</span></span><span
-                    class="pill pill-amber">2</span></div>
-                <div class="kanban-card">
-                  <div class="kc-name">Gulf Metals Trading</div>
-                  <div class="kc-meta">Safety harness bulk</div>
-                  <div class="kc-val">AED 22,000</div>
+                <div class="pipe-kb-body">
+                  <div class="pipe-card">
+                    <div class="pc-customer">PetroGulf Services</div>
+                    <div class="pc-name">Bulk Hand Tools Supply</div>
+                    <div class="pc-meta"><i class="ti ti-package" style="font-size:12px;"></i>Tools · Oil & Gas</div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Ahmed M.</span>
+                      <span class="pc-val">AED 12,000</span>
+                    </div>
+                  </div>
+                  <div class="pipe-card">
+                    <div class="pc-customer">JAFZA New Contact</div>
+                    <div class="pc-name">Safety PPE Annual Contract</div>
+                    <div class="pc-meta"><i class="ti ti-shield" style="font-size:12px;"></i>PPE · Logistics</div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Noor Z.</span>
+                      <span class="pc-val">AED 5,500</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="kanban-col kanban-won">
-                <div class="kanban-head"><span class="kanban-title"><span data-tooltip="Deal closed — Purchase Order received or verbal confirmation given by the customer">Won</span></span><span class="pill pill-green">4</span>
+
+              <!-- QUOTED -->
+              <div class="pipe-kb-col quoted">
+                <div class="pipe-kb-head">
+                  <span class="pipe-kb-title">Quoted</span>
+                  <span class="pill pill-blue">1</span>
                 </div>
-                <div class="kanban-card">
-                  <div class="kc-name">Al-Faris Industrial</div>
-                  <div class="kc-meta">Lincoln welding rods</div>
-                  <div class="kc-val">AED 8,000</div>
+                <div class="pipe-kb-body">
+                  <div class="pipe-card">
+                    <div class="pc-customer">Desert Shield Safety</div>
+                    <div class="pc-name">Industrial Safety Gear</div>
+                    <div class="pc-meta"><i class="ti ti-tool" style="font-size:12px;"></i>Safety · Sharjah</div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Fatima R.</span>
+                      <span class="pc-val">AED 18,000</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="kanban-card">
-                  <div class="kc-name">AeroTech Engineering</div>
-                  <div class="kc-meta">Abrasive grinding discs</div>
-                  <div class="kc-val">AED 6,400</div>
+              </div>
+
+              <!-- NEGOTIATION -->
+              <div class="pipe-kb-col negotiation">
+                <div class="pipe-kb-head">
+                  <span class="pipe-kb-title">Negotiation</span>
+                  <span class="pill pill-amber">1</span>
+                </div>
+                <div class="pipe-kb-body">
+                  <div class="pipe-card">
+                    <div class="pc-customer">Gulf Metals Trading</div>
+                    <div class="pc-name">Fall Protection Systems</div>
+                    <div class="pc-meta"><i class="ti ti-comet" style="font-size:12px;"></i>Lifting · DIC</div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Ahmed M.</span>
+                      <span class="pc-val">AED 22,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WON -->
+              <div class="pipe-kb-col won">
+                <div class="pipe-kb-head">
+                  <span class="pipe-kb-title">Won</span>
+                  <span class="pill pill-green">2</span>
+                </div>
+                <div class="pipe-kb-body">
+                  <div class="pipe-card">
+                    <div class="pc-customer">Al-Faris Industrial</div>
+                    <div class="pc-name">Lincoln 6013 Rods</div>
+                    <div class="pc-meta"><i class="ti ti-flame" style="font-size:12px;"></i>Welding · Consumables</div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Noor Z.</span>
+                      <span class="pc-val">AED 8,000</span>
+                    </div>
+                  </div>
+                  <div class="pipe-card">
+                    <div class="pc-customer">AeroTech Engineering</div>
+                    <div class="pc-name">Norton Grinding Discs</div>
+                    <div class="pc-meta"><i class="ti ti-circles" style="font-size:12px;"></i>Abrasives · Aerospace
+                    </div>
+                    <div class="pc-val-row">
+                      <span class="pc-se">Fatima R.</span>
+                      <span class="pc-val">AED 6,400</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -4324,7 +4476,9 @@
           <!-- ── CATALOG ── -->
           <div class="page" id="p-catalog">
             <div class="filter-bar">
-              <span style="font-size:13px;font-weight:600;color:#0A1628;">Product catalog — <span data-tooltip="SKU = Stock Keeping Unit. Each unique product variant (size, spec, model) has its own SKU code for inventory tracking">409 SKUs</span></span>
+              <span style="font-size:13px;font-weight:600;color:#0A1628;">Product catalog — <span
+                  data-tooltip="SKU = Stock Keeping Unit. Each unique product variant (size, spec, model) has its own SKU code for inventory tracking">409
+                  SKUs</span></span>
               <div class="ml-auto">
                 <div class="topbar-search" style="width:180px;"><i class="ti ti-search"></i><input
                     placeholder="Search products…" /></div>
@@ -4341,14 +4495,18 @@
               <div class="cat-card">
                 <div class="cat-ico" style="background:#E6F1FB;"><i class="ti ti-anchor" style="color:#185FA5;"></i>
                 </div>
-                <div class="cat-name"><span data-tooltip="Equipment used to move heavy loads safely — chains, shackles, slings, hooks &amp; harnesses. All must be certified &amp; periodically recertified under UAE safety standards">Lifting &amp; rigging</span></div>
+                <div class="cat-name"><span
+                    data-tooltip="Equipment used to move heavy loads safely — chains, shackles, slings, hooks &amp; harnesses. All must be certified &amp; periodically recertified under UAE safety standards">Lifting
+                    &amp; rigging</span></div>
                 <div class="cat-brands">Pewag · Crosby · Yale</div>
                 <div class="cat-skus">62 SKUs</div>
               </div>
               <div class="cat-card">
                 <div class="cat-ico" style="background:#E1F5EE;"><i class="ti ti-shield-check"
                     style="color:#085041;"></i></div>
-                <div class="cat-name"><span data-tooltip="PPE = Personal Protective Equipment — safety gear worn to minimise exposure to hazards (helmets, harnesses, respirators, gloves, eyewear)">Safety PPE</span></div>
+                <div class="cat-name"><span
+                    data-tooltip="PPE = Personal Protective Equipment — safety gear worn to minimise exposure to hazards (helmets, harnesses, respirators, gloves, eyewear)">Safety
+                    PPE</span></div>
                 <div class="cat-brands">3M · Honeywell · MSA</div>
                 <div class="cat-skus">95 SKUs</div>
               </div>
@@ -4432,22 +4590,30 @@
             </div>
             <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
               <div class="kpi-card gold">
-                <div class="kpi-label"><span data-tooltip="All tracked equipment assets registered in the system (ZKR-M-XXXX serial numbers)">Total machines</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="All tracked equipment assets registered in the system (ZKR-M-XXXX serial numbers)">Total
+                    machines</span></div>
                 <div class="kpi-val">28</div>
                 <div class="kpi-sub up">Asset register</div>
               </div>
               <div class="kpi-card blue">
-                <div class="kpi-label"><span data-tooltip="Machines currently located at a customer site — either on demo loan or sold units under service">At customer</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Machines currently located at a customer site — either on demo loan or sold units under service">At
+                    customer</span></div>
                 <div class="kpi-val">11</div>
                 <div class="kpi-sub warn">6 demo · 5 sold</div>
               </div>
               <div class="kpi-card red">
-                <div class="kpi-label"><span data-tooltip="Machines currently in the workshop for repair or scheduled maintenance — unavailable for demos or sale">In repair</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Machines currently in the workshop for repair or scheduled maintenance — unavailable for demos or sale">In
+                    repair</span></div>
                 <div class="kpi-val">4</div>
                 <div class="kpi-sub down">2 overdue SLA</div>
               </div>
               <div class="kpi-card amber">
-                <div class="kpi-label"><span data-tooltip="Machines in warehouse, fully functional and ready to be assigned for demo or delivery">Available</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Machines in warehouse, fully functional and ready to be assigned for demo or delivery">Available</span>
+                </div>
                 <div class="kpi-val">13</div>
                 <div class="kpi-sub up">Ready to assign</div>
               </div>
@@ -4456,12 +4622,16 @@
               <table class="data-tbl">
                 <thead>
                   <tr>
-                    <th><span data-tooltip="Zaker internal asset ID (ZKR-M-XXXX) used to track each machine across demos, repairs &amp; deliveries">Machine ID</span></th>
+                    <th><span
+                        data-tooltip="Zaker internal asset ID (ZKR-M-XXXX) used to track each machine across demos, repairs &amp; deliveries">Machine
+                        ID</span></th>
                     <th>Model / Type</th>
                     <th>Status</th>
                     <th>Location</th>
                     <th>Customer</th>
-                    <th><span data-tooltip="Manufacturer warranty validity period — expired units cannot be serviced under warranty and may need recertification">Warranty</span></th>
+                    <th><span
+                        data-tooltip="Manufacturer warranty validity period — expired units cannot be serviced under warranty and may need recertification">Warranty</span>
+                    </th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -4545,22 +4715,30 @@
           <div class="page" id="p-demos">
             <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
               <div class="kpi-card gold">
-                <div class="kpi-label"><span data-tooltip="Equipment units currently on loan at customer sites for product evaluation — not yet returned">Active demos</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Equipment units currently on loan at customer sites for product evaluation — not yet returned">Active
+                    demos</span></div>
                 <div class="kpi-val">6</div>
                 <div class="kpi-sub warn">2 overdue return</div>
               </div>
               <div class="kpi-card blue">
-                <div class="kpi-label"><span data-tooltip="Demo units that customers have returned to the warehouse this calendar month">Returned this month</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Demo units that customers have returned to the warehouse this calendar month">Returned
+                    this month</span></div>
                 <div class="kpi-val">4</div>
                 <div class="kpi-sub up">On time: 3</div>
               </div>
               <div class="kpi-card red">
-                <div class="kpi-label"><span data-tooltip="Demo units still at customer sites past their agreed return date — SE must follow up immediately">Overdue return</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Demo units still at customer sites past their agreed return date — SE must follow up immediately">Overdue
+                    return</span></div>
                 <div class="kpi-val">2</div>
                 <div class="kpi-sub down">Alert sent</div>
               </div>
               <div class="kpi-card amber">
-                <div class="kpi-label"><span data-tooltip="Average number of days a demo unit stays at a customer site before being returned">Avg demo duration</span></div>
+                <div class="kpi-label"><span
+                    data-tooltip="Average number of days a demo unit stays at a customer site before being returned">Avg
+                    demo duration</span></div>
                 <div class="kpi-val">12d</div>
                 <div class="kpi-sub up">Target: 14d</div>
               </div>
@@ -4691,7 +4869,9 @@
         <div class="page" id="p-tickets">
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
             <div class="kpi-card red">
-              <div class="kpi-label"><span data-tooltip="SLA = Service Level Agreement. These tickets have exceeded the contractual response or resolution time — immediate action required">Overdue SLA</span></div>
+              <div class="kpi-label"><span
+                  data-tooltip="SLA = Service Level Agreement. These tickets have exceeded the contractual response or resolution time — immediate action required">Overdue
+                  SLA</span></div>
               <div class="kpi-val">4</div>
               <div class="kpi-prog">
                 <div class="kpi-fill" style="width:80%;background:#E24B4A;"></div>
@@ -4740,12 +4920,17 @@
             <table class="data-tbl">
               <thead>
                 <tr>
-                  <th><span data-tooltip="Unique reference number for this service request (e.g. TKT-0284)">Ticket ID</span></th>
+                  <th><span data-tooltip="Unique reference number for this service request (e.g. TKT-0284)">Ticket
+                      ID</span></th>
                   <th>Customer · Machine</th>
                   <th>Issue</th>
-                  <th><span data-tooltip="Urgency level: Critical = safety risk, High = machine down, Medium = degraded performance, Low = routine">Priority</span></th>
+                  <th><span
+                      data-tooltip="Urgency level: Critical = safety risk, High = machine down, Medium = degraded performance, Low = routine">Priority</span>
+                  </th>
                   <th>Engineer</th>
-                  <th><span data-tooltip="Time left before the SLA (Service Level Agreement) deadline is breached. Negative = already overdue">SLA remaining</span></th>
+                  <th><span
+                      data-tooltip="Time left before the SLA (Service Level Agreement) deadline is breached. Negative = already overdue">SLA
+                      remaining</span></th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -4820,7 +5005,9 @@
                     <div class="c-name">PetroGulf Services</div>
                     <div class="c-sub">Pewag Chain ZKR-M-0055</div>
                   </td>
-                  <td style="font-size:12px;color:#1a2332;max-width:180px;">Annual inspection + <span data-tooltip="Recertification: re-testing &amp; re-stamping of lifting/safety equipment by a certified inspector to confirm it still meets safety standards">recertification</span> due</td>
+                  <td style="font-size:12px;color:#1a2332;max-width:180px;">Annual inspection + <span
+                      data-tooltip="Recertification: re-testing &amp; re-stamping of lifting/safety equipment by a certified inspector to confirm it still meets safety standards">recertification</span>
+                    due</td>
                   <td><span class="pill pill-blue">Low</span></td>
                   <td style="font-size:12px;color:#5a7080;">Unassigned</td>
                   <td><span style="font-size:12px;font-weight:600;color:#1D9E75;">+5 days left</span></td>
@@ -5433,7 +5620,9 @@
                     <td><span class="pill pg">Today</span></td>
                     <td><span class="score-h">9.4</span></td>
                     <td><span class="pill pg">Active</span></td>
-                    <td><span class="tbl-action">View</span></td>
+                    <td><span class="tbl-action"
+                        onclick="openViewLead('LD-0041','Al-Faris Industrial LLC','Jebel Ali Free Zone','Heavy Industry','Dubai North','Ahmed M.','Active','Saif Al-Faris','+971 50 441 9900','saif@alfaris.ae')">View</span>
+                    </td>
                   </tr>
                   <tr>
                     <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0038</td>
@@ -5447,7 +5636,9 @@
                     <td><span class="pill pa">3 days ago</span></td>
                     <td><span class="score-h">8.7</span></td>
                     <td><span class="pill pa">Follow-up due</span></td>
-                    <td><span class="tbl-action">View</span></td>
+                    <td><span class="tbl-action"
+                        onclick="openViewLead('LD-0038','Gulf Metals Trading','Dubai Industrial City','Fabrication','Dubai North','Ahmed M.','Follow-up due','Tariq Al-Mansoori','+971 50 812 3344','tariq@gulfmetals.ae')">View</span>
+                    </td>
                   </tr>
                   <tr>
                     <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0029</td>
@@ -5461,7 +5652,9 @@
                     <td><span class="pill pa">5 days ago</span></td>
                     <td><span class="score-m">7.8</span></td>
                     <td><span class="pill pg">Active</span></td>
-                    <td><span class="tbl-action">View</span></td>
+                    <td><span class="tbl-action"
+                        onclick="openViewLead('LD-0029','AeroTech Engineering','Abu Dhabi','Aerospace MRO','Abu Dhabi','Fatima R.','Active','Saeed Al-Mazrouei','+971 2 644 1800','saeed@aerotech.ae')">View</span>
+                    </td>
                   </tr>
                   <tr>
                     <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0015</td>
@@ -5475,7 +5668,9 @@
                     <td><span class="pill pr">35 days ago</span></td>
                     <td><span class="score-l">4.2</span></td>
                     <td><span class="pill pr">At risk</span></td>
-                    <td><span class="tbl-action">View</span></td>
+                    <td><span class="tbl-action"
+                        onclick="openViewLead('LD-0015','PetroGulf Services','Dubai','Oil &amp; Gas','Dubai South','Noor Z.','At risk','Hassan Naser','+971 55 221 8877','hnaser@petrogulf.ae')">View</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -6158,10 +6353,18 @@
               <thead>
                 <tr>
                   <th>SE Name</th>
-                  <th><span data-tooltip="Unique employee code assigned to each SE (e.g. ZAK-001) — used for payroll, attendance &amp; system access">Code</span></th>
-                  <th><span data-tooltip="Time the SE tapped in from their mobile app — GPS coordinates are captured at this moment">Check-in</span></th>
-                  <th><span data-tooltip="Time the SE tapped out at end of day — required to calculate total working hours">Check-out</span></th>
-                  <th><span data-tooltip="Location coordinates captured automatically when the SE checks in — verifies they are at an approved work location">GPS Location</span></th>
+                  <th><span
+                      data-tooltip="Unique employee code assigned to each SE (e.g. ZAK-001) — used for payroll, attendance &amp; system access">Code</span>
+                  </th>
+                  <th><span
+                      data-tooltip="Time the SE tapped in from their mobile app — GPS coordinates are captured at this moment">Check-in</span>
+                  </th>
+                  <th><span
+                      data-tooltip="Time the SE tapped out at end of day — required to calculate total working hours">Check-out</span>
+                  </th>
+                  <th><span
+                      data-tooltip="Location coordinates captured automatically when the SE checks in — verifies they are at an approved work location">GPS
+                      Location</span></th>
                   <th>Hours</th>
                   <th>Status</th>
                 </tr>
@@ -6474,12 +6677,22 @@
                   <th>SE Name</th>
                   <th><span data-tooltip="Geographic sales area assigned exclusively to this SE">Territory</span></th>
                   <th>Visits</th>
-                  <th><span data-tooltip="Number of distinct customer accounts visited — an SE visiting the same customer 5 times counts as 1 unique customer">Unique customers</span></th>
-                  <th><span data-tooltip="Scheduled follow-up calls or visits completed — indicates proactive relationship management">Follow-ups</span></th>
+                  <th><span
+                      data-tooltip="Number of distinct customer accounts visited — an SE visiting the same customer 5 times counts as 1 unique customer">Unique
+                      customers</span></th>
+                  <th><span
+                      data-tooltip="Scheduled follow-up calls or visits completed — indicates proactive relationship management">Follow-ups</span>
+                  </th>
                   <th>Deals</th>
-                  <th><span data-tooltip="Total AED value of all open deals in this SE's pipeline — sum of Lead + Quoted + Negotiation stages">Pipeline (AED)</span></th>
-                  <th><span data-tooltip="Percentage of monthly sales target achieved by this SE in the selected period">Target %</span></th>
-                  <th><span data-tooltip="AI-generated performance score (0–10) combining visit frequency, deal conversion, follow-up rate &amp; target achievement">AI score</span></th>
+                  <th><span
+                      data-tooltip="Total AED value of all open deals in this SE's pipeline — sum of Lead + Quoted + Negotiation stages">Pipeline
+                      (AED)</span></th>
+                  <th><span
+                      data-tooltip="Percentage of monthly sales target achieved by this SE in the selected period">Target
+                      %</span></th>
+                  <th><span
+                      data-tooltip="AI-generated performance score (0–10) combining visit frequency, deal conversion, follow-up rate &amp; target achievement">AI
+                      score</span></th>
                 </tr>
               </thead>
               <tbody>
@@ -6859,7 +7072,9 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
             <div>
               <div style="font-size:15px;font-weight:700;color:#1a2332;">Usage Log</div>
-              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">System access and <span data-tooltip="Complete audit trail of every SE action — logins, visits logged, check-ins, and GPS coordinates at each event. Tamper-proof record for compliance &amp; dispute resolution">GPS activity log</span></div>
+              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">System access and <span
+                  data-tooltip="Complete audit trail of every SE action — logins, visits logged, check-ins, and GPS coordinates at each event. Tamper-proof record for compliance &amp; dispute resolution">GPS
+                  activity log</span></div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;"><input type="date" value="2026-06-01"
                 style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;" /><input
@@ -6944,7 +7159,9 @@
           <div class="pg-header">
             <div>
               <div class="pg-header-title">Sales Requirements</div>
-              <div class="pg-header-sub">Pending requirements awaiting <span data-tooltip="A Sales Requirement is logged when a customer requests a product — it must be converted into a formal Quotation before it can proceed to an order">quotation conversions</span></div>
+              <div class="pg-header-sub">Pending requirements awaiting <span
+                  data-tooltip="A Sales Requirement is logged when a customer requests a product — it must be converted into a formal Quotation before it can proceed to an order">quotation
+                  conversions</span></div>
             </div>
             <button class="btn-primary" style="padding:8px 16px;" onclick="openLogReq()"><i class="ti ti-plus"
                 style="margin-right:5px;"></i>Log Requirement</button>
@@ -6962,7 +7179,9 @@
               <div class="stat-mini-ico" style="background:#E6F1FB;color:#185FA5;"><i class="ti ti-history"></i></div>
               <div>
                 <div class="stat-mini-val">3.2d</div>
-                <div class="stat-mini-lbl"><span data-tooltip="Average number of days a requirement has been open without being converted to a quotation — lower is better">Avg Aging</span></div>
+                <div class="stat-mini-lbl"><span
+                    data-tooltip="Average number of days a requirement has been open without being converted to a quotation — lower is better">Avg
+                    Aging</span></div>
               </div>
             </div>
             <div class="stat-mini">
@@ -7011,8 +7230,6 @@
                     <div class="stock-cell">
                       <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
                         Stock — 4 units</span>
-                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
-                        Stock — 4 units</span>
                       <span class="stock-sub">Need 12 · shortfall 8</span>
                     </div>
                   </td>
@@ -7035,8 +7252,6 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out
-                        of Stock</span>
                       <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out
                         of Stock</span>
                       <span class="stock-sub">Need 2 · none available</span>
@@ -7063,8 +7278,6 @@
                     <div class="stock-cell">
                       <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock
                         — 84 packs</span>
-                      <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock
-                        — 84 packs</span>
                       <span class="stock-sub">Need 50 · surplus 34</span>
                     </div>
                   </td>
@@ -7086,8 +7299,6 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
-                        Stock — 3 pcs</span>
                       <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
                         Stock — 3 pcs</span>
                       <span class="stock-sub">Need 10 · shortfall 7</span>
@@ -7112,7 +7323,9 @@
           <div class="pg-header">
             <div>
               <div class="pg-header-title">Sales Quotations</div>
-              <div class="pg-header-sub">Manage and approve sales quotations (<span data-tooltip="3-tier approval: 1) SE creates draft → 2) Admin reviews &amp; approves → 3) MD signs off for high-value quotes before sending to customer">3-tier workflow</span>)</div>
+              <div class="pg-header-sub">Manage and approve sales quotations (<span
+                  data-tooltip="3-tier approval: 1) SE creates draft → 2) Admin reviews &amp; approves → 3) MD signs off for high-value quotes before sending to customer">3-tier
+                  workflow</span>)</div>
             </div>
             <div style="display:flex;gap:8px;">
               <button class="btn-primary" onclick="openNewQuote()">New Quote</button>
@@ -7120,9 +7333,14 @@
           </div>
           <div class="filter-row" style="display:flex;align-items:center;">
             <div class="fc on">All Quotes</div>
-            <div class="fc" data-tooltip="Quote saved but not yet submitted for approval — SE is still building it">Draft</div>
-            <div class="fc" data-tooltip="Submitted by SE, waiting for Admin to verify pricing &amp; margins before it goes to MD">Pending Admin</div>
-            <div class="fc" data-tooltip="Admin-approved, now awaiting Managing Director sign-off (typically for quotes above a set value threshold)">Pending MD</div>
+            <div class="fc" data-tooltip="Quote saved but not yet submitted for approval — SE is still building it">
+              Draft</div>
+            <div class="fc"
+              data-tooltip="Submitted by SE, waiting for Admin to verify pricing &amp; margins before it goes to MD">
+              Pending Admin</div>
+            <div class="fc"
+              data-tooltip="Admin-approved, now awaiting Managing Director sign-off (typically for quotes above a set value threshold)">
+              Pending MD</div>
             <div class="fc" data-tooltip="Fully approved — quote can now be sent to the customer">Approved</div>
             <div class="filter-divider"></div>
             <div class="filter-search"><i class="ti ti-search"></i><input placeholder="Search Quote No..." /></div>
@@ -7144,9 +7362,13 @@
                     <th>Client</th>
                     <th>Amount</th>
                     <th>Status</th>
-                    <th><span data-tooltip="The person responsible for reviewing and approving this quote before it can be sent to the customer">Approver</span></th>
+                    <th><span
+                        data-tooltip="The person responsible for reviewing and approving this quote before it can be sent to the customer">Approver</span>
+                    </th>
                     <th>Date</th>
-                    <th><span data-tooltip="Revision number of this quote — v2 means the quote was revised once after the original (v1) was created">Version</span></th>
+                    <th><span
+                        data-tooltip="Revision number of this quote — v2 means the quote was revised once after the original (v1) was created">Version</span>
+                    </th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -7487,7 +7709,8 @@
               <div class="pg-header-sub">Manage machine demos assigned to customers</div>
             </div>
             <div class="pg-header-actions">
-              <button class="btn-primary" onclick="openDemoDrawer()"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Assign demo</button>
+              <button class="btn-primary" onclick="openDemoDrawer()"><i class="ti ti-plus"
+                  style="font-size:13px;margin-right:4px;"></i>Assign demo</button>
             </div>
           </div>
 
@@ -7545,7 +7768,9 @@
                   <td style="font-size:12px;color:#6a7f96;">02 Jun 2026</td>
                   <td style="font-size:12px;color:#6a7f96;">19 Jun 2026</td>
                   <td><span class="pill pill-amber">Due tomorrow</span></td>
-                  <td><span class="tbl-action" onclick="openDemoDrawer('ZKR-M-0041 · Lincoln Welder (MIG / 350A)','Al-Faris Industrial LLC','2026-06-02','2026-06-19','Due tomorrow','Welding rod compatibility demo for bulk order evaluation.')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openDemoDrawer('ZKR-M-0041 · Lincoln Welder (MIG / 350A)','Al-Faris Industrial LLC','2026-06-02','2026-06-19','Due tomorrow','Welding rod compatibility demo for bulk order evaluation.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td>
@@ -7557,7 +7782,9 @@
                   <td style="font-size:12px;color:#6a7f96;">28 May 2026</td>
                   <td style="font-size:12px;color:#E24B4A;font-weight:700;">10 Jun 2026</td>
                   <td><span class="pill pill-red">8 days overdue</span></td>
-                  <td><span class="tbl-action" onclick="openDemoDrawer('ZKR-M-0038 · Crosby Harness (Fall protection)','Gulf Metals Trading','2026-05-28','2026-06-10','8 days overdue','Full harness set demo for site safety compliance audit.')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openDemoDrawer('ZKR-M-0038 · Crosby Harness (Fall protection)','Gulf Metals Trading','2026-05-28','2026-06-10','8 days overdue','Full harness set demo for site safety compliance audit.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td>
@@ -7569,7 +7796,9 @@
                   <td style="font-size:12px;color:#6a7f96;">10 Jun 2026</td>
                   <td style="font-size:12px;color:#6a7f96;">25 Jun 2026</td>
                   <td><span class="pill pill-green">Active · on track</span></td>
-                  <td><span class="tbl-action" onclick="openDemoDrawer('ZKR-M-0047 · 3M Respirator (PPE · Series 6000)','AeroTech Engineering','2026-06-10','2026-06-25','Active · on track','Respirator fit-test demo before bulk PPE procurement.')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openDemoDrawer('ZKR-M-0047 · 3M Respirator (PPE · Series 6000)','AeroTech Engineering','2026-06-10','2026-06-25','Active · on track','Respirator fit-test demo before bulk PPE procurement.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td>
@@ -7581,7 +7810,9 @@
                   <td style="font-size:12px;color:#6a7f96;">05 Jun 2026</td>
                   <td style="font-size:12px;color:#E24B4A;font-weight:700;">12 Jun 2026</td>
                   <td><span class="pill pill-red">6 days overdue</span></td>
-                  <td><span class="tbl-action" onclick="openDemoDrawer('ZKR-M-0052 · Bahco Hand Tool Set (24-piece kit)','Desert Shield Safety','2026-06-05','2026-06-12','6 days overdue','Tool set trial for maintenance crew evaluation.')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openDemoDrawer('ZKR-M-0052 · Bahco Hand Tool Set (24-piece kit)','Desert Shield Safety','2026-06-05','2026-06-12','6 days overdue','Tool set trial for maintenance crew evaluation.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td>
@@ -7593,7 +7824,9 @@
                   <td style="font-size:12px;color:#6a7f96;">14 Jun 2026</td>
                   <td style="font-size:12px;color:#6a7f96;">28 Jun 2026</td>
                   <td><span class="pill pill-green">Active · on track</span></td>
-                  <td><span class="tbl-action" onclick="openDemoDrawer('ZKR-M-0061 · Norton Grinder (7&quot; disc)','PetroGulf Services','2026-06-14','2026-06-28','Active · on track','Grinder disc trial for workshop upgrade project.')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openDemoDrawer('ZKR-M-0061 · Norton Grinder (7&quot; disc)','PetroGulf Services','2026-06-14','2026-06-28','Active · on track','Grinder disc trial for workshop upgrade project.')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -7606,7 +7839,8 @@
               <div class="pg-header-title">Annual Maintenance Contracts</div>
               <div class="pg-header-sub">Lifecycle management for registered AMC assets</div>
             </div>
-            <button class="btn-primary" onclick="openAmcContractDrawer()"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>New AMC</button>
+            <button class="btn-primary" onclick="openAmcContractDrawer()"><i class="ti ti-plus"
+                style="font-size:13px;margin-right:4px;"></i>New AMC</button>
           </div>
           <div class="stat-row">
             <div class="stat-mini" style="border-left:4px solid #16A34A;">
@@ -7618,13 +7852,17 @@
             <div class="stat-mini" style="border-left:4px solid #D97706;">
               <div>
                 <div class="stat-mini-val">12</div>
-                <div class="stat-mini-lbl"><span data-tooltip="AMC contracts that will expire within the next 30 days — SE must proactively contact customers for renewal">Expiring in 30d</span></div>
+                <div class="stat-mini-lbl"><span
+                    data-tooltip="AMC contracts that will expire within the next 30 days — SE must proactively contact customers for renewal">Expiring
+                    in 30d</span></div>
               </div>
             </div>
             <div class="stat-mini" style="border-left:4px solid #DC2626;">
               <div>
                 <div class="stat-mini-val">4</div>
-                <div class="stat-mini-lbl"><span data-tooltip="Contracts that have expired but are within a short grace window — customer must renew or service coverage lapses">Grace Period</span></div>
+                <div class="stat-mini-lbl"><span
+                    data-tooltip="Contracts that have expired but are within a short grace window — customer must renew or service coverage lapses">Grace
+                    Period</span></div>
               </div>
             </div>
           </div>
@@ -7651,7 +7889,9 @@
                   <td>31 Dec 2026</td>
                   <td>AED 6,500</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openAmcContractDrawer('AMC/HOS/041','Emirates Fleet Services LLC','10KVA UPS (APC)','Full UPS maintenance including battery replacement and firmware updates.','2026-01-01','2026-12-31','6500','Active')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openAmcContractDrawer('AMC/HOS/041','Emirates Fleet Services LLC','10KVA UPS (APC)','Full UPS maintenance including battery replacement and firmware updates.','2026-01-01','2026-12-31','6500','Active')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -7662,7 +7902,9 @@
         <div class="page" id="p-solar-bom">
           <div class="pg-header">
             <div>
-              <div class="pg-header-title">Project <span data-tooltip="BOM = Bill of Materials — the complete list of every component, quantity, brand &amp; spec required to deliver a project from procurement to installation">Bill of Materials (BOM)</span></div>
+              <div class="pg-header-title">Project <span
+                  data-tooltip="BOM = Bill of Materials — the complete list of every component, quantity, brand &amp; spec required to deliver a project from procurement to installation">Bill
+                  of Materials (BOM)</span></div>
               <div class="pg-header-sub">Component-level tracking for specialized project execution</div>
             </div>
           </div>
@@ -7751,8 +7993,9 @@
             <div class="card">
               <div class="card-head"><span class="card-title">Leave Statistics (June)</span></div>
               <div class="prog-item">
-                <div class="prog-row"><span class="prog-name"><span data-tooltip="Unused casual leave days that roll over into the next month — high carry-over means team is not taking their entitled leaves">Casual Leave Carry-over</span></span><span
-                    class="prog-val">84%</span></div>
+                <div class="prog-row"><span class="prog-name"><span
+                      data-tooltip="Unused casual leave days that roll over into the next month — high carry-over means team is not taking their entitled leaves">Casual
+                      Leave Carry-over</span></span><span class="prog-val">84%</span></div>
                 <div class="prog-track">
                   <div class="prog-fill" style="width:84%;background:#16A34A;"></div>
                 </div>
@@ -7771,7 +8014,7 @@
         <!-- SETTINGS -->
         <div class="page" id="p-settings">
           <div style="margin-bottom:20px;">
-            <div style="font-size:18px;font-weight:700;color:#1a2332;">Settings</div>
+            <div style="font-size:18px;font-weight:700;color:#1a2332;">Master Settings</div>
             <div style="font-size:12px;color:#6a7f96;margin-top:2px;">Manage system preferences, master data, and
               account security</div>
           </div>
@@ -8327,7 +8570,8 @@
               <div class="pg-header-title">AMC Quotations</div>
               <div class="pg-header-sub">3-Tier approval queue for annual maintenance contracts</div>
             </div>
-            <button class="btn-primary" onclick="openAmcQuoteDrawer()"><i class="ti ti-file-plus" style="font-size:13px;margin-right:4px;"></i>Generate AMC Quote</button>
+            <button class="btn-primary" onclick="openAmcQuoteDrawer()"><i class="ti ti-file-plus"
+                style="font-size:13px;margin-right:4px;"></i>Generate AMC Quote</button>
           </div>
           <div class="tbl-wrap">
             <table class="data-tbl" id="amc-quotes-table">
@@ -8354,7 +8598,9 @@
                       <span class="pill pill-grey">MD</span>
                     </div>
                   </td>
-                  <td><span class="tbl-action" onclick="openAmcQuoteDrawer('AMC/Q/2026/45','Dubai Ports Auth.','125000','2026-06-30','Comprehensive AMC for port electrical and UPS systems. Includes quarterly preventive maintenance and 24hr emergency response.','Sales')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openAmcQuoteDrawer('AMC/Q/2026/45','Dubai Ports Auth.','125000','2026-06-30','Comprehensive AMC for port electrical and UPS systems. Includes quarterly preventive maintenance and 24hr emergency response.','Sales')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">AMC/Q/2026/42</span></td>
@@ -8368,7 +8614,9 @@
                       <span class="pill pill-amber">MD Pending</span>
                     </div>
                   </td>
-                  <td><span class="tbl-action" onclick="openAmcQuoteDrawer('AMC/Q/2026/42','Emirates Steel','89000','2026-06-25','AMC for steel plant welding equipment and abrasive tools. Bi-annual service + parts coverage.','Manager')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openAmcQuoteDrawer('AMC/Q/2026/42','Emirates Steel','89000','2026-06-25','AMC for steel plant welding equipment and abrasive tools. Bi-annual service + parts coverage.','Manager')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -8472,8 +8720,10 @@
             <div style="display:flex;gap:8px;">
               <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export</button>
               <button class="btn-primary"><i class="ti ti-refresh" style="margin-right:5px;"></i>Sync with
-                <span data-tooltip="Epicor = the company's ERP system. Syncing pulls the latest credit limits, balances &amp; account statuses from Epicor into Zaker Ops">Epicor</span></button>
-              <button class="btn-primary" onclick="openCustDrawer()"><i class="ti ti-plus" style="margin-right:5px;"></i>Add Customer</button>
+                <span
+                  data-tooltip="Epicor = the company's ERP system. Syncing pulls the latest credit limits, balances &amp; account statuses from Epicor into Zaker Ops">Epicor</span></button>
+              <button class="btn-primary" onclick="openCustDrawer()"><i class="ti ti-plus"
+                  style="margin-right:5px;"></i>Add Customer</button>
             </div>
           </div>
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
@@ -8488,12 +8738,16 @@
               <div class="kpi-sub up">92% active rate</div>
             </div>
             <div class="kpi-card amber">
-              <div class="kpi-label"><span data-tooltip="Total credit drawn by customers — the sum of all unpaid invoices against the credit limits approved for them">Credit Utilized</span></div>
+              <div class="kpi-label"><span
+                  data-tooltip="Total credit drawn by customers — the sum of all unpaid invoices against the credit limits approved for them">Credit
+                  Utilized</span></div>
               <div class="kpi-val" style="font-size:20px;">AED 842k</div>
               <div class="kpi-sub warn">of AED 2.1M limit</div>
             </div>
             <div class="kpi-card red">
-              <div class="kpi-label"><span data-tooltip="Invoices that have passed their payment due date — outstanding amounts the accounts team needs to chase">Overdue Balance</span></div>
+              <div class="kpi-label"><span
+                  data-tooltip="Invoices that have passed their payment due date — outstanding amounts the accounts team needs to chase">Overdue
+                  Balance</span></div>
               <div class="kpi-val" style="font-size:20px;">AED 128k</div>
               <div class="kpi-sub down">7 accounts overdue</div>
             </div>
@@ -8501,11 +8755,13 @@
           <div class="filter-bar">
             <div class="fc on">All (284)</div>
             <div class="fc">Active (261)</div>
-            <div class="fc" data-tooltip="Accounts temporarily blocked from new orders — usually due to exceeded credit limit or outstanding overdue invoices">On Hold (12)</div>
-            <div class="fc" data-tooltip="Accounts with invoices past their payment due date — requires follow-up from the accounts team">Overdue (7)</div>
+            <div class="fc"
+              data-tooltip="Accounts temporarily blocked from new orders — usually due to exceeded credit limit or outstanding overdue invoices">
+              On Hold (12)</div>
+            <div class="fc"
+              data-tooltip="Accounts with invoices past their payment due date — requires follow-up from the accounts team">
+              Overdue (7)</div>
             <div class="ml-auto">
-              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
-                  placeholder="Search accounts…" /></div>
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search accounts…" /></div>
             </div>
@@ -8538,7 +8794,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 150,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 42,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-001','Al-Faris Industrial LLC','Jebel Ali Free Zone','Fahad Al-Faris','+971-4-881-2200','fahad@alfaris.ae','150000','42000','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-001','Al-Faris Industrial LLC','Jebel Ali Free Zone','Fahad Al-Faris','+971-4-881-2200','fahad@alfaris.ae','150000','42000','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-002</td>
@@ -8552,7 +8810,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 100,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 34,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-002','Gulf Metals Trading','Dubai Industrial City','Nasser Al-Ghanim','+971-4-883-4100','nasser@gulfmetals.ae','100000','34000','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-002','Gulf Metals Trading','Dubai Industrial City','Nasser Al-Ghanim','+971-4-883-4100','nasser@gulfmetals.ae','100000','34000','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-003</td>
@@ -8566,7 +8826,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 200,000</td>
                   <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-003','AeroTech Engineering','Abu Dhabi Industrial','Saeed Al-Mazrouei','+971-2-644-1800','saeed@aerotech.ae','200000','0','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-003','AeroTech Engineering','Abu Dhabi Industrial','Saeed Al-Mazrouei','+971-2-644-1800','saeed@aerotech.ae','200000','0','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-004</td>
@@ -8580,7 +8842,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 75,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 18,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-004','Desert Shield Safety','Sharjah Industrial Area','Rashid Al-Khalidi','+971-6-533-8800','rashid@desertshield.ae','75000','18000','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-004','Desert Shield Safety','Sharjah Industrial Area','Rashid Al-Khalidi','+971-6-533-8800','rashid@desertshield.ae','75000','18000','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#9aaabb;">ACC-005</td>
@@ -8594,7 +8858,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 250,000</td>
                   <td style="font-size:12px;font-weight:600;color:#E24B4A;">AED 65,000</td>
                   <td><span class="pill pill-amber">On Hold</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-005','PetroGulf Services','Dubai South','Tariq Al-Suwaidi','+971-4-339-0000','tariq@petrogulf.ae','250000','65000','On Hold','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-005','PetroGulf Services','Dubai South','Tariq Al-Suwaidi','+971-4-339-0000','tariq@petrogulf.ae','250000','65000','On Hold','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-006</td>
@@ -8608,7 +8874,9 @@
                   <td style="font-size:12px;font-weight:600;">AED 80,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 12,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openCustDrawer('ACC-006','JAFZA Industrial Co. LLC','Jebel Ali Free Zone','Hamad Al-Mulla','+971-4-881-6600','hamad@jafzaind.ae','80000','12000','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openCustDrawer('ACC-006','JAFZA Industrial Co. LLC','Jebel Ali Free Zone','Hamad Al-Mulla','+971-4-881-6600','hamad@jafzaind.ae','80000','12000','Active','')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -8626,7 +8894,8 @@
               <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export</button>
               <button class="btn-primary"><i class="ti ti-refresh" style="margin-right:5px;"></i>Sync with
                 Epicor</button>
-              <button class="btn-primary" onclick="openVendorDrawer()"><i class="ti ti-plus" style="margin-right:5px;"></i>Add Vendor</button>
+              <button class="btn-primary" onclick="openVendorDrawer()"><i class="ti ti-plus"
+                  style="margin-right:5px;"></i>Add Vendor</button>
             </div>
           </div>
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
@@ -8659,8 +8928,6 @@
             <div class="ml-auto">
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search vendors…" /></div>
-              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
-                  placeholder="Search vendors…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -8691,7 +8958,9 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 24,000</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-001','Lincoln Electric ME FZE','Jebel Ali, Dubai','James Al-Rashid','Welding','+971-4-884-4400','james@lincolnme.ae','30 days net','24000','Preferred','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-001','Lincoln Electric ME FZE','Jebel Ali, Dubai','James Al-Rashid','Welding','+971-4-884-4400','james@lincolnme.ae','30 days net','24000','Preferred','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-002</td>
@@ -8705,7 +8974,9 @@
                   <td style="font-size:11px;">45 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 12,400</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-002','Pewag International GmbH','Via JAFZA, Dubai','Klaus Weber','Lifting &amp; Rigging','+971-4-887-2200','k.weber@pewag.com','45 days net','12400','Preferred','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-002','Pewag International GmbH','Via JAFZA, Dubai','Klaus Weber','Lifting &amp; Rigging','+971-4-887-2200','k.weber@pewag.com','45 days net','12400','Preferred','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-003</td>
@@ -8719,7 +8990,9 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 8,200</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-003','3M Gulf FZE','Dubai Airport FZ','Sara Al-Hosani','Safety PPE','+971-4-299-6000','sara.alhosani@3m.com','30 days net','8200','Preferred','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-003','3M Gulf FZE','Dubai Airport FZ','Sara Al-Hosani','Safety PPE','+971-4-299-6000','sara.alhosani@3m.com','30 days net','8200','Preferred','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-004</td>
@@ -8733,7 +9006,9 @@
                   <td style="font-size:11px;">60 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-004','Stanley Black &amp; Decker ME','Business Bay, Dubai','David Al-Fahim','Hand Tools','+971-4-369-5800','d.alfahim@sbdme.ae','60 days net','0','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-004','Stanley Black &amp; Decker ME','Business Bay, Dubai','David Al-Fahim','Hand Tools','+971-4-369-5800','d.alfahim@sbdme.ae','60 days net','0','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-005</td>
@@ -8747,7 +9022,9 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 6,800</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-005','Norton Abrasives ME','Sharjah, U.A.E.','Faisal Al-Nasser','Abrasives','+971-6-543-9900','faisal@nortonme.ae','30 days net','6800','Active','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-005','Norton Abrasives ME','Sharjah, U.A.E.','Faisal Al-Nasser','Abrasives','+971-6-543-9900','faisal@nortonme.ae','30 days net','6800','Active','')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-006</td>
@@ -8761,7 +9038,9 @@
                   <td style="font-size:11px;">45 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 5,600</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action" onclick="openVendorDrawer('VND-006','Crosby Group ME FZE','Jebel Ali, Dubai','Ali Al-Rasheed','Safety Lifting','+971-4-884-7700','ali@crosbygroup.ae','45 days net','5600','Preferred','')">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openVendorDrawer('VND-006','Crosby Group ME FZE','Jebel Ali, Dubai','Ali Al-Rasheed','Safety Lifting','+971-4-884-7700','ali@crosbygroup.ae','45 days net','5600','Preferred','')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -9326,12 +9605,10 @@
             <div class="ml-auto">
               <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
                   placeholder="Search PO…" /></div>
-              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
-                  placeholder="Search PO…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
-            <table class="data-tbl">
+            <table class="data-tbl" id="purch-orders-table">
               <thead>
                 <tr>
                   <th>PO Number</th>
@@ -9360,7 +9637,9 @@
                     <div style="font-size:10px;color:#6a7f96;margin-top:2px;">60%</div>
                   </td>
                   <td><span class="pill pill-amber">Partial</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openPODrawer('PO-2026-081','Lincoln Electric ME FZE','Welding','14 Jun 2026','21 Jun 2026','45200','60','Partial','Lincoln E6013 welding rods × 200 pcs, MIG wire 0.8mm × 50 rolls')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PO-2026-079</span></td>
@@ -9376,7 +9655,9 @@
                     <div style="font-size:10px;color:#E24B4A;margin-top:2px;">Delayed</div>
                   </td>
                   <td><span class="pill pill-red">Delayed</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openPODrawer('PO-2026-079','Pewag International GmbH','Lifting','12 Jun 2026','16 Jun 2026','28000','0','Delayed','Pewag Grade 100 chain 5T × 200m. Vendor reported shipment delay from Austria.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PO-2026-078</span></td>
@@ -9392,7 +9673,9 @@
                     <div style="font-size:10px;color:#1D9E75;margin-top:2px;">100%</div>
                   </td>
                   <td><span class="pill pill-green">Delivered</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openPODrawer('PO-2026-078','3M Gulf FZE','Safety PPE','10 Jun 2026','17 Jun 2026','12400','100','Delivered','3M P100 respirator cartridges × 200 units, safety glasses × 50 pairs.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PO-2026-075</span></td>
@@ -9408,7 +9691,9 @@
                     <div style="font-size:10px;color:#1D9E75;margin-top:2px;">100%</div>
                   </td>
                   <td><span class="pill pill-green">Delivered</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openPODrawer('PO-2026-075','Norton Abrasives ME','Abrasives','08 Jun 2026','14 Jun 2026','8400','100','Delivered','Norton 7&quot; cutting discs × 500 pcs, grinding wheels × 100 pcs.')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PO-2026-072</span></td>
@@ -9424,7 +9709,9 @@
                     <div style="font-size:10px;color:#6a7f96;margin-top:2px;">30%</div>
                   </td>
                   <td><span class="pill pill-amber">Partial</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openPODrawer('PO-2026-072','Crosby Group ME FZE','Safety Lifting','05 Jun 2026','19 Jun 2026','18600','30','Partial','Crosby shackles × 50 pcs, safety harness sets × 10 units.')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -9471,8 +9758,6 @@
             <div class="ml-auto">
               <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
                   placeholder="Search invoice…" /></div>
-              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
-                  placeholder="Search invoice…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -9500,7 +9785,10 @@
                   <td style="font-weight:600;">AED 45,200</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-081</td>
                   <td><span class="pill pill-red">Unpaid</span></td>
-                  <td><button class="tbl-btn gold">Pay Now</button></td>
+                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
+                      Now</button><span class="tbl-action"
+                      onclick="openInvDrawer('PINV-2026-041','Lincoln Electric ME FZE','Welding','14 Jun 2026','14 Jul 2026','45200','PO-2026-081','Unpaid')">View
+                      →</span></td>
                 </tr>
                 <tr style="background:#fff8ec;">
                   <td><span class="tbl-id">PINV-2026-039</span></td>
@@ -9511,7 +9799,10 @@
                   <td style="font-weight:600;">AED 28,000</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-079</td>
                   <td><span class="pill pill-red">Overdue</span></td>
-                  <td><button class="tbl-btn gold">Pay Now</button></td>
+                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
+                      Now</button><span class="tbl-action"
+                      onclick="openInvDrawer('PINV-2026-039','Pewag International GmbH','Lifting','05 Jun 2026','16 Jun 2026','28000','PO-2026-079','Overdue')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PINV-2026-038</span></td>
@@ -9522,7 +9813,9 @@
                   <td style="font-weight:600;">AED 12,400</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-078</td>
                   <td><span class="pill pill-green">Paid</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openInvDrawer('PINV-2026-038','3M Gulf FZE','Safety PPE','10 Jun 2026','10 Jul 2026','12400','PO-2026-078','Paid')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PINV-2026-035</span></td>
@@ -9533,7 +9826,9 @@
                   <td style="font-weight:600;">AED 8,400</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-075</td>
                   <td><span class="pill pill-green">Paid</span></td>
-                  <td><span class="tbl-action">View →</span></td>
+                  <td><span class="tbl-action"
+                      onclick="openInvDrawer('PINV-2026-035','Norton Abrasives ME','Abrasives','08 Jun 2026','08 Jul 2026','8400','PO-2026-075','Paid')">View
+                      →</span></td>
                 </tr>
                 <tr>
                   <td><span class="tbl-id">PINV-2026-032</span></td>
@@ -9544,7 +9839,10 @@
                   <td style="font-weight:600;">AED 18,600</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-072</td>
                   <td><span class="pill pill-red">Unpaid</span></td>
-                  <td><button class="tbl-btn gold">Pay Now</button></td>
+                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
+                      Now</button><span class="tbl-action"
+                      onclick="openInvDrawer('PINV-2026-032','Crosby Group ME FZE','Safety Lifting','01 Jun 2026','01 Jul 2026','18600','PO-2026-072','Unpaid')">View
+                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -10390,9 +10688,6 @@
       'amc-req': 'AMC Requests',
       'amc-quotes': 'AMC Quotations',
       'amc-active': 'Active AMC Contracts',
-      'solar-quotes': 'Project Quotations',
-      'solar-bom': 'Project BOM Details',
-      'solar-delivery': 'Project Execution Log',
       'att-today': 'Attendance Log',
       'leave-req': 'Leave Management',
       'permission-req': 'Permissions Log',
@@ -10403,7 +10698,7 @@
       'm-hr': 'HR Master',
       accounts: 'User Accounts',
       usagelog: 'Usage Log',
-      settings: 'Settings',
+      settings: 'Master Settings',
       cust360: 'Customer 360'
     };
 
@@ -10708,7 +11003,9 @@
         <div
           style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
           <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send"
-              style="margin-right:5px;color:#4338CA;"></i>Send <span data-tooltip="RFQ = Request for Quotation — a formal email asking a vendor to provide their best price, lead time &amp; terms for specified items">RFQ</span> Email to Vendor</span>
+              style="margin-right:5px;color:#4338CA;"></i>Send <span
+              data-tooltip="RFQ = Request for Quotation — a formal email asking a vendor to provide their best price, lead time &amp; terms for specified items">RFQ</span>
+            Email to Vendor</span>
           <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleVqEmail()"><i
               class="ti ti-x"></i></button>
         </div>
@@ -11515,12 +11812,138 @@
   </script>
 
   <!-- ══ ADD LEAD DRAWER ══ -->
+
+  <!-- ── PURCHASE ORDER VIEW DRAWER ── -->
+  <div class="drawer-overlay" id="po-overlay" onclick="closePODrawer()"></div>
+  <div class="lead-drawer" id="po-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-shopping-cart" style="margin-right:6px;color:#C9A84C;"></i>Purchase
+          Order</div>
+        <div class="drawer-sub">PO #: <span class="d-code-preview" id="po-code-preview">—</span></div>
+      </div>
+      <button class="drawer-close" onclick="closePODrawer()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-section-title">Vendor & Category</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Vendor</label>
+          <input class="d-input" id="po-vendor" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Category</label>
+          <input class="d-input" id="po-category" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Dates & Value</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">PO Date</label>
+          <input class="d-input" id="po-date" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Expected Delivery</label>
+          <input class="d-input" id="po-delivery" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Total Amount (AED)</label>
+          <input class="d-input" id="po-amount" type="text" readonly
+            style="background:#f8fafc;font-weight:700;color:#0A1628;" />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Fulfillment & Status</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Fulfillment %</label>
+          <input class="d-input" id="po-fulfillment" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Status</label>
+          <input class="d-input" id="po-status" type="text" readonly style="background:#f8fafc;font-weight:600;" />
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <div style="font-size:11px;color:#6a7f96;margin-bottom:4px;">Delivery Progress</div>
+        <div class="prog-track" style="width:100%;height:8px;border-radius:4px;">
+          <div id="po-prog-bar" class="prog-fill" style="height:8px;border-radius:4px;transition:width 0.4s;"></div>
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:14px;">Items / Description</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="po-items" readonly style="background:#f8fafc;color:#6a7f96;"
+          rows="3"></textarea>
+      </div>
+    </div>
+    <div class="drawer-foot">
+      <button class="btn-secondary" style="flex:1;" onclick="closePODrawer()">Close</button>
+    </div>
+  </div><!-- /po-drawer -->
+
+  <!-- ── PURCHASE INVOICE VIEW DRAWER ── -->
+  <div class="drawer-overlay" id="inv-overlay" onclick="closeInvDrawer()"></div>
+  <div class="lead-drawer" id="inv-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-receipt" style="margin-right:6px;color:#C9A84C;"></i>Purchase Invoice
+        </div>
+        <div class="drawer-sub">Invoice #: <span class="d-code-preview" id="inv-code-preview">—</span></div>
+      </div>
+      <button class="drawer-close" onclick="closeInvDrawer()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-section-title">Vendor & Category</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Vendor</label>
+          <input class="d-input" id="inv-vendor" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Category</label>
+          <input class="d-input" id="inv-category" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Dates & Amount</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Invoice Date</label>
+          <input class="d-input" id="inv-date" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Due Date</label>
+          <input class="d-input" id="inv-due" type="text" readonly style="background:#f8fafc;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Amount (AED)</label>
+          <input class="d-input" id="inv-amount" type="text" readonly
+            style="background:#f8fafc;font-weight:700;color:#0A1628;" />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">PO & Payment</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">PO Reference</label>
+          <input class="d-input" id="inv-po-ref" type="text" readonly
+            style="background:#f8fafc;font-family:monospace;color:#6a7f96;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Payment Status</label>
+          <input class="d-input" id="inv-pay-status" type="text" readonly style="background:#f8fafc;font-weight:700;" />
+        </div>
+      </div>
+    </div>
+    <div class="drawer-foot" id="inv-footer">
+      <button class="btn-secondary" style="flex:1;" onclick="closeInvDrawer()">Close</button>
+    </div>
+  </div><!-- /inv-drawer -->
+
   <!-- ── ADD CUSTOMER DRAWER ── -->
   <div class="drawer-overlay" id="cust-overlay" onclick="closeCustDrawer()"></div>
   <div class="lead-drawer" id="cust-drawer">
     <div class="drawer-head">
       <div>
-        <div class="drawer-title" id="cust-drawer-title"><i class="ti ti-building-store" style="margin-right:6px;color:#C9A84C;"></i>Add Customer</div>
+        <div class="drawer-title" id="cust-drawer-title"><i class="ti ti-building-store"
+            style="margin-right:6px;color:#C9A84C;"></i>Add Customer</div>
         <div class="drawer-sub">Account: <span class="d-code-preview" id="cust-code-preview">ACC-007</span></div>
       </div>
       <button class="drawer-close" onclick="closeCustDrawer()"><i class="ti ti-x"></i></button>
@@ -11599,7 +12022,8 @@
       </div>
     </div>
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitCustDrawer()"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Save Customer</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitCustDrawer()"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Customer</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeCustDrawer()">Cancel</button>
     </div>
   </div><!-- /cust-drawer -->
@@ -11609,7 +12033,8 @@
   <div class="lead-drawer" id="vendor-drawer">
     <div class="drawer-head">
       <div>
-        <div class="drawer-title" id="vendor-drawer-title"><i class="ti ti-truck" style="margin-right:6px;color:#C9A84C;"></i>Add Vendor</div>
+        <div class="drawer-title" id="vendor-drawer-title"><i class="ti ti-truck"
+            style="margin-right:6px;color:#C9A84C;"></i>Add Vendor</div>
         <div class="drawer-sub">Code: <span class="d-code-preview" id="vendor-code-preview">VND-007</span></div>
       </div>
       <button class="drawer-close" onclick="closeVendorDrawer()"><i class="ti ti-x"></i></button>
@@ -11684,7 +12109,8 @@
       </div>
     </div>
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitVendorDrawer()"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Save Vendor</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitVendorDrawer()"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Vendor</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeVendorDrawer()">Cancel</button>
     </div>
   </div><!-- /vendor-drawer -->
@@ -11694,7 +12120,8 @@
   <div class="lead-drawer" id="amcq-drawer">
     <div class="drawer-head">
       <div>
-        <div class="drawer-title" id="amcq-drawer-title"><i class="ti ti-file-plus" style="margin-right:6px;color:#C9A84C;"></i>Generate AMC Quote</div>
+        <div class="drawer-title" id="amcq-drawer-title"><i class="ti ti-file-plus"
+            style="margin-right:6px;color:#C9A84C;"></i>Generate AMC Quote</div>
         <div class="drawer-sub">Quote #: <span class="d-code-preview" id="amcq-code-preview">AMC/Q/2026/46</span></div>
       </div>
       <button class="drawer-close" onclick="closeAmcQuoteDrawer()"><i class="ti ti-x"></i></button>
@@ -11757,7 +12184,8 @@
       </div>
     </div>
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitAmcQuoteDrawer()"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Save Quote</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitAmcQuoteDrawer()"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Quote</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeAmcQuoteDrawer()">Cancel</button>
     </div>
   </div><!-- /amcq-drawer -->
@@ -11767,8 +12195,10 @@
   <div class="lead-drawer" id="amcc-drawer">
     <div class="drawer-head">
       <div>
-        <div class="drawer-title" id="amcc-drawer-title"><i class="ti ti-file-certificate" style="margin-right:6px;color:#C9A84C;"></i>New AMC Contract</div>
-        <div class="drawer-sub">Contract ID: <span class="d-code-preview" id="amcc-code-preview">AMC/HOS/042</span></div>
+        <div class="drawer-title" id="amcc-drawer-title"><i class="ti ti-file-certificate"
+            style="margin-right:6px;color:#C9A84C;"></i>New AMC Contract</div>
+        <div class="drawer-sub">Contract ID: <span class="d-code-preview" id="amcc-code-preview">AMC/HOS/042</span>
+        </div>
       </div>
       <button class="drawer-close" onclick="closeAmcContractDrawer()"><i class="ti ti-x"></i></button>
     </div>
@@ -11786,7 +12216,8 @@
       </div>
       <div class="d-field">
         <label class="d-label">Coverage Scope</label>
-        <input class="d-input" id="amcc-scope" type="text" placeholder="e.g. Full UPS maintenance including battery replacement" />
+        <input class="d-input" id="amcc-scope" type="text"
+          placeholder="e.g. Full UPS maintenance including battery replacement" />
       </div>
       <div class="drawer-section-title" style="margin-top:4px;">Contract Period & Value</div>
       <div class="d-grid-3">
@@ -11839,11 +12270,13 @@
       <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
       <div class="d-field">
         <label class="d-label">Contract Notes</label>
-        <textarea class="d-textarea" id="amcc-notes" placeholder="Special terms, access instructions, SLA details…"></textarea>
+        <textarea class="d-textarea" id="amcc-notes"
+          placeholder="Special terms, access instructions, SLA details…"></textarea>
       </div>
     </div>
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitAmcContractDrawer()"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Save Contract</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitAmcContractDrawer()"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Contract</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeAmcContractDrawer()">Cancel</button>
     </div>
   </div><!-- /amcc-drawer -->
@@ -11853,7 +12286,8 @@
   <div class="lead-drawer" id="demo-drawer">
     <div class="drawer-head">
       <div>
-        <div class="drawer-title" id="demo-drawer-title"><i class="ti ti-device-laptop" style="margin-right:6px;color:#C9A84C;"></i>Assign New Demo</div>
+        <div class="drawer-title" id="demo-drawer-title"><i class="ti ti-device-laptop"
+            style="margin-right:6px;color:#C9A84C;"></i>Assign New Demo</div>
         <div class="drawer-sub">Machine demo assignment to customer</div>
       </div>
       <button class="drawer-close" onclick="closeDemoDrawer()"><i class="ti ti-x"></i></button>
@@ -11862,7 +12296,8 @@
       <!-- AI hint -->
       <div class="ai-hint-bar" style="margin-bottom:14px;">
         <i class="ti ti-sparkles"></i>
-        <div class="ai-hint-txt"><b>AI suggest:</b> Al-Faris Industrial requested a Lincoln Welder demo — ZKR-M-0055 is available in warehouse.</div>
+        <div class="ai-hint-txt"><b>AI suggest:</b> Al-Faris Industrial requested a Lincoln Welder demo — ZKR-M-0055 is
+          available in warehouse.</div>
       </div>
       <div class="drawer-section-title">Machine & Customer</div>
       <div class="d-field">
@@ -11912,11 +12347,13 @@
       <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
       <div class="d-field">
         <label class="d-label">Demo Notes</label>
-        <textarea class="d-textarea" id="demo-notes" placeholder="Add demo purpose, conditions, or instructions…"></textarea>
+        <textarea class="d-textarea" id="demo-notes"
+          placeholder="Add demo purpose, conditions, or instructions…"></textarea>
       </div>
     </div>
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitDemoDrawer()"><i class="ti ti-check" style="font-size:13px;margin-right:4px;"></i>Assign Demo</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitDemoDrawer()"><i class="ti ti-check"
+          style="font-size:13px;margin-right:4px;"></i>Assign Demo</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeDemoDrawer()">Cancel</button>
     </div>
   </div><!-- /demo-drawer -->
@@ -12741,6 +13178,71 @@
   </div><!-- /lead-drawer -->
 
   <script>
+    /* ── PURCHASE ORDER VIEW DRAWER ── */
+    function openPODrawer(poNum, vendor, category, poDate, delivery, amount, fulfillment, status, items) {
+      document.getElementById('po-overlay').classList.add('open');
+      document.getElementById('po-drawer').classList.add('open');
+
+      document.getElementById('po-code-preview').textContent = poNum;
+      document.getElementById('po-vendor').value = vendor || '';
+      document.getElementById('po-category').value = category || '';
+      document.getElementById('po-date').value = poDate || '';
+      document.getElementById('po-delivery').value = delivery || '';
+      document.getElementById('po-amount').value = 'AED ' + Number(amount).toLocaleString();
+      document.getElementById('po-fulfillment').value = fulfillment + '%';
+      document.getElementById('po-status').value = status || '';
+      document.getElementById('po-items').value = items || '';
+
+      const pct = parseInt(fulfillment) || 0;
+      const bar = document.getElementById('po-prog-bar');
+      if (bar) {
+        bar.style.width = pct + '%';
+        bar.style.background = pct === 100 ? '#16A34A' : status === 'Delayed' ? '#E24B4A' : '#F59E0B';
+      }
+    }
+
+    function closePODrawer() {
+      document.getElementById('po-overlay').classList.remove('open');
+      document.getElementById('po-drawer').classList.remove('open');
+    }
+
+    /* ── PURCHASE INVOICE VIEW DRAWER ── */
+    function openInvDrawer(invNum, vendor, category, invDate, dueDate, amount, poRef, payStatus) {
+      document.getElementById('inv-overlay').classList.add('open');
+      document.getElementById('inv-drawer').classList.add('open');
+
+      document.getElementById('inv-code-preview').textContent = invNum;
+      document.getElementById('inv-vendor').value = vendor || '';
+      document.getElementById('inv-category').value = category || '';
+      document.getElementById('inv-date').value = invDate || '';
+      document.getElementById('inv-due').value = dueDate || '';
+
+      const numAmount = Number(amount.toString().replace(/[^0-9.]/g, '')) || 0;
+      document.getElementById('inv-amount').value = 'AED ' + numAmount.toLocaleString();
+
+      document.getElementById('inv-po-ref').value = poRef || '';
+      document.getElementById('inv-pay-status').value = payStatus || '';
+
+      const statusEl = document.getElementById('inv-pay-status');
+      if (statusEl) {
+        statusEl.style.color = payStatus === 'Paid' ? '#1D9E75' : payStatus === 'Overdue' ? '#E24B4A' : '#D97706';
+      }
+
+      const footer = document.getElementById('inv-footer');
+      if (footer) {
+        if (payStatus === 'Paid') {
+          footer.innerHTML = '<button class="btn-secondary" style="flex:1;" onclick="closeInvDrawer()">Close</button>';
+        } else {
+          footer.innerHTML = '<button class="btn-primary" style="flex:1;background:#C9A84C;border-color:#C9A84C;" onclick="closeInvDrawer()"><i class="ti ti-credit-card" style="margin-right:5px;"></i>Pay Now</button><button class="btn-secondary" style="padding:8px 14px;" onclick="closeInvDrawer()">Close</button>';
+        }
+      }
+    }
+
+    function closeInvDrawer() {
+      document.getElementById('inv-overlay').classList.remove('open');
+      document.getElementById('inv-drawer').classList.remove('open');
+    }
+
     /* ── CUSTOMER DRAWER ── */
     let _custSeq = 7;
 
@@ -12750,22 +13252,22 @@
         '<i class="ti ti-building-store" style="margin-right:6px;color:#C9A84C;"></i>' +
         (isView ? 'Customer Details' : 'Add Customer');
       document.getElementById('cust-code-preview').textContent =
-        isView ? code : 'ACC-' + String(_custSeq).padStart(3,'0');
+        isView ? code : 'ACC-' + String(_custSeq).padStart(3, '0');
 
       if (isView) {
-        document.getElementById('cust-name').value     = name     || '';
+        document.getElementById('cust-name').value = name || '';
         document.getElementById('cust-location').value = location || '';
-        document.getElementById('cust-contact').value  = contact  || '';
-        document.getElementById('cust-phone').value    = phone    || '';
-        document.getElementById('cust-email').value    = email    || '';
-        document.getElementById('cust-credit').value   = credit   || '';
-        document.getElementById('cust-notes').value    = notes    || '';
+        document.getElementById('cust-contact').value = contact || '';
+        document.getElementById('cust-phone').value = phone || '';
+        document.getElementById('cust-email').value = email || '';
+        document.getElementById('cust-credit').value = credit || '';
+        document.getElementById('cust-notes').value = notes || '';
         setSelectVal('cust-status', status);
       } else {
-        ['cust-name','cust-location','cust-contact','cust-phone','cust-email','cust-credit','cust-notes'].forEach(id => document.getElementById(id).value = '');
-        document.getElementById('cust-status').value   = 'Active';
+        ['cust-name', 'cust-location', 'cust-contact', 'cust-phone', 'cust-email', 'cust-credit', 'cust-notes'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('cust-status').value = 'Active';
         document.getElementById('cust-industry').value = '';
-        document.getElementById('cust-terms').value    = '30 days net';
+        document.getElementById('cust-terms').value = '30 days net';
       }
 
       document.getElementById('cust-overlay').classList.add('open');
@@ -12778,20 +13280,20 @@
     }
 
     function submitCustDrawer() {
-      const name    = document.getElementById('cust-name').value.trim();
+      const name = document.getElementById('cust-name').value.trim();
       const contact = document.getElementById('cust-contact').value.trim();
-      if (!name)    { alert('Customer Name is required.'); return; }
+      if (!name) { alert('Customer Name is required.'); return; }
       if (!contact) { alert('Contact Person is required.'); return; }
 
-      const code     = 'ACC-' + String(_custSeq).padStart(3,'0');
+      const code = 'ACC-' + String(_custSeq).padStart(3, '0');
       const location = document.getElementById('cust-location').value.trim() || '—';
-      const phone    = document.getElementById('cust-phone').value.trim()    || '—';
-      const email    = document.getElementById('cust-email').value.trim()    || '—';
-      const credit   = document.getElementById('cust-credit').value;
-      const status   = document.getElementById('cust-status').value;
-      const notes    = document.getElementById('cust-notes').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim() || '—';
+      const email = document.getElementById('cust-email').value.trim() || '—';
+      const credit = document.getElementById('cust-credit').value;
+      const status = document.getElementById('cust-status').value;
+      const notes = document.getElementById('cust-notes').value.trim();
       const dispCredit = credit ? 'AED ' + Number(credit).toLocaleString() : '—';
-      const pillCls  = status === 'Active' ? 'pill-green' : status === 'On Hold' ? 'pill-amber' : status === 'Overdue' ? 'pill-red' : 'pill-grey';
+      const pillCls = status === 'Active' ? 'pill-green' : status === 'On Hold' ? 'pill-amber' : status === 'Overdue' ? 'pill-red' : 'pill-grey';
 
       const tbody = document.querySelector('#cust-accounts-table tbody');
       if (!tbody) { closeCustDrawer(); return; }
@@ -12808,7 +13310,7 @@
         <td style="font-size:12px;font-weight:600;">${dispCredit}</td>
         <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
         <td><span class="pill ${pillCls}">${status}</span></td>
-        <td><span class="tbl-action" onclick="openCustDrawer('${code}','${name}','${location}','${contact}','${phone}','${email}','${credit}','0','${status}','${notes.replace(/'/g,"\\'")}')">View →</span></td>`;
+        <td><span class="tbl-action" onclick="openCustDrawer('${code}','${name}','${location}','${contact}','${phone}','${email}','${credit}','0','${status}','${notes.replace(/'/g, "\\'")}')">View →</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       _custSeq++;
       closeCustDrawer();
@@ -12823,23 +13325,23 @@
         '<i class="ti ti-truck" style="margin-right:6px;color:#C9A84C;"></i>' +
         (isView ? 'Vendor Details' : 'Add Vendor');
       document.getElementById('vendor-code-preview').textContent =
-        isView ? code : 'VND-' + String(_vendorSeq).padStart(3,'0');
+        isView ? code : 'VND-' + String(_vendorSeq).padStart(3, '0');
 
       if (isView) {
-        document.getElementById('vendor-name').value     = name     || '';
+        document.getElementById('vendor-name').value = name || '';
         document.getElementById('vendor-location').value = location || '';
-        document.getElementById('vendor-contact').value  = contact  || '';
-        document.getElementById('vendor-phone').value    = phone    || '';
-        document.getElementById('vendor-email').value    = email    || '';
-        document.getElementById('vendor-notes').value    = notes    || '';
+        document.getElementById('vendor-contact').value = contact || '';
+        document.getElementById('vendor-phone').value = phone || '';
+        document.getElementById('vendor-email').value = email || '';
+        document.getElementById('vendor-notes').value = notes || '';
         setSelectVal('vendor-category', category);
-        setSelectVal('vendor-terms',    terms);
-        setSelectVal('vendor-status',   status);
+        setSelectVal('vendor-terms', terms);
+        setSelectVal('vendor-status', status);
       } else {
-        ['vendor-name','vendor-location','vendor-contact','vendor-phone','vendor-email','vendor-notes'].forEach(id => document.getElementById(id).value = '');
+        ['vendor-name', 'vendor-location', 'vendor-contact', 'vendor-phone', 'vendor-email', 'vendor-notes'].forEach(id => document.getElementById(id).value = '');
         document.getElementById('vendor-category').value = '';
-        document.getElementById('vendor-status').value   = 'Active';
-        document.getElementById('vendor-terms').value    = '30 days net';
+        document.getElementById('vendor-status').value = 'Active';
+        document.getElementById('vendor-terms').value = '30 days net';
       }
 
       document.getElementById('vendor-overlay').classList.add('open');
@@ -12852,25 +13354,25 @@
     }
 
     function submitVendorDrawer() {
-      const name     = document.getElementById('vendor-name').value.trim();
+      const name = document.getElementById('vendor-name').value.trim();
       const category = document.getElementById('vendor-category').value;
-      if (!name)     { alert('Company Name is required.'); return; }
+      if (!name) { alert('Company Name is required.'); return; }
       if (!category) { alert('Category is required.'); return; }
 
-      const code     = 'VND-' + String(_vendorSeq).padStart(3,'0');
+      const code = 'VND-' + String(_vendorSeq).padStart(3, '0');
       const location = document.getElementById('vendor-location').value.trim() || '—';
-      const contact  = document.getElementById('vendor-contact').value.trim()  || '—';
-      const phone    = document.getElementById('vendor-phone').value.trim()    || '—';
-      const email    = document.getElementById('vendor-email').value.trim()    || '—';
-      const terms    = document.getElementById('vendor-terms').value;
-      const status   = document.getElementById('vendor-status').value;
-      const notes    = document.getElementById('vendor-notes').value.trim();
+      const contact = document.getElementById('vendor-contact').value.trim() || '—';
+      const phone = document.getElementById('vendor-phone').value.trim() || '—';
+      const email = document.getElementById('vendor-email').value.trim() || '—';
+      const terms = document.getElementById('vendor-terms').value;
+      const status = document.getElementById('vendor-status').value;
+      const notes = document.getElementById('vendor-notes').value.trim();
 
-      const catPill  = category === 'Welding' ? 'pill-amber' : category === 'Safety PPE' ? 'pill-green'
-                     : category.includes('Lifting') ? 'pill-blue' : category === 'Abrasives' ? 'pill-red'
-                     : category === 'Hand Tools' ? 'pill-purple' : 'pill-grey';
-      const stPill   = status === 'Preferred' ? 'pill-green' : status === 'Active' ? 'pill-green'
-                     : status === 'Inactive' ? 'pill-grey' : 'pill-red';
+      const catPill = category === 'Welding' ? 'pill-amber' : category === 'Safety PPE' ? 'pill-green'
+        : category.includes('Lifting') ? 'pill-blue' : category === 'Abrasives' ? 'pill-red'
+          : category === 'Hand Tools' ? 'pill-purple' : 'pill-grey';
+      const stPill = status === 'Preferred' ? 'pill-green' : status === 'Active' ? 'pill-green'
+        : status === 'Inactive' ? 'pill-grey' : 'pill-red';
 
       const tbody = document.querySelector('#vendor-accounts-table tbody');
       if (!tbody) { closeVendorDrawer(); return; }
@@ -12887,7 +13389,7 @@
         <td style="font-size:11px;">${terms}</td>
         <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
         <td><span class="pill ${stPill}">${status}</span></td>
-        <td><span class="tbl-action" onclick="openVendorDrawer('${code}','${name}','${location}','${contact}','${category}','${phone}','${email}','${terms}','0','${status}','${notes.replace(/'/g,"\\'")}')">View →</span></td>`;
+        <td><span class="tbl-action" onclick="openVendorDrawer('${code}','${name}','${location}','${contact}','${category}','${phone}','${email}','${terms}','0','${status}','${notes.replace(/'/g, "\\'")}')">View →</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       _vendorSeq++;
       closeVendorDrawer();
@@ -12905,17 +13407,17 @@
         isView ? id : 'AMC/Q/2026/' + _amcqSeq;
 
       if (isView) {
-        document.getElementById('amcq-customer').value  = customer || '';
-        document.getElementById('amcq-value').value     = value    || '';
-        document.getElementById('amcq-notes').value     = notes    || '';
+        document.getElementById('amcq-customer').value = customer || '';
+        document.getElementById('amcq-value').value = value || '';
+        document.getElementById('amcq-notes').value = notes || '';
         if (validity) document.getElementById('amcq-validity').value = validity;
         setSelectVal('amcq-approval', approvalLevel);
       } else {
-        ['amcq-customer','amcq-value','amcq-scope','amcq-notes'].forEach(id => document.getElementById(id).value = '');
-        document.getElementById('amcq-validity').value   = '';
-        document.getElementById('amcq-coverage').value  = 'Comprehensive';
+        ['amcq-customer', 'amcq-value', 'amcq-scope', 'amcq-notes'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('amcq-validity').value = '';
+        document.getElementById('amcq-coverage').value = 'Comprehensive';
         document.getElementById('amcq-frequency').value = 'Quarterly';
-        document.getElementById('amcq-approval').value  = 'Sales';
+        document.getElementById('amcq-approval').value = 'Sales';
       }
 
       document.getElementById('amcq-overlay').classList.add('open');
@@ -12929,24 +13431,24 @@
 
     function submitAmcQuoteDrawer() {
       const customer = document.getElementById('amcq-customer').value.trim();
-      const value    = document.getElementById('amcq-value').value;
+      const value = document.getElementById('amcq-value').value;
       const validity = document.getElementById('amcq-validity').value;
-      const scope    = document.getElementById('amcq-scope').value.trim();
+      const scope = document.getElementById('amcq-scope').value.trim();
       if (!customer) { alert('Customer is required.'); return; }
-      if (!value)    { alert('Annual Value is required.'); return; }
+      if (!value) { alert('Annual Value is required.'); return; }
       if (!validity) { alert('Validity Date is required.'); return; }
-      if (!scope)    { alert('Coverage / Equipment Scope is required.'); return; }
+      if (!scope) { alert('Coverage / Equipment Scope is required.'); return; }
 
-      const code      = 'AMC/Q/2026/' + _amcqSeq;
-      const approval  = document.getElementById('amcq-approval').value;
-      const notes     = document.getElementById('amcq-notes').value.trim();
-      const dispVal   = 'AED ' + Number(value).toLocaleString();
-      const dispDate  = new Date(validity).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+      const code = 'AMC/Q/2026/' + _amcqSeq;
+      const approval = document.getElementById('amcq-approval').value;
+      const notes = document.getElementById('amcq-notes').value.trim();
+      const dispVal = 'AED ' + Number(value).toLocaleString();
+      const dispDate = new Date(validity).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
       const approvalHTML =
-        approval === 'Sales'   ? '<span class="pill pill-green">Sales ✓</span><span class="pill pill-grey">Manager</span><span class="pill pill-grey">MD</span>'
-        : approval === 'Manager' ? '<span class="pill pill-green">Sales ✓</span><span class="pill pill-green">Manager ✓</span><span class="pill pill-amber">MD Pending</span>'
-        : '<span class="pill pill-green">Sales ✓</span><span class="pill pill-green">Manager ✓</span><span class="pill pill-green">MD ✓</span>';
+        approval === 'Sales' ? '<span class="pill pill-green">Sales ✓</span><span class="pill pill-grey">Manager</span><span class="pill pill-grey">MD</span>'
+          : approval === 'Manager' ? '<span class="pill pill-green">Sales ✓</span><span class="pill pill-green">Manager ✓</span><span class="pill pill-amber">MD Pending</span>'
+            : '<span class="pill pill-green">Sales ✓</span><span class="pill pill-green">Manager ✓</span><span class="pill pill-green">MD ✓</span>';
 
       const tbody = document.querySelector('#amc-quotes-table tbody');
       if (!tbody) { closeAmcQuoteDrawer(); return; }
@@ -12957,7 +13459,7 @@
         <td>${dispVal}</td>
         <td>${dispDate}</td>
         <td><div style="display:flex;gap:4px;">${approvalHTML}</div></td>
-        <td><span class="tbl-action" onclick="openAmcQuoteDrawer('${code}','${customer}','${value}','${validity}','${notes.replace(/'/g,"\\'")}','${approval}')">View →</span></td>`;
+        <td><span class="tbl-action" onclick="openAmcQuoteDrawer('${code}','${customer}','${value}','${validity}','${notes.replace(/'/g, "\\'")}','${approval}')">View →</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       _amcqSeq++;
       closeAmcQuoteDrawer();
@@ -12972,23 +13474,23 @@
         '<i class="ti ti-file-certificate" style="margin-right:6px;color:#C9A84C;"></i>' +
         (isView ? 'AMC Contract Details' : 'New AMC Contract');
       document.getElementById('amcc-code-preview').textContent =
-        isView ? id : 'AMC/HOS/' + String(_amccSeq).padStart(3,'0');
+        isView ? id : 'AMC/HOS/' + String(_amccSeq).padStart(3, '0');
 
       if (isView) {
-        document.getElementById('amcc-client').value  = client  || '';
-        document.getElementById('amcc-asset').value   = asset   || '';
-        document.getElementById('amcc-scope').value   = scope   || '';
-        document.getElementById('amcc-amount').value  = amount  || '';
-        document.getElementById('amcc-notes').value   = '';
+        document.getElementById('amcc-client').value = client || '';
+        document.getElementById('amcc-asset').value = asset || '';
+        document.getElementById('amcc-scope').value = scope || '';
+        document.getElementById('amcc-amount').value = amount || '';
+        document.getElementById('amcc-notes').value = '';
         if (startDate) document.getElementById('amcc-start').value = startDate;
-        if (endDate)   document.getElementById('amcc-end').value   = endDate;
+        if (endDate) document.getElementById('amcc-end').value = endDate;
         setSelectVal('amcc-status', status);
       } else {
-        ['amcc-client','amcc-asset','amcc-scope','amcc-amount','amcc-notes'].forEach(id => document.getElementById(id).value = '');
-        document.getElementById('amcc-start').value     = new Date().toISOString().slice(0,10);
-        document.getElementById('amcc-end').value       = '';
-        document.getElementById('amcc-status').value    = 'Active';
-        document.getElementById('amcc-engineer').value  = '';
+        ['amcc-client', 'amcc-asset', 'amcc-scope', 'amcc-amount', 'amcc-notes'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('amcc-start').value = new Date().toISOString().slice(0, 10);
+        document.getElementById('amcc-end').value = '';
+        document.getElementById('amcc-status').value = 'Active';
+        document.getElementById('amcc-engineer').value = '';
         document.getElementById('amcc-frequency').value = 'Quarterly';
       }
 
@@ -13002,27 +13504,27 @@
     }
 
     function submitAmcContractDrawer() {
-      const client  = document.getElementById('amcc-client').value.trim();
-      const asset   = document.getElementById('amcc-asset').value.trim();
-      const amount  = document.getElementById('amcc-amount').value;
-      const start   = document.getElementById('amcc-start').value;
-      const end     = document.getElementById('amcc-end').value;
-      if (!client)  { alert('Client is required.'); return; }
-      if (!asset)   { alert('Asset / Equipment is required.'); return; }
-      if (!amount)  { alert('Annual Amount is required.'); return; }
-      if (!start)   { alert('Start Date is required.'); return; }
-      if (!end)     { alert('End Date is required.'); return; }
+      const client = document.getElementById('amcc-client').value.trim();
+      const asset = document.getElementById('amcc-asset').value.trim();
+      const amount = document.getElementById('amcc-amount').value;
+      const start = document.getElementById('amcc-start').value;
+      const end = document.getElementById('amcc-end').value;
+      if (!client) { alert('Client is required.'); return; }
+      if (!asset) { alert('Asset / Equipment is required.'); return; }
+      if (!amount) { alert('Annual Amount is required.'); return; }
+      if (!start) { alert('Start Date is required.'); return; }
+      if (!end) { alert('End Date is required.'); return; }
 
-      const code    = 'AMC/HOS/' + String(_amccSeq).padStart(3,'0');
-      const scope   = document.getElementById('amcc-scope').value.trim();
-      const status  = document.getElementById('amcc-status').value;
-      const notes   = document.getElementById('amcc-notes').value.trim();
+      const code = 'AMC/HOS/' + String(_amccSeq).padStart(3, '0');
+      const scope = document.getElementById('amcc-scope').value.trim();
+      const status = document.getElementById('amcc-status').value;
+      const notes = document.getElementById('amcc-notes').value.trim();
       const dispAmt = 'AED ' + Number(amount).toLocaleString();
-      const dispS   = new Date(start).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-      const dispE   = new Date(end).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+      const dispS = new Date(start).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const dispE = new Date(end).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
       const pillCls = status === 'Active' ? 'pill-green' : status === 'Expiring Soon' ? 'pill-amber'
-                    : status === 'Grace Period' ? 'pill-red' : status === 'Expired' ? 'pill-grey' : 'pill-blue';
+        : status === 'Grace Period' ? 'pill-red' : status === 'Expired' ? 'pill-grey' : 'pill-blue';
 
       const tbody = document.querySelector('#amc-contracts-table tbody');
       if (!tbody) { closeAmcContractDrawer(); return; }
@@ -13035,7 +13537,7 @@
         <td>${dispE}</td>
         <td>${dispAmt}</td>
         <td><span class="pill ${pillCls}">${status}</span></td>
-        <td><span class="tbl-action" onclick="openAmcContractDrawer('${code}','${client}','${asset}','${scope.replace(/'/g,"\\'")}','${start}','${end}','${amount}','${status}')">View →</span></td>`;
+        <td><span class="tbl-action" onclick="openAmcContractDrawer('${code}','${client}','${asset}','${scope.replace(/'/g, "\\'")}','${start}','${end}','${amount}','${status}')">View →</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       _amccSeq++;
       closeAmcContractDrawer();
@@ -13049,7 +13551,7 @@
         (isView ? 'Demo Details' : 'Assign New Demo');
 
       if (isView) {
-        setSelectVal('demo-machine',  machine);
+        setSelectVal('demo-machine', machine);
         // if machine not in options, show as text via first option
         const mSel = document.getElementById('demo-machine');
         let found = false;
@@ -13062,17 +13564,17 @@
         for (let o of cSel.options) { if (o.value === customer || o.text === customer) { cFound = true; break; } }
         if (!cFound) { const opt = new Option(customer, customer); cSel.add(opt, 1); cSel.value = customer; }
 
-        document.getElementById('demo-assign-date').value  = assignDate  || '';
-        document.getElementById('demo-return-date').value  = returnDate  || '';
-        document.getElementById('demo-notes').value        = notes        || '';
+        document.getElementById('demo-assign-date').value = assignDate || '';
+        document.getElementById('demo-return-date').value = returnDate || '';
+        document.getElementById('demo-notes').value = notes || '';
         setSelectVal('demo-status', status);
       } else {
-        document.getElementById('demo-machine').value      = '';
-        document.getElementById('demo-customer').value     = '';
-        document.getElementById('demo-assign-date').value  = new Date().toISOString().slice(0,10);
-        document.getElementById('demo-return-date').value  = '';
-        document.getElementById('demo-notes').value        = '';
-        document.getElementById('demo-status').value       = 'Active · on track';
+        document.getElementById('demo-machine').value = '';
+        document.getElementById('demo-customer').value = '';
+        document.getElementById('demo-assign-date').value = new Date().toISOString().slice(0, 10);
+        document.getElementById('demo-return-date').value = '';
+        document.getElementById('demo-notes').value = '';
+        document.getElementById('demo-status').value = 'Active · on track';
       }
 
       document.getElementById('demo-overlay').classList.add('open');
@@ -13085,29 +13587,29 @@
     }
 
     function submitDemoDrawer() {
-      const machine  = document.getElementById('demo-machine').value;
+      const machine = document.getElementById('demo-machine').value;
       const customer = document.getElementById('demo-customer').value;
-      const aDate    = document.getElementById('demo-assign-date').value;
-      const rDate    = document.getElementById('demo-return-date').value;
-      if (!machine)  { alert('Machine is required.'); return; }
+      const aDate = document.getElementById('demo-assign-date').value;
+      const rDate = document.getElementById('demo-return-date').value;
+      if (!machine) { alert('Machine is required.'); return; }
       if (!customer) { alert('Customer is required.'); return; }
-      if (!aDate)    { alert('Assign Date is required.'); return; }
-      if (!rDate)    { alert('Expected Return date is required.'); return; }
+      if (!aDate) { alert('Assign Date is required.'); return; }
+      if (!rDate) { alert('Expected Return date is required.'); return; }
 
-      const status   = document.getElementById('demo-status').value;
-      const notes    = document.getElementById('demo-notes').value.trim();
-      const dispA    = new Date(aDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-      const dispR    = new Date(rDate).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+      const status = document.getElementById('demo-status').value;
+      const notes = document.getElementById('demo-notes').value.trim();
+      const dispA = new Date(aDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const dispR = new Date(rDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-      const pillCls  = status.includes('overdue') || status === 'Overdue' ? 'pill-red'
-                     : status.includes('tomorrow') ? 'pill-amber'
-                     : status === 'Returned' ? 'pill-grey' : 'pill-green';
+      const pillCls = status.includes('overdue') || status === 'Overdue' ? 'pill-red'
+        : status.includes('tomorrow') ? 'pill-amber'
+          : status === 'Returned' ? 'pill-grey' : 'pill-green';
 
       // Extract machine name / code from option text e.g. "ZKR-M-0055 · Pewag Chain (Available)"
-      const parts    = machine.split('·');
-      const mCode    = parts[0] ? parts[0].trim() : machine;
-      const mName    = parts[1] ? parts[1].replace(/\(.*\)/,'').trim() : '';
-      const mSpec    = parts[1] && /\((.+)\)/.exec(parts[1]) ? /\((.+)\)/.exec(parts[1])[1] : '';
+      const parts = machine.split('·');
+      const mCode = parts[0] ? parts[0].trim() : machine;
+      const mName = parts[1] ? parts[1].replace(/\(.*\)/, '').trim() : '';
+      const mSpec = parts[1] && /\((.+)\)/.exec(parts[1]) ? /\((.+)\)/.exec(parts[1])[1] : '';
 
       const tbody = document.querySelector('#demo-mgmt-table tbody');
       if (!tbody) { closeDemoDrawer(); return; }
@@ -13122,7 +13624,7 @@
         <td style="font-size:12px;color:#6a7f96;">${dispA}</td>
         <td style="font-size:12px;color:#6a7f96;">${dispR}</td>
         <td><span class="pill ${pillCls}">${status}</span></td>
-        <td><span class="tbl-action" onclick="openDemoDrawer('${machine.replace(/'/g,"\\'")}','${customer}','${aDate}','${rDate}','${status}','${notes.replace(/'/g,"\\'")}')">View →</span></td>`;
+        <td><span class="tbl-action" onclick="openDemoDrawer('${machine.replace(/'/g, "\\'")}','${customer}','${aDate}','${rDate}','${status}','${notes.replace(/'/g, "\\'")}')">View →</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       closeDemoDrawer();
     }
@@ -13593,6 +14095,31 @@
       visit: { subject: 'Visit Confirmation — Zaker Trading LLC', body: 'Dear [Contact],\n\nThis is to confirm our scheduled visit to your premises. Our Sales Executive will be meeting you to discuss your current requirements and demonstrate our product range.\n\nLooking forward to meeting you.\n\nZaker Trading LLC' },
     };
 
+    function openViewLead(code, name, location, type, territory, se, status, contact, phone, email) {
+      // reset any previous state
+      resetDrawer();
+      document.getElementById('exist-banner').style.display = 'none';
+
+      // update drawer title & code badge
+      const titleEl = document.querySelector('#lead-drawer .drawer-title');
+      if (titleEl) titleEl.innerHTML = '<i class="ti ti-user" style="margin-right:6px;color:#C9A84C;"></i>Lead Details';
+      document.getElementById('lead-code-preview').textContent = code;
+
+      // fill fields
+      document.getElementById('ld-name').value = name || '';
+      document.getElementById('ld-location').value = location || '';
+      document.getElementById('ld-contact').value = contact || '';
+      document.getElementById('ld-phone').value = phone || '';
+      document.getElementById('ld-email').value = email || '';
+      setSelectVal('ld-type', type);
+      setSelectVal('ld-territory', territory);
+      setSelectVal('ld-se', se);
+
+      // open
+      document.getElementById('lead-overlay').classList.add('open');
+      document.getElementById('lead-drawer').classList.add('open');
+    }
+
     function openAddLead() {
       document.getElementById('lead-overlay').classList.add('open');
       document.getElementById('lead-drawer').classList.add('open');
@@ -13822,6 +14349,338 @@
       document.getElementById('ai-fill-loading').style.display = 'none';
       document.getElementById('lead-code-preview').textContent = 'LD-' + String(_leadSeq).padStart(4, '0');
     }
+  </script>
+
+  <!-- ── AI SUMMARY MODAL ── -->
+  <div id="ai-summary-overlay" onclick="if(event.target===this)closeAISummary()"
+    style="display:none;position:fixed;inset:0;background:rgba(10,22,40,0.72);z-index:88888;align-items:center;justify-content:center;padding:20px;">
+    <div id="ai-summary-modal"
+      style="background:#fff;border-radius:14px;width:100%;max-width:680px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.3);overflow:hidden;">
+
+      <!-- Modal header -->
+      <div style="background:#0A1628;padding:16px 20px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+        <div
+          style="width:34px;height:34px;background:#C9A84C;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-sparkles" style="color:#0A1628;font-size:17px;"></i>
+        </div>
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:700;color:#FAFAF9;">AI Daily Summary</div>
+          <div style="font-size:11px;color:#5a7080;margin-top:1px;">Generated for Sara Al-Mansouri · Thu, 18 Jun 2026 ·
+            09:00 AM</div>
+        </div>
+        <button onclick="closeAISummary()"
+          style="width:30px;height:30px;border-radius:7px;background:#1a2e45;border:1px solid #3C3735;cursor:pointer;color:#9aaabb;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <!-- Scrollable body -->
+      <div style="overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;">
+
+        <!-- Overall score bar -->
+        <div
+          style="background:#f4f6f9;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:1px solid #E7E5E4;">
+          <div style="text-align:center;flex-shrink:0;">
+            <div style="font-size:30px;font-weight:800;color:#0A1628;line-height:1;">74</div>
+            <div style="font-size:10px;color:#6a7f96;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;">
+              Health score</div>
+          </div>
+          <div style="width:1px;height:36px;background:#E7E5E4;flex-shrink:0;"></div>
+          <div style="flex:1;font-size:12px;color:#5a7080;line-height:1.6;">
+            <b style="color:#0A1628;">Overall operations are on track</b>, but 2 critical service tickets and 2 overdue
+            demo returns need immediate action today. Pipeline is healthy at AED 148k. Team visit volume is up 6 vs
+            yesterday.
+          </div>
+          <div style="flex-shrink:0;">
+            <span
+              style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;background:#FAEEDA;color:#854F0B;">Needs
+              attention</span>
+          </div>
+        </div>
+
+        <!-- Critical alerts -->
+        <div>
+          <div
+            style="font-size:11px;font-weight:700;color:#A32D2D;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;">
+            <i class="ti ti-alert-triangle" style="font-size:13px;"></i> Critical alerts (4)
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div
+              style="background:#fff8f8;border:1px solid #f5c4c4;border-left:4px solid #E24B4A;border-radius:8px;padding:10px 14px;display:flex;align-items:flex-start;gap:10px;">
+              <i class="ti ti-tools" style="color:#E24B4A;font-size:15px;flex-shrink:0;margin-top:1px;"></i>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#A32D2D;">TKT-0284 — SLA breached by 2 days</div>
+                <div style="font-size:11px;color:#6b1a1a;margin-top:2px;">Al-Faris Industrial · Lincoln Welder
+                  ZKR-M-0041 · Wire feed mechanism jamming. Assigned to Waleed Al-Hosani. <b>Escalate or reassign
+                    immediately.</b></div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#E24B4A;color:#fff;flex-shrink:0;">−2d</span>
+            </div>
+            <div
+              style="background:#fff8f8;border:1px solid #f5c4c4;border-left:4px solid #E24B4A;border-radius:8px;padding:10px 14px;display:flex;align-items:flex-start;gap:10px;">
+              <i class="ti ti-shield-exclamation"
+                style="color:#E24B4A;font-size:15px;flex-shrink:0;margin-top:1px;"></i>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#A32D2D;">TKT-0281 — SAFETY CRITICAL · SLA breached 1
+                  day</div>
+                <div style="font-size:11px;color:#6b1a1a;margin-top:2px;">Gulf Metals Trading · Crosby Harness buckle
+                  locking failure. Hana Al-Qasimi. Unit quarantined. <b>Replacement dispatched — confirm delivery
+                    today.</b></div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#E24B4A;color:#fff;flex-shrink:0;">−1d</span>
+            </div>
+            <div
+              style="background:#fffbf0;border:1px solid #f5d97a;border-left:4px solid #C9A84C;border-radius:8px;padding:10px 14px;display:flex;align-items:flex-start;gap:10px;">
+              <i class="ti ti-device-laptop" style="color:#C9A84C;font-size:15px;flex-shrink:0;margin-top:1px;"></i>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#854F0B;">ZKR-M-0038 — Demo 8 days overdue</div>
+                <div style="font-size:11px;color:#533f03;margin-top:2px;">Crosby Harness Kit at Gulf Metals Trading.
+                  Ahmed Malik assigned. No response. <b>Call customer now or issue formal recall notice.</b></div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#C9A84C;color:#0A1628;flex-shrink:0;">+8d</span>
+            </div>
+            <div
+              style="background:#fffbf0;border:1px solid #f5d97a;border-left:4px solid #C9A84C;border-radius:8px;padding:10px 14px;display:flex;align-items:flex-start;gap:10px;">
+              <i class="ti ti-device-laptop" style="color:#C9A84C;font-size:15px;flex-shrink:0;margin-top:1px;"></i>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#854F0B;">Bahco Tool Set — Demo 6 days overdue</div>
+                <div style="font-size:11px;color:#533f03;margin-top:2px;">At Desert Shield Safety. Khalid Jaber
+                  assigned. <b>Escalate to line manager if no return confirmed by EOD.</b></div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#C9A84C;color:#0A1628;flex-shrink:0;">+6d</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two col: Team + Pipeline -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+          <!-- Team performance -->
+          <div style="background:#f4f6f9;border-radius:10px;padding:14px;border:1px solid #E7E5E4;">
+            <div
+              style="font-size:11px;font-weight:700;color:#0A1628;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px;">
+              <i class="ti ti-users" style="color:#C9A84C;font-size:13px;"></i> Team — today
+            </div>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:12px;color:#5a7080;">SEs active</span>
+                <span style="font-size:13px;font-weight:700;color:#0A1628;">9 <span
+                    style="font-size:11px;color:#9aaabb;font-weight:400;">/ 12</span></span>
+              </div>
+              <div style="height:4px;background:#E7E5E4;border-radius:2px;">
+                <div style="width:75%;height:100%;background:#C9A84C;border-radius:2px;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                <span style="font-size:12px;color:#5a7080;">Visits logged</span>
+                <span style="font-size:13px;font-weight:700;color:#0A1628;">34 <span
+                    style="font-size:11px;color:#1D9E75;font-weight:600;">↑6 vs yesterday</span></span>
+              </div>
+              <div style="height:4px;background:#E7E5E4;border-radius:2px;">
+                <div style="width:68%;height:100%;background:#378ADD;border-radius:2px;"></div>
+              </div>
+              <div style="border-top:1px solid #E7E5E4;padding-top:8px;margin-top:4px;">
+                <div style="font-size:11px;color:#5a7080;margin-bottom:5px;">Top performer today</div>
+                <div style="display:flex;align-items:center;gap:7px;">
+                  <div
+                    style="width:26px;height:26px;border-radius:7px;background:#C9A84C;color:#0A1628;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    AM</div>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1628;">Ahmed Malik</div>
+                    <div style="font-size:10px;color:#6a7f96;">22 visits · 88% target · Score 9.1</div>
+                  </div>
+                  <span
+                    style="margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:#E1F5EE;color:#085041;">Top
+                    SE</span>
+                </div>
+              </div>
+              <div style="border-top:1px solid #E7E5E4;padding-top:8px;">
+                <div style="font-size:11px;color:#5a7080;margin-bottom:5px;">Needs attention</div>
+                <div style="display:flex;align-items:center;gap:7px;">
+                  <div
+                    style="width:26px;height:26px;border-radius:7px;background:#FCEBEB;color:#A32D2D;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    NZ</div>
+                  <div>
+                    <div style="font-size:12px;font-weight:700;color:#0A1628;">Noor Al-Zaabi</div>
+                    <div style="font-size:10px;color:#6a7f96;">14 visits · 56% target · Score 5.8</div>
+                  </div>
+                  <span
+                    style="margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;background:#FCEBEB;color:#A32D2D;">Low</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pipeline -->
+          <div style="background:#f4f6f9;border-radius:10px;padding:14px;border:1px solid #E7E5E4;">
+            <div
+              style="font-size:11px;font-weight:700;color:#0A1628;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px;">
+              <i class="ti ti-git-merge" style="color:#C9A84C;font-size:13px;"></i> Pipeline
+            </div>
+            <div style="font-size:22px;font-weight:800;color:#0A1628;margin-bottom:4px;">AED 148,000</div>
+            <div style="font-size:11px;color:#5a7080;margin-bottom:12px;">Across 12 open deals</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;">
+                <span style="display:flex;align-items:center;gap:5px;color:#5a7080;"><span
+                    style="width:8px;height:8px;border-radius:2px;background:#378ADD;display:inline-block;"></span>Lead</span>
+                <span style="font-weight:600;color:#0A1628;">3 deals · AED 17.5k</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;">
+                <span style="display:flex;align-items:center;gap:5px;color:#5a7080;"><span
+                    style="width:8px;height:8px;border-radius:2px;background:#EF9F27;display:inline-block;"></span>Quoted</span>
+                <span style="font-weight:600;color:#0A1628;">2 deals · AED 18k</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;">
+                <span style="display:flex;align-items:center;gap:5px;color:#5a7080;"><span
+                    style="width:8px;height:8px;border-radius:2px;background:#C9A84C;display:inline-block;"></span>Negotiation</span>
+                <span style="font-weight:600;color:#0A1628;">2 deals · AED 22k</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;">
+                <span style="display:flex;align-items:center;gap:5px;color:#5a7080;"><span
+                    style="width:8px;height:8px;border-radius:2px;background:#16A34A;display:inline-block;"></span>Won</span>
+                <span style="font-weight:600;color:#1D9E75;">4 deals · AED 14.4k</span>
+              </div>
+            </div>
+            <div style="border-top:1px solid #E7E5E4;padding-top:10px;margin-top:10px;">
+              <div style="font-size:11px;color:#5a7080;margin-bottom:4px;">Monthly target progress</div>
+              <div style="height:6px;background:#E7E5E4;border-radius:3px;">
+                <div style="width:71%;height:100%;background:#C9A84C;border-radius:3px;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;margin-top:4px;">
+                <span style="font-size:11px;color:#6a7f96;">71% achieved</span>
+                <span style="font-size:11px;color:#6a7f96;">12 days left</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- At-risk customers -->
+        <div>
+          <div
+            style="font-size:11px;font-weight:700;color:#0A1628;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:5px;">
+            <i class="ti ti-user-exclamation" style="color:#E24B4A;font-size:13px;"></i> At-risk customers (2)
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div
+              style="background:#fff;border:1px solid #E7E5E4;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+              <div
+                style="width:32px;height:32px;border-radius:8px;background:#FCEBEB;color:#A32D2D;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                PG</div>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#0A1628;">PetroGulf Services</div>
+                <div style="font-size:11px;color:#6a7f96;">Last visit: 35 days ago · Oil &amp; gas · Dubai · Noor
+                  Al-Zaabi</div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#FCEBEB;color:#A32D2D;flex-shrink:0;">At
+                risk</span>
+            </div>
+            <div
+              style="background:#fff;border:1px solid #E7E5E4;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;">
+              <div
+                style="width:32px;height:32px;border-radius:8px;background:#FAEEDA;color:#854F0B;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                GM</div>
+              <div style="flex:1;">
+                <div style="font-size:12px;font-weight:700;color:#0A1628;">Gulf Metals Trading</div>
+                <div style="font-size:11px;color:#6a7f96;">Last visit: 3 days ago · Fabrication · Dubai · Follow-up due
+                </div>
+              </div>
+              <span
+                style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:5px;background:#FAEEDA;color:#854F0B;flex-shrink:0;">Follow-up
+                due</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Recommendation -->
+        <div style="background:#0A1628;border-radius:10px;padding:14px 16px;border:1px solid #3C3735;">
+          <div
+            style="font-size:11px;font-weight:700;color:#C9A84C;letter-spacing:0.6px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:5px;">
+            <i class="ti ti-bulb" style="font-size:13px;"></i> AI recommendation for today
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="font-size:11px;font-weight:700;color:#E24B4A;flex-shrink:0;margin-top:1px;">1.</span>
+              <span style="font-size:12px;color:#D6D3D1;line-height:1.5;"><b style="color:#FAFAF9;">Resolve SLA breaches
+                  first.</b> Assign a senior engineer to TKT-0284 &amp; TKT-0281 before 11 AM. Risk of customer
+                escalation is high.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="font-size:11px;font-weight:700;color:#EF9F27;flex-shrink:0;margin-top:1px;">2.</span>
+              <span style="font-size:12px;color:#D6D3D1;line-height:1.5;"><b style="color:#FAFAF9;">Recover overdue demo
+                  units.</b> Direct Ahmed Malik &amp; Khalid Jaber to call customers by noon. Issue formal return
+                notices if no response.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="font-size:11px;font-weight:700;color:#C9A84C;flex-shrink:0;margin-top:1px;">3.</span>
+              <span style="font-size:12px;color:#D6D3D1;line-height:1.5;"><b style="color:#FAFAF9;">Schedule coaching
+                  for Noor Al-Zaabi.</b> At 56% target with 12 days left, course-correction is possible but needs
+                immediate attention.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="font-size:11px;font-weight:700;color:#1D9E75;flex-shrink:0;margin-top:1px;">4.</span>
+              <span style="font-size:12px;color:#D6D3D1;line-height:1.5;"><b style="color:#FAFAF9;">Re-engage PetroGulf
+                  Services.</b> 35-day gap is critical. Assign Ahmed Malik for a visit this week to prevent account
+                loss.</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /scroll body -->
+
+      <!-- Footer -->
+      <div
+        style="padding:12px 20px;border-top:1px solid #E7E5E4;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#f7f9fb;">
+        <span style="font-size:11px;color:#9aaabb;"><i class="ti ti-sparkles"
+            style="font-size:11px;color:#C9A84C;margin-right:4px;"></i>Generated by Zaker AI · Based on live CRM
+          data</span>
+        <div style="display:flex;gap:8px;">
+          <button onclick="closeAISummary()"
+            style="font-size:12px;padding:7px 14px;border-radius:7px;border:1px solid #E7E5E4;background:#fff;color:#6a7f96;cursor:pointer;font-weight:500;">Close</button>
+          <button onclick="goPage('tickets',null);closeAISummary()"
+            style="font-size:12px;padding:7px 14px;border-radius:7px;border:none;background:#E24B4A;color:#fff;cursor:pointer;font-weight:600;">View
+            SLA tickets →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── AI SUMMARY MODAL JS ── -->
+  <script>
+    function showAISummary() {
+      const overlay = document.getElementById('ai-summary-overlay');
+      overlay.style.display = 'flex';
+      // Animate modal in
+      const modal = document.getElementById('ai-summary-modal');
+      modal.style.opacity = '0';
+      modal.style.transform = 'scale(0.95) translateY(12px)';
+      modal.style.transition = 'opacity 0.22s ease, transform 0.22s ease';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          modal.style.opacity = '1';
+          modal.style.transform = 'scale(1) translateY(0)';
+        });
+      });
+    }
+    function closeAISummary() {
+      const overlay = document.getElementById('ai-summary-overlay');
+      const modal = document.getElementById('ai-summary-modal');
+      modal.style.opacity = '0';
+      modal.style.transform = 'scale(0.95) translateY(12px)';
+      setTimeout(function () {
+        overlay.style.display = 'none';
+        modal.style.opacity = '';
+        modal.style.transform = '';
+      }, 200);
+    }
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAISummary();
+    });
   </script>
 
   <!-- ── TOOLTIP POSITIONING ── -->

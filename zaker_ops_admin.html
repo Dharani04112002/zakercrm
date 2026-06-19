@@ -1886,17 +1886,488 @@
       color: #A32D2D;
     }
 
-    /* ── STOCK LEVEL BADGES (Sales Requirements) ── */
-    .stock-cell { display: flex; flex-direction: column; gap: 3px; }
-    .stock-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 10px; font-weight: 700; padding: 2px 8px;
-      border-radius: 5px; white-space: nowrap;
+    /* ── ADD LEAD DRAWER ── */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 22, 40, .45);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
     }
-    .stock-in  { background: #E1F5EE; color: #0F6E56; }
-    .stock-low { background: #FAEEDA; color: #854F0B; }
-    .stock-out { background: #FCEBEB; color: #A32D2D; }
-    .stock-sub { font-size: 10px; color: #9aaabb; }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lead-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 70vw;
+      background: #fff;
+      box-shadow: -4px 0 24px rgba(0, 0, 0, .12);
+      z-index: 1001;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(.4, 0, .2, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .lead-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-head {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .drawer-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a2332;
+    }
+
+    .drawer-sub {
+      font-size: 11px;
+      color: #9aaabb;
+      margin-top: 2px;
+    }
+
+    .drawer-close {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1px solid #e2e8f0;
+      background: #f4f6f9;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #6a7f96;
+    }
+
+    .drawer-close:hover {
+      background: #eaeef2;
+    }
+
+    .drawer-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .drawer-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #9aaabb;
+      margin-bottom: -6px;
+    }
+
+    .d-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .d-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #4a5568;
+    }
+
+    .d-input,
+    .d-select,
+    .d-textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #dde2ea;
+      border-radius: 7px;
+      font-size: 12px;
+      color: #1a2332;
+      background: #f8fafc;
+      outline: none;
+      box-sizing: border-box;
+      font-family: inherit;
+      transition: border-color 0.12s;
+    }
+
+    .d-input:focus,
+    .d-select:focus,
+    .d-textarea:focus {
+      border-color: #C9A84C;
+      background: #fff;
+    }
+
+    .d-textarea {
+      resize: vertical;
+      min-height: 72px;
+    }
+
+    .d-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .d-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .d-col-2 {
+      grid-column: span 2;
+    }
+
+    .d-col-3 {
+      grid-column: span 3;
+    }
+
+    .ai-fill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #4338CA, #7C3AED);
+      color: #fff;
+      transition: opacity 0.15s;
+    }
+
+    .ai-fill-btn:hover {
+      opacity: 0.88;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .d-code-preview {
+      font-family: monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #C9A84C;
+      padding: 4px 8px;
+      background: #FBF5E8;
+      border-radius: 5px;
+      align-self: flex-start;
+    }
+
+    .drawer-foot {
+      padding: 14px 20px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* ── NEW QUOTE DRAWER EXTRAS ── */
+    .qt-items-tbl {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .qt-items-tbl th {
+      background: #f4f6f9;
+      padding: 6px 8px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      color: #6a7f96;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .qt-items-tbl td {
+      padding: 5px 4px;
+      border-bottom: 1px solid #f0f2f5;
+      vertical-align: middle;
+    }
+
+    .qt-items-tbl input {
+      width: 100%;
+      padding: 5px 7px;
+      border: 1px solid #dde2ea;
+      border-radius: 5px;
+      font-size: 11px;
+      font-family: inherit;
+      background: #fafbfc;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .qt-items-tbl input:focus {
+      border-color: #C9A84C;
+      background: #fff;
+    }
+
+    .qt-total-row td {
+      font-weight: 700;
+      color: #1a2332;
+      background: #FBF5E8;
+      padding: 7px 8px;
+    }
+
+    .remove-row-btn {
+      background: none;
+      border: none;
+      color: #E24B4A;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .remove-row-btn:hover {
+      background: #FCEBEB;
+    }
+
+    .add-item-btn {
+      font-size: 11px;
+      font-weight: 600;
+      color: #185FA5;
+      background: #E6F1FB;
+      border: 1px dashed #a8caee;
+      border-radius: 6px;
+      padding: 6px 14px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .add-item-btn:hover {
+      background: #d4e7f7;
+    }
+
+    .disc-panel {
+      background: linear-gradient(135deg, #EEF2FF, #faf9ff);
+      border: 1px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .disc-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 10px;
+    }
+
+    .disc-ai-tag {
+      font-size: 10px;
+      font-weight: 700;
+      background: #4338CA;
+      color: #fff;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    .disc-tier {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .disc-tier-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .disc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-top: 1px solid #e0e7ff;
+      font-size: 11px;
+      color: #4a5568;
+    }
+
+    .disc-val {
+      font-weight: 700;
+      color: #4338CA;
+      font-size: 13px;
+    }
+
+    /* ── QUOTATION KANBAN ── */
+    .qt-kb {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .qt-kb-col {
+      background: #f4f6f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .qt-kb-head {
+      padding: 10px 12px 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .qt-kb-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #1a2332;
+    }
+
+    .qt-kb-body {
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .qt-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 11px 12px;
+      cursor: pointer;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .qt-card:hover {
+      border-color: #C9A84C;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+    }
+
+    .qt-card.draft {
+      border-left: 3px solid #9aaabb;
+    }
+
+    .qt-card.padmin {
+      border-left: 3px solid #185FA5;
+    }
+
+    .qt-card.pmd {
+      border-left: 3px solid #F59E0B;
+    }
+
+    .qt-card.appr {
+      border-left: 3px solid #1D9E75;
+      background: #fafffe;
+    }
+
+    .qt-card.conv {
+      border-left: 3px solid #7C3AED;
+      background: #faf9ff;
+    }
+
+    .qc-id {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #C9A84C;
+      margin-bottom: 3px;
+    }
+
+    .qc-client {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a2332;
+      line-height: 1.3;
+    }
+
+    .qc-amount {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a2332;
+      margin: 6px 0 4px;
+    }
+
+    .qc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .qc-date {
+      font-size: 10px;
+      color: #9aaabb;
+    }
+
+    .qc-actions {
+      display: flex;
+      gap: 4px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* ── STOCK LEVEL BADGES (Sales Requirements) ── */
+    .stock-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .stock-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .stock-in {
+      background: #E1F5EE;
+      color: #0F6E56;
+    }
+
+    .stock-low {
+      background: #FAEEDA;
+      color: #854F0B;
+    }
+
+    .stock-out {
+      background: #FCEBEB;
+      color: #A32D2D;
+    }
+
+    .stock-sub {
+      font-size: 10px;
+      color: #9aaabb;
+    }
 
     /* ── LEADS VIEW TOGGLE ── */
     .lv-btn {
@@ -1913,7 +2384,12 @@
       cursor: pointer;
       transition: all 0.12s;
     }
-    .lv-btn:hover { background: #eaeef2; color: #1a2332; }
+
+    .lv-btn:hover {
+      background: #eaeef2;
+      color: #1a2332;
+    }
+
     .lv-btn.on {
       background: #1a2332;
       border-color: #1a2332;
@@ -1927,12 +2403,14 @@
       gap: 12px;
       margin-top: 4px;
     }
+
     .lead-kb-col {
       background: #f4f6f9;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
       overflow: hidden;
     }
+
     .lead-kb-head {
       padding: 10px 12px 9px;
       display: flex;
@@ -1940,6 +2418,7 @@
       justify-content: space-between;
       border-bottom: 1px solid #e2e8f0;
     }
+
     .lead-kb-title {
       font-size: 11px;
       font-weight: 700;
@@ -1947,7 +2426,14 @@
       letter-spacing: 0.5px;
       color: #1a2332;
     }
-    .lead-kb-body { padding: 10px 8px; display: flex; flex-direction: column; gap: 8px; }
+
+    .lead-kb-body {
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
     .lead-card {
       background: #fff;
       border: 1px solid #e2e8f0;
@@ -1956,18 +2442,71 @@
       cursor: pointer;
       transition: border-color 0.12s, box-shadow 0.12s;
     }
-    .lead-card:hover { border-color: #C9A84C; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-    .lc-code { font-family: monospace; font-size: 10px; font-weight: 700; color: #C9A84C; margin-bottom: 3px; }
-    .lc-name { font-size: 12px; font-weight: 700; color: #1a2332; line-height: 1.3; }
-    .lc-sub  { font-size: 10px; color: #9aaabb; margin-top: 1px; margin-bottom: 6px; }
-    .lc-row  { display: flex; align-items: center; justify-content: space-between; margin-top: 5px; }
-    .lc-se   { font-size: 10px; color: #6a7f96; }
-    .lc-visit{ font-size: 10px; color: #9aaabb; }
-    .lead-card.risk  { border-left: 3px solid #E24B4A; }
-    .lead-card.warn  { border-left: 3px solid #F59E0B; }
-    .lead-card.ok    { border-left: 3px solid #1D9E75; }
-    .lead-card.new   { border-left: 3px solid #185FA5; }
-    .lead-card.won   { background: #f0faf5; border-left: 3px solid #1D9E75; }
+
+    .lead-card:hover {
+      border-color: #C9A84C;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+    }
+
+    .lc-code {
+      font-family: monospace;
+      font-size: 10px;
+      font-weight: 700;
+      color: #C9A84C;
+      margin-bottom: 3px;
+    }
+
+    .lc-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a2332;
+      line-height: 1.3;
+    }
+
+    .lc-sub {
+      font-size: 10px;
+      color: #9aaabb;
+      margin-top: 1px;
+      margin-bottom: 6px;
+    }
+
+    .lc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 5px;
+    }
+
+    .lc-se {
+      font-size: 10px;
+      color: #6a7f96;
+    }
+
+    .lc-visit {
+      font-size: 10px;
+      color: #9aaabb;
+    }
+
+    .lead-card.risk {
+      border-left: 3px solid #E24B4A;
+    }
+
+    .lead-card.warn {
+      border-left: 3px solid #F59E0B;
+    }
+
+    .lead-card.ok {
+      border-left: 3px solid #1D9E75;
+    }
+
+    .lead-card.new {
+      border-left: 3px solid #185FA5;
+    }
+
+    .lead-card.won {
+      background: #f0faf5;
+      border-left: 3px solid #1D9E75;
+    }
 
     /* Version badges & history rows */
     .ver-badge {
@@ -1985,18 +2524,22 @@
       cursor: pointer;
       user-select: none;
     }
+
     .ver-badge.latest {
       background: #E1F5EE;
       color: #0F6E56;
     }
+
     .ver-hist-row {
       display: none;
       background: #F8FAFC;
     }
-    .ver-hist-row > td {
+
+    .ver-hist-row>td {
       padding: 8px 10px 8px 24px !important;
       border-top: none !important;
     }
+
     .ver-hist-inner {
       display: flex;
       flex-direction: column;
@@ -2004,6 +2547,7 @@
       border-left: 2px solid #e2e8f0;
       padding-left: 12px;
     }
+
     .ver-hist-entry {
       display: flex;
       align-items: center;
@@ -2011,23 +2555,28 @@
       font-size: 11px;
       color: #4a5568;
     }
+
     .ver-hist-entry .ver-num {
       font-family: monospace;
       font-weight: 700;
       min-width: 26px;
       color: #4338CA;
     }
+
     .ver-hist-entry .ver-num.cur {
       color: #0F6E56;
     }
+
     .ver-hist-entry .ver-date {
       color: #9aaabb;
       min-width: 90px;
     }
+
     .ver-hist-entry .ver-note {
       flex: 1;
       color: #5a7080;
     }
+
     .ver-hist-entry .ver-amt {
       font-weight: 600;
       color: #1a2332;
@@ -2087,14 +2636,14 @@
             class="ti ti-chevron-right" id="arr-crm"
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
         <div style="display:none;padding-left:18px;" id="sub-crm">
+          <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('followups',this)"><i
+              class="ti ti-bell" style="font-size:13px;"></i>Follow-ups <span class="nav-badge red">7</span></a>
           <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('cust-view',this)"><i
               class="ti ti-user-search" style="font-size:13px;"></i>Leads</a>
           <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('pipeline',this)"><i
               class="ti ti-git-merge" style="font-size:13px;"></i>Sales Pipeline</a>
           <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('visits',this)"><i
               class="ti ti-clipboard-check" style="font-size:13px;"></i>Visit Reports</a>
-          <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('followups',this)"><i
-              class="ti ti-bell" style="font-size:13px;"></i>Follow-ups <span class="nav-badge red">7</span></a>
         </div>
 
         <a class="nav-link" id="nl-sales" onclick="toggleSub('sub-sales','arr-sales',this)"><i
@@ -2848,7 +3397,7 @@
               <div class="fc">Today (2)</div>
               <div class="fc">Upcoming (2)</div>
               <div class="ml-auto">
-                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;">
+                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;" onclick="openNewFollowup()">
                   <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
                 </button>
               </div>
@@ -3118,7 +3667,7 @@
               <div class="fc">Today (2)</div>
               <div class="fc">Upcoming (2)</div>
               <div class="ml-auto">
-                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;">
+                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;" onclick="openNewFollowup()">
                   <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
                 </button>
               </div>
@@ -4293,7 +4842,8 @@
               <button class="btn-secondary" onclick="toggleBulkUpload()" id="btn-bulk-upload"
                 style="display:flex;align-items:center;gap:5px;"><i class="ti ti-upload" style="font-size:13px;"></i>
                 Bulk Upload</button>
-              <button class="btn-p">+ Add lead</button>
+              <button class="btn-primary" onclick="openAddLead()"><i class="ti ti-plus" style="font-size:13px;"></i> Add
+                lead</button>
             </div>
           </div>
 
@@ -4367,92 +4917,94 @@
             <div class="fc">Abu Dhabi (88)</div>
             <div class="fc">Sharjah (54)</div>
             <div style="margin-left:auto;display:flex;gap:4px;">
-              <button class="lv-btn on" id="leads-btn-list" onclick="leadsView('list',this)"><i class="ti ti-list" style="font-size:12px;"></i> List</button>
-              <button class="lv-btn" id="leads-btn-kb" onclick="leadsView('kanban',this)"><i class="ti ti-layout-board" style="font-size:12px;"></i> Kanban</button>
+              <button class="lv-btn" id="leads-btn-list" onclick="leadsView('list',this)"><i class="ti ti-list"
+                  style="font-size:12px;"></i> List</button>
+              <button class="lv-btn on" id="leads-btn-kb" onclick="leadsView('kanban',this)"><i
+                  class="ti ti-layout-board" style="font-size:12px;"></i> Kanban</button>
             </div>
           </div>
 
           <!-- LIST VIEW -->
-          <div id="leads-list-view">
-          <div class="tbl-wrap">
-            <table class="data-tbl">
-              <thead>
-                <tr>
-                  <th>Code</th>
-                  <th>Customer name</th>
-                  <th>Type</th>
-                  <th>Territory</th>
-                  <th>Assigned SE</th>
-                  <th>Last visit</th>
-                  <th>AI score</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0041</td>
-                  <td>
-                    <div class="c-name">Al-Faris Industrial LLC</div>
-                    <div class="c-sub">Jebel Ali Free Zone</div>
-                  </td>
-                  <td><span class="pill pa">Heavy industry</span></td>
-                  <td style="font-size:11px;">Dubai North</td>
-                  <td style="font-size:11px;">Ahmed M.</td>
-                  <td><span class="pill pg">Today</span></td>
-                  <td><span class="score-h">9.4</span></td>
-                  <td><span class="pill pg">Active</span></td>
-                  <td><span class="tbl-action">View</span></td>
-                </tr>
-                <tr>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0038</td>
-                  <td>
-                    <div class="c-name">Gulf Metals Trading</div>
-                    <div class="c-sub">Dubai Industrial City</div>
-                  </td>
-                  <td><span class="pill pb">Fabrication</span></td>
-                  <td style="font-size:11px;">Dubai North</td>
-                  <td style="font-size:11px;">Ahmed M.</td>
-                  <td><span class="pill pa">3 days ago</span></td>
-                  <td><span class="score-h">8.7</span></td>
-                  <td><span class="pill pa">Follow-up due</span></td>
-                  <td><span class="tbl-action">View</span></td>
-                </tr>
-                <tr>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0029</td>
-                  <td>
-                    <div class="c-name">AeroTech Engineering</div>
-                    <div class="c-sub">Abu Dhabi</div>
-                  </td>
-                  <td><span class="pill pp">Aerospace MRO</span></td>
-                  <td style="font-size:11px;">Abu Dhabi</td>
-                  <td style="font-size:11px;">Fatima R.</td>
-                  <td><span class="pill pa">5 days ago</span></td>
-                  <td><span class="score-m">7.8</span></td>
-                  <td><span class="pill pg">Active</span></td>
-                  <td><span class="tbl-action">View</span></td>
-                </tr>
-                <tr>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0015</td>
-                  <td>
-                    <div class="c-name">PetroGulf Services</div>
-                    <div class="c-sub">Dubai</div>
-                  </td>
-                  <td><span class="pill pr">Oil &amp; gas</span></td>
-                  <td style="font-size:11px;">Dubai South</td>
-                  <td style="font-size:11px;">Noor Z.</td>
-                  <td><span class="pill pr">35 days ago</span></td>
-                  <td><span class="score-l">4.2</span></td>
-                  <td><span class="pill pr">At risk</span></td>
-                  <td><span class="tbl-action">View</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <div id="leads-list-view" style="display:none;">
+            <div class="tbl-wrap">
+              <table class="data-tbl">
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Customer name</th>
+                    <th>Type</th>
+                    <th>Territory</th>
+                    <th>Assigned SE</th>
+                    <th>Last visit</th>
+                    <th>AI score</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0041</td>
+                    <td>
+                      <div class="c-name">Al-Faris Industrial LLC</div>
+                      <div class="c-sub">Jebel Ali Free Zone</div>
+                    </td>
+                    <td><span class="pill pa">Heavy industry</span></td>
+                    <td style="font-size:11px;">Dubai North</td>
+                    <td style="font-size:11px;">Ahmed M.</td>
+                    <td><span class="pill pg">Today</span></td>
+                    <td><span class="score-h">9.4</span></td>
+                    <td><span class="pill pg">Active</span></td>
+                    <td><span class="tbl-action">View</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0038</td>
+                    <td>
+                      <div class="c-name">Gulf Metals Trading</div>
+                      <div class="c-sub">Dubai Industrial City</div>
+                    </td>
+                    <td><span class="pill pb">Fabrication</span></td>
+                    <td style="font-size:11px;">Dubai North</td>
+                    <td style="font-size:11px;">Ahmed M.</td>
+                    <td><span class="pill pa">3 days ago</span></td>
+                    <td><span class="score-h">8.7</span></td>
+                    <td><span class="pill pa">Follow-up due</span></td>
+                    <td><span class="tbl-action">View</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0029</td>
+                    <td>
+                      <div class="c-name">AeroTech Engineering</div>
+                      <div class="c-sub">Abu Dhabi</div>
+                    </td>
+                    <td><span class="pill pp">Aerospace MRO</span></td>
+                    <td style="font-size:11px;">Abu Dhabi</td>
+                    <td style="font-size:11px;">Fatima R.</td>
+                    <td><span class="pill pa">5 days ago</span></td>
+                    <td><span class="score-m">7.8</span></td>
+                    <td><span class="pill pg">Active</span></td>
+                    <td><span class="tbl-action">View</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">LD-0015</td>
+                    <td>
+                      <div class="c-name">PetroGulf Services</div>
+                      <div class="c-sub">Dubai</div>
+                    </td>
+                    <td><span class="pill pr">Oil &amp; gas</span></td>
+                    <td style="font-size:11px;">Dubai South</td>
+                    <td style="font-size:11px;">Noor Z.</td>
+                    <td><span class="pill pr">35 days ago</span></td>
+                    <td><span class="score-l">4.2</span></td>
+                    <td><span class="pill pr">At risk</span></td>
+                    <td><span class="tbl-action">View</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div><!-- /leads-list-view -->
 
           <!-- KANBAN VIEW -->
-          <div id="leads-kanban-view" style="display:none;">
+          <div id="leads-kanban-view">
             <div class="lead-kb">
 
               <!-- NEW -->
@@ -5943,7 +6495,8 @@
               </div>
             </div>
             <div class="stat-mini">
-              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i></div>
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">5</div>
                 <div class="stat-mini-lbl">Out of Stock Items</div>
@@ -5975,7 +6528,8 @@
                   <td>S. Al-Rashidi</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low Stock — 4 units</span>
+                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
+                        Stock — 4 units</span>
                       <span class="stock-sub">Need 12 · shortfall 8</span>
                     </div>
                   </td>
@@ -5998,7 +6552,8 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out of Stock</span>
+                      <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out
+                        of Stock</span>
                       <span class="stock-sub">Need 2 · none available</span>
                     </div>
                   </td>
@@ -6021,7 +6576,8 @@
                   <td>S. Al-Rashidi</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock — 84 packs</span>
+                      <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock
+                        — 84 packs</span>
                       <span class="stock-sub">Need 50 · surplus 34</span>
                     </div>
                   </td>
@@ -6043,7 +6599,8 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
-                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low Stock — 3 pcs</span>
+                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
+                        Stock — 3 pcs</span>
                       <span class="stock-sub">Need 10 · shortfall 7</span>
                     </div>
                   </td>
@@ -6069,11 +6626,10 @@
               <div class="pg-header-sub">Manage and approve sales quotations (3-tier workflow)</div>
             </div>
             <div style="display:flex;gap:8px;">
-              <button class="btn-secondary">Solar Quotes</button>
-              <button class="btn-primary">New Quote</button>
+              <button class="btn-primary" onclick="openNewQuote()">New Quote</button>
             </div>
           </div>
-          <div class="filter-row">
+          <div class="filter-row" style="display:flex;align-items:center;">
             <div class="fc on">All Quotes</div>
             <div class="fc">Draft</div>
             <div class="fc">Pending Admin</div>
@@ -6081,79 +6637,299 @@
             <div class="fc">Approved</div>
             <div class="filter-divider"></div>
             <div class="filter-search"><i class="ti ti-search"></i><input placeholder="Search Quote No..." /></div>
+            <div style="margin-left:auto;display:flex;gap:4px;">
+              <button class="lv-btn" onclick="qtView('list',this)"><i class="ti ti-list" style="font-size:12px;"></i>
+                List</button>
+              <button class="lv-btn on" onclick="qtView('kanban',this)"><i class="ti ti-layout-board"
+                  style="font-size:12px;"></i> Kanban</button>
+            </div>
           </div>
-          <div class="tbl-wrap">
-            <table class="data-tbl">
-              <thead>
-                <tr>
-                  <th>Quote No</th>
-                  <th>Client</th>
-                  <th>Amount</th>
-                  <th>Status</th>
-                  <th>Approver</th>
-                  <th>Date</th>
-                  <th>Version</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="tbl-id">QT-2841</span></td>
-                  <td><b>Khaleeji Steel Works</b></td>
-                  <td>AED 52,000</td>
-                  <td><span class="pill pill-amber">Awaiting MD</span></td>
-                  <td>MD Office</td>
-                  <td>17 Jun 2026</td>
-                  <td><span class="ver-badge latest" onclick="toggleVerHist('2841')" title="Click to view version history">v2 ▾</span></td>
-                  <td><div class="tbl-btn-group"><span class="tbl-action">View PDF →</span><button class="tbl-btn gold" onclick="newRevision('QT-2841')">Revise</button></div></td>
-                </tr>
-                <tr class="ver-hist-row" id="vh-2841">
-                  <td colspan="8">
-                    <div class="ver-hist-inner">
-                      <div class="ver-hist-entry">
-                        <span class="ver-num cur">v2</span>
-                        <span class="ver-date">17 Jun 2026</span>
-                        <span class="ver-note">Revised — added 50 units Lincoln E6013, updated delivery terms</span>
-                        <span class="ver-amt">AED 52,000</span>
-                        <span class="pill pill-amber" style="font-size:9px;">Current</span>
+
+          <!-- LIST VIEW -->
+          <div id="qt-list-view" style="display:none;">
+            <div class="tbl-wrap">
+              <table class="data-tbl">
+                <thead>
+                  <tr>
+                    <th>Quote No</th>
+                    <th>Client</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Approver</th>
+                    <th>Date</th>
+                    <th>Version</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="tbl-id">QT-2841</span></td>
+                    <td><b>Khaleeji Steel Works</b></td>
+                    <td>AED 52,000</td>
+                    <td><span class="pill pill-amber">Awaiting MD</span></td>
+                    <td>MD Office</td>
+                    <td>17 Jun 2026</td>
+                    <td><span class="ver-badge latest" onclick="toggleVerHist('2841')"
+                        title="Click to view version history">v2 ▾</span></td>
+                    <td>
+                      <div class="tbl-btn-group"><span class="tbl-action">View PDF →</span><button class="tbl-btn gold"
+                          onclick="newRevision('QT-2841')">Revise</button></div>
+                    </td>
+                  </tr>
+                  <tr class="ver-hist-row" id="vh-2841">
+                    <td colspan="8">
+                      <div class="ver-hist-inner">
+                        <div class="ver-hist-entry">
+                          <span class="ver-num cur">v2</span>
+                          <span class="ver-date">17 Jun 2026</span>
+                          <span class="ver-note">Revised — added 50 units Lincoln E6013, updated delivery terms</span>
+                          <span class="ver-amt">AED 52,000</span>
+                          <span class="pill pill-amber" style="font-size:9px;">Current</span>
+                        </div>
+                        <div class="ver-hist-entry">
+                          <span class="ver-num">v1</span>
+                          <span class="ver-date">12 Jun 2026</span>
+                          <span class="ver-note">Initial quotation issued</span>
+                          <span class="ver-amt">AED 44,800</span>
+                          <span class="pill pill-grey"
+                            style="font-size:9px;background:#eee;color:#666;">Superseded</span>
+                        </div>
                       </div>
-                      <div class="ver-hist-entry">
-                        <span class="ver-num">v1</span>
-                        <span class="ver-date">12 Jun 2026</span>
-                        <span class="ver-note">Initial quotation issued</span>
-                        <span class="ver-amt">AED 44,800</span>
-                        <span class="pill pill-grey" style="font-size:9px;background:#eee;color:#666;">Superseded</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="tbl-id">QT-2838</span></td>
+                    <td><b>Al-Zahra Medical Center</b></td>
+                    <td>AED 31,500</td>
+                    <td><span class="pill pill-green">Approved</span></td>
+                    <td>S. Al-Mansouri (Admin)</td>
+                    <td>15 Jun 2026</td>
+                    <td><span class="ver-badge latest" onclick="toggleVerHist('2838')"
+                        title="Click to view version history">v1 ▾</span></td>
+                    <td>
+                      <div class="tbl-btn-group"><button class="tbl-btn">Convert to PO</button><button
+                          class="tbl-btn gold" onclick="newRevision('QT-2838')">Revise</button></div>
+                    </td>
+                  </tr>
+                  <tr class="ver-hist-row" id="vh-2838">
+                    <td colspan="8">
+                      <div class="ver-hist-inner">
+                        <div class="ver-hist-entry">
+                          <span class="ver-num cur">v1</span>
+                          <span class="ver-date">15 Jun 2026</span>
+                          <span class="ver-note">Initial quotation — approved by S. Al-Mansouri</span>
+                          <span class="ver-amt">AED 31,500</span>
+                          <span class="pill pill-green" style="font-size:9px;">Current</span>
+                        </div>
                       </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /qt-list-view -->
+
+          <!-- KANBAN VIEW -->
+          <div id="qt-kanban-view">
+            <div class="qt-kb">
+
+              <!-- DRAFT -->
+              <div class="qt-kb-col">
+                <div class="qt-kb-head">
+                  <span class="qt-kb-title">Draft</span>
+                  <span class="pill" style="background:#eee;color:#6a7f96;">2</span>
+                </div>
+                <div class="qt-kb-body">
+                  <div class="qt-card draft">
+                    <div class="qc-id">QT-2844</div>
+                    <div class="qc-client">Falcon Safety LLC</div>
+                    <div class="qc-amount">AED 28,000</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge" style="cursor:default;">v1</span>
+                      <span class="qc-date">18 Jun 2026</span>
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><span class="tbl-id">QT-2838</span></td>
-                  <td><b>Al-Zahra Medical Center</b></td>
-                  <td>AED 31,500</td>
-                  <td><span class="pill pill-green">Approved</span></td>
-                  <td>S. Al-Mansouri (Admin)</td>
-                  <td>15 Jun 2026</td>
-                  <td><span class="ver-badge latest" onclick="toggleVerHist('2838')" title="Click to view version history">v1 ▾</span></td>
-                  <td><div class="tbl-btn-group"><button class="tbl-btn">Convert to PO</button><button class="tbl-btn gold" onclick="newRevision('QT-2838')">Revise</button></div></td>
-                </tr>
-                <tr class="ver-hist-row" id="vh-2838">
-                  <td colspan="8">
-                    <div class="ver-hist-inner">
-                      <div class="ver-hist-entry">
-                        <span class="ver-num cur">v1</span>
-                        <span class="ver-date">15 Jun 2026</span>
-                        <span class="ver-note">Initial quotation — approved by S. Al-Mansouri</span>
-                        <span class="ver-amt">AED 31,500</span>
-                        <span class="pill pill-green" style="font-size:9px;">Current</span>
-                      </div>
+                    <div class="qc-actions">
+                      <button class="tbl-btn">Edit Draft</button>
+                      <button class="tbl-btn gold">Submit</button>
                     </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+                  </div>
+                  <div class="qt-card draft">
+                    <div class="qc-id">QT-2843</div>
+                    <div class="qc-client">RAK Steel Industries</div>
+                    <div class="qc-amount">AED 14,500</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge" style="cursor:default;">v1</span>
+                      <span class="qc-date">17 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <button class="tbl-btn">Edit Draft</button>
+                      <button class="tbl-btn gold">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PENDING ADMIN -->
+              <div class="qt-kb-col">
+                <div class="qt-kb-head">
+                  <span class="qt-kb-title">Pending Admin</span>
+                  <span class="pill pill-blue">3</span>
+                </div>
+                <div class="qt-kb-body">
+                  <div class="qt-card padmin">
+                    <div class="qc-id">QT-2842</div>
+                    <div class="qc-client">Al-Nasr Logistics</div>
+                    <div class="qc-amount">AED 19,200</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge" style="cursor:default;">v1</span>
+                      <span class="qc-date">16 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View PDF →</span>
+                      <button class="tbl-btn gold" onclick="newRevision('QT-2842')">Revise</button>
+                    </div>
+                  </div>
+                  <div class="qt-card padmin">
+                    <div class="qc-id">QT-2840</div>
+                    <div class="qc-client">Sharjah Cement Factory</div>
+                    <div class="qc-amount">AED 38,000</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" style="cursor:default;">v2</span>
+                      <span class="qc-date">14 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View PDF →</span>
+                      <button class="tbl-btn gold" onclick="newRevision('QT-2840')">Revise</button>
+                    </div>
+                  </div>
+                  <div class="qt-card padmin">
+                    <div class="qc-id">QT-2839</div>
+                    <div class="qc-client">Emirates Precision Works</div>
+                    <div class="qc-amount">AED 7,800</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge" style="cursor:default;">v1</span>
+                      <span class="qc-date">13 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View PDF →</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PENDING MD -->
+              <div class="qt-kb-col">
+                <div class="qt-kb-head">
+                  <span class="qt-kb-title">Pending MD</span>
+                  <span class="pill pill-amber">2</span>
+                </div>
+                <div class="qt-kb-body">
+                  <div class="qt-card pmd">
+                    <div class="qc-id">QT-2841</div>
+                    <div class="qc-client">Khaleeji Steel Works</div>
+                    <div class="qc-amount">AED 52,000</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" onclick="toggleVerHist('2841')" title="View history">v2 ▾</span>
+                      <span class="qc-date">17 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View PDF →</span>
+                      <button class="tbl-btn gold" onclick="newRevision('QT-2841')">Revise</button>
+                    </div>
+                  </div>
+                  <div class="qt-card pmd">
+                    <div class="qc-id">QT-2836</div>
+                    <div class="qc-client">Dubai Ports Authority</div>
+                    <div class="qc-amount">AED 89,500</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge" style="cursor:default;">v1</span>
+                      <span class="qc-date">11 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View PDF →</span>
+                      <button class="tbl-btn gold" onclick="newRevision('QT-2836')">Revise</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- APPROVED -->
+              <div class="qt-kb-col">
+                <div class="qt-kb-head">
+                  <span class="qt-kb-title">Approved</span>
+                  <span class="pill pill-green">2</span>
+                </div>
+                <div class="qt-kb-body">
+                  <div class="qt-card appr">
+                    <div class="qc-id">QT-2838</div>
+                    <div class="qc-client">Al-Zahra Medical Center</div>
+                    <div class="qc-amount">AED 31,500</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" onclick="toggleVerHist('2838')" title="View history">v1 ▾</span>
+                      <span class="qc-date">15 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <button class="tbl-btn">Convert to PO</button>
+                      <button class="tbl-btn gold" onclick="newRevision('QT-2838')">Revise</button>
+                    </div>
+                  </div>
+                  <div class="qt-card appr">
+                    <div class="qc-id">QT-2835</div>
+                    <div class="qc-client">Gulf Metals Trading</div>
+                    <div class="qc-amount">AED 22,000</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" style="cursor:default;">v1</span>
+                      <span class="qc-date">10 Jun 2026</span>
+                    </div>
+                    <div class="qc-actions">
+                      <button class="tbl-btn">Convert to PO</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CONVERTED -->
+              <div class="qt-kb-col">
+                <div class="qt-kb-head">
+                  <span class="qt-kb-title">Converted</span>
+                  <span class="pill pill-purple">2</span>
+                </div>
+                <div class="qt-kb-body">
+                  <div class="qt-card conv">
+                    <div class="qc-id">QT-2830</div>
+                    <div class="qc-client">AeroTech Engineering</div>
+                    <div class="qc-amount">AED 45,200</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" style="cursor:default;">v1</span>
+                      <span class="qc-date">05 Jun 2026</span>
+                    </div>
+                    <div style="font-size:10px;color:#7C3AED;font-weight:600;margin-top:6px;"><i
+                        class="ti ti-arrow-right" style="font-size:10px;"></i> SO-2026-081</div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View SO →</span>
+                    </div>
+                  </div>
+                  <div class="qt-card conv">
+                    <div class="qc-id">QT-2828</div>
+                    <div class="qc-client">Dubai Textile Trading LLC</div>
+                    <div class="qc-amount">AED 41,000</div>
+                    <div class="qc-meta">
+                      <span class="ver-badge latest" style="cursor:default;">v1</span>
+                      <span class="qc-date">02 Jun 2026</span>
+                    </div>
+                    <div style="font-size:10px;color:#7C3AED;font-weight:600;margin-top:6px;"><i
+                        class="ti ti-arrow-right" style="font-size:10px;"></i> INV/26/079</div>
+                    <div class="qc-actions">
+                      <span class="tbl-action">View Invoice →</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /qt-kb -->
+          </div><!-- /qt-kanban-view -->
+
+        </div><!-- /p-quotations -->
 
         <!-- ── INVOICES ── -->
         <div class="page" id="p-invoices">
@@ -7290,7 +8066,8 @@
             <div class="fc">On Hold (12)</div>
             <div class="fc">Overdue (7)</div>
             <div class="ml-auto">
-              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input placeholder="Search accounts…" /></div>
+              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
+                  placeholder="Search accounts…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -7438,7 +8215,8 @@
             <div class="fc">Active (14)</div>
             <div class="fc">Inactive (4)</div>
             <div class="ml-auto">
-              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input placeholder="Search vendors…" /></div>
+              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
+                  placeholder="Search vendors…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -7557,14 +8335,16 @@
           </div>
           <div class="stat-row">
             <div class="stat-mini">
-              <div class="stat-mini-ico" style="background:#E1F5EE;color:#0F6E56;"><i class="ti ti-clipboard-list"></i></div>
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#0F6E56;"><i class="ti ti-clipboard-list"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">12</div>
                 <div class="stat-mini-lbl">Pending Req</div>
               </div>
             </div>
             <div class="stat-mini">
-              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i></div>
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">4</div>
                 <div class="stat-mini-lbl">Critical &gt; 5 days</div>
@@ -7674,16 +8454,19 @@
           <div class="pg-header">
             <div>
               <div class="pg-header-title">Vendor Quotations</div>
-              <div class="pg-header-sub">Supplier quotes received against purchase requirements · compare versions before raising PO</div>
+              <div class="pg-header-sub">Supplier quotes received against purchase requirements · compare versions
+                before raising PO</div>
             </div>
             <div style="display:flex;gap:8px;">
-              <button class="btn-secondary"><i class="ti ti-git-compare" style="margin-right:5px;"></i>Compare Versions</button>
-              <button class="btn-primary"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Log Vendor Quote</button>
+              <button class="btn-secondary"><i class="ti ti-git-compare" style="margin-right:5px;"></i>Compare
+                Versions</button>
+              <button class="btn-primary" onclick="openVendorQuote()"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Log Vendor Quote</button>
             </div>
           </div>
           <div class="stat-row">
             <div class="stat-mini">
-              <div class="stat-mini-ico" style="background:#EEF2FF;color:#4338CA;"><i class="ti ti-file-invoice"></i></div>
+              <div class="stat-mini-ico" style="background:#EEF2FF;color:#4338CA;"><i class="ti ti-file-invoice"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">7</div>
                 <div class="stat-mini-lbl">Open Quotes</div>
@@ -7704,7 +8487,8 @@
               </div>
             </div>
             <div class="stat-mini">
-              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i></div>
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">2</div>
                 <div class="stat-mini-lbl">Expiring in 3 Days</div>
@@ -7743,11 +8527,13 @@
                   <td style="font-size:11px;color:#5a7080;">Lincoln E6013 3.2mm × 200 pcs</td>
                   <td style="font-weight:600;">AED 7,800</td>
                   <td>25 Jun 2026</td>
-                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq018')" title="View version history">v3 ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq018')" title="View version history">v3
+                      ▾</span></td>
                   <td><span class="pill pill-amber">Pending Review</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
+                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
+                        style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn gold" onclick="newRevision('VQ-2026-018')">Request Revision</button>
                     </div>
                   </td>
@@ -7786,11 +8572,13 @@
                   <td style="font-size:11px;color:#5a7080;">Full-Face Respirator 6000 × 10 pcs</td>
                   <td style="font-weight:600;">AED 2,150</td>
                   <td>28 Jun 2026</td>
-                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq016')" title="View version history">v2 ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq016')" title="View version history">v2
+                      ▾</span></td>
                   <td><span class="pill pill-blue">Under Review</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
+                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
+                        style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn gold" onclick="newRevision('VQ-2026-016')">Request Revision</button>
                     </div>
                   </td>
@@ -7822,7 +8610,8 @@
                   <td style="font-size:11px;color:#5a7080;">Grinding Discs 7" × 100 pcs</td>
                   <td style="font-weight:600;">AED 1,750</td>
                   <td>22 Jun 2026</td>
-                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq014')" title="View version history">v1 ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq014')" title="View version history">v1
+                      ▾</span></td>
                   <td><span class="pill pill-green">Accepted</span></td>
                   <td>
                     <div class="tbl-btn-group">
@@ -7855,7 +8644,8 @@
               <div class="pg-header-title">Purchase Orders</div>
               <div class="pg-header-sub">Vendor procurement tracking · Zaker Trading LLC, DIP 2, Dubai</div>
             </div>
-            <button class="btn-primary"><i class="ti ti-shopping-cart-plus" style="font-size:13px;margin-right:4px;"></i>Create PO</button>
+            <button class="btn-primary"><i class="ti ti-shopping-cart-plus"
+                style="font-size:13px;margin-right:4px;"></i>Create PO</button>
           </div>
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
             <div class="kpi-card gold">
@@ -7886,7 +8676,8 @@
             <div class="fc">Delayed</div>
             <div class="fc">Completed</div>
             <div class="ml-auto">
-              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input placeholder="Search PO…" /></div>
+              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
+                  placeholder="Search PO…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -8030,7 +8821,8 @@
             <div class="fc">Overdue (1)</div>
             <div class="fc">Paid (10)</div>
             <div class="ml-auto">
-              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input placeholder="Search invoice…" /></div>
+              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
+                  placeholder="Search invoice…" /></div>
             </div>
           </div>
           <div class="tbl-wrap">
@@ -8209,6 +9001,13 @@
       document.getElementById('page-title').textContent = pageTitles[id] || id;
     }
 
+    function qtView(mode, btn) {
+      document.getElementById('qt-list-view').style.display = mode === 'list' ? '' : 'none';
+      document.getElementById('qt-kanban-view').style.display = mode === 'kanban' ? '' : 'none';
+      btn.closest('.filter-row').querySelectorAll('.lv-btn').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+    }
+
     function leadsView(mode, btn) {
       document.getElementById('leads-list-view').style.display = mode === 'list' ? '' : 'none';
       document.getElementById('leads-kanban-view').style.display = mode === 'kanban' ? '' : 'none';
@@ -8294,6 +9093,1365 @@
         load.style.display = 'none';
         addMsg('Based on full admin data for Zaker Trading LLC — DIP 2, Dubai, U.A.E. across 12 SEs, 284 customers, and all ops metrics. For "' + q + '": I recommend focusing on Gulf Metals Trading and Desert Shield Safety this week, as both have active deals in negotiation with high close probability before end of June.', 'bot');
       }, 1500);
+    }
+  </script>
+
+  <!-- ══ VENDOR QUOTE DRAWER ══ -->
+  <div class="drawer-overlay" id="vq-overlay" onclick="closeVendorQuote()"></div>
+  <div class="lead-drawer" id="vq-drawer">
+
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#4338CA;"></i>Log Vendor Quotation</div>
+        <div class="drawer-sub">Auto-code: <span class="d-code-preview" id="vq-code-preview">VQ-2026-019</span> &nbsp;·&nbsp; <span id="vq-date-preview" style="color:#9aaabb;"></span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="ai-fill-btn" id="vq-ai-btn" onclick="vqAiFill()"><i class="ti ti-sparkles"></i> Build with AI</button>
+        <button class="drawer-close" onclick="closeVendorQuote()"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+
+    <div class="drawer-body">
+
+      <!-- AI Loading -->
+      <div id="vq-ai-loading" style="display:none;align-items:center;gap:8px;background:#EEF2FF;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;">
+        <i class="ti ti-loader-2" style="color:#4338CA;animation:spin 1s linear infinite;font-size:16px;"></i>
+        <span style="font-size:12px;font-weight:600;color:#4338CA;">AI is analysing vendor pricing…</span>
+      </div>
+
+      <!-- VENDOR INFO -->
+      <div class="drawer-section-title">Vendor Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Vendor Name <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="vq-vendor" onchange="onVqVendorChange()">
+            <option value="">— Select vendor —</option>
+            <option>Lincoln Electric ME</option>
+            <option>3M Gulf FZE</option>
+            <option>Norton Abrasives ME</option>
+            <option>Pewag International</option>
+            <option>Stanley Black &amp; Decker ME</option>
+            <option>Quanta Power Solutions</option>
+            <option>Microtek Power Systems</option>
+            <option>Bahco ME</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Quote Date</label>
+          <input class="d-input" id="vq-date" type="date" />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="vq-contact" type="text" placeholder="Vendor contact name" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="vq-phone" type="tel" placeholder="+971 50 000 0000" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="vq-email" type="email" placeholder="vendor@company.com" oninput="vqSyncEmail()" />
+        </div>
+      </div>
+
+      <!-- PR REFERENCE -->
+      <div class="drawer-section-title" style="margin-top:2px;">Purchase Reference</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">PR Reference <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="vq-pr">
+            <option value="">— Link to PR —</option>
+            <option value="PR-0084">PR-0084 · Lincoln E6013 Rods × 200</option>
+            <option value="PR-0083">PR-0083 · 3M Respirator × 10 pcs</option>
+            <option value="PR-0082">PR-0082 · Pewag Chain 5T × 50m</option>
+            <option value="PR-0081">PR-0081 · Bahco Tool Set × 15 kits</option>
+            <option value="PR-0080">PR-0080 · Norton Discs 7" × 100 pcs</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Validity Date</label>
+          <input class="d-input" id="vq-validity" type="date" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Lead Time</label>
+          <select class="d-select" id="vq-leadtime">
+            <option>1–3 days</option><option>3–5 days</option>
+            <option selected>5–7 days</option><option>7–14 days</option>
+            <option>14–21 days</option><option>21+ days</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- QUOTE TERMS -->
+      <div class="drawer-section-title" style="margin-top:2px;">Quote Terms</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <select class="d-select" id="vq-payment">
+            <option>30 days credit</option><option>60 days credit</option>
+            <option>Cash on delivery</option><option>Advance payment</option>
+            <option>LC / Bank guarantee</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Delivery Terms</label>
+          <select class="d-select" id="vq-delivery">
+            <option>Delivered DIP 2</option><option>Ex-works vendor</option>
+            <option>FOB origin</option><option>CIF Dubai</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Currency</label>
+          <select class="d-select" id="vq-currency">
+            <option>AED</option><option>USD</option><option>EUR</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- LINE ITEMS -->
+      <div class="drawer-section-title" style="margin-top:2px;">Line Items</div>
+      <table class="qt-items-tbl" id="vq-items-tbl">
+        <thead>
+          <tr><th>#</th><th style="width:34%;">Description</th><th>Qty</th><th>Unit Price</th><th>Disc %</th><th>Total</th><th></th></tr>
+        </thead>
+        <tbody id="vq-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row"><td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td><td id="vq-subtotal">AED 0</td><td></td></tr>
+          <tr class="qt-total-row"><td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td><td id="vq-vat">AED 0</td><td></td></tr>
+          <tr class="qt-total-row" style="font-size:13px;"><td colspan="5" style="text-align:right;">Grand Total</td><td id="vq-grand" style="color:#4338CA;">AED 0</td><td></td></tr>
+        </tfoot>
+      </table>
+      <button class="add-item-btn" onclick="vqAddRow()"><i class="ti ti-plus" style="font-size:11px;margin-right:4px;"></i>Add Item</button>
+
+      <!-- AI PRICE COMPARISON -->
+      <div class="drawer-section-title" style="margin-top:2px;">AI Price Comparison</div>
+      <div class="disc-panel" id="vq-ai-panel" style="background:linear-gradient(135deg,#EEF2FF,#faf9ff);border-color:#c7d2fe;">
+        <div class="disc-panel-head">
+          <span class="disc-ai-tag"><i class="ti ti-sparkles" style="font-size:10px;margin-right:3px;"></i>AI</span>
+          <span style="font-size:12px;font-weight:700;color:#1a2332;" id="vq-ai-heading">Select vendor &amp; PR to see price analysis</span>
+        </div>
+        <div id="vq-ai-body" style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</div>
+      </div>
+
+      <!-- NOTES -->
+      <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="vq-notes" placeholder="Negotiation notes, sample requirements, vendor remarks…"></textarea>
+      </div>
+
+      <!-- SEND EMAIL PANEL -->
+      <div id="vq-email-panel" style="display:none;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:4px;">
+        <div style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
+          <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send" style="margin-right:5px;color:#4338CA;"></i>Send RFQ Email to Vendor</span>
+          <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleVqEmail()"><i class="ti ti-x"></i></button>
+        </div>
+        <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="d-grid-3">
+            <div class="d-field d-col-2">
+              <label class="d-label">To</label>
+              <input class="d-input" id="vq-email-to" type="email" placeholder="vendor@company.com" />
+            </div>
+            <div class="d-field">
+              <label class="d-label">Template</label>
+              <select class="d-select" id="vq-email-tpl" onchange="applyVqEmailTpl()">
+                <option value="">— Template —</option>
+                <option value="rfq">Request for Quote</option>
+                <option value="followup">Follow-up on Quote</option>
+                <option value="accept">Acceptance Notice</option>
+                <option value="revision">Revision Request</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-field"><label class="d-label">Subject</label><input class="d-input" id="vq-email-subj" type="text" placeholder="Subject…" /></div>
+          <div class="d-field"><label class="d-label">Message</label><textarea class="d-textarea" id="vq-email-body" style="min-height:90px;"></textarea></div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-primary" style="padding:7px 18px;background:#4338CA;" onclick="sendVqEmail()"><i class="ti ti-send" style="font-size:12px;margin-right:4px;"></i>Send</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:12px;" onclick="toggleVqEmail()">Discard</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="drawer-foot">
+      <button class="btn-primary" style="flex:1;" onclick="submitVendorQuote('log')"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Log Quote</button>
+      <button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="submitVendorQuote('accept')"><i class="ti ti-check" style="font-size:13px;margin-right:4px;"></i>Accept &amp; Create PO</button>
+      <button class="btn-secondary" style="padding:8px 12px;display:flex;align-items:center;gap:5px;" onclick="toggleVqEmail()" title="Send RFQ Email"><i class="ti ti-mail" style="font-size:13px;"></i></button>
+      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeVendorQuote()">Cancel</button>
+    </div>
+
+  </div>
+
+  <script>
+    let _vqSeq = 19, _vqRowIdx = 0;
+
+    const VQ_VENDORS = {
+      'Lincoln Electric ME':       { contact:'Faisal Al-Ahmad',  phone:'+971 4 881 2200', email:'faisal@lincolnelectric.ae' },
+      '3M Gulf FZE':               { contact:'Sara Mathews',     phone:'+971 4 701 5555', email:'smathews@3m.com' },
+      'Norton Abrasives ME':       { contact:'Raj Kumar',        phone:'+971 50 345 6789', email:'rkumar@norton.ae' },
+      'Pewag International':       { contact:'Klaus Fischer',    phone:'+971 4 339 8800', email:'kfischer@pewag.com' },
+      'Stanley Black & Decker ME': { contact:'Tariq Hussain',    phone:'+971 4 455 1100', email:'thussain@sbdme.com' },
+      'Quanta Power Solutions':    { contact:'Ali Hassan',       phone:'+971 50 222 3344', email:'ahassan@quanta.ae' },
+      'Microtek Power Systems':    { contact:'Priya Nair',       phone:'+971 4 567 8900', email:'pnair@microtek.ae' },
+    };
+
+    const VQ_PR_AI = {
+      'PR-0084': { heading:'Lincoln E6013 3.2mm — Price History', body:'<div class="disc-row"><span>Current quote (v3)</span><span class="disc-val" style="color:#4338CA;">AED 39/pack</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 42/pack</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 41–44/pack</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-trending-down" style="font-size:10px;margin-right:3px;"></i>7% below previous quote — good negotiation result. Recommend accepting.</div>' },
+      'PR-0083': { heading:'3M Respirator 6000 — Price History', body:'<div class="disc-row"><span>Current quote (v2)</span><span class="disc-val" style="color:#4338CA;">AED 215/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 235/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 210–240/pc</span></div><div style="font-size:10px;color:#854F0B;margin-top:8px;font-style:italic;"><i class="ti ti-info-circle" style="font-size:10px;margin-right:3px;"></i>Within market range. Request delivery terms before accepting.</div>' },
+      'PR-0080': { heading:'Norton Grinding Discs 7" — Price History', body:'<div class="disc-row"><span>Current quote (v1)</span><span class="disc-val" style="color:#4338CA;">AED 17.50/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 18/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 16–20/pc</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-circle-check" style="font-size:10px;margin-right:3px;"></i>Competitive price. Safe to accept.</div>' },
+    };
+
+    const VQ_EMAIL_TPLS = {
+      rfq:      { subj:'Request for Quotation — Zaker Trading LLC', body:'Dear [Contact],\n\nWe request your best quotation for the following items as per our purchase requirement [PR#].\n\nPlease include unit price, lead time, payment terms and validity.\n\nRegards,\nPurchase Department\nZaker Trading LLC · DIP 2, Dubai' },
+      followup: { subj:'Follow-up on Quotation [VQ#] — Zaker Trading LLC', body:'Dear [Contact],\n\nThis is a gentle follow-up on your quotation [VQ#] submitted earlier.\n\nKindly confirm if the pricing and terms remain valid.\n\nRegards,\nZaker Trading LLC' },
+      accept:   { subj:'Quote Acceptance — [VQ#] · Zaker Trading LLC', body:'Dear [Contact],\n\nWe are pleased to inform you that your quotation [VQ#] has been accepted.\n\nA Purchase Order will be raised shortly. Please keep the items ready for delivery.\n\nThank you,\nZaker Trading LLC' },
+      revision: { subj:'Revision Request — [VQ#] · Zaker Trading LLC', body:'Dear [Contact],\n\nThank you for your quotation [VQ#]. We request a revision on the following:\n\n• Pricing — please review unit costs\n• Delivery timeline — can you expedite?\n\nKindly revert with a revised quote at your earliest.\n\nRegards,\nZaker Trading LLC' },
+    };
+
+    function openVendorQuote() {
+      const today = new Date();
+      document.getElementById('vq-date').value = today.toISOString().split('T')[0];
+      document.getElementById('vq-date-preview').textContent = today.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+      const exp = new Date(today); exp.setDate(exp.getDate()+30);
+      document.getElementById('vq-validity').value = exp.toISOString().split('T')[0];
+      document.getElementById('vq-code-preview').textContent = 'VQ-2026-0' + _vqSeq;
+      if (!document.getElementById('vq-items-body').children.length) { vqAddRow(); vqAddRow(); }
+      document.getElementById('vq-overlay').classList.add('open');
+      document.getElementById('vq-drawer').classList.add('open');
+      setTimeout(() => document.getElementById('vq-vendor').focus(), 250);
+    }
+
+    function closeVendorQuote() {
+      document.getElementById('vq-overlay').classList.remove('open');
+      document.getElementById('vq-drawer').classList.remove('open');
+      resetVqDrawer();
+    }
+
+    function onVqVendorChange() {
+      const name = document.getElementById('vq-vendor').value;
+      const m = VQ_VENDORS[name];
+      if (m) {
+        document.getElementById('vq-contact').value = m.contact;
+        document.getElementById('vq-phone').value   = m.phone;
+        document.getElementById('vq-email').value   = m.email;
+        document.getElementById('vq-email-to').value = m.email;
+      }
+      updateVqAiPanel();
+    }
+
+    function updateVqAiPanel() {
+      const pr = document.getElementById('vq-pr').value;
+      if (!pr || !VQ_PR_AI[pr]) {
+        document.getElementById('vq-ai-heading').textContent = 'Select vendor & PR to see price analysis';
+        document.getElementById('vq-ai-body').innerHTML = '<span style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</span>';
+        return;
+      }
+      const ai = VQ_PR_AI[pr];
+      document.getElementById('vq-ai-heading').textContent = ai.heading;
+      document.getElementById('vq-ai-body').innerHTML = ai.body;
+    }
+
+    function vqAddRow(desc='', qty='', price='', disc='0') {
+      const tbody = document.getElementById('vq-items-body'), i = ++_vqRowIdx, tr = document.createElement('tr');
+      tr.id = 'vq-row-' + i;
+      tr.innerHTML = `<td style="color:#9aaabb;font-size:10px;padding-left:8px;">${i}</td><td><input placeholder="Item description…" value="${desc}" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="1" value="${qty||1}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;"><input type="number" min="0" value="${price}" placeholder="0.00" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="0" max="100" value="${disc}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;font-weight:600;font-size:11px;color:#1a2332;padding-left:6px;" id="vq-row-total-${i}">AED 0</td><td><button class="remove-row-btn" onclick="vqRemoveRow(${i})">×</button></td>`;
+      tbody.appendChild(tr); vqCalc();
+    }
+
+    function vqRemoveRow(i) { const r=document.getElementById('vq-row-'+i); if(r) r.remove(); vqCalc(); }
+
+    function vqCalc() {
+      let sub = 0;
+      document.querySelectorAll('#vq-items-body tr').forEach(tr => {
+        const inp=tr.querySelectorAll('input'); if(inp.length<4) return;
+        const qty=parseFloat(inp[1].value)||0, price=parseFloat(inp[2].value)||0, disc=parseFloat(inp[3].value)||0, total=qty*price*(1-disc/100);
+        sub += total;
+        const id=tr.id.replace('vq-row-',''), cell=document.getElementById('vq-row-total-'+id);
+        if(cell) cell.textContent='AED '+total.toLocaleString('en-AE',{maximumFractionDigits:0});
+      });
+      const vat=sub*.05;
+      document.getElementById('vq-subtotal').textContent='AED '+sub.toLocaleString('en-AE',{maximumFractionDigits:0});
+      document.getElementById('vq-vat').textContent='AED '+vat.toLocaleString('en-AE',{maximumFractionDigits:0});
+      document.getElementById('vq-grand').textContent='AED '+(sub+vat).toLocaleString('en-AE',{maximumFractionDigits:0});
+    }
+
+    function vqAiFill() {
+      const vendor = document.getElementById('vq-vendor').value;
+      const pr     = document.getElementById('vq-pr').value;
+      if (!vendor) { document.getElementById('vq-vendor').style.borderColor='#E24B4A'; return; }
+      const btn=document.getElementById('vq-ai-btn'), loading=document.getElementById('vq-ai-loading');
+      btn.disabled=true; btn.style.opacity='0.6'; loading.style.display='flex';
+      setTimeout(() => {
+        loading.style.display='none'; btn.disabled=false; btn.style.opacity='1';
+        document.getElementById('vq-items-body').innerHTML=''; _vqRowIdx=0;
+        if (pr==='PR-0084') { vqAddRow('Lincoln E6013 Welding Rods 3.2mm (5kg)',200,39,0); }
+        else if (pr==='PR-0083') { vqAddRow('3M Full-Face Respirator Series 6000',10,215,0); }
+        else if (pr==='PR-0080') { vqAddRow('Norton Grinding Discs 7" — 100 pack',100,17.5,0); }
+        else { vqAddRow('',1,0,0); vqAddRow('',1,0,0); }
+        document.getElementById('vq-notes').value='AI pre-filled based on PR reference and vendor history. Verify quantities and pricing before logging.';
+        updateVqAiPanel();
+      }, 1600);
+    }
+
+    function toggleVqEmail() {
+      const p=document.getElementById('vq-email-panel');
+      p.style.display = p.style.display==='none' ? 'block' : 'none';
+      if(p.style.display==='block') { vqSyncEmail(); p.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    }
+    function vqSyncEmail() { const e=document.getElementById('vq-email').value; if(e) document.getElementById('vq-email-to').value=e; }
+    function applyVqEmailTpl() {
+      const key=document.getElementById('vq-email-tpl').value; if(!key) return;
+      const tpl=VQ_EMAIL_TPLS[key], vq=document.getElementById('vq-code-preview').textContent, pr=document.getElementById('vq-pr').value||'—', cnt=document.getElementById('vq-contact').value||'Sir/Madam';
+      document.getElementById('vq-email-subj').value=tpl.subj.replace(/\[VQ#\]/g,vq).replace(/\[PR#\]/g,pr);
+      document.getElementById('vq-email-body').value=tpl.body.replace(/\[VQ#\]/g,vq).replace(/\[PR#\]/g,pr).replace(/\[Contact\]/g,cnt);
+    }
+    function sendVqEmail() {
+      const to=document.getElementById('vq-email-to').value.trim(), subj=document.getElementById('vq-email-subj').value.trim();
+      if(!to||!subj){alert('Fill in To and Subject fields.');return;}
+      alert('RFQ email sent to '+to+'\nSubject: '+subj);
+      document.getElementById('vq-email-panel').style.display='none';
+    }
+
+    function submitVendorQuote(mode) {
+      const vendor=document.getElementById('vq-vendor').value, pr=document.getElementById('vq-pr').value;
+      if(!vendor){document.getElementById('vq-vendor').style.borderColor='#E24B4A';return;}
+      if(!pr){document.getElementById('vq-pr').style.borderColor='#E24B4A';return;}
+      const code='VQ-2026-0'+_vqSeq++, grand=document.getElementById('vq-grand').textContent;
+      const validity=document.getElementById('vq-validity').value;
+      const validStr=validity ? new Date(validity).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+      const status=mode==='accept' ? '<span class="pill pill-green">Accepted</span>' : '<span class="pill pill-amber">Pending Review</span>';
+      const tbody=document.querySelector('#p-purch-quotes table tbody');
+      if(tbody){
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td><span class="tbl-id">${code}</span></td><td><b>${vendor}</b></td><td><span class="tbl-id-grey">${pr}</span></td><td style="font-size:11px;color:#5a7080;">New items logged</td><td style="font-weight:600;">${grand}</td><td>${validStr}</td><td><span class="ver-badge latest" style="cursor:default;">v1</span></td><td>${status}</td><td><div class="tbl-btn-group">${mode==='accept'?'<span class="tbl-action">View PO →</span>':'<button class="tbl-btn green" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button><button class="tbl-btn gold">Request Revision</button>'}</div></td>`;
+        tbody.insertBefore(tr,tbody.firstChild);
+      }
+      closeVendorQuote();
+    }
+
+    function resetVqDrawer() {
+      ['vq-vendor','vq-contact','vq-phone','vq-email','vq-notes','vq-email-to','vq-email-subj','vq-email-body'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+      ['vq-pr','vq-payment','vq-delivery','vq-currency','vq-leadtime','vq-email-tpl'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.style.borderColor='';}});
+      ['vq-vendor','vq-pr'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.borderColor='';});
+      ['vq-email-panel','vq-ai-loading'].forEach(id=>document.getElementById(id).style.display='none');
+      document.getElementById('vq-items-body').innerHTML=''; _vqRowIdx=0; vqCalc();
+      document.getElementById('vq-ai-heading').textContent='Select vendor & PR to see price analysis';
+      document.getElementById('vq-ai-body').innerHTML='<span style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</span>';
+    }
+
+    // Trigger AI panel update when PR changes too
+    document.addEventListener('DOMContentLoaded', () => {
+      const prSel = document.getElementById('vq-pr');
+      if(prSel) prSel.addEventListener('change', updateVqAiPanel);
+    });
+  </script>
+
+  <!-- ══ NEW FOLLOW-UP DRAWER ══ -->
+  <div class="drawer-overlay" id="fu-overlay" onclick="closeNewFollowup()"></div>
+  <div class="lead-drawer" id="fu-drawer">
+
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-bell-ringing" style="margin-right:6px;color:#C9A84C;"></i>New Follow-up</div>
+        <div class="drawer-sub">Schedule a task, call, visit or reminder</div>
+      </div>
+      <button class="drawer-close" onclick="closeNewFollowup()"><i class="ti ti-x"></i></button>
+    </div>
+
+    <div class="drawer-body">
+
+      <div class="drawer-section-title">Customer</div>
+      <div class="d-field">
+        <label class="d-label">Customer Name <span style="color:#E24B4A;">*</span></label>
+        <select class="d-select" id="fu-customer">
+          <option value="">— Select customer —</option>
+          <option>Al-Faris Industrial LLC</option>
+          <option>Gulf Metals Trading</option>
+          <option>AeroTech Engineering</option>
+          <option>PetroGulf Services</option>
+          <option>Desert Shield Safety</option>
+          <option>Khaleeji Steel Works</option>
+          <option>Al-Zahra Medical Center</option>
+          <option>Al-Nasr Logistics</option>
+          <option>Dubai Ports Authority</option>
+          <option>Sharjah Cement Factory</option>
+          <option>Emirates Steel LLC</option>
+        </select>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Task Details</div>
+      <div class="d-field">
+        <label class="d-label">Task / Description <span style="color:#E24B4A;">*</span></label>
+        <textarea class="d-textarea" id="fu-task" style="min-height:64px;" placeholder="e.g. Send revised quotation for Lincoln E6013 × 500 units"></textarea>
+      </div>
+
+      <div class="d-row">
+        <div class="d-field">
+          <label class="d-label">Follow-up Type <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="fu-type">
+            <option value="">— Select type —</option>
+            <option value="call">📞 Call</option>
+            <option value="whatsapp">💬 WhatsApp</option>
+            <option value="visit">🏢 Site Visit</option>
+            <option value="email">✉ Email</option>
+            <option value="quote">📄 Send Quotation</option>
+            <option value="demo">🖥 Demo</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Priority</label>
+          <select class="d-select" id="fu-priority">
+            <option value="high">🔴 High</option>
+            <option value="normal" selected>🟡 Normal</option>
+            <option value="low">🟢 Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-row">
+        <div class="d-field">
+          <label class="d-label">Due Date <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="fu-due" type="date" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Assigned SE</label>
+          <select class="d-select" id="fu-se">
+            <option value="">— Select SE —</option>
+            <option>Ahmed M.</option>
+            <option>Fatima R.</option>
+            <option>Noor Z.</option>
+            <option>Waleed H.</option>
+            <option>Khalid J.</option>
+            <option>Hana Q.</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Linked Reference</div>
+      <div class="d-row">
+        <div class="d-field">
+          <label class="d-label">Ref Type</label>
+          <select class="d-select" id="fu-ref-type" onchange="fuRefTypeChange()">
+            <option value="">None</option>
+            <option value="quote">Quotation</option>
+            <option value="req">Sales Requirement</option>
+            <option value="invoice">Invoice</option>
+            <option value="visit">Visit Report</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Ref Number</label>
+          <input class="d-input" id="fu-ref-num" type="text" placeholder="e.g. QT-2841" disabled style="opacity:.5;" />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="fu-notes" placeholder="Additional context, talking points, background…"></textarea>
+      </div>
+
+      <!-- REMINDER -->
+      <div style="display:flex;align-items:center;gap:10px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;">
+        <input type="checkbox" id="fu-remind" style="width:15px;height:15px;accent-color:#C9A84C;cursor:pointer;" />
+        <label for="fu-remind" style="font-size:12px;font-weight:600;color:#1a2332;cursor:pointer;flex:1;">Set reminder notification</label>
+        <select class="d-select" id="fu-remind-when" style="width:auto;padding:5px 10px;font-size:11px;">
+          <option>1 hour before</option>
+          <option>3 hours before</option>
+          <option selected>1 day before</option>
+          <option>2 days before</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="drawer-foot">
+      <button class="btn-primary" style="flex:1;" onclick="submitNewFollowup()"><i class="ti ti-bell-plus" style="font-size:13px;margin-right:4px;"></i>Save Follow-up</button>
+      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeNewFollowup()">Cancel</button>
+    </div>
+
+  </div>
+
+  <script>
+    function openNewFollowup() {
+      const today = new Date();
+      today.setDate(today.getDate() + 1);
+      document.getElementById('fu-due').value = today.toISOString().split('T')[0];
+      document.getElementById('fu-overlay').classList.add('open');
+      document.getElementById('fu-drawer').classList.add('open');
+      setTimeout(() => document.getElementById('fu-customer').focus(), 250);
+    }
+
+    function closeNewFollowup() {
+      document.getElementById('fu-overlay').classList.remove('open');
+      document.getElementById('fu-drawer').classList.remove('open');
+      resetFuDrawer();
+    }
+
+    function fuRefTypeChange() {
+      const inp = document.getElementById('fu-ref-num');
+      const has = !!document.getElementById('fu-ref-type').value;
+      inp.disabled = !has; inp.style.opacity = has ? '1' : '.5';
+      if (!has) inp.value = '';
+    }
+
+    function submitNewFollowup() {
+      const cust     = document.getElementById('fu-customer').value;
+      const task     = document.getElementById('fu-task').value.trim();
+      const type     = document.getElementById('fu-type').value;
+      const due      = document.getElementById('fu-due').value;
+
+      if (!cust) { document.getElementById('fu-customer').style.borderColor='#E24B4A'; return; }
+      if (!task) { document.getElementById('fu-task').style.borderColor='#E24B4A'; document.getElementById('fu-task').focus(); return; }
+      if (!type) { document.getElementById('fu-type').style.borderColor='#E24B4A'; return; }
+      if (!due)  { document.getElementById('fu-due').style.borderColor='#E24B4A'; return; }
+
+      const priority = document.getElementById('fu-priority').value;
+      const dueDate  = new Date(due);
+      const today    = new Date(); today.setHours(0,0,0,0);
+      const diff     = Math.round((dueDate - today) / 86400000);
+
+      let duePill, statusPill;
+      if (diff < 0)     { duePill = `<span class="pill pill-red">${Math.abs(diff)} day${Math.abs(diff)>1?'s':''} overdue</span>`;  statusPill = '<span class="pill pill-red">Overdue</span>'; }
+      else if (diff===0){ duePill = '<span class="pill pill-amber">Today</span>';                                                   statusPill = '<span class="pill pill-amber">Due today</span>'; }
+      else if (diff<=7) { duePill = `<span class="pill pill-blue">In ${diff} day${diff>1?'s':''}</span>`;                          statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+      else              { duePill = `<span class="pill pill-blue">Next week</span>`;                                               statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+
+      const priorityBadge = priority==='high' ? '<span class="pill pill-red" style="font-size:9px;">High</span>' : priority==='low' ? '<span class="pill pill-green" style="font-size:9px;">Low</span>' : '';
+
+      // Insert into BOTH follow-up tables
+      document.querySelectorAll('.page[id="p-followups"] table tbody').forEach(tbody => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-size:13px;font-weight:600;color:#0A1628;">${cust}<br>${priorityBadge}</td>
+          <td style="font-size:12px;color:#5a7080;max-width:240px;">${task}</td>
+          <td>${duePill}</td>
+          <td>${statusPill}</td>
+          <td style="display:flex;gap:6px;padding-top:11px;">
+            <button class="fu-done">✓ Done</button>
+            <button class="fu-wa">WhatsApp</button>
+            <button class="fu-call">Call</button>
+          </td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+      });
+
+      closeNewFollowup();
+    }
+
+    function resetFuDrawer() {
+      ['fu-customer','fu-type','fu-priority','fu-se','fu-ref-type','fu-remind-when'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+      ['fu-task','fu-ref-num','fu-notes'].forEach(id => { const el=document.getElementById(id); if(el) { el.value=''; el.style.borderColor=''; }});
+      ['fu-customer','fu-type','fu-due'].forEach(id => { const el=document.getElementById(id); if(el) el.style.borderColor=''; });
+      document.getElementById('fu-remind').checked = false;
+      document.getElementById('fu-ref-num').disabled = true;
+      document.getElementById('fu-ref-num').style.opacity = '.5';
+      document.getElementById('fu-priority').value = 'normal';
+    }
+  </script>
+
+  <!-- ══ NEW QUOTE DRAWER ══ -->
+  <div class="drawer-overlay" id="quote-overlay" onclick="closeNewQuote()"></div>
+  <div class="lead-drawer" id="quote-drawer">
+
+    <!-- HEAD -->
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#C9A84C;"></i>New Sales
+          Quotation</div>
+        <div class="drawer-sub">Auto-code: <span class="d-code-preview" id="qt-code-preview">QT-2845</span>
+          &nbsp;·&nbsp; <span id="qt-date-preview" style="color:#9aaabb;"></span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="ai-fill-btn" id="qt-ai-btn" onclick="qtAiFill()"><i class="ti ti-sparkles"></i> Build with
+          AI</button>
+        <button class="drawer-close" onclick="closeNewQuote()"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+
+    <!-- EXISTING CUSTOMER BANNER -->
+    <div id="qt-exist-banner" style="display:none;padding:10px 20px;border-bottom:1px solid #e2e8f0;">
+      <div id="qt-exist-found"
+        style="display:none;align-items:center;gap:10px;background:#FAEEDA;border:1px solid #e6c96e;border-radius:8px;padding:10px 14px;">
+        <i class="ti ti-alert-triangle" style="color:#854F0B;font-size:15px;flex-shrink:0;"></i>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:700;color:#854F0B;">Existing Customer — details auto-filled</div>
+          <div style="font-size:11px;color:#6a7f96;margin-top:1px;" id="qt-exist-sub"></div>
+        </div>
+        <button class="tbl-btn" onclick="toggleQtHist()" id="qt-hist-btn">Order History ▾</button>
+      </div>
+      <div id="qt-exist-new"
+        style="display:none;align-items:center;gap:8px;background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:8px 14px;">
+        <i class="ti ti-circle-check" style="color:#0F6E56;font-size:14px;"></i>
+        <span style="font-size:11px;font-weight:600;color:#0F6E56;">New customer — not found in system</span>
+      </div>
+    </div>
+
+    <!-- ORDER HISTORY PANEL -->
+    <div id="qt-hist-panel"
+      style="display:none;padding:0 20px 12px;border-bottom:1px solid #e2e8f0;background:#fafbfc;">
+      <div
+        style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#9aaabb;padding:10px 0 8px;">
+        Customer Order History</div>
+      <table class="data-tbl" style="font-size:11px;">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Ref #</th>
+            <th>Items</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="qt-hist-body"></tbody>
+      </table>
+    </div>
+
+    <!-- BODY -->
+    <div class="drawer-body">
+
+      <!-- AI Loading -->
+      <div id="qt-ai-loading"
+        style="display:none;align-items:center;gap:8px;background:#EEF2FF;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;">
+        <i class="ti ti-loader-2" style="color:#4338CA;animation:spin 1s linear infinite;font-size:16px;"></i>
+        <span style="font-size:12px;font-weight:600;color:#4338CA;">AI is building your quotation…</span>
+      </div>
+
+      <div class="drawer-section-title">Customer Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Customer Name <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="qt-cust" type="text" placeholder="e.g. Gulf Metals Trading"
+            oninput="onQtCustInput()" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Quote Date</label>
+          <input class="d-input" id="qt-date" type="date" />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Territory</label>
+          <select class="d-select" id="qt-territory">
+            <option value="">— Select —</option>
+            <option>Dubai North</option>
+            <option>Dubai South</option>
+            <option>Abu Dhabi</option>
+            <option>Sharjah</option>
+            <option>RAK / Northern Emirates</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Assigned SE</label>
+          <select class="d-select" id="qt-se">
+            <option value="">— Select SE —</option>
+            <option>Ahmed M.</option>
+            <option>Fatima R.</option>
+            <option>Noor Z.</option>
+            <option>Waleed H.</option>
+            <option>Khalid J.</option>
+            <option>Hana Q.</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Validity</label>
+          <select class="d-select" id="qt-validity">
+            <option>15 days</option>
+            <option>30 days</option>
+            <option>45 days</option>
+            <option>60 days</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="qt-contact" type="text" placeholder="e.g. Tariq Al-Mansoori" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="qt-phone" type="tel" placeholder="+971 50 000 0000" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="qt-email" type="email" placeholder="name@company.com" oninput="qtSyncEmail()" />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Quote Terms</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <select class="d-select" id="qt-payment">
+            <option>30 days credit</option>
+            <option>60 days credit</option>
+            <option>Cash on delivery</option>
+            <option>Advance payment</option>
+            <option>LC / Bank guarantee</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Delivery Terms</label>
+          <select class="d-select" id="qt-delivery">
+            <option>Ex-works DIP 2</option>
+            <option>Delivered to site</option>
+            <option>FOB Dubai</option>
+            <option>CIF</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Currency</label>
+          <select class="d-select" id="qt-currency">
+            <option>AED</option>
+            <option>USD</option>
+            <option>EUR</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Line Items</div>
+      <table class="qt-items-tbl" id="qt-items-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="width:34%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Disc %</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="qt-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="qt-subtotal">AED 0</td>
+            <td></td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="qt-vat">AED 0</td>
+            <td></td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="5" style="text-align:right;">Grand Total</td>
+            <td id="qt-grand" style="color:#C9A84C;">AED 0</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <button class="add-item-btn" onclick="qtAddRow()"><i class="ti ti-plus"
+          style="font-size:11px;margin-right:4px;"></i>Add Item</button>
+
+      <div class="drawer-section-title" style="margin-top:2px;">AI Discount Suggestion</div>
+      <div class="disc-panel" id="qt-disc-panel">
+        <div class="disc-panel-head">
+          <span class="disc-ai-tag"><i class="ti ti-sparkles" style="font-size:10px;margin-right:3px;"></i>AI</span>
+          <span style="font-size:12px;font-weight:700;color:#1a2332;" id="qt-disc-heading">Enter customer name for
+            suggestion</span>
+        </div>
+        <div id="qt-disc-body" style="color:#9aaabb;font-size:11px;">Discount recommendation will appear once a customer
+          is selected.</div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="qt-notes" placeholder="Special terms, scope of supply, remarks…"></textarea>
+      </div>
+
+      <!-- SEND EMAIL PANEL -->
+      <div id="qt-email-panel"
+        style="display:none;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:4px;">
+        <div
+          style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
+          <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send"
+              style="margin-right:5px;color:#C9A84C;"></i>Send Quotation Email</span>
+          <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleQtEmail()"><i
+              class="ti ti-x"></i></button>
+        </div>
+        <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="d-grid-3">
+            <div class="d-field d-col-2">
+              <label class="d-label">To</label>
+              <input class="d-input" id="qt-email-to" type="email" placeholder="recipient@company.com" />
+            </div>
+            <div class="d-field">
+              <label class="d-label">Template</label>
+              <select class="d-select" id="qt-email-tpl" onchange="applyQtEmailTpl()">
+                <option value="">— Template —</option>
+                <option value="quote">Quote Submission</option>
+                <option value="followup">Follow-up Reminder</option>
+                <option value="intro">Introduction</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-field"><label class="d-label">Subject</label><input class="d-input" id="qt-email-subj"
+              type="text" placeholder="Subject…" /></div>
+          <div class="d-field"><label class="d-label">Message</label><textarea class="d-textarea" id="qt-email-body"
+              style="min-height:90px;"></textarea></div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-primary" style="padding:7px 18px;" onclick="sendQtEmail()"><i class="ti ti-send"
+                style="font-size:12px;margin-right:4px;"></i>Send</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:12px;"
+              onclick="toggleQtEmail()">Discard</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="drawer-foot">
+      <button class="btn-primary" style="flex:1;" onclick="submitNewQuote('draft')"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Draft</button>
+      <button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="submitNewQuote('submit')"><i
+          class="ti ti-send" style="font-size:13px;margin-right:4px;"></i>Submit for Approval</button>
+      <button class="btn-secondary" style="padding:8px 12px;display:flex;align-items:center;gap:5px;"
+        onclick="toggleQtEmail()" title="Send Email"><i class="ti ti-mail" style="font-size:13px;"></i></button>
+      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeNewQuote()">Cancel</button>
+    </div>
+
+  </div>
+
+  <script>
+    let _qtSeq = 2845, _qtRowIdx = 0, _qtCustTimer = null;
+
+    const QT_CUSTOMERS = {
+      'gulf metals trading': { code: 'LD-0038', se: 'Ahmed M.', territory: 'Dubai North', contact: 'Tariq Al-Mansoori', phone: '+971 50 812 3344', email: 'tariq@gulfmetals.ae', totalSpend: 45500, tier: 'Silver', discount: 5, tierNote: 'Total spend AED 45,500 · 3 orders this year', history: [{ date: '15 Jun 2026', ref: 'QT-2838', items: 'Lincoln E6013 Rods × 200 pcs', amount: 'AED 31,500', status: '<span class="pill pill-green">Approved</span>' }, { date: '02 May 2026', ref: 'INV/26/051', items: 'Norton Abrasive Discs × 50', amount: 'AED 9,200', status: '<span class="pill pill-green">Paid</span>' }, { date: '18 Mar 2026', ref: 'QT-2801', items: '3M PPE Kit × 5', amount: 'AED 4,800', status: '<span class="pill pill-grey" style="background:#eee;color:#666;">Closed</span>' }] },
+      'al-faris industrial llc': { code: 'LD-0041', se: 'Ahmed M.', territory: 'Dubai North', contact: 'Saif Al-Faris', phone: '+971 50 441 9900', email: 'saif@alfaris.ae', totalSpend: 74400, tier: 'Gold', discount: 8, tierNote: 'Total spend AED 74,400 · 2 orders this year', history: [{ date: '17 Jun 2026', ref: 'QT-2841', items: 'Quanta 100AH Battery × 12', amount: 'AED 52,000', status: '<span class="pill pill-amber">Awaiting MD</span>' }, { date: '05 Apr 2026', ref: 'INV/26/034', items: 'Pewag Chain 5T × 100m', amount: 'AED 22,400', status: '<span class="pill pill-green">Paid</span>' }] },
+      'al-zahra medical center': { code: 'LD-0038', se: 'S. Al-Mansouri', territory: 'Abu Dhabi', contact: 'Dr. Layla Hamdan', phone: '+971 55 334 9012', email: 'lhamdan@alzahra.ae', totalSpend: 31500, tier: 'Silver', discount: 5, tierNote: 'Total spend AED 31,500 · 1 order this year', history: [{ date: '15 Jun 2026', ref: 'QT-2838', items: 'Microtek 5KVA UPS × 2', amount: 'AED 31,500', status: '<span class="pill pill-green">Approved</span>' }] },
+      'khaleeji steel works': { code: 'LD-0035', se: 'Ahmed M.', territory: 'Sharjah', contact: 'Mohammed Khaleeji', phone: '+971 50 775 3388', email: 'mkhaleeji@khaleeji.ae', totalSpend: 96800, tier: 'Platinum', discount: 12, tierNote: 'Total spend AED 96,800 · 4 orders this year — top account', history: [{ date: '17 Jun 2026', ref: 'QT-2841', items: 'Quanta 100AH Battery × 12', amount: 'AED 52,000', status: '<span class="pill pill-amber">Awaiting MD</span>' }, { date: '10 Jun 2026', ref: 'INV/26/072', items: 'Lincoln E6013 Rods × 500 pcs', amount: 'AED 44,800', status: '<span class="pill pill-green">Paid</span>' }] },
+    };
+    const TIER_CFG = { 'Platinum': { color: '#7C3AED', dot: '#7C3AED', label: 'Platinum Account', minDisc: 10, maxDisc: 15 }, 'Gold': { color: '#C9A84C', dot: '#C9A84C', label: 'Gold Account', minDisc: 7, maxDisc: 10 }, 'Silver': { color: '#6a7f96', dot: '#9aaabb', label: 'Silver Account', minDisc: 4, maxDisc: 6 }, 'New': { color: '#185FA5', dot: '#a8caee', label: 'New Customer', minDisc: 0, maxDisc: 2 } };
+    const QT_ETPLS = { quote: { subj: 'Quotation [QT#] — Zaker Trading LLC', body: 'Dear [Contact],\n\nPlease find our quotation [QT#] for your consideration.\n\nKindly review and revert at your earliest convenience.\n\nBest regards,\n[SE]\nZaker Trading LLC · DIP 2, Dubai' }, followup: { subj: 'Follow-up on Quotation [QT#]', body: 'Dear [Contact],\n\nThis is a gentle follow-up on our quotation [QT#].\n\nPlease let us know if you have any questions.\n\nBest regards,\n[SE]\nZaker Trading LLC' }, intro: { subj: 'Introduction — Zaker Trading LLC', body: 'Dear [Contact],\n\nI am [SE] from Zaker Trading LLC, a leading UAE supplier of safety, welding, and industrial equipment.\n\nWarm regards,\n[SE]\nZaker Trading LLC' } };
+
+    function openNewQuote() {
+      const today = new Date();
+      document.getElementById('qt-date').value = today.toISOString().split('T')[0];
+      document.getElementById('qt-date-preview').textContent = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      document.getElementById('qt-code-preview').textContent = 'QT-' + _qtSeq;
+      if (!document.getElementById('qt-items-body').children.length) { qtAddRow(); qtAddRow(); }
+      document.getElementById('quote-overlay').classList.add('open');
+      document.getElementById('quote-drawer').classList.add('open');
+      setTimeout(() => document.getElementById('qt-cust').focus(), 250);
+    }
+    function closeNewQuote() {
+      document.getElementById('quote-overlay').classList.remove('open');
+      document.getElementById('quote-drawer').classList.remove('open');
+      resetQtDrawer();
+    }
+    function onQtCustInput() { clearTimeout(_qtCustTimer); _qtCustTimer = setTimeout(checkQtCustomer, 500); }
+    function checkQtCustomer() {
+      const name = document.getElementById('qt-cust').value.trim().toLowerCase();
+      const banner = document.getElementById('qt-exist-banner'), found = document.getElementById('qt-exist-found'), newEl = document.getElementById('qt-exist-new');
+      if (name.length < 3) { banner.style.display = 'none'; resetDiscPanel(); return; }
+      const m = QT_CUSTOMERS[name];
+      banner.style.display = 'block';
+      if (m) { found.style.display = 'flex'; newEl.style.display = 'none'; document.getElementById('qt-exist-sub').textContent = m.code + ' · ' + m.tierNote; prefillQtCustomer(m); showDiscSuggestion(m); renderQtHist(m.history); }
+      else { found.style.display = 'none'; newEl.style.display = 'flex'; hideQtHist(); showNewDiscPanel(); }
+    }
+    function prefillQtCustomer(m) {
+      if (m.territory) document.getElementById('qt-territory').value = m.territory;
+      if (m.se) document.getElementById('qt-se').value = m.se;
+      if (m.contact) document.getElementById('qt-contact').value = m.contact;
+      if (m.phone) document.getElementById('qt-phone').value = m.phone;
+      if (m.email) { document.getElementById('qt-email').value = m.email; document.getElementById('qt-email-to').value = m.email; }
+    }
+    function showDiscSuggestion(m) {
+      const tier = m.tier || 'New', cfg = TIER_CFG[tier] || TIER_CFG['New'];
+      document.getElementById('qt-disc-heading').textContent = cfg.label + ' · Suggested ' + cfg.minDisc + '–' + cfg.maxDisc + '% discount';
+      document.getElementById('qt-disc-body').innerHTML = `<div class="disc-tier"><span class="disc-tier-dot" style="background:${cfg.dot};"></span><span style="font-size:11px;font-weight:600;color:${cfg.color};">${tier} Tier</span><span style="font-size:10px;color:#9aaabb;margin-left:4px;">${m.tierNote}</span></div><div class="disc-row"><span>Recommended discount</span><span class="disc-val">${m.discount}%</span></div><div class="disc-row"><span>Max authorised (Admin)</span><span class="disc-val">${cfg.maxDisc}%</span></div><div class="disc-row"><span>Last discount given</span><span class="disc-val">${m.discount - 1}%</span></div><div style="font-size:10px;color:#6a7f96;margin-top:8px;font-style:italic;"><i class="ti ti-info-circle" style="font-size:10px;margin-right:3px;"></i>Discount above ${cfg.maxDisc}% requires MD approval.</div>`;
+    }
+    function showNewDiscPanel() {
+      document.getElementById('qt-disc-heading').textContent = 'New Customer — Standard Rates';
+      document.getElementById('qt-disc-body').innerHTML = '<div class="disc-row"><span>Recommended discount</span><span class="disc-val">0%</span></div><div class="disc-row"><span>Introductory offer (optional)</span><span class="disc-val">2–3%</span></div><div style="font-size:10px;color:#6a7f96;margin-top:8px;font-style:italic;"><i class="ti ti-info-circle" style="font-size:10px;margin-right:3px;"></i>No order history. Apply standard pricing for new accounts.</div>';
+    }
+    function resetDiscPanel() { document.getElementById('qt-disc-heading').textContent = 'Enter customer name for suggestion'; document.getElementById('qt-disc-body').innerHTML = '<span style="color:#9aaabb;font-size:11px;">Discount recommendation will appear once a customer is selected.</span>'; }
+    function renderQtHist(history) {
+      const tbody = document.getElementById('qt-hist-body');
+      tbody.innerHTML = history && history.length ? history.map(h => `<tr><td style="font-size:11px;">${h.date}</td><td><span class="tbl-id">${h.ref}</span></td><td style="font-size:11px;color:#5a7080;">${h.items}</td><td style="font-weight:600;font-size:11px;">${h.amount}</td><td>${h.status}</td></tr>`).join('') : '<tr><td colspan="5" style="text-align:center;color:#9aaabb;font-size:11px;padding:12px;">No previous orders found</td></tr>';
+    }
+    function toggleQtHist() { const p = document.getElementById('qt-hist-panel'), b = document.getElementById('qt-hist-btn'), open = p.style.display !== 'none'; p.style.display = open ? 'none' : 'block'; b.textContent = open ? 'Order History ▾' : 'Hide History ▴'; }
+    function hideQtHist() { document.getElementById('qt-hist-panel').style.display = 'none'; const b = document.getElementById('qt-hist-btn'); if (b) b.textContent = 'Order History ▾'; }
+
+    function qtAddRow(desc = '', qty = '', price = '', disc = '0') {
+      const tbody = document.getElementById('qt-items-body'), i = ++_qtRowIdx, tr = document.createElement('tr');
+      tr.id = 'qt-row-' + i;
+      tr.innerHTML = `<td style="color:#9aaabb;font-size:10px;padding-left:8px;">${i}</td><td><input placeholder="Item description…" value="${desc}" oninput="qtCalc()"/></td><td style="width:52px;"><input type="number" min="1" value="${qty || 1}" oninput="qtCalc()" style="text-align:center;"/></td><td style="width:90px;"><input type="number" min="0" value="${price}" placeholder="0.00" oninput="qtCalc()"/></td><td style="width:52px;"><input type="number" min="0" max="100" value="${disc}" oninput="qtCalc()" style="text-align:center;"/></td><td style="width:90px;font-weight:600;font-size:11px;color:#1a2332;padding-left:6px;" id="qt-row-total-${i}">AED 0</td><td><button class="remove-row-btn" onclick="qtRemoveRow(${i})">×</button></td>`;
+      tbody.appendChild(tr); qtCalc();
+    }
+    function qtRemoveRow(i) { const r = document.getElementById('qt-row-' + i); if (r) r.remove(); qtCalc(); }
+    function qtCalc() {
+      let sub = 0;
+      document.querySelectorAll('#qt-items-body tr').forEach(tr => {
+        const inp = tr.querySelectorAll('input'); if (inp.length < 4) return;
+        const qty = parseFloat(inp[1].value) || 0, price = parseFloat(inp[2].value) || 0, disc = parseFloat(inp[3].value) || 0, total = qty * price * (1 - disc / 100);
+        sub += total;
+        const id = tr.id.replace('qt-row-', ''), cell = document.getElementById('qt-row-total-' + id);
+        if (cell) cell.textContent = 'AED ' + total.toLocaleString('en-AE', { maximumFractionDigits: 0 });
+      });
+      const vat = sub * .05;
+      document.getElementById('qt-subtotal').textContent = 'AED ' + sub.toLocaleString('en-AE', { maximumFractionDigits: 0 });
+      document.getElementById('qt-vat').textContent = 'AED ' + vat.toLocaleString('en-AE', { maximumFractionDigits: 0 });
+      document.getElementById('qt-grand').textContent = 'AED ' + (sub + vat).toLocaleString('en-AE', { maximumFractionDigits: 0 });
+    }
+    function qtAiFill() {
+      const cust = document.getElementById('qt-cust').value.trim();
+      if (!cust) { document.getElementById('qt-cust').focus(); document.getElementById('qt-cust').style.borderColor = '#E24B4A'; return; }
+      const btn = document.getElementById('qt-ai-btn'), loading = document.getElementById('qt-ai-loading');
+      btn.disabled = true; btn.style.opacity = '0.6'; loading.style.display = 'flex';
+      setTimeout(() => {
+        loading.style.display = 'none'; btn.disabled = false; btn.style.opacity = '1';
+        document.getElementById('qt-items-body').innerHTML = ''; _qtRowIdx = 0;
+        qtAddRow('Lincoln Electric E6013 Welding Rods 3.2mm (5kg)', 50, 42, 5);
+        qtAddRow('3M Full-Face Respirator Series 6000', 10, 215, 5);
+        qtAddRow('Pewag Grade 100 Chain Sling 5T 6mm', 5, 380, 5);
+        if (!document.getElementById('qt-payment').value) document.getElementById('qt-payment').value = '30 days credit';
+        document.getElementById('qt-notes').value = 'AI-suggested scope based on customer industry profile and past orders. Confirm quantities before submission.';
+      }, 1800);
+    }
+    function toggleQtEmail() { const p = document.getElementById('qt-email-panel'); p.style.display = p.style.display === 'none' ? 'block' : 'none'; if (p.style.display === 'block') { qtSyncEmail(); p.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); } }
+    function qtSyncEmail() { const e = document.getElementById('qt-email').value; if (e) document.getElementById('qt-email-to').value = e; }
+    function applyQtEmailTpl() {
+      const key = document.getElementById('qt-email-tpl').value; if (!key) return;
+      const tpl = QT_ETPLS[key], qt = document.getElementById('qt-code-preview').textContent, se = document.getElementById('qt-se').value || 'Our Sales Team', cnt = document.getElementById('qt-contact').value || 'Sir/Madam';
+      document.getElementById('qt-email-subj').value = tpl.subj.replace(/\[QT#\]/g, qt);
+      document.getElementById('qt-email-body').value = tpl.body.replace(/\[QT#\]/g, qt).replace(/\[SE\]/g, se).replace(/\[Contact\]/g, cnt);
+    }
+    function sendQtEmail() { const to = document.getElementById('qt-email-to').value.trim(), subj = document.getElementById('qt-email-subj').value.trim(); if (!to || !subj) { alert('Fill in To and Subject fields.'); return; } alert('Email sent to ' + to + '\nSubject: ' + subj); document.getElementById('qt-email-panel').style.display = 'none'; }
+    function submitNewQuote(mode) {
+      const cust = document.getElementById('qt-cust').value.trim();
+      if (!cust) { document.getElementById('qt-cust').style.borderColor = '#E24B4A'; document.getElementById('qt-cust').focus(); return; }
+      const code = 'QT-' + _qtSeq++, grand = document.getElementById('qt-grand').textContent, status = mode === 'draft' ? '<span class="pill" style="background:#eee;color:#6a7f96;">Draft</span>' : '<span class="pill pill-blue">Pending Admin</span>';
+      const tbody = document.querySelector('#qt-list-view table tbody');
+      if (tbody) { const tr = document.createElement('tr'); tr.innerHTML = `<td><span class="tbl-id">${code}</span></td><td><b>${cust}</b></td><td>${grand}</td><td>${status}</td><td>${document.getElementById('qt-se').value || '—'}</td><td>${new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td><td><span class="ver-badge latest" style="cursor:default;">v1</span></td><td><div class="tbl-btn-group"><span class="tbl-action">View PDF →</span><button class="tbl-btn gold" onclick="newRevision('${code}')">Revise</button></div></td>`; tbody.insertBefore(tr, tbody.firstChild); }
+      closeNewQuote();
+    }
+    function resetQtDrawer() {
+      ['qt-cust', 'qt-contact', 'qt-phone', 'qt-email', 'qt-notes', 'qt-email-to', 'qt-email-subj', 'qt-email-body'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['qt-territory', 'qt-se', 'qt-payment', 'qt-delivery', 'qt-currency', 'qt-validity', 'qt-email-tpl'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
+      ['qt-exist-banner', 'qt-exist-found', 'qt-exist-new', 'qt-hist-panel', 'qt-email-panel', 'qt-ai-loading'].forEach(id => document.getElementById(id).style.display = 'none');
+      document.getElementById('qt-items-body').innerHTML = ''; _qtRowIdx = 0; qtCalc(); resetDiscPanel();
+    }
+  </script>
+
+  <!-- ══ ADD LEAD DRAWER ══ -->
+  <div class="drawer-overlay" id="lead-overlay" onclick="closeAddLead()"></div>
+  <div class="lead-drawer" id="lead-drawer">
+
+    <!-- HEAD -->
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-user-plus" style="margin-right:6px;color:#C9A84C;"></i>Add New Lead
+        </div>
+        <div class="drawer-sub">Auto-code: <span class="d-code-preview" id="lead-code-preview">LD-0045</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="ai-fill-btn" id="ai-fill-btn" onclick="aiFillLead()">
+          <i class="ti ti-sparkles"></i> Build with AI
+        </button>
+        <button class="drawer-close" onclick="closeAddLead()"><i class="ti ti-x"></i></button>
+      </div>
+    </div>
+
+    <!-- EXISTING CUSTOMER BANNER -->
+    <div id="exist-banner" style="display:none;padding:10px 20px;border-bottom:1px solid #e2e8f0;">
+      <div id="exist-found"
+        style="display:none;align-items:center;gap:10px;background:#FAEEDA;border:1px solid #e6c96e;border-radius:8px;padding:10px 14px;">
+        <i class="ti ti-alert-triangle" style="color:#854F0B;font-size:15px;flex-shrink:0;"></i>
+        <div style="flex:1;">
+          <div style="font-size:12px;font-weight:700;color:#854F0B;">Existing Customer Detected</div>
+          <div style="font-size:11px;color:#6a7f96;margin-top:1px;" id="exist-found-sub">This company is already in the
+            system.</div>
+        </div>
+        <button class="tbl-btn" onclick="toggleSalesHist()" style="font-size:10px;white-space:nowrap;"
+          id="hist-toggle-btn">View History ▾</button>
+      </div>
+      <div id="exist-new"
+        style="display:none;align-items:center;gap:8px;background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:8px 14px;">
+        <i class="ti ti-circle-check" style="color:#0F6E56;font-size:14px;"></i>
+        <span style="font-size:11px;font-weight:600;color:#0F6E56;">New lead — not found in system</span>
+      </div>
+    </div>
+
+    <!-- SALES HISTORY PANEL -->
+    <div id="sales-hist-panel"
+      style="display:none;padding:0 20px 12px;border-bottom:1px solid #e2e8f0;background:#fafbfc;">
+      <div
+        style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#9aaabb;padding:10px 0 8px;">
+        Past Sales History</div>
+      <table class="data-tbl" style="font-size:11px;">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Ref #</th>
+            <th>Items</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="sales-hist-body"></tbody>
+      </table>
+    </div>
+
+    <!-- BODY: 3-COLUMN GRID -->
+    <div class="drawer-body">
+
+      <!-- AI loading indicator -->
+      <div id="ai-fill-loading"
+        style="display:none;align-items:center;gap:8px;background:#EEF2FF;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;">
+        <i class="ti ti-loader-2" style="color:#4338CA;animation:spin 1s linear infinite;font-size:16px;"></i>
+        <span style="font-size:12px;font-weight:600;color:#4338CA;">AI is analysing and filling the form…</span>
+      </div>
+
+      <div class="drawer-section-title">Company Info</div>
+
+      <!-- Row 1: Name (2 cols) + Location (1 col) -->
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Customer Name <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="ld-name" type="text" placeholder="e.g. Al-Faris Industrial LLC"
+            oninput="onNameInput()" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Location / Sub-address</label>
+          <input class="d-input" id="ld-location" type="text" placeholder="e.g. Jebel Ali Free Zone" />
+        </div>
+      </div>
+
+      <!-- Row 2: Industry Type + Territory + Assigned SE -->
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Industry Type <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="ld-type">
+            <option value="">— Select —</option>
+            <option>Heavy Industry</option>
+            <option>Fabrication</option>
+            <option>Aerospace MRO</option>
+            <option>Oil &amp; Gas</option>
+            <option>Manufacturing</option>
+            <option>Welding</option>
+            <option>Construction</option>
+            <option>Logistics</option>
+            <option>Healthcare</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Territory <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="ld-territory">
+            <option value="">— Select —</option>
+            <option>Dubai North</option>
+            <option>Dubai South</option>
+            <option>Abu Dhabi</option>
+            <option>Sharjah</option>
+            <option>RAK / Northern Emirates</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Assigned SE <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="ld-se">
+            <option value="">— Select SE —</option>
+            <option>Ahmed M.</option>
+            <option>Fatima R.</option>
+            <option>Noor Z.</option>
+            <option>Waleed H.</option>
+            <option>Khalid J.</option>
+            <option>Hana Q.</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Contact Details</div>
+
+      <!-- Row 3: Contact Person + Phone + Email -->
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="ld-contact" type="text" placeholder="e.g. Mohammed Al-Rashidi" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="ld-phone" type="tel" placeholder="+971 50 000 0000" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="ld-email" type="email" placeholder="name@company.com" oninput="syncEmailTo()" />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Additional Info</div>
+
+      <!-- Row 4: Notes full width -->
+      <div class="d-field">
+        <label class="d-label">Notes / Source</label>
+        <textarea class="d-textarea" id="ld-notes"
+          placeholder="e.g. Referred by Ahmed M. · Interested in welding consumables"></textarea>
+      </div>
+
+      <!-- SEND EMAIL PANEL -->
+      <div id="email-panel"
+        style="display:none;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:4px;">
+        <div
+          style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
+          <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send"
+              style="margin-right:5px;color:#C9A84C;"></i>Compose Email</span>
+          <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleEmailPanel()"><i
+              class="ti ti-x"></i></button>
+        </div>
+        <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
+          <div class="d-grid-3">
+            <div class="d-field d-col-2">
+              <label class="d-label">To</label>
+              <input class="d-input" id="email-to" type="email" placeholder="recipient@company.com" />
+            </div>
+            <div class="d-field">
+              <label class="d-label">Template</label>
+              <select class="d-select" id="email-template" onchange="applyEmailTemplate()">
+                <option value="">— Pick template —</option>
+                <option value="intro">Introduction</option>
+                <option value="followup">Follow-up</option>
+                <option value="quote">Quote Offer</option>
+                <option value="visit">Visit Confirmation</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-field">
+            <label class="d-label">Subject</label>
+            <input class="d-input" id="email-subject" type="text" placeholder="Subject line…" />
+          </div>
+          <div class="d-field">
+            <label class="d-label">Message</label>
+            <textarea class="d-textarea" id="email-body" style="min-height:100px;"
+              placeholder="Type your message…"></textarea>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn-primary" style="padding:7px 18px;" onclick="sendLeadEmail()"><i class="ti ti-send"
+                style="font-size:12px;margin-right:4px;"></i>Send Email</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:12px;"
+              onclick="toggleEmailPanel()">Discard</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /drawer-body -->
+
+    <!-- FOOT -->
+    <div class="drawer-foot">
+      <button class="btn-primary" style="flex:1;" onclick="submitAddLead()"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Save Lead</button>
+      <button class="btn-secondary" style="padding:8px 14px;display:flex;align-items:center;gap:5px;"
+        onclick="toggleEmailPanel()"><i class="ti ti-mail" style="font-size:13px;"></i> Send Email</button>
+      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeAddLead()">Cancel</button>
+    </div>
+
+  </div><!-- /lead-drawer -->
+
+  <script>
+    let _leadSeq = 45;
+    let _nameCheckTimer = null;
+
+    const EXISTING_CUSTOMERS = {
+      'gulf metals trading': {
+        code: 'LD-0038', se: 'Ahmed M.', territory: 'Dubai North', type: 'Fabrication', location: 'Dubai Industrial City', contact: 'Tariq Al-Mansoori', phone: '+971 50 812 3344', email: 'tariq@gulfmetals.ae',
+        history: [
+          { date: '15 Jun 2026', ref: 'QT-2838', items: 'Lincoln E6013 Rods × 200 pcs', amount: 'AED 31,500', status: '<span class="pill pill-green">Approved</span>' },
+          { date: '02 May 2026', ref: 'INV/26/051', items: 'Norton Abrasive Discs × 50', amount: 'AED 9,200', status: '<span class="pill pill-green">Paid</span>' },
+          { date: '18 Mar 2026', ref: 'QT-2801', items: '3M PPE Kit × 5', amount: 'AED 4,800', status: '<span class="pill pill-grey" style="background:#eee;color:#666;">Closed</span>' },
+        ]
+      },
+      'al-faris industrial llc': {
+        code: 'LD-0041', se: 'Ahmed M.', territory: 'Dubai North', type: 'Heavy Industry', location: 'Jebel Ali Free Zone', contact: 'Saif Al-Faris', phone: '+971 50 441 9900', email: 'saif@alfaris.ae',
+        history: [
+          { date: '17 Jun 2026', ref: 'QT-2841', items: 'Quanta 100AH Battery × 12', amount: 'AED 52,000', status: '<span class="pill pill-amber">Awaiting MD</span>' },
+          { date: '05 Apr 2026', ref: 'INV/26/034', items: 'Pewag Chain 5T × 100m', amount: 'AED 22,400', status: '<span class="pill pill-green">Paid</span>' },
+        ]
+      },
+      'petroguif services': { code: 'LD-0015', se: 'Noor Z.', territory: 'Dubai South', type: 'Oil & Gas', location: 'Dubai', contact: 'Hassan Naser', phone: '+971 55 221 8877', email: 'hnaser@petrogulf.ae', history: [] },
+    };
+
+    const EMAIL_TEMPLATES = {
+      intro: { subject: 'Introduction — Zaker Trading LLC', body: 'Dear [Contact],\n\nI hope this message finds you well. My name is [SE] from Zaker Trading LLC, a leading supplier of industrial safety, welding, and lifting equipment in the UAE.\n\nWe would love to discuss how we can support your operational requirements.\n\nWarm regards,\nZaker Trading LLC · DIP 2, Dubai' },
+      followup: { subject: 'Follow-up — Zaker Trading LLC', body: 'Dear [Contact],\n\nThank you for your time during our previous interaction. I wanted to follow up and see if you had any questions or requirements we can assist with.\n\nPlease feel free to reach out at your convenience.\n\nBest regards,\nZaker Trading LLC' },
+      quote: { subject: 'Quotation from Zaker Trading LLC', body: 'Dear [Contact],\n\nPlease find attached our competitive quotation for your requested items. We are confident in our quality and pricing.\n\nKindly review and revert at your earliest convenience.\n\nThank you,\nZaker Trading LLC · +971 4 XXX XXXX' },
+      visit: { subject: 'Visit Confirmation — Zaker Trading LLC', body: 'Dear [Contact],\n\nThis is to confirm our scheduled visit to your premises. Our Sales Executive will be meeting you to discuss your current requirements and demonstrate our product range.\n\nLooking forward to meeting you.\n\nZaker Trading LLC' },
+    };
+
+    function openAddLead() {
+      document.getElementById('lead-overlay').classList.add('open');
+      document.getElementById('lead-drawer').classList.add('open');
+      setTimeout(() => document.getElementById('ld-name').focus(), 250);
+    }
+
+    function closeAddLead() {
+      document.getElementById('lead-overlay').classList.remove('open');
+      document.getElementById('lead-drawer').classList.remove('open');
+      resetDrawer();
+    }
+
+    function onNameInput() {
+      clearTimeout(_nameCheckTimer);
+      _nameCheckTimer = setTimeout(checkExisting, 500);
+    }
+
+    function checkExisting() {
+      const name = document.getElementById('ld-name').value.trim().toLowerCase();
+      const banner = document.getElementById('exist-banner');
+      const foundEl = document.getElementById('exist-found');
+      const newEl = document.getElementById('exist-new');
+
+      if (name.length < 3) { banner.style.display = 'none'; hideSalesHist(); return; }
+
+      const match = EXISTING_CUSTOMERS[name];
+      banner.style.display = 'block';
+
+      if (match) {
+        foundEl.style.display = 'flex';
+        newEl.style.display = 'none';
+        document.getElementById('exist-found-sub').textContent = match.code + ' · Already in system — fields pre-filled below';
+        prefillFromExisting(match);
+      } else {
+        foundEl.style.display = 'none';
+        newEl.style.display = 'flex';
+        hideSalesHist();
+      }
+    }
+
+    function prefillFromExisting(m) {
+      if (m.location) document.getElementById('ld-location').value = m.location;
+      if (m.se) document.getElementById('ld-se').value = m.se;
+      if (m.territory) document.getElementById('ld-territory').value = m.territory;
+      if (m.type) document.getElementById('ld-type').value = m.type;
+      if (m.contact) document.getElementById('ld-contact').value = m.contact;
+      if (m.phone) document.getElementById('ld-phone').value = m.phone;
+      if (m.email) { document.getElementById('ld-email').value = m.email; document.getElementById('email-to').value = m.email; }
+
+      if (m.history && m.history.length) {
+        const tbody = document.getElementById('sales-hist-body');
+        tbody.innerHTML = m.history.map(h => `<tr>
+          <td style="font-size:11px;">${h.date}</td>
+          <td><span class="tbl-id">${h.ref}</span></td>
+          <td style="font-size:11px;color:#5a7080;max-width:160px;">${h.items}</td>
+          <td style="font-weight:600;font-size:11px;">${h.amount}</td>
+          <td>${h.status}</td>
+        </tr>`).join('');
+      } else {
+        document.getElementById('sales-hist-body').innerHTML = '<tr><td colspan="5" style="text-align:center;color:#9aaabb;font-size:11px;padding:12px;">No sales history found</td></tr>';
+      }
+    }
+
+    function toggleSalesHist() {
+      const panel = document.getElementById('sales-hist-panel');
+      const btn = document.getElementById('hist-toggle-btn');
+      const open = panel.style.display !== 'none';
+      panel.style.display = open ? 'none' : 'block';
+      btn.textContent = open ? 'View History ▾' : 'Hide History ▴';
+    }
+
+    function hideSalesHist() {
+      document.getElementById('sales-hist-panel').style.display = 'none';
+      const btn = document.getElementById('hist-toggle-btn');
+      if (btn) btn.textContent = 'View History ▾';
+    }
+
+    function aiFillLead() {
+      const name = document.getElementById('ld-name').value.trim();
+      if (!name) { document.getElementById('ld-name').focus(); document.getElementById('ld-name').style.borderColor = '#E24B4A'; return; }
+      const btn = document.getElementById('ai-fill-btn');
+      const loading = document.getElementById('ai-fill-loading');
+      btn.disabled = true; btn.style.opacity = '0.6';
+      loading.style.display = 'flex';
+      setTimeout(() => {
+        loading.style.display = 'none';
+        btn.disabled = false; btn.style.opacity = '1';
+        if (!document.getElementById('ld-type').value) document.getElementById('ld-type').value = 'Heavy Industry';
+        if (!document.getElementById('ld-territory').value) document.getElementById('ld-territory').value = 'Dubai North';
+        if (!document.getElementById('ld-se').value) document.getElementById('ld-se').value = 'Ahmed M.';
+        if (!document.getElementById('ld-location').value) document.getElementById('ld-location').value = 'Jebel Ali Free Zone';
+        if (!document.getElementById('ld-contact').value) document.getElementById('ld-contact').value = 'Mohammed Al-Rashidi';
+        if (!document.getElementById('ld-phone').value) document.getElementById('ld-phone').value = '+971 50 000 0000';
+        if (!document.getElementById('ld-notes').value) document.getElementById('ld-notes').value = 'AI-suggested: High-potential industrial account. Recommended focus on welding consumables and lifting equipment.';
+      }, 1600);
+    }
+
+    function toggleEmailPanel() {
+      const panel = document.getElementById('email-panel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      if (panel.style.display === 'block') {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        syncEmailTo();
+      }
+    }
+
+    function syncEmailTo() {
+      const email = document.getElementById('ld-email').value;
+      if (email) document.getElementById('email-to').value = email;
+    }
+
+    function applyEmailTemplate() {
+      const key = document.getElementById('email-template').value;
+      if (!key) return;
+      const tpl = EMAIL_TEMPLATES[key];
+      const contact = document.getElementById('ld-contact').value || 'Sir/Madam';
+      const se = document.getElementById('ld-se').value || 'Our Sales Team';
+      document.getElementById('email-subject').value = tpl.subject;
+      document.getElementById('email-body').value = tpl.body.replace(/\[Contact\]/g, contact).replace(/\[SE\]/g, se);
+    }
+
+    function sendLeadEmail() {
+      const to = document.getElementById('email-to').value.trim();
+      const subj = document.getElementById('email-subject').value.trim();
+      if (!to || !subj) { alert('Please fill in the To and Subject fields.'); return; }
+      alert('Email sent to ' + to + '\nSubject: ' + subj + '\n\n[In production this would dispatch via the mail server.]');
+      document.getElementById('email-panel').style.display = 'none';
+    }
+
+    function submitAddLead() {
+      const name = document.getElementById('ld-name').value.trim();
+      const type = document.getElementById('ld-type').value;
+      const territory = document.getElementById('ld-territory').value;
+      const se = document.getElementById('ld-se').value;
+      const location = document.getElementById('ld-location').value.trim();
+
+      if (!name) { document.getElementById('ld-name').style.borderColor = '#E24B4A'; document.getElementById('ld-name').focus(); return; }
+      if (!type) { document.getElementById('ld-type').style.borderColor = '#E24B4A'; return; }
+      if (!territory) { document.getElementById('ld-territory').style.borderColor = '#E24B4A'; return; }
+      if (!se) { document.getElementById('ld-se').style.borderColor = '#E24B4A'; return; }
+
+      const code = 'LD-' + String(_leadSeq).padStart(4, '0');
+      _leadSeq++;
+
+      const tbody = document.querySelector('#p-cust-view #leads-list-view table tbody');
+      if (tbody) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-family:monospace;font-size:11px;font-weight:700;">${code}</td>
+          <td><div class="c-name">${name}</div>${location ? `<div class="c-sub">${location}</div>` : ''}</td>
+          <td><span class="pill pill-blue">${type}</span></td>
+          <td style="font-size:11px;">${territory}</td>
+          <td style="font-size:11px;">${se}</td>
+          <td><span class="pill pill-green">Today</span></td>
+          <td><span class="score-m">—</span></td>
+          <td><span class="pill pill-blue">New</span></td>
+          <td><span class="tbl-action">View</span></td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+      }
+      closeAddLead();
+    }
+
+    function resetDrawer() {
+      ['ld-name', 'ld-location', 'ld-contact', 'ld-phone', 'ld-email', 'ld-notes', 'email-to', 'email-subject', 'email-body'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['ld-type', 'ld-territory', 'ld-se', 'email-template'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
+      document.getElementById('ld-name').style.borderColor = '';
+      document.getElementById('exist-banner').style.display = 'none';
+      document.getElementById('exist-found').style.display = 'none';
+      document.getElementById('exist-new').style.display = 'none';
+      document.getElementById('sales-hist-panel').style.display = 'none';
+      document.getElementById('email-panel').style.display = 'none';
+      document.getElementById('ai-fill-loading').style.display = 'none';
+      document.getElementById('lead-code-preview').textContent = 'LD-' + String(_leadSeq).padStart(4, '0');
     }
   </script>
 </body>

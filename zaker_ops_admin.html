@@ -2404,12 +2404,14 @@
       margin-top: 4px;
     }
 
+
     .lead-kb-col {
       background: #f4f6f9;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
       overflow: hidden;
     }
+
 
     .lead-kb-head {
       padding: 10px 12px 9px;
@@ -2418,6 +2420,7 @@
       justify-content: space-between;
       border-bottom: 1px solid #e2e8f0;
     }
+
 
     .lead-kb-title {
       font-size: 11px;
@@ -2525,10 +2528,12 @@
       user-select: none;
     }
 
+
     .ver-badge.latest {
       background: #E1F5EE;
       color: #0F6E56;
     }
+
 
     .ver-hist-row {
       display: none;
@@ -2540,6 +2545,7 @@
       border-top: none !important;
     }
 
+
     .ver-hist-inner {
       display: flex;
       flex-direction: column;
@@ -2547,6 +2553,7 @@
       border-left: 2px solid #e2e8f0;
       padding-left: 12px;
     }
+
 
     .ver-hist-entry {
       display: flex;
@@ -2556,6 +2563,7 @@
       color: #4a5568;
     }
 
+
     .ver-hist-entry .ver-num {
       font-family: monospace;
       font-weight: 700;
@@ -2563,19 +2571,23 @@
       color: #4338CA;
     }
 
+
     .ver-hist-entry .ver-num.cur {
       color: #0F6E56;
     }
+
 
     .ver-hist-entry .ver-date {
       color: #9aaabb;
       min-width: 90px;
     }
 
+
     .ver-hist-entry .ver-note {
       flex: 1;
       color: #5a7080;
     }
+
 
     .ver-hist-entry .ver-amt {
       font-weight: 600;
@@ -3397,7 +3409,8 @@
               <div class="fc">Today (2)</div>
               <div class="fc">Upcoming (2)</div>
               <div class="ml-auto">
-                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;" onclick="openNewFollowup()">
+                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;"
+                  onclick="openNewFollowup()">
                   <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
                 </button>
               </div>
@@ -3667,7 +3680,8 @@
               <div class="fc">Today (2)</div>
               <div class="fc">Upcoming (2)</div>
               <div class="ml-auto">
-                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;" onclick="openNewFollowup()">
+                <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;"
+                  onclick="openNewFollowup()">
                   <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
                 </button>
               </div>
@@ -6497,6 +6511,8 @@
             <div class="stat-mini">
               <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i>
               </div>
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">5</div>
                 <div class="stat-mini-lbl">Out of Stock Items</div>
@@ -6530,6 +6546,8 @@
                     <div class="stock-cell">
                       <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
                         Stock — 4 units</span>
+                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
+                        Stock — 4 units</span>
                       <span class="stock-sub">Need 12 · shortfall 8</span>
                     </div>
                   </td>
@@ -6552,6 +6570,8 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
+                      <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out
+                        of Stock</span>
                       <span class="stock-badge stock-out"><i class="ti ti-package-off" style="font-size:10px;"></i> Out
                         of Stock</span>
                       <span class="stock-sub">Need 2 · none available</span>
@@ -6578,6 +6598,8 @@
                     <div class="stock-cell">
                       <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock
                         — 84 packs</span>
+                      <span class="stock-badge stock-in"><i class="ti ti-package" style="font-size:10px;"></i> In Stock
+                        — 84 packs</span>
                       <span class="stock-sub">Need 50 · surplus 34</span>
                     </div>
                   </td>
@@ -6599,6 +6621,8 @@
                   <td>M. Al-Hamdan</td>
                   <td>
                     <div class="stock-cell">
+                      <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
+                        Stock — 3 pcs</span>
                       <span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Low
                         Stock — 3 pcs</span>
                       <span class="stock-sub">Need 10 · shortfall 7</span>
@@ -6938,8 +6962,8 @@
               <div class="pg-header-title">Invoices & Billing</div>
               <div class="pg-header-sub">Sync with ERP and manage collections — P.O.BOX 55197, DIP 2, Dubai</div>
             </div>
-            <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export Tally
-              XML</button>
+            <button class="btn-primary"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Sync with
+              Epicor</button>
           </div>
           <div class="stat-row">
             <div class="stat-mini">
@@ -7738,8 +7762,8 @@
               <div class="pg-header-title">Sales Orders</div>
               <div class="pg-header-sub">Customer sales order management and delivery tracking</div>
             </div>
-            <button class="btn-primary"><i class="ti ti-shopping-cart-plus"
-                style="font-size:13px;margin-right:4px;"></i>Create SO</button>
+            <button class="btn-primary"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Sync with
+              Epicor</button>
           </div>
           <div class="stat-row">
             <div class="stat-mini">
@@ -8034,6 +8058,7 @@
               <div class="pg-header-sub">284 accounts · credit limits, outstanding balances & contacts</div>
             </div>
             <div style="display:flex;gap:8px;">
+              <button class="btn-secondary"><i class="ti ti-refresh" style="margin-right:5px;"></i>Sync with Epicor</button>
               <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export</button>
               <button class="btn-primary"><i class="ti ti-plus" style="margin-right:5px;"></i>Add Customer</button>
             </div>
@@ -8066,6 +8091,8 @@
             <div class="fc">On Hold (12)</div>
             <div class="fc">Overdue (7)</div>
             <div class="ml-auto">
+              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
+                  placeholder="Search accounts…" /></div>
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search accounts…" /></div>
             </div>
@@ -8183,6 +8210,7 @@
               <div class="pg-header-sub">18 suppliers · payment terms, categories & outstanding balances</div>
             </div>
             <div style="display:flex;gap:8px;">
+              <button class="btn-secondary"><i class="ti ti-refresh" style="margin-right:5px;"></i>Sync with Epicor</button>
               <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export</button>
               <button class="btn-primary"><i class="ti ti-plus" style="margin-right:5px;"></i>Add Vendor</button>
             </div>
@@ -8215,6 +8243,8 @@
             <div class="fc">Active (14)</div>
             <div class="fc">Inactive (4)</div>
             <div class="ml-auto">
+              <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
+                  placeholder="Search vendors…" /></div>
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search vendors…" /></div>
             </div>
@@ -8337,12 +8367,16 @@
             <div class="stat-mini">
               <div class="stat-mini-ico" style="background:#E1F5EE;color:#0F6E56;"><i class="ti ti-clipboard-list"></i>
               </div>
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#0F6E56;"><i class="ti ti-clipboard-list"></i>
+              </div>
               <div>
                 <div class="stat-mini-val">12</div>
                 <div class="stat-mini-lbl">Pending Req</div>
               </div>
             </div>
             <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
+              </div>
               <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
               </div>
               <div>
@@ -8456,15 +8490,20 @@
               <div class="pg-header-title">Vendor Quotations</div>
               <div class="pg-header-sub">Supplier quotes received against purchase requirements · compare versions
                 before raising PO</div>
+              <div class="pg-header-sub">Supplier quotes received against purchase requirements · compare versions
+                before raising PO</div>
             </div>
             <div style="display:flex;gap:8px;">
               <button class="btn-secondary"><i class="ti ti-git-compare" style="margin-right:5px;"></i>Compare
                 Versions</button>
-              <button class="btn-primary" onclick="openVendorQuote()"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Log Vendor Quote</button>
+              <button class="btn-primary" onclick="openVendorQuote()"><i class="ti ti-plus"
+                  style="font-size:13px;margin-right:4px;"></i>Log Vendor Quote</button>
             </div>
           </div>
           <div class="stat-row">
             <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#EEF2FF;color:#4338CA;"><i class="ti ti-file-invoice"></i>
+              </div>
               <div class="stat-mini-ico" style="background:#EEF2FF;color:#4338CA;"><i class="ti ti-file-invoice"></i>
               </div>
               <div>
@@ -8487,6 +8526,8 @@
               </div>
             </div>
             <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
+              </div>
               <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-clock-pause"></i>
               </div>
               <div>
@@ -8529,9 +8570,13 @@
                   <td>25 Jun 2026</td>
                   <td><span class="ver-badge latest" onclick="toggleVerHist('vq018')" title="View version history">v3
                       ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq018')" title="View version history">v3
+                      ▾</span></td>
                   <td><span class="pill pill-amber">Pending Review</span></td>
                   <td>
                     <div class="tbl-btn-group">
+                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
+                        style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
                         style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn gold" onclick="newRevision('VQ-2026-018')">Request Revision</button>
@@ -8574,9 +8619,13 @@
                   <td>28 Jun 2026</td>
                   <td><span class="ver-badge latest" onclick="toggleVerHist('vq016')" title="View version history">v2
                       ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq016')" title="View version history">v2
+                      ▾</span></td>
                   <td><span class="pill pill-blue">Under Review</span></td>
                   <td>
                     <div class="tbl-btn-group">
+                      <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
+                        style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn green" onclick="goPage('purch-orders',this)"
                         style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button>
                       <button class="tbl-btn gold" onclick="newRevision('VQ-2026-016')">Request Revision</button>
@@ -8612,6 +8661,8 @@
                   <td>22 Jun 2026</td>
                   <td><span class="ver-badge latest" onclick="toggleVerHist('vq014')" title="View version history">v1
                       ▾</span></td>
+                  <td><span class="ver-badge latest" onclick="toggleVerHist('vq014')" title="View version history">v1
+                      ▾</span></td>
                   <td><span class="pill pill-green">Accepted</span></td>
                   <td>
                     <div class="tbl-btn-group">
@@ -8644,8 +8695,7 @@
               <div class="pg-header-title">Purchase Orders</div>
               <div class="pg-header-sub">Vendor procurement tracking · Zaker Trading LLC, DIP 2, Dubai</div>
             </div>
-            <button class="btn-primary"><i class="ti ti-shopping-cart-plus"
-                style="font-size:13px;margin-right:4px;"></i>Create PO</button>
+            <button class="btn-primary"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Sync with Epicor</button>
           </div>
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
             <div class="kpi-card gold">
@@ -8676,6 +8726,8 @@
             <div class="fc">Delayed</div>
             <div class="fc">Completed</div>
             <div class="ml-auto">
+              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
+                  placeholder="Search PO…" /></div>
               <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
                   placeholder="Search PO…" /></div>
             </div>
@@ -8788,10 +8840,8 @@
               <div class="pg-header-title">Purchase Invoices</div>
               <div class="pg-header-sub">Vendor bills, payment tracking & reconciliation</div>
             </div>
-            <div style="display:flex;gap:8px;">
-              <button class="btn-secondary"><i class="ti ti-download" style="margin-right:5px;"></i>Export</button>
-              <button class="btn-primary"><i class="ti ti-plus" style="margin-right:5px;"></i>Add Invoice</button>
-            </div>
+            <button class="btn-primary"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Sync with
+              Epicor</button>
           </div>
           <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
             <div class="kpi-card red">
@@ -8821,6 +8871,8 @@
             <div class="fc">Overdue (1)</div>
             <div class="fc">Paid (10)</div>
             <div class="ml-auto">
+              <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
+                  placeholder="Search invoice…" /></div>
               <div class="topbar-search" style="width:190px;"><i class="ti ti-search"></i><input
                   placeholder="Search invoice…" /></div>
             </div>
@@ -9102,11 +9154,14 @@
 
     <div class="drawer-head">
       <div>
-        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#4338CA;"></i>Log Vendor Quotation</div>
-        <div class="drawer-sub">Auto-code: <span class="d-code-preview" id="vq-code-preview">VQ-2026-019</span> &nbsp;·&nbsp; <span id="vq-date-preview" style="color:#9aaabb;"></span></div>
+        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#4338CA;"></i>Log Vendor
+          Quotation</div>
+        <div class="drawer-sub">Auto-code: <span class="d-code-preview" id="vq-code-preview">VQ-2026-019</span>
+          &nbsp;·&nbsp; <span id="vq-date-preview" style="color:#9aaabb;"></span></div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
-        <button class="ai-fill-btn" id="vq-ai-btn" onclick="vqAiFill()"><i class="ti ti-sparkles"></i> Build with AI</button>
+        <button class="ai-fill-btn" id="vq-ai-btn" onclick="vqAiFill()"><i class="ti ti-sparkles"></i> Build with
+          AI</button>
         <button class="drawer-close" onclick="closeVendorQuote()"><i class="ti ti-x"></i></button>
       </div>
     </div>
@@ -9114,7 +9169,8 @@
     <div class="drawer-body">
 
       <!-- AI Loading -->
-      <div id="vq-ai-loading" style="display:none;align-items:center;gap:8px;background:#EEF2FF;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;">
+      <div id="vq-ai-loading"
+        style="display:none;align-items:center;gap:8px;background:#EEF2FF;border:1px solid #c7d2fe;border-radius:8px;padding:10px 14px;">
         <i class="ti ti-loader-2" style="color:#4338CA;animation:spin 1s linear infinite;font-size:16px;"></i>
         <span style="font-size:12px;font-weight:600;color:#4338CA;">AI is analysing vendor pricing…</span>
       </div>
@@ -9178,9 +9234,12 @@
         <div class="d-field">
           <label class="d-label">Lead Time</label>
           <select class="d-select" id="vq-leadtime">
-            <option>1–3 days</option><option>3–5 days</option>
-            <option selected>5–7 days</option><option>7–14 days</option>
-            <option>14–21 days</option><option>21+ days</option>
+            <option>1–3 days</option>
+            <option>3–5 days</option>
+            <option selected>5–7 days</option>
+            <option>7–14 days</option>
+            <option>14–21 days</option>
+            <option>21+ days</option>
           </select>
         </div>
       </div>
@@ -9191,22 +9250,28 @@
         <div class="d-field">
           <label class="d-label">Payment Terms</label>
           <select class="d-select" id="vq-payment">
-            <option>30 days credit</option><option>60 days credit</option>
-            <option>Cash on delivery</option><option>Advance payment</option>
+            <option>30 days credit</option>
+            <option>60 days credit</option>
+            <option>Cash on delivery</option>
+            <option>Advance payment</option>
             <option>LC / Bank guarantee</option>
           </select>
         </div>
         <div class="d-field">
           <label class="d-label">Delivery Terms</label>
           <select class="d-select" id="vq-delivery">
-            <option>Delivered DIP 2</option><option>Ex-works vendor</option>
-            <option>FOB origin</option><option>CIF Dubai</option>
+            <option>Delivered DIP 2</option>
+            <option>Ex-works vendor</option>
+            <option>FOB origin</option>
+            <option>CIF Dubai</option>
           </select>
         </div>
         <div class="d-field">
           <label class="d-label">Currency</label>
           <select class="d-select" id="vq-currency">
-            <option>AED</option><option>USD</option><option>EUR</option>
+            <option>AED</option>
+            <option>USD</option>
+            <option>EUR</option>
           </select>
         </div>
       </div>
@@ -9215,38 +9280,67 @@
       <div class="drawer-section-title" style="margin-top:2px;">Line Items</div>
       <table class="qt-items-tbl" id="vq-items-tbl">
         <thead>
-          <tr><th>#</th><th style="width:34%;">Description</th><th>Qty</th><th>Unit Price</th><th>Disc %</th><th>Total</th><th></th></tr>
+          <tr>
+            <th>#</th>
+            <th style="width:34%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Disc %</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody id="vq-items-body"></tbody>
         <tfoot>
-          <tr class="qt-total-row"><td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td><td id="vq-subtotal">AED 0</td><td></td></tr>
-          <tr class="qt-total-row"><td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td><td id="vq-vat">AED 0</td><td></td></tr>
-          <tr class="qt-total-row" style="font-size:13px;"><td colspan="5" style="text-align:right;">Grand Total</td><td id="vq-grand" style="color:#4338CA;">AED 0</td><td></td></tr>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="vq-subtotal">AED 0</td>
+            <td></td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="vq-vat">AED 0</td>
+            <td></td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="5" style="text-align:right;">Grand Total</td>
+            <td id="vq-grand" style="color:#4338CA;">AED 0</td>
+            <td></td>
+          </tr>
         </tfoot>
       </table>
-      <button class="add-item-btn" onclick="vqAddRow()"><i class="ti ti-plus" style="font-size:11px;margin-right:4px;"></i>Add Item</button>
+      <button class="add-item-btn" onclick="vqAddRow()"><i class="ti ti-plus"
+          style="font-size:11px;margin-right:4px;"></i>Add Item</button>
 
       <!-- AI PRICE COMPARISON -->
       <div class="drawer-section-title" style="margin-top:2px;">AI Price Comparison</div>
-      <div class="disc-panel" id="vq-ai-panel" style="background:linear-gradient(135deg,#EEF2FF,#faf9ff);border-color:#c7d2fe;">
+      <div class="disc-panel" id="vq-ai-panel"
+        style="background:linear-gradient(135deg,#EEF2FF,#faf9ff);border-color:#c7d2fe;">
         <div class="disc-panel-head">
           <span class="disc-ai-tag"><i class="ti ti-sparkles" style="font-size:10px;margin-right:3px;"></i>AI</span>
-          <span style="font-size:12px;font-weight:700;color:#1a2332;" id="vq-ai-heading">Select vendor &amp; PR to see price analysis</span>
+          <span style="font-size:12px;font-weight:700;color:#1a2332;" id="vq-ai-heading">Select vendor &amp; PR to see
+            price analysis</span>
         </div>
-        <div id="vq-ai-body" style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</div>
+        <div id="vq-ai-body" style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear
+          here.</div>
       </div>
 
       <!-- NOTES -->
       <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
       <div class="d-field">
-        <textarea class="d-textarea" id="vq-notes" placeholder="Negotiation notes, sample requirements, vendor remarks…"></textarea>
+        <textarea class="d-textarea" id="vq-notes"
+          placeholder="Negotiation notes, sample requirements, vendor remarks…"></textarea>
       </div>
 
       <!-- SEND EMAIL PANEL -->
-      <div id="vq-email-panel" style="display:none;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:4px;">
-        <div style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
-          <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send" style="margin-right:5px;color:#4338CA;"></i>Send RFQ Email to Vendor</span>
-          <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleVqEmail()"><i class="ti ti-x"></i></button>
+      <div id="vq-email-panel"
+        style="display:none;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-top:4px;">
+        <div
+          style="background:#f4f6f9;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e2e8f0;">
+          <span style="font-size:12px;font-weight:700;color:#1a2332;"><i class="ti ti-send"
+              style="margin-right:5px;color:#4338CA;"></i>Send RFQ Email to Vendor</span>
+          <button class="drawer-close" style="width:22px;height:22px;font-size:12px;" onclick="toggleVqEmail()"><i
+              class="ti ti-x"></i></button>
         </div>
         <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px;">
           <div class="d-grid-3">
@@ -9265,11 +9359,15 @@
               </select>
             </div>
           </div>
-          <div class="d-field"><label class="d-label">Subject</label><input class="d-input" id="vq-email-subj" type="text" placeholder="Subject…" /></div>
-          <div class="d-field"><label class="d-label">Message</label><textarea class="d-textarea" id="vq-email-body" style="min-height:90px;"></textarea></div>
+          <div class="d-field"><label class="d-label">Subject</label><input class="d-input" id="vq-email-subj"
+              type="text" placeholder="Subject…" /></div>
+          <div class="d-field"><label class="d-label">Message</label><textarea class="d-textarea" id="vq-email-body"
+              style="min-height:90px;"></textarea></div>
           <div style="display:flex;gap:8px;">
-            <button class="btn-primary" style="padding:7px 18px;background:#4338CA;" onclick="sendVqEmail()"><i class="ti ti-send" style="font-size:12px;margin-right:4px;"></i>Send</button>
-            <button class="btn-secondary" style="padding:7px 14px;font-size:12px;" onclick="toggleVqEmail()">Discard</button>
+            <button class="btn-primary" style="padding:7px 18px;background:#4338CA;" onclick="sendVqEmail()"><i
+                class="ti ti-send" style="font-size:12px;margin-right:4px;"></i>Send</button>
+            <button class="btn-secondary" style="padding:7px 14px;font-size:12px;"
+              onclick="toggleVqEmail()">Discard</button>
           </div>
         </div>
       </div>
@@ -9277,9 +9375,12 @@
     </div>
 
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitVendorQuote('log')"><i class="ti ti-device-floppy" style="font-size:13px;margin-right:4px;"></i>Log Quote</button>
-      <button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="submitVendorQuote('accept')"><i class="ti ti-check" style="font-size:13px;margin-right:4px;"></i>Accept &amp; Create PO</button>
-      <button class="btn-secondary" style="padding:8px 12px;display:flex;align-items:center;gap:5px;" onclick="toggleVqEmail()" title="Send RFQ Email"><i class="ti ti-mail" style="font-size:13px;"></i></button>
+      <button class="btn-primary" style="flex:1;" onclick="submitVendorQuote('log')"><i class="ti ti-device-floppy"
+          style="font-size:13px;margin-right:4px;"></i>Log Quote</button>
+      <button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="submitVendorQuote('accept')"><i
+          class="ti ti-check" style="font-size:13px;margin-right:4px;"></i>Accept &amp; Create PO</button>
+      <button class="btn-secondary" style="padding:8px 12px;display:flex;align-items:center;gap:5px;"
+        onclick="toggleVqEmail()" title="Send RFQ Email"><i class="ti ti-mail" style="font-size:13px;"></i></button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeVendorQuote()">Cancel</button>
     </div>
 
@@ -9289,33 +9390,33 @@
     let _vqSeq = 19, _vqRowIdx = 0;
 
     const VQ_VENDORS = {
-      'Lincoln Electric ME':       { contact:'Faisal Al-Ahmad',  phone:'+971 4 881 2200', email:'faisal@lincolnelectric.ae' },
-      '3M Gulf FZE':               { contact:'Sara Mathews',     phone:'+971 4 701 5555', email:'smathews@3m.com' },
-      'Norton Abrasives ME':       { contact:'Raj Kumar',        phone:'+971 50 345 6789', email:'rkumar@norton.ae' },
-      'Pewag International':       { contact:'Klaus Fischer',    phone:'+971 4 339 8800', email:'kfischer@pewag.com' },
-      'Stanley Black & Decker ME': { contact:'Tariq Hussain',    phone:'+971 4 455 1100', email:'thussain@sbdme.com' },
-      'Quanta Power Solutions':    { contact:'Ali Hassan',       phone:'+971 50 222 3344', email:'ahassan@quanta.ae' },
-      'Microtek Power Systems':    { contact:'Priya Nair',       phone:'+971 4 567 8900', email:'pnair@microtek.ae' },
+      'Lincoln Electric ME': { contact: 'Faisal Al-Ahmad', phone: '+971 4 881 2200', email: 'faisal@lincolnelectric.ae' },
+      '3M Gulf FZE': { contact: 'Sara Mathews', phone: '+971 4 701 5555', email: 'smathews@3m.com' },
+      'Norton Abrasives ME': { contact: 'Raj Kumar', phone: '+971 50 345 6789', email: 'rkumar@norton.ae' },
+      'Pewag International': { contact: 'Klaus Fischer', phone: '+971 4 339 8800', email: 'kfischer@pewag.com' },
+      'Stanley Black & Decker ME': { contact: 'Tariq Hussain', phone: '+971 4 455 1100', email: 'thussain@sbdme.com' },
+      'Quanta Power Solutions': { contact: 'Ali Hassan', phone: '+971 50 222 3344', email: 'ahassan@quanta.ae' },
+      'Microtek Power Systems': { contact: 'Priya Nair', phone: '+971 4 567 8900', email: 'pnair@microtek.ae' },
     };
 
     const VQ_PR_AI = {
-      'PR-0084': { heading:'Lincoln E6013 3.2mm — Price History', body:'<div class="disc-row"><span>Current quote (v3)</span><span class="disc-val" style="color:#4338CA;">AED 39/pack</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 42/pack</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 41–44/pack</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-trending-down" style="font-size:10px;margin-right:3px;"></i>7% below previous quote — good negotiation result. Recommend accepting.</div>' },
-      'PR-0083': { heading:'3M Respirator 6000 — Price History', body:'<div class="disc-row"><span>Current quote (v2)</span><span class="disc-val" style="color:#4338CA;">AED 215/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 235/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 210–240/pc</span></div><div style="font-size:10px;color:#854F0B;margin-top:8px;font-style:italic;"><i class="ti ti-info-circle" style="font-size:10px;margin-right:3px;"></i>Within market range. Request delivery terms before accepting.</div>' },
-      'PR-0080': { heading:'Norton Grinding Discs 7" — Price History', body:'<div class="disc-row"><span>Current quote (v1)</span><span class="disc-val" style="color:#4338CA;">AED 17.50/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 18/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 16–20/pc</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-circle-check" style="font-size:10px;margin-right:3px;"></i>Competitive price. Safe to accept.</div>' },
+      'PR-0084': { heading: 'Lincoln E6013 3.2mm — Price History', body: '<div class="disc-row"><span>Current quote (v3)</span><span class="disc-val" style="color:#4338CA;">AED 39/pack</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 42/pack</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 41–44/pack</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-trending-down" style="font-size:10px;margin-right:3px;"></i>7% below previous quote — good negotiation result. Recommend accepting.</div>' },
+      'PR-0083': { heading: '3M Respirator 6000 — Price History', body: '<div class="disc-row"><span>Current quote (v2)</span><span class="disc-val" style="color:#4338CA;">AED 215/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 235/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 210–240/pc</span></div><div style="font-size:10px;color:#854F0B;margin-top:8px;font-style:italic;"><i class="ti ti-info-circle" style="font-size:10px;margin-right:3px;"></i>Within market range. Request delivery terms before accepting.</div>' },
+      'PR-0080': { heading: 'Norton Grinding Discs 7" — Price History', body: '<div class="disc-row"><span>Current quote (v1)</span><span class="disc-val" style="color:#4338CA;">AED 17.50/pc</span></div><div class="disc-row"><span>Previous best price</span><span class="disc-val" style="color:#0F6E56;">AED 18/pc</span></div><div class="disc-row"><span>Market benchmark</span><span class="disc-val" style="color:#6a7f96;">AED 16–20/pc</span></div><div style="font-size:10px;color:#0F6E56;margin-top:8px;font-style:italic;"><i class="ti ti-circle-check" style="font-size:10px;margin-right:3px;"></i>Competitive price. Safe to accept.</div>' },
     };
 
     const VQ_EMAIL_TPLS = {
-      rfq:      { subj:'Request for Quotation — Zaker Trading LLC', body:'Dear [Contact],\n\nWe request your best quotation for the following items as per our purchase requirement [PR#].\n\nPlease include unit price, lead time, payment terms and validity.\n\nRegards,\nPurchase Department\nZaker Trading LLC · DIP 2, Dubai' },
-      followup: { subj:'Follow-up on Quotation [VQ#] — Zaker Trading LLC', body:'Dear [Contact],\n\nThis is a gentle follow-up on your quotation [VQ#] submitted earlier.\n\nKindly confirm if the pricing and terms remain valid.\n\nRegards,\nZaker Trading LLC' },
-      accept:   { subj:'Quote Acceptance — [VQ#] · Zaker Trading LLC', body:'Dear [Contact],\n\nWe are pleased to inform you that your quotation [VQ#] has been accepted.\n\nA Purchase Order will be raised shortly. Please keep the items ready for delivery.\n\nThank you,\nZaker Trading LLC' },
-      revision: { subj:'Revision Request — [VQ#] · Zaker Trading LLC', body:'Dear [Contact],\n\nThank you for your quotation [VQ#]. We request a revision on the following:\n\n• Pricing — please review unit costs\n• Delivery timeline — can you expedite?\n\nKindly revert with a revised quote at your earliest.\n\nRegards,\nZaker Trading LLC' },
+      rfq: { subj: 'Request for Quotation — Zaker Trading LLC', body: 'Dear [Contact],\n\nWe request your best quotation for the following items as per our purchase requirement [PR#].\n\nPlease include unit price, lead time, payment terms and validity.\n\nRegards,\nPurchase Department\nZaker Trading LLC · DIP 2, Dubai' },
+      followup: { subj: 'Follow-up on Quotation [VQ#] — Zaker Trading LLC', body: 'Dear [Contact],\n\nThis is a gentle follow-up on your quotation [VQ#] submitted earlier.\n\nKindly confirm if the pricing and terms remain valid.\n\nRegards,\nZaker Trading LLC' },
+      accept: { subj: 'Quote Acceptance — [VQ#] · Zaker Trading LLC', body: 'Dear [Contact],\n\nWe are pleased to inform you that your quotation [VQ#] has been accepted.\n\nA Purchase Order will be raised shortly. Please keep the items ready for delivery.\n\nThank you,\nZaker Trading LLC' },
+      revision: { subj: 'Revision Request — [VQ#] · Zaker Trading LLC', body: 'Dear [Contact],\n\nThank you for your quotation [VQ#]. We request a revision on the following:\n\n• Pricing — please review unit costs\n• Delivery timeline — can you expedite?\n\nKindly revert with a revised quote at your earliest.\n\nRegards,\nZaker Trading LLC' },
     };
 
     function openVendorQuote() {
       const today = new Date();
       document.getElementById('vq-date').value = today.toISOString().split('T')[0];
-      document.getElementById('vq-date-preview').textContent = today.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
-      const exp = new Date(today); exp.setDate(exp.getDate()+30);
+      document.getElementById('vq-date-preview').textContent = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+      const exp = new Date(today); exp.setDate(exp.getDate() + 30);
       document.getElementById('vq-validity').value = exp.toISOString().split('T')[0];
       document.getElementById('vq-code-preview').textContent = 'VQ-2026-0' + _vqSeq;
       if (!document.getElementById('vq-items-body').children.length) { vqAddRow(); vqAddRow(); }
@@ -9335,8 +9436,8 @@
       const m = VQ_VENDORS[name];
       if (m) {
         document.getElementById('vq-contact').value = m.contact;
-        document.getElementById('vq-phone').value   = m.phone;
-        document.getElementById('vq-email').value   = m.email;
+        document.getElementById('vq-phone').value = m.phone;
+        document.getElementById('vq-email').value = m.email;
         document.getElementById('vq-email-to').value = m.email;
       }
       updateVqAiPanel();
@@ -9354,98 +9455,98 @@
       document.getElementById('vq-ai-body').innerHTML = ai.body;
     }
 
-    function vqAddRow(desc='', qty='', price='', disc='0') {
+    function vqAddRow(desc = '', qty = '', price = '', disc = '0') {
       const tbody = document.getElementById('vq-items-body'), i = ++_vqRowIdx, tr = document.createElement('tr');
       tr.id = 'vq-row-' + i;
-      tr.innerHTML = `<td style="color:#9aaabb;font-size:10px;padding-left:8px;">${i}</td><td><input placeholder="Item description…" value="${desc}" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="1" value="${qty||1}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;"><input type="number" min="0" value="${price}" placeholder="0.00" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="0" max="100" value="${disc}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;font-weight:600;font-size:11px;color:#1a2332;padding-left:6px;" id="vq-row-total-${i}">AED 0</td><td><button class="remove-row-btn" onclick="vqRemoveRow(${i})">×</button></td>`;
+      tr.innerHTML = `<td style="color:#9aaabb;font-size:10px;padding-left:8px;">${i}</td><td><input placeholder="Item description…" value="${desc}" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="1" value="${qty || 1}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;"><input type="number" min="0" value="${price}" placeholder="0.00" oninput="vqCalc()"/></td><td style="width:52px;"><input type="number" min="0" max="100" value="${disc}" oninput="vqCalc()" style="text-align:center;"/></td><td style="width:90px;font-weight:600;font-size:11px;color:#1a2332;padding-left:6px;" id="vq-row-total-${i}">AED 0</td><td><button class="remove-row-btn" onclick="vqRemoveRow(${i})">×</button></td>`;
       tbody.appendChild(tr); vqCalc();
     }
 
-    function vqRemoveRow(i) { const r=document.getElementById('vq-row-'+i); if(r) r.remove(); vqCalc(); }
+    function vqRemoveRow(i) { const r = document.getElementById('vq-row-' + i); if (r) r.remove(); vqCalc(); }
 
     function vqCalc() {
       let sub = 0;
       document.querySelectorAll('#vq-items-body tr').forEach(tr => {
-        const inp=tr.querySelectorAll('input'); if(inp.length<4) return;
-        const qty=parseFloat(inp[1].value)||0, price=parseFloat(inp[2].value)||0, disc=parseFloat(inp[3].value)||0, total=qty*price*(1-disc/100);
+        const inp = tr.querySelectorAll('input'); if (inp.length < 4) return;
+        const qty = parseFloat(inp[1].value) || 0, price = parseFloat(inp[2].value) || 0, disc = parseFloat(inp[3].value) || 0, total = qty * price * (1 - disc / 100);
         sub += total;
-        const id=tr.id.replace('vq-row-',''), cell=document.getElementById('vq-row-total-'+id);
-        if(cell) cell.textContent='AED '+total.toLocaleString('en-AE',{maximumFractionDigits:0});
+        const id = tr.id.replace('vq-row-', ''), cell = document.getElementById('vq-row-total-' + id);
+        if (cell) cell.textContent = 'AED ' + total.toLocaleString('en-AE', { maximumFractionDigits: 0 });
       });
-      const vat=sub*.05;
-      document.getElementById('vq-subtotal').textContent='AED '+sub.toLocaleString('en-AE',{maximumFractionDigits:0});
-      document.getElementById('vq-vat').textContent='AED '+vat.toLocaleString('en-AE',{maximumFractionDigits:0});
-      document.getElementById('vq-grand').textContent='AED '+(sub+vat).toLocaleString('en-AE',{maximumFractionDigits:0});
+      const vat = sub * .05;
+      document.getElementById('vq-subtotal').textContent = 'AED ' + sub.toLocaleString('en-AE', { maximumFractionDigits: 0 });
+      document.getElementById('vq-vat').textContent = 'AED ' + vat.toLocaleString('en-AE', { maximumFractionDigits: 0 });
+      document.getElementById('vq-grand').textContent = 'AED ' + (sub + vat).toLocaleString('en-AE', { maximumFractionDigits: 0 });
     }
 
     function vqAiFill() {
       const vendor = document.getElementById('vq-vendor').value;
-      const pr     = document.getElementById('vq-pr').value;
-      if (!vendor) { document.getElementById('vq-vendor').style.borderColor='#E24B4A'; return; }
-      const btn=document.getElementById('vq-ai-btn'), loading=document.getElementById('vq-ai-loading');
-      btn.disabled=true; btn.style.opacity='0.6'; loading.style.display='flex';
+      const pr = document.getElementById('vq-pr').value;
+      if (!vendor) { document.getElementById('vq-vendor').style.borderColor = '#E24B4A'; return; }
+      const btn = document.getElementById('vq-ai-btn'), loading = document.getElementById('vq-ai-loading');
+      btn.disabled = true; btn.style.opacity = '0.6'; loading.style.display = 'flex';
       setTimeout(() => {
-        loading.style.display='none'; btn.disabled=false; btn.style.opacity='1';
-        document.getElementById('vq-items-body').innerHTML=''; _vqRowIdx=0;
-        if (pr==='PR-0084') { vqAddRow('Lincoln E6013 Welding Rods 3.2mm (5kg)',200,39,0); }
-        else if (pr==='PR-0083') { vqAddRow('3M Full-Face Respirator Series 6000',10,215,0); }
-        else if (pr==='PR-0080') { vqAddRow('Norton Grinding Discs 7" — 100 pack',100,17.5,0); }
-        else { vqAddRow('',1,0,0); vqAddRow('',1,0,0); }
-        document.getElementById('vq-notes').value='AI pre-filled based on PR reference and vendor history. Verify quantities and pricing before logging.';
+        loading.style.display = 'none'; btn.disabled = false; btn.style.opacity = '1';
+        document.getElementById('vq-items-body').innerHTML = ''; _vqRowIdx = 0;
+        if (pr === 'PR-0084') { vqAddRow('Lincoln E6013 Welding Rods 3.2mm (5kg)', 200, 39, 0); }
+        else if (pr === 'PR-0083') { vqAddRow('3M Full-Face Respirator Series 6000', 10, 215, 0); }
+        else if (pr === 'PR-0080') { vqAddRow('Norton Grinding Discs 7" — 100 pack', 100, 17.5, 0); }
+        else { vqAddRow('', 1, 0, 0); vqAddRow('', 1, 0, 0); }
+        document.getElementById('vq-notes').value = 'AI pre-filled based on PR reference and vendor history. Verify quantities and pricing before logging.';
         updateVqAiPanel();
       }, 1600);
     }
 
     function toggleVqEmail() {
-      const p=document.getElementById('vq-email-panel');
-      p.style.display = p.style.display==='none' ? 'block' : 'none';
-      if(p.style.display==='block') { vqSyncEmail(); p.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+      const p = document.getElementById('vq-email-panel');
+      p.style.display = p.style.display === 'none' ? 'block' : 'none';
+      if (p.style.display === 'block') { vqSyncEmail(); p.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
     }
-    function vqSyncEmail() { const e=document.getElementById('vq-email').value; if(e) document.getElementById('vq-email-to').value=e; }
+    function vqSyncEmail() { const e = document.getElementById('vq-email').value; if (e) document.getElementById('vq-email-to').value = e; }
     function applyVqEmailTpl() {
-      const key=document.getElementById('vq-email-tpl').value; if(!key) return;
-      const tpl=VQ_EMAIL_TPLS[key], vq=document.getElementById('vq-code-preview').textContent, pr=document.getElementById('vq-pr').value||'—', cnt=document.getElementById('vq-contact').value||'Sir/Madam';
-      document.getElementById('vq-email-subj').value=tpl.subj.replace(/\[VQ#\]/g,vq).replace(/\[PR#\]/g,pr);
-      document.getElementById('vq-email-body').value=tpl.body.replace(/\[VQ#\]/g,vq).replace(/\[PR#\]/g,pr).replace(/\[Contact\]/g,cnt);
+      const key = document.getElementById('vq-email-tpl').value; if (!key) return;
+      const tpl = VQ_EMAIL_TPLS[key], vq = document.getElementById('vq-code-preview').textContent, pr = document.getElementById('vq-pr').value || '—', cnt = document.getElementById('vq-contact').value || 'Sir/Madam';
+      document.getElementById('vq-email-subj').value = tpl.subj.replace(/\[VQ#\]/g, vq).replace(/\[PR#\]/g, pr);
+      document.getElementById('vq-email-body').value = tpl.body.replace(/\[VQ#\]/g, vq).replace(/\[PR#\]/g, pr).replace(/\[Contact\]/g, cnt);
     }
     function sendVqEmail() {
-      const to=document.getElementById('vq-email-to').value.trim(), subj=document.getElementById('vq-email-subj').value.trim();
-      if(!to||!subj){alert('Fill in To and Subject fields.');return;}
-      alert('RFQ email sent to '+to+'\nSubject: '+subj);
-      document.getElementById('vq-email-panel').style.display='none';
+      const to = document.getElementById('vq-email-to').value.trim(), subj = document.getElementById('vq-email-subj').value.trim();
+      if (!to || !subj) { alert('Fill in To and Subject fields.'); return; }
+      alert('RFQ email sent to ' + to + '\nSubject: ' + subj);
+      document.getElementById('vq-email-panel').style.display = 'none';
     }
 
     function submitVendorQuote(mode) {
-      const vendor=document.getElementById('vq-vendor').value, pr=document.getElementById('vq-pr').value;
-      if(!vendor){document.getElementById('vq-vendor').style.borderColor='#E24B4A';return;}
-      if(!pr){document.getElementById('vq-pr').style.borderColor='#E24B4A';return;}
-      const code='VQ-2026-0'+_vqSeq++, grand=document.getElementById('vq-grand').textContent;
-      const validity=document.getElementById('vq-validity').value;
-      const validStr=validity ? new Date(validity).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}) : '—';
-      const status=mode==='accept' ? '<span class="pill pill-green">Accepted</span>' : '<span class="pill pill-amber">Pending Review</span>';
-      const tbody=document.querySelector('#p-purch-quotes table tbody');
-      if(tbody){
-        const tr=document.createElement('tr');
-        tr.innerHTML=`<td><span class="tbl-id">${code}</span></td><td><b>${vendor}</b></td><td><span class="tbl-id-grey">${pr}</span></td><td style="font-size:11px;color:#5a7080;">New items logged</td><td style="font-weight:600;">${grand}</td><td>${validStr}</td><td><span class="ver-badge latest" style="cursor:default;">v1</span></td><td>${status}</td><td><div class="tbl-btn-group">${mode==='accept'?'<span class="tbl-action">View PO →</span>':'<button class="tbl-btn green" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button><button class="tbl-btn gold">Request Revision</button>'}</div></td>`;
-        tbody.insertBefore(tr,tbody.firstChild);
+      const vendor = document.getElementById('vq-vendor').value, pr = document.getElementById('vq-pr').value;
+      if (!vendor) { document.getElementById('vq-vendor').style.borderColor = '#E24B4A'; return; }
+      if (!pr) { document.getElementById('vq-pr').style.borderColor = '#E24B4A'; return; }
+      const code = 'VQ-2026-0' + _vqSeq++, grand = document.getElementById('vq-grand').textContent;
+      const validity = document.getElementById('vq-validity').value;
+      const validStr = validity ? new Date(validity).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+      const status = mode === 'accept' ? '<span class="pill pill-green">Accepted</span>' : '<span class="pill pill-amber">Pending Review</span>';
+      const tbody = document.querySelector('#p-purch-quotes table tbody');
+      if (tbody) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td><span class="tbl-id">${code}</span></td><td><b>${vendor}</b></td><td><span class="tbl-id-grey">${pr}</span></td><td style="font-size:11px;color:#5a7080;">New items logged</td><td style="font-weight:600;">${grand}</td><td>${validStr}</td><td><span class="ver-badge latest" style="cursor:default;">v1</span></td><td>${status}</td><td><div class="tbl-btn-group">${mode === 'accept' ? '<span class="tbl-action">View PO →</span>' : '<button class="tbl-btn green" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;">Accept → PO</button><button class="tbl-btn gold">Request Revision</button>'}</div></td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
       }
       closeVendorQuote();
     }
 
     function resetVqDrawer() {
-      ['vq-vendor','vq-contact','vq-phone','vq-email','vq-notes','vq-email-to','vq-email-subj','vq-email-body'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-      ['vq-pr','vq-payment','vq-delivery','vq-currency','vq-leadtime','vq-email-tpl'].forEach(id=>{const el=document.getElementById(id);if(el){el.value='';el.style.borderColor='';}});
-      ['vq-vendor','vq-pr'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.borderColor='';});
-      ['vq-email-panel','vq-ai-loading'].forEach(id=>document.getElementById(id).style.display='none');
-      document.getElementById('vq-items-body').innerHTML=''; _vqRowIdx=0; vqCalc();
-      document.getElementById('vq-ai-heading').textContent='Select vendor & PR to see price analysis';
-      document.getElementById('vq-ai-body').innerHTML='<span style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</span>';
+      ['vq-vendor', 'vq-contact', 'vq-phone', 'vq-email', 'vq-notes', 'vq-email-to', 'vq-email-subj', 'vq-email-body'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['vq-pr', 'vq-payment', 'vq-delivery', 'vq-currency', 'vq-leadtime', 'vq-email-tpl'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
+      ['vq-vendor', 'vq-pr'].forEach(id => { const el = document.getElementById(id); if (el) el.style.borderColor = ''; });
+      ['vq-email-panel', 'vq-ai-loading'].forEach(id => document.getElementById(id).style.display = 'none');
+      document.getElementById('vq-items-body').innerHTML = ''; _vqRowIdx = 0; vqCalc();
+      document.getElementById('vq-ai-heading').textContent = 'Select vendor & PR to see price analysis';
+      document.getElementById('vq-ai-body').innerHTML = '<span style="color:#9aaabb;font-size:11px;">Price comparison against previous quotes will appear here.</span>';
     }
 
     // Trigger AI panel update when PR changes too
     document.addEventListener('DOMContentLoaded', () => {
       const prSel = document.getElementById('vq-pr');
-      if(prSel) prSel.addEventListener('change', updateVqAiPanel);
+      if (prSel) prSel.addEventListener('change', updateVqAiPanel);
     });
   </script>
 
@@ -9455,7 +9556,8 @@
 
     <div class="drawer-head">
       <div>
-        <div class="drawer-title"><i class="ti ti-bell-ringing" style="margin-right:6px;color:#C9A84C;"></i>New Follow-up</div>
+        <div class="drawer-title"><i class="ti ti-bell-ringing" style="margin-right:6px;color:#C9A84C;"></i>New
+          Follow-up</div>
         <div class="drawer-sub">Schedule a task, call, visit or reminder</div>
       </div>
       <button class="drawer-close" onclick="closeNewFollowup()"><i class="ti ti-x"></i></button>
@@ -9485,7 +9587,8 @@
       <div class="drawer-section-title" style="margin-top:2px;">Task Details</div>
       <div class="d-field">
         <label class="d-label">Task / Description <span style="color:#E24B4A;">*</span></label>
-        <textarea class="d-textarea" id="fu-task" style="min-height:64px;" placeholder="e.g. Send revised quotation for Lincoln E6013 × 500 units"></textarea>
+        <textarea class="d-textarea" id="fu-task" style="min-height:64px;"
+          placeholder="e.g. Send revised quotation for Lincoln E6013 × 500 units"></textarea>
       </div>
 
       <div class="d-row">
@@ -9551,13 +9654,16 @@
 
       <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
       <div class="d-field">
-        <textarea class="d-textarea" id="fu-notes" placeholder="Additional context, talking points, background…"></textarea>
+        <textarea class="d-textarea" id="fu-notes"
+          placeholder="Additional context, talking points, background…"></textarea>
       </div>
 
       <!-- REMINDER -->
-      <div style="display:flex;align-items:center;gap:10px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;">
+      <div
+        style="display:flex;align-items:center;gap:10px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;">
         <input type="checkbox" id="fu-remind" style="width:15px;height:15px;accent-color:#C9A84C;cursor:pointer;" />
-        <label for="fu-remind" style="font-size:12px;font-weight:600;color:#1a2332;cursor:pointer;flex:1;">Set reminder notification</label>
+        <label for="fu-remind" style="font-size:12px;font-weight:600;color:#1a2332;cursor:pointer;flex:1;">Set reminder
+          notification</label>
         <select class="d-select" id="fu-remind-when" style="width:auto;padding:5px 10px;font-size:11px;">
           <option>1 hour before</option>
           <option>3 hours before</option>
@@ -9569,7 +9675,8 @@
     </div>
 
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitNewFollowup()"><i class="ti ti-bell-plus" style="font-size:13px;margin-right:4px;"></i>Save Follow-up</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitNewFollowup()"><i class="ti ti-bell-plus"
+          style="font-size:13px;margin-right:4px;"></i>Save Follow-up</button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeNewFollowup()">Cancel</button>
     </div>
 
@@ -9599,28 +9706,28 @@
     }
 
     function submitNewFollowup() {
-      const cust     = document.getElementById('fu-customer').value;
-      const task     = document.getElementById('fu-task').value.trim();
-      const type     = document.getElementById('fu-type').value;
-      const due      = document.getElementById('fu-due').value;
+      const cust = document.getElementById('fu-customer').value;
+      const task = document.getElementById('fu-task').value.trim();
+      const type = document.getElementById('fu-type').value;
+      const due = document.getElementById('fu-due').value;
 
-      if (!cust) { document.getElementById('fu-customer').style.borderColor='#E24B4A'; return; }
-      if (!task) { document.getElementById('fu-task').style.borderColor='#E24B4A'; document.getElementById('fu-task').focus(); return; }
-      if (!type) { document.getElementById('fu-type').style.borderColor='#E24B4A'; return; }
-      if (!due)  { document.getElementById('fu-due').style.borderColor='#E24B4A'; return; }
+      if (!cust) { document.getElementById('fu-customer').style.borderColor = '#E24B4A'; return; }
+      if (!task) { document.getElementById('fu-task').style.borderColor = '#E24B4A'; document.getElementById('fu-task').focus(); return; }
+      if (!type) { document.getElementById('fu-type').style.borderColor = '#E24B4A'; return; }
+      if (!due) { document.getElementById('fu-due').style.borderColor = '#E24B4A'; return; }
 
       const priority = document.getElementById('fu-priority').value;
-      const dueDate  = new Date(due);
-      const today    = new Date(); today.setHours(0,0,0,0);
-      const diff     = Math.round((dueDate - today) / 86400000);
+      const dueDate = new Date(due);
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const diff = Math.round((dueDate - today) / 86400000);
 
       let duePill, statusPill;
-      if (diff < 0)     { duePill = `<span class="pill pill-red">${Math.abs(diff)} day${Math.abs(diff)>1?'s':''} overdue</span>`;  statusPill = '<span class="pill pill-red">Overdue</span>'; }
-      else if (diff===0){ duePill = '<span class="pill pill-amber">Today</span>';                                                   statusPill = '<span class="pill pill-amber">Due today</span>'; }
-      else if (diff<=7) { duePill = `<span class="pill pill-blue">In ${diff} day${diff>1?'s':''}</span>`;                          statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
-      else              { duePill = `<span class="pill pill-blue">Next week</span>`;                                               statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+      if (diff < 0) { duePill = `<span class="pill pill-red">${Math.abs(diff)} day${Math.abs(diff) > 1 ? 's' : ''} overdue</span>`; statusPill = '<span class="pill pill-red">Overdue</span>'; }
+      else if (diff === 0) { duePill = '<span class="pill pill-amber">Today</span>'; statusPill = '<span class="pill pill-amber">Due today</span>'; }
+      else if (diff <= 7) { duePill = `<span class="pill pill-blue">In ${diff} day${diff > 1 ? 's' : ''}</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+      else { duePill = `<span class="pill pill-blue">Next week</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
 
-      const priorityBadge = priority==='high' ? '<span class="pill pill-red" style="font-size:9px;">High</span>' : priority==='low' ? '<span class="pill pill-green" style="font-size:9px;">Low</span>' : '';
+      const priorityBadge = priority === 'high' ? '<span class="pill pill-red" style="font-size:9px;">High</span>' : priority === 'low' ? '<span class="pill pill-green" style="font-size:9px;">Low</span>' : '';
 
       // Insert into BOTH follow-up tables
       document.querySelectorAll('.page[id="p-followups"] table tbody').forEach(tbody => {
@@ -9642,9 +9749,9 @@
     }
 
     function resetFuDrawer() {
-      ['fu-customer','fu-type','fu-priority','fu-se','fu-ref-type','fu-remind-when'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-      ['fu-task','fu-ref-num','fu-notes'].forEach(id => { const el=document.getElementById(id); if(el) { el.value=''; el.style.borderColor=''; }});
-      ['fu-customer','fu-type','fu-due'].forEach(id => { const el=document.getElementById(id); if(el) el.style.borderColor=''; });
+      ['fu-customer', 'fu-type', 'fu-priority', 'fu-se', 'fu-ref-type', 'fu-remind-when'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['fu-task', 'fu-ref-num', 'fu-notes'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
+      ['fu-customer', 'fu-type', 'fu-due'].forEach(id => { const el = document.getElementById(id); if (el) el.style.borderColor = ''; });
       document.getElementById('fu-remind').checked = false;
       document.getElementById('fu-ref-num').disabled = true;
       document.getElementById('fu-ref-num').style.opacity = '.5';

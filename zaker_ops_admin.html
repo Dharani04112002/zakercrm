@@ -2609,6 +2609,151 @@
       scroll-behavior: smooth;
     }
 
+    /* ── CUSTOMER 360 ── */
+    .c360-tabs {
+      display: flex;
+      gap: 2px;
+      background: #f4f6f9;
+      border: 1px solid #dde2ea;
+      border-radius: 9px;
+      padding: 4px;
+      margin-bottom: 18px;
+    }
+    .c360-tab {
+      flex: 1;
+      text-align: center;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #6a7f96;
+      border: none;
+      background: none;
+      transition: all 0.15s;
+    }
+    .c360-tab.on {
+      background: #0A1628;
+      color: #C9A84C;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .c360-tab-panel { display: none; }
+    .c360-tab-panel.on { display: block; }
+
+    .cluster-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .cluster-card {
+      background: #fff;
+      border: 1px solid #E7E5E4;
+      border-radius: 12px;
+      padding: 18px;
+      border-top: 4px solid transparent;
+      cursor: pointer;
+      transition: box-shadow 0.15s;
+    }
+    .cluster-card:hover { box-shadow: 0 4px 16px rgba(10,22,40,.08); }
+    .cluster-card.champions { border-top-color: #C9A84C; }
+    .cluster-card.loyal     { border-top-color: #378ADD; }
+    .cluster-card.need-att  { border-top-color: #F59E0B; }
+    .cluster-card.at-risk   { border-top-color: #E24B4A; }
+    .cluster-card.lost      { border-top-color: #9aaabb; }
+    .cluster-name  { font-size: 14px; font-weight: 700; color: #1a2332; margin-bottom: 4px; }
+    .cluster-count { font-size: 11px; color: #6a7f96; margin-bottom: 12px; }
+    .cluster-val   { font-size: 20px; font-weight: 700; color: #1a2332; margin-bottom: 4px; }
+    .cluster-sub   { font-size: 11px; color: #6a7f96; }
+    .cluster-risk  { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 5px; margin-top: 10px; }
+    .risk-low  { background: #E1F5EE; color: #0F6E56; }
+    .risk-med  { background: #FAEEDA; color: #854F0B; }
+    .risk-high { background: #FCEBEB; color: #A32D2D; }
+
+    .bubble-arena {
+      position: relative;
+      height: 300px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      user-select: none;
+      text-align: center;
+      line-height: 1.3;
+      padding: 6px;
+    }
+    .bubble:hover { transform: scale(1.07); box-shadow: 0 4px 18px rgba(0,0,0,.18); }
+
+    .rfm-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f0f2f5; }
+    .rfm-row:last-child { border-bottom: none; }
+    .rfm-seg { font-size: 12px; font-weight: 600; color: #1a2332; width: 140px; flex-shrink: 0; }
+    .rfm-cnt { font-size: 12px; color: #6a7f96; width: 24px; text-align: right; }
+    .rfm-bar-wrap { flex: 1; height: 7px; background: #E7E5E4; border-radius: 4px; overflow: hidden; }
+    .rfm-bar { height: 100%; border-radius: 4px; }
+    .rfm-pct { font-size: 11px; font-weight: 600; color: #6a7f96; width: 34px; text-align: right; }
+
+    .arch-row { margin-bottom: 14px; }
+    .arch-label-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+    .arch-name  { font-size: 13px; font-weight: 600; color: #1a2332; }
+    .arch-count { font-size: 12px; color: #6a7f96; }
+    .arch-bar-wrap { height: 8px; background: #E7E5E4; border-radius: 4px; overflow: hidden; }
+    .arch-bar { height: 100%; border-radius: 4px; }
+
+    .c360-panel {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 340px;
+      background: #fff;
+      box-shadow: -4px 0 24px rgba(0,0,0,.14);
+      z-index: 1002;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .c360-panel.open { transform: translateX(0); }
+    .c360p-head { padding: 16px 18px 12px; border-bottom: 1px solid #e2e8f0; background: #f7f9fb; display: flex; align-items: flex-start; justify-content: space-between; }
+    .c360p-name { font-size: 15px; font-weight: 700; color: #1a2332; }
+    .c360p-seg  { font-size: 11px; color: #6a7f96; margin-top: 3px; }
+    .c360p-close { cursor: pointer; color: #9aaabb; font-size: 18px; padding: 2px; }
+    .c360p-close:hover { color: #1a2332; }
+    .c360p-body { flex: 1; overflow-y: auto; padding: 14px 18px; }
+    .c360p-kpi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .c360p-kpi { background: #f7f9fb; border: 1px solid #e2e8f0; border-radius: 9px; padding: 10px 12px; }
+    .c360p-kpi-lbl { font-size: 10px; color: #6a7f96; text-transform: uppercase; letter-spacing: 0.4px; font-weight: 600; margin-bottom: 4px; }
+    .c360p-kpi-val { font-size: 18px; font-weight: 700; color: #1a2332; }
+    .c360p-kpi-sub { font-size: 10px; color: #9aaabb; margin-top: 2px; }
+    .c360p-sect { font-size: 10px; font-weight: 700; color: #9aaabb; text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 8px; }
+    .mini-bar-chart { display: flex; align-items: flex-end; gap: 5px; height: 56px; margin-bottom: 4px; }
+    .mbc-col { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
+    .mbc-bar { width: 100%; border-radius: 3px 3px 0 0; background: #C9A84C; min-height: 3px; }
+    .mbc-lbl { font-size: 9px; color: #9aaabb; }
+    .c360p-ai { background: #0A1628; border-radius: 8px; padding: 10px 12px; margin-top: 10px; }
+    .c360p-ai-lbl { font-size: 10px; font-weight: 700; color: #C9A84C; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .c360p-ai-txt { font-size: 11px; color: #9aaabb; line-height: 1.6; }
+    .c360p-foot { padding: 12px 18px; border-top: 1px solid #e2e8f0; display: flex; gap: 8px; flex-shrink: 0; }
+    .c360p-risk-ring {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700;
+      border: 4px solid #E7E5E4;
+      margin: 0 auto 10px;
+    }
+
     /* ── RESPONSIVE TWEAKS ── */
     @media(max-width:1200px) {
       .kpi-grid {
@@ -2656,6 +2801,8 @@
               class="ti ti-git-merge" style="font-size:13px;"></i>Sales Pipeline</a>
           <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('visits',this)"><i
               class="ti ti-clipboard-check" style="font-size:13px;"></i>Visit Reports</a>
+          <a class="nav-link" style="font-size:12px;padding:6px 8px;" onclick="goPage('cust360',this)"><i
+              class="ti ti-chart-bubble" style="font-size:13px;"></i>Customer 360</a>
         </div>
 
         <a class="nav-link" id="nl-sales" onclick="toggleSub('sub-sales','arr-sales',this)"><i
@@ -8953,6 +9100,503 @@
           </div>
         </div>
 
+        <!-- ── CUSTOMER 360 ── -->
+        <div class="page" id="p-cust360">
+
+          <!-- Page header -->
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Customer 360</div>
+              <div class="pg-header-sub">AI-powered customer intelligence — clusters, personas & RFM analysis</div>
+            </div>
+            <div class="pg-header-actions">
+              <span style="font-size:11px;color:#6a7f96;padding:5px 10px;background:#f4f6f9;border:1px solid #dde2ea;border-radius:7px;">Last analyzed: 18 Jun 2026, 09:30</span>
+              <button class="btn-primary" style="font-size:12px;" onclick="alert('Triggering AI re-analysis…\n\nIn production this runs the RFM + clustering pipeline on fresh order data.')"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Refresh Analysis</button>
+            </div>
+          </div>
+
+          <!-- Tab nav -->
+          <div class="c360-tabs">
+            <button class="c360-tab on" onclick="c360Tab('overview',this)"><i class="ti ti-building" style="font-size:13px;margin-right:5px;"></i>Overview</button>
+            <button class="c360-tab"    onclick="c360Tab('personas',this)"><i class="ti ti-chart-bubble" style="font-size:13px;margin-right:5px;"></i>Personas</button>
+            <button class="c360-tab"    onclick="c360Tab('analysis',this)"><i class="ti ti-brain" style="font-size:13px;margin-right:5px;"></i>Analysis</button>
+          </div>
+
+          <!-- ═══ TAB 1 — OVERVIEW ═══ -->
+          <div class="c360-tab-panel on" id="c360-overview">
+
+            <!-- Org KPIs -->
+            <div class="stat-row" style="margin-bottom:16px;">
+              <div class="stat-mini">
+                <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i></div>
+                <div>
+                  <div class="stat-mini-val">284</div>
+                  <div class="stat-mini-lbl">Total Customers</div>
+                </div>
+              </div>
+              <div class="stat-mini">
+                <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-coins"></i></div>
+                <div>
+                  <div class="stat-mini-val" style="font-size:16px;">AED 135.7M</div>
+                  <div class="stat-mini-lbl">Total Portfolio Value</div>
+                </div>
+              </div>
+              <div class="stat-mini">
+                <div class="stat-mini-ico" style="background:#E6F1FB;color:#378ADD;"><i class="ti ti-heart-rate-monitor"></i></div>
+                <div>
+                  <div class="stat-mini-val" style="color:#1D9E75;">86%</div>
+                  <div class="stat-mini-lbl">Portfolio Health Score</div>
+                </div>
+              </div>
+              <div class="stat-mini">
+                <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-alert-triangle"></i></div>
+                <div>
+                  <div class="stat-mini-val" style="color:#E24B4A;">12</div>
+                  <div class="stat-mini-lbl">At-Risk Accounts</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AI Insight banner -->
+            <div class="ai-hint-bar" style="margin-bottom:16px;">
+              <i class="ti ti-sparkles"></i>
+              <div class="ai-hint-txt"><b>AI Insight:</b> Portfolio is healthy. Champions cluster drives 88% of revenue. Focus outreach on 14 "Need Attention" accounts — AED 8.4M recovery opportunity. 3 accounts show churn signals this week.</div>
+            </div>
+
+            <!-- Cluster cards -->
+            <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:12px;">Customer Clusters</div>
+            <div class="cluster-grid">
+
+              <div class="cluster-card champions" onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div>
+                  <div class="cluster-name">Champions</div>
+                </div>
+                <div class="cluster-count"><i class="ti ti-users" style="font-size:11px;margin-right:3px;"></i>18 customers</div>
+                <div class="cluster-val">AED 119.3M</div>
+                <div class="cluster-sub">Total portfolio value</div>
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <span class="cluster-risk risk-low"><i class="ti ti-shield-check" style="font-size:10px;"></i>LOW Risk</span>
+                  <span style="font-size:10px;color:#6a7f96;padding:3px 0;">Avg RFM: 4.8</span>
+                </div>
+              </div>
+
+              <div class="cluster-card loyal" onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#378ADD;flex-shrink:0;"></div>
+                  <div class="cluster-name">Loyal Customers</div>
+                </div>
+                <div class="cluster-count"><i class="ti ti-users" style="font-size:11px;margin-right:3px;"></i>54 customers</div>
+                <div class="cluster-val">AED 14.4M</div>
+                <div class="cluster-sub">Total portfolio value</div>
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <span class="cluster-risk risk-low"><i class="ti ti-shield-check" style="font-size:10px;"></i>LOW Risk</span>
+                  <span style="font-size:10px;color:#6a7f96;padding:3px 0;">Avg RFM: 3.9</span>
+                </div>
+              </div>
+
+              <div class="cluster-card need-att" onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></div>
+                  <div class="cluster-name">Need Attention</div>
+                </div>
+                <div class="cluster-count"><i class="ti ti-users" style="font-size:11px;margin-right:3px;"></i>14 customers</div>
+                <div class="cluster-val">AED 916K</div>
+                <div class="cluster-sub">Total portfolio value</div>
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <span class="cluster-risk risk-med"><i class="ti ti-alert-circle" style="font-size:10px;"></i>MED Risk</span>
+                  <span style="font-size:10px;color:#6a7f96;padding:3px 0;">Avg RFM: 2.4</span>
+                </div>
+              </div>
+
+              <div class="cluster-card at-risk" onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#E24B4A;flex-shrink:0;"></div>
+                  <div class="cluster-name">At Risk</div>
+                </div>
+                <div class="cluster-count"><i class="ti ti-users" style="font-size:11px;margin-right:3px;"></i>12 customers</div>
+                <div class="cluster-val">AED 782K</div>
+                <div class="cluster-sub">Total portfolio value</div>
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <span class="cluster-risk risk-high"><i class="ti ti-alert-triangle" style="font-size:10px;"></i>HIGH Risk</span>
+                  <span style="font-size:10px;color:#6a7f96;padding:3px 0;">Avg RFM: 1.6</span>
+                </div>
+              </div>
+
+              <div class="cluster-card lost" onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <div style="width:10px;height:10px;border-radius:50%;background:#9aaabb;flex-shrink:0;"></div>
+                  <div class="cluster-name">Hibernating / Lost</div>
+                </div>
+                <div class="cluster-count"><i class="ti ti-users" style="font-size:11px;margin-right:3px;"></i>186 customers</div>
+                <div class="cluster-val">AED 318K</div>
+                <div class="cluster-sub">Total portfolio value</div>
+                <div style="display:flex;gap:8px;margin-top:8px;">
+                  <span class="cluster-risk risk-high"><i class="ti ti-zzz" style="font-size:10px;"></i>INACTIVE</span>
+                  <span style="font-size:10px;color:#6a7f96;padding:3px 0;">Avg RFM: 1.0</span>
+                </div>
+              </div>
+
+              <!-- Revenue share card -->
+              <div class="card" style="border-top:4px solid #1D9E75;">
+                <div style="font-size:12px;font-weight:700;color:#1a2332;margin-bottom:12px;">Revenue Contribution</div>
+                <div class="prog-item">
+                  <div class="prog-row"><span class="prog-name" style="color:#C9A84C;">Champions</span><span class="prog-val">88%</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:88%;background:#C9A84C;"></div></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-row"><span class="prog-name" style="color:#378ADD;">Loyal</span><span class="prog-val">11%</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:11%;background:#378ADD;"></div></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-row"><span class="prog-name" style="color:#F59E0B;">Need Attention</span><span class="prog-val">0.7%</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:5%;background:#F59E0B;"></div></div>
+                </div>
+                <div class="prog-item">
+                  <div class="prog-row"><span class="prog-name" style="color:#E24B4A;">At Risk + Lost</span><span class="prog-val">0.3%</span></div>
+                  <div class="prog-track"><div class="prog-fill" style="width:2%;background:#E24B4A;"></div></div>
+                </div>
+              </div>
+
+            </div><!-- /cluster-grid -->
+          </div><!-- /c360-overview -->
+
+          <!-- ═══ TAB 2 — PERSONAS ═══ -->
+          <div class="c360-tab-panel" id="c360-personas">
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#1a2332;">Customer Universe</div>
+                <div style="font-size:11px;color:#6a7f96;margin-top:2px;">284 customers mapped · 5 clusters · bubble size = revenue</div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <select style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;cursor:pointer;">
+                  <option>All Clusters</option>
+                  <option>Champions</option>
+                  <option>Loyal Customers</option>
+                  <option>Need Attention</option>
+                  <option>At Risk</option>
+                  <option>Hibernating / Lost</option>
+                </select>
+                <button class="btn-primary" style="font-size:12px;" onclick="alert('Export customer universe data as CSV.')"><i class="ti ti-download" style="font-size:13px;margin-right:4px;"></i>Export</button>
+              </div>
+            </div>
+
+            <!-- Stats row -->
+            <div class="stat-row" style="margin-bottom:14px;">
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i></div><div><div class="stat-mini-val">284</div><div class="stat-mini-lbl">Customers</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-chart-bubble"></i></div><div><div class="stat-mini-val">5</div><div class="stat-mini-lbl">Clusters</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#E6F1FB;color:#378ADD;"><i class="ti ti-coins"></i></div><div><div class="stat-mini-val" style="font-size:16px;">AED 135.7M</div><div class="stat-mini-lbl">Revenue Mapped</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-radar"></i></div><div><div class="stat-mini-val">38</div><div class="stat-mini-lbl">Outreach Targets</div></div></div>
+            </div>
+
+            <!-- Bubble chart -->
+            <div class="bubble-arena" id="bubble-arena">
+              <!-- Champions cluster (gold/large) -->
+              <div class="bubble" style="width:110px;height:110px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:12%;top:15%;" onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Stable')">Al-Faris<br>Industrial</div>
+              <div class="bubble" style="width:90px;height:90px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:26%;top:8%;" onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Growing')">Gulf Metals<br>Trading</div>
+              <div class="bubble" style="width:80px;height:80px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:36%;top:26%;" onclick="openC360Panel('Jebel Ali Steel Works','Champions · Abrasives & Welding','AED 11.8M','AED 145K/yr','Champions','4.5','Stable')">Jebel Ali<br>Steel</div>
+              <div class="bubble" style="width:72px;height:72px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:48%;top:12%;" onclick="openC360Panel('DIC Engineering LLC','Champions · Industrial Tools','AED 9.6M','AED 120K/yr','Champions','4.3','Stable')">DIC Engg</div>
+
+              <!-- Loyal cluster (blue) -->
+              <div class="bubble" style="width:65px;height:65px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:62%;top:8%;" onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Stable')">AeroTech</div>
+              <div class="bubble" style="width:58px;height:58px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:74%;top:18%;" onclick="openC360Panel('Dubai Steel Works','Loyal · Lifting Equipment','AED 2.6M','AED 34K/yr','Loyal','3.7','Stable')">Dubai Steel</div>
+              <div class="bubble" style="width:52px;height:52px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:58%;top:32%;" onclick="openC360Panel('Al-Wasl Industrial','Loyal · Safety PPE','AED 1.9M','AED 24K/yr','Loyal','3.5','Declining')">Al-Wasl<br>Ind.</div>
+
+              <!-- Need Attention cluster (amber) -->
+              <div class="bubble" style="width:50px;height:50px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:20%;top:52%;" onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">Khaleeji</div>
+              <div class="bubble" style="width:44px;height:44px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:34%;top:58%;" onclick="openC360Panel('Sharjah Tech Hub','Need Attention · Hand Tools','AED 218K','AED 12K/yr','Need Attention','2.1','Declining')">Sharjah<br>Tech</div>
+
+              <!-- At Risk cluster (red) -->
+              <div class="bubble" style="width:40px;height:40px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:54%;top:56%;" onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Declining')">Al-Rashid</div>
+              <div class="bubble" style="width:36px;height:36px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:67%;top:52%;" onclick="openC360Panel('Gulf Star Supplies','At Risk · Abrasives','AED 72K','AED 2K/yr','At Risk','1.4','Inactive')">Gulf<br>Star</div>
+
+              <!-- Hibernating (grey, small) -->
+              <div class="bubble" style="width:30px;height:30px;background:#c8d0da;color:#fff;left:78%;top:50%;font-size:9px;" onclick="openC360Panel('Deira Builders LLC','Hibernating · Hand Tools','AED 18K','AED 0/yr','Hibernating','1.0','Inactive')">Deira</div>
+              <div class="bubble" style="width:26px;height:26px;background:#c8d0da;color:#fff;left:85%;top:42%;font-size:9px;" onclick="openC360Panel('Bur Dubai Tools','Hibernating · Abrasives','AED 12K','AED 0/yr','Hibernating','1.0','Inactive')">BDT</div>
+
+              <!-- Legend -->
+              <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:10px;flex-wrap:wrap;">
+                <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#C9A84C;display:inline-block;"></span>Champions</span>
+                <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#378ADD;display:inline-block;"></span>Loyal</span>
+                <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Need Attention</span>
+                <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#E24B4A;display:inline-block;"></span>At Risk</span>
+                <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:50%;background:#c8d0da;display:inline-block;"></span>Hibernating</span>
+              </div>
+              <div style="position:absolute;bottom:10px;right:12px;font-size:10px;color:#9aaabb;">Click a bubble to view details</div>
+            </div><!-- /bubble-arena -->
+
+            <!-- Key accounts table below bubble chart -->
+            <div class="tbl-wrap">
+              <table class="data-tbl">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Cluster</th>
+                    <th>Lifetime Value</th>
+                    <th>Avg Annual</th>
+                    <th>RFM Score</th>
+                    <th>Trend</th>
+                    <th>Last Order</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><div class="cust-cell"><div class="c-av" style="background:#C9A84C;color:#0A1628;">AF</div><div><div class="c-name">Al-Faris Industrial LLC</div><div class="c-sub">Dubai North</div></div></div></td>
+                    <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
+                    <td style="font-weight:700;">AED 18.4M</td>
+                    <td style="color:#6a7f96;">AED 220K</td>
+                    <td><span class="score-h">4.8</span></td>
+                    <td><span class="pill pill-green">Growing</span></td>
+                    <td style="font-size:11px;color:#6a7f96;">2 days ago</td>
+                    <td><span class="tbl-action" onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Growing')">Profile →</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cust-cell"><div class="c-av" style="background:#378ADD;color:#fff;">GM</div><div><div class="c-name">Gulf Metals Trading</div><div class="c-sub">Abu Dhabi</div></div></div></td>
+                    <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
+                    <td style="font-weight:700;">AED 14.2M</td>
+                    <td style="color:#6a7f96;">AED 180K</td>
+                    <td><span class="score-h">4.6</span></td>
+                    <td><span class="pill pill-green">Stable</span></td>
+                    <td style="font-size:11px;color:#6a7f96;">Today</td>
+                    <td><span class="tbl-action" onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Stable')">Profile →</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cust-cell"><div class="c-av" style="background:#1D9E75;color:#fff;">AT</div><div><div class="c-name">AeroTech Engineering</div><div class="c-sub">Sharjah</div></div></div></td>
+                    <td><span class="pill pill-blue">Loyal</span></td>
+                    <td style="font-weight:700;">AED 3.2M</td>
+                    <td style="color:#6a7f96;">AED 42K</td>
+                    <td><span class="score-m">3.9</span></td>
+                    <td><span class="pill pill-amber">Declining</span></td>
+                    <td style="font-size:11px;color:#6a7f96;">12 days ago</td>
+                    <td><span class="tbl-action" onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Declining')">Profile →</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cust-cell"><div class="c-av" style="background:#F59E0B;color:#fff;">KM</div><div><div class="c-name">Khaleeji Metals LLC</div><div class="c-sub">Dubai South</div></div></div></td>
+                    <td><span class="pill pill-amber">Need Attention</span></td>
+                    <td style="font-weight:700;">AED 340K</td>
+                    <td style="color:#6a7f96;">AED 28K</td>
+                    <td><span class="score-m">2.4</span></td>
+                    <td><span class="pill pill-red">Declining</span></td>
+                    <td style="font-size:11px;color:#E24B4A;">32 days ago</td>
+                    <td><span class="tbl-action" onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">Profile →</span></td>
+                  </tr>
+                  <tr>
+                    <td><div class="cust-cell"><div class="c-av" style="background:#E24B4A;color:#fff;">AR</div><div><div class="c-name">Al-Rashid Trading</div><div class="c-sub">Ajman</div></div></div></td>
+                    <td><span class="pill pill-red">At Risk</span></td>
+                    <td style="font-weight:700;">AED 98K</td>
+                    <td style="color:#6a7f96;">AED 4K</td>
+                    <td><span class="score-l">1.6</span></td>
+                    <td><span class="pill pill-red">Inactive</span></td>
+                    <td style="font-size:11px;color:#E24B4A;">78 days ago</td>
+                    <td><span class="tbl-action" onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Inactive')">Profile →</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /c360-personas -->
+
+          <!-- ═══ TAB 3 — ANALYSIS ═══ -->
+          <div class="c360-tab-panel" id="c360-analysis">
+
+            <!-- KPI row -->
+            <div class="stat-row" style="margin-bottom:16px;">
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i></div><div><div class="stat-mini-val">284</div><div class="stat-mini-lbl">Total Customers</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-brain"></i></div><div><div class="stat-mini-val">5</div><div class="stat-mini-lbl">Archetypes Detected</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-alert-triangle"></i></div><div><div class="stat-mini-val" style="color:#E24B4A;">12</div><div class="stat-mini-lbl">At Risk</div></div></div>
+              <div class="stat-mini"><div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-currency-dirham"></i></div><div><div class="stat-mini-val" style="font-size:15px;color:#1D9E75;">AED 8.4M</div><div class="stat-mini-lbl">Recovery Opportunity</div></div></div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+              <!-- Archetypes panel -->
+              <div class="card">
+                <div class="card-head">
+                  <div>
+                    <div class="card-title"><i class="ti ti-brain" style="margin-right:5px;color:#C9A84C;"></i>Customer Archetypes</div>
+                    <div style="font-size:10px;color:#9aaabb;margin-top:2px;">AI-detected behavioral patterns across your customer base</div>
+                  </div>
+                </div>
+                <div class="arch-row">
+                  <div class="arch-label-row">
+                    <span class="arch-name" style="color:#C9A84C;">Strategic Accounts</span>
+                    <span class="arch-count">18 · 6%</span>
+                  </div>
+                  <div class="arch-bar-wrap"><div class="arch-bar" style="width:6%;background:#C9A84C;"></div></div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">High-frequency, high-value, multi-category buyers</div>
+                </div>
+                <div class="arch-row">
+                  <div class="arch-label-row">
+                    <span class="arch-name" style="color:#378ADD;">Consistent Loyals</span>
+                    <span class="arch-count">54 · 19%</span>
+                  </div>
+                  <div class="arch-bar-wrap"><div class="arch-bar" style="width:19%;background:#378ADD;"></div></div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Regular reorders, single/dual category focus</div>
+                </div>
+                <div class="arch-row">
+                  <div class="arch-label-row">
+                    <span class="arch-name" style="color:#F59E0B;">Seasonal Buyers</span>
+                    <span class="arch-count">42 · 15%</span>
+                  </div>
+                  <div class="arch-bar-wrap"><div class="arch-bar" style="width:15%;background:#F59E0B;"></div></div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Project-based ordering, infrequent but sizable</div>
+                </div>
+                <div class="arch-row">
+                  <div class="arch-label-row">
+                    <span class="arch-name" style="color:#E24B4A;">At-Risk / Churning</span>
+                    <span class="arch-count">12 · 4%</span>
+                  </div>
+                  <div class="arch-bar-wrap"><div class="arch-bar" style="width:4%;background:#E24B4A;"></div></div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Declining order frequency, competitor signals</div>
+                </div>
+                <div class="arch-row">
+                  <div class="arch-label-row">
+                    <span class="arch-name" style="color:#9aaabb;">Dormant / Lost</span>
+                    <span class="arch-count">158 · 56%</span>
+                  </div>
+                  <div class="arch-bar-wrap"><div class="arch-bar" style="width:56%;background:#9aaabb;"></div></div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">No orders in 90+ days, likely inactive</div>
+                </div>
+              </div>
+
+              <!-- RFM segments panel -->
+              <div class="card">
+                <div class="card-head">
+                  <div>
+                    <div class="card-title"><i class="ti ti-chart-bar" style="margin-right:5px;color:#378ADD;"></i>RFM Segments</div>
+                    <div style="font-size:10px;color:#9aaabb;margin-top:2px;">Recency, Frequency, Amount analysis of customer value</div>
+                  </div>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A84C;margin-right:6px;"></span>Champions</span>
+                  <span class="rfm-cnt">18</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:88%;background:#C9A84C;"></div></div>
+                  <span class="rfm-pct">88%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#378ADD;margin-right:6px;"></span>Loyal Customers</span>
+                  <span class="rfm-cnt">54</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:19%;background:#378ADD;"></div></div>
+                  <span class="rfm-pct">19%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1D9E75;margin-right:6px;"></span>Potential Loyalists</span>
+                  <span class="rfm-cnt">42</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:15%;background:#1D9E75;"></div></div>
+                  <span class="rfm-pct">15%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F59E0B;margin-right:6px;"></span>Need Attention</span>
+                  <span class="rfm-cnt">14</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:5%;background:#F59E0B;"></div></div>
+                  <span class="rfm-pct">5%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E24B4A;margin-right:6px;"></span>At Risk</span>
+                  <span class="rfm-cnt">12</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:4%;background:#E24B4A;"></div></div>
+                  <span class="rfm-pct">4%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aaabb;margin-right:6px;"></span>Hibernating</span>
+                  <span class="rfm-cnt">88</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:31%;background:#9aaabb;"></div></div>
+                  <span class="rfm-pct">31%</span>
+                </div>
+                <div class="rfm-row">
+                  <span class="rfm-seg"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E7E5E4;margin-right:6px;"></span>Lost</span>
+                  <span class="rfm-cnt">56</span>
+                  <div class="rfm-bar-wrap"><div class="rfm-bar" style="width:20%;background:#c8d0da;"></div></div>
+                  <span class="rfm-pct">20%</span>
+                </div>
+              </div>
+
+            </div><!-- /2-col grid -->
+
+            <!-- AI recommendations -->
+            <div class="ai-hint-bar" style="margin-top:16px;">
+              <i class="ti ti-sparkles"></i>
+              <div class="ai-hint-txt">
+                <b>AI Recommendations:</b>
+                <br>1. Schedule re-engagement visits to the 12 At-Risk accounts — assign to senior SEs with personalized offers.
+                <br>2. Upsell safety PPE to 9 Champions who currently buy only welding consumables (AED 2.1M potential).
+                <br>3. Al-Rashid Trading (78 days silent) — trigger WhatsApp campaign with 5% loyalty discount before final churn.
+              </div>
+            </div>
+
+          </div><!-- /c360-analysis -->
+
+        </div><!-- /p-cust360 -->
+
+        <!-- ── CUSTOMER 360 DETAIL PANEL ── -->
+        <div class="c360-panel" id="c360-detail-panel">
+          <div class="c360p-head">
+            <div>
+              <div class="c360p-name" id="c360p-name">Customer Name</div>
+              <div class="c360p-seg" id="c360p-seg">Cluster · Products</div>
+            </div>
+            <i class="ti ti-x c360p-close" onclick="closeC360Panel()"></i>
+          </div>
+          <div class="c360p-body">
+
+            <!-- Risk ring + status -->
+            <div style="text-align:center;padding:10px 0 4px;">
+              <div class="c360p-risk-ring" id="c360p-risk-ring" style="border-color:#C9A84C;color:#C9A84C;">4.8</div>
+              <div style="font-size:11px;font-weight:700;color:#6a7f96;">RFM Score</div>
+              <div style="margin-top:6px;" id="c360p-trend-badge"><span class="pill pill-green">Growing</span></div>
+            </div>
+
+            <!-- KPI row -->
+            <div class="c360p-kpi-row" style="margin-top:12px;">
+              <div class="c360p-kpi">
+                <div class="c360p-kpi-lbl">Lifetime Value</div>
+                <div class="c360p-kpi-val" id="c360p-ltv">AED 18.4M</div>
+                <div class="c360p-kpi-sub">All-time orders</div>
+              </div>
+              <div class="c360p-kpi">
+                <div class="c360p-kpi-lbl">Annual Avg</div>
+                <div class="c360p-kpi-val" id="c360p-annual">AED 220K</div>
+                <div class="c360p-kpi-sub">Last 12 months</div>
+              </div>
+            </div>
+
+            <div class="c360p-kpi-row">
+              <div class="c360p-kpi">
+                <div class="c360p-kpi-lbl">Cluster</div>
+                <div id="c360p-cluster-badge" style="margin-top:4px;"><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></div>
+              </div>
+              <div class="c360p-kpi">
+                <div class="c360p-kpi-lbl">Open Quotes</div>
+                <div class="c360p-kpi-val" id="c360p-quotes">2</div>
+                <div class="c360p-kpi-sub">Pending approval</div>
+              </div>
+            </div>
+
+            <!-- Purchase Intelligence mini chart -->
+            <div class="c360p-sect">Purchase Intelligence — last 6 months</div>
+            <div class="mini-bar-chart" id="c360p-chart">
+              <div class="mbc-col"><div class="mbc-bar" style="height:30px;"></div><div class="mbc-lbl">Jan</div></div>
+              <div class="mbc-col"><div class="mbc-bar" style="height:45px;"></div><div class="mbc-lbl">Feb</div></div>
+              <div class="mbc-col"><div class="mbc-bar" style="height:38px;"></div><div class="mbc-lbl">Mar</div></div>
+              <div class="mbc-col"><div class="mbc-bar" style="height:52px;"></div><div class="mbc-lbl">Apr</div></div>
+              <div class="mbc-col"><div class="mbc-bar" style="height:42px;"></div><div class="mbc-lbl">May</div></div>
+              <div class="mbc-col"><div class="mbc-bar" style="height:56px;background:#1D9E75;"></div><div class="mbc-lbl">Jun</div></div>
+            </div>
+
+            <!-- AI Insights -->
+            <div class="c360p-ai" id="c360p-ai-box">
+              <div class="c360p-ai-lbl"><i class="ti ti-sparkles" style="font-size:10px;margin-right:4px;"></i>AI Insights</div>
+              <div class="c360p-ai-txt" id="c360p-ai-txt">This is a high-value strategic account with consistent ordering patterns. Strong candidate for upsell — consider premium safety PPE package at next visit.</div>
+            </div>
+
+          </div><!-- /c360p-body -->
+          <div class="c360p-foot">
+            <button class="btn-primary" style="flex:1;font-size:12px;" onclick="alert('Launching outreach campaign for ' + document.getElementById(\'c360p-name\').textContent + '…')"><i class="ti ti-send" style="font-size:13px;margin-right:4px;"></i>Start Campaign</button>
+            <button class="btn-secondary" style="font-size:12px;" onclick="goPage('cust-view',null);closeC360Panel()">Full Profile</button>
+          </div>
+        </div>
+
       </div><!-- end screen-content -->
 
 
@@ -9041,7 +9685,8 @@
       'm-hr': 'HR Master',
       accounts: 'User Accounts',
       usagelog: 'Usage Log',
-      settings: 'Settings'
+      settings: 'Settings',
+      cust360: 'Customer 360'
     };
 
     function goPage(id, el) {
@@ -10546,6 +11191,61 @@
         tbody.insertBefore(tr, tbody.firstChild);
       }
       closeAddLead();
+    }
+
+    function c360Tab(tabId, btn) {
+      document.querySelectorAll('.c360-tab-panel').forEach(p => p.classList.remove('on'));
+      document.querySelectorAll('.c360-tab').forEach(b => b.classList.remove('on'));
+      const panel = document.getElementById('c360-' + tabId);
+      if (panel) panel.classList.add('on');
+      if (btn) btn.classList.add('on');
+    }
+
+    const C360_AI = {
+      Champions: 'This is a high-value strategic account with consistent ordering patterns. Strong upsell candidate — consider premium safety PPE package or bulk welding consumable deal at next SE visit.',
+      Loyal: 'Reliable repeat buyer with stable order cadence. Opportunity to introduce new product categories. Assign senior SE for quarterly business review.',
+      'Need Attention': 'Order frequency has declined. Last visit was over 30 days ago. AI detects competitor activity. Recommend priority re-engagement visit with targeted pricing offer.',
+      'At Risk': 'Significant drop in order volume and frequency. Churn risk is HIGH. Escalate to admin — assign dedicated SE with a win-back package (5–10% loyalty discount + technical demo).',
+      Hibernating: 'No purchase activity in 90+ days. Account may be fully lost. Trigger low-cost WhatsApp outreach campaign before archiving. Recovery probability: 12%.'
+    };
+
+    const C360_TREND_PILLS = {
+      Growing:  '<span class="pill pill-green">Growing</span>',
+      Stable:   '<span class="pill pill-blue">Stable</span>',
+      Declining:'<span class="pill pill-amber">Declining</span>',
+      Inactive: '<span class="pill pill-red">Inactive</span>'
+    };
+
+    const CLUSTER_BADGES = {
+      Champions:      '<span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span>',
+      Loyal:          '<span class="pill pill-blue">Loyal</span>',
+      'Need Attention':'<span class="pill pill-amber">Need Attention</span>',
+      'At Risk':      '<span class="pill pill-red">At Risk</span>',
+      Hibernating:    '<span class="pill" style="background:#f4f6f9;color:#6a7f96;">Hibernating</span>'
+    };
+
+    const RISK_COLORS = {
+      Champions: '#C9A84C', Loyal: '#378ADD', 'Need Attention': '#F59E0B', 'At Risk': '#E24B4A', Hibernating: '#9aaabb'
+    };
+
+    function openC360Panel(name, seg, ltv, annual, cluster, rfm, trend) {
+      document.getElementById('c360p-name').textContent = name;
+      document.getElementById('c360p-seg').textContent = seg;
+      document.getElementById('c360p-ltv').textContent = ltv;
+      document.getElementById('c360p-annual').textContent = annual;
+      const ring = document.getElementById('c360p-risk-ring');
+      ring.textContent = rfm;
+      const col = RISK_COLORS[cluster] || '#9aaabb';
+      ring.style.borderColor = col;
+      ring.style.color = col;
+      document.getElementById('c360p-trend-badge').innerHTML = C360_TREND_PILLS[trend] || trend;
+      document.getElementById('c360p-cluster-badge').innerHTML = CLUSTER_BADGES[cluster] || cluster;
+      document.getElementById('c360p-ai-txt').textContent = C360_AI[cluster] || '';
+      document.getElementById('c360-detail-panel').classList.add('open');
+    }
+
+    function closeC360Panel() {
+      document.getElementById('c360-detail-panel').classList.remove('open');
     }
 
     function resetDrawer() {

@@ -7457,10 +7457,13 @@
               <div class="pg-header-title">Sales Requirements</div>
               <div class="pg-header-sub">Pending requirements awaiting <span
                   data-tooltip="A Sales Requirement is logged when a customer requests a product — it must be converted into a formal Quotation before it can proceed to an order">quotation
-                  conversions</span></div>
+                  conversions</span> <span
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
+                    class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
+                  Epicor
+                  (View only)</span></div>
             </div>
-            <button class="btn-primary" style="padding:8px 16px;" onclick="openLogReq()"><i class="ti ti-plus"
-                style="margin-right:5px;"></i>Log Requirement</button>
+
           </div>
           <div class="stat-row">
             <div class="stat-mini">
@@ -7533,7 +7536,7 @@
                   <td><span class="pill pill-red">High</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn gold" onclick="goPage('quotations', this)">Create Quote</button>
+                      <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
                     </div>
                   </td>
@@ -7557,7 +7560,7 @@
                   <td><span class="pill pill-blue">Normal</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn gold" onclick="goPage('quotations', this)">Create Quote</button>
+                      <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
                     </div>
                   </td>
@@ -7581,7 +7584,7 @@
                   <td><span class="pill pill-amber">Medium</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn gold" onclick="goPage('quotations', this)">Create Quote</button>
+                      <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                     </div>
                   </td>
                 </tr>
@@ -7604,7 +7607,7 @@
                   <td><span class="pill pill-red">High</span></td>
                   <td>
                     <div class="tbl-btn-group">
-                      <button class="tbl-btn gold" onclick="goPage('quotations', this)">Create Quote</button>
+                      <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
                     </div>
                   </td>
@@ -7621,11 +7624,13 @@
               <div class="pg-header-title">Sales Quotations</div>
               <div class="pg-header-sub">Manage and approve sales quotations (<span
                   data-tooltip="3-tier approval: 1) SE creates draft → 2) Admin reviews &amp; approves → 3) MD signs off for high-value quotes before sending to customer">3-tier
-                  workflow</span>)</div>
+                  workflow</span>) <span
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
+                    class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
+                  Epicor
+                  (View only)</span></div>
             </div>
-            <div style="display:flex;gap:8px;">
-              <button class="btn-primary" onclick="openNewQuote()">New Quote</button>
-            </div>
+
           </div>
           <div class="filter-row" style="display:flex;align-items:center;">
             <div class="fc on">All Quotes</div>
@@ -7944,7 +7949,7 @@
             <div>
               <div class="pg-header-title">Invoices & Billing</div>
               <div class="pg-header-sub">Sync with ERP and manage collections — P.O.BOX 55197, DIP 2, Dubai <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -8714,7 +8719,7 @@
             <div>
               <div class="pg-header-title">Sales Orders</div>
               <div class="pg-header-sub">Customer sales order management and delivery tracking <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -9020,7 +9025,7 @@
             <div>
               <div class="pg-header-title">Customer Accounts</div>
               <div class="pg-header-sub">284 accounts · credit limits, outstanding balances & contacts <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -9196,7 +9201,7 @@
             <div>
               <div class="pg-header-title">Vendor Accounts</div>
               <div class="pg-header-sub">18 suppliers · payment terms, categories & outstanding balances <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -9362,10 +9367,13 @@
           <div class="pg-header">
             <div>
               <div class="pg-header-title">Purchase Requirements</div>
-              <div class="pg-header-sub">Internal purchase requests pending vendor sourcing</div>
+              <div class="pg-header-sub">Internal purchase requests pending vendor sourcing <span
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
+                    class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
+                  Epicor
+                  (View only)</span></div>
             </div>
-            <button class="btn-primary" onclick="openNewPR()"><i class="ti ti-plus" style="margin-right:5px;"></i>New
-              Requirement</button>
+
           </div>
           <div class="stat-row">
             <div class="stat-mini">
@@ -9493,12 +9501,13 @@
             <div>
               <div class="pg-header-title">Vendor Quotations</div>
               <div class="pg-header-sub">Supplier quotes received against purchase requirements · compare versions
-                before raising PO</div>
+                before raising PO <span
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
+                    class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
+                  Epicor
+                  (View only)</span></div>
             </div>
-            <div style="display:flex;gap:8px;">
-              <button class="btn-primary" onclick="openVendorQuote()"><i class="ti ti-plus"
-                  style="font-size:13px;margin-right:4px;"></i>Log Vendor Quote</button>
-            </div>
+
           </div>
 
           <!-- Stats -->
@@ -9880,7 +9889,7 @@
             <div>
               <div class="pg-header-title">Purchase Orders</div>
               <div class="pg-header-sub">Vendor procurement tracking · Zaker Trading LLC, DIP 2, Dubai <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -10038,7 +10047,7 @@
             <div>
               <div class="pg-header-title">Purchase Invoices</div>
               <div class="pg-header-sub">Vendor bills, payment tracking & reconciliation <span
-                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:2px 10px; border-radius:6px; font-size:10px; font-weight:700; border:1px solid #b5d4f4;"><i
+                  style="display:inline-block; margin-left:12px; color:#185FA5; background:#E6F1FB; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:700; border:1px solid #b5d4f4;"><i
                     class="ti ti-database-import" style="font-size:10px; margin-right:3px;"></i>Integrated data from
                   Epicor
                   (View only)</span></div>
@@ -10186,11 +10195,7 @@
             </div>
           </div>
 
-          <!-- Tab nav -->
-          <div class="c360-tabs">
-            <button class="c360-tab on" onclick="c360Tab('overview',this)"><i class="ti ti-building"
-                style="font-size:13px;margin-right:5px;"></i>Overview</button>
-          </div>
+
 
           <!-- ═══ TAB 1 — OVERVIEW ═══ -->
           <div class="c360-tab-panel on" id="c360-overview">
@@ -12540,6 +12545,55 @@
     const TIER_CFG = { 'Platinum': { color: '#7C3AED', dot: '#7C3AED', label: 'Platinum Account', minDisc: 10, maxDisc: 15 }, 'Gold': { color: '#C9A84C', dot: '#C9A84C', label: 'Gold Account', minDisc: 7, maxDisc: 10 }, 'Silver': { color: '#6a7f96', dot: '#9aaabb', label: 'Silver Account', minDisc: 4, maxDisc: 6 }, 'New': { color: '#185FA5', dot: '#a8caee', label: 'New Customer', minDisc: 0, maxDisc: 2 } };
     const QT_ETPLS = { quote: { subj: 'Quotation [QT#] — Zaker Trading LLC', body: 'Dear [Contact],\n\nPlease find our quotation [QT#] for your consideration.\n\nKindly review and revert at your earliest convenience.\n\nBest regards,\n[SE]\nZaker Trading LLC · DIP 2, Dubai' }, followup: { subj: 'Follow-up on Quotation [QT#]', body: 'Dear [Contact],\n\nThis is a gentle follow-up on our quotation [QT#].\n\nPlease let us know if you have any questions.\n\nBest regards,\n[SE]\nZaker Trading LLC' }, intro: { subj: 'Introduction — Zaker Trading LLC', body: 'Dear [Contact],\n\nI am [SE] from Zaker Trading LLC, a leading UAE supplier of safety, welding, and industrial equipment.\n\nWarm regards,\n[SE]\nZaker Trading LLC' } };
 
+    function createQuoteFromReq(btn) {
+      // Find the row
+      const tr = btn.closest('tr');
+      const customerName = tr.querySelector('td:nth-child(2) b') ? tr.querySelector('td:nth-child(2) b').textContent.trim() : (tr.querySelector('td:nth-child(2)') ? tr.querySelector('td:nth-child(2)').textContent.trim() : '');
+      const productEl = tr.querySelector('.c-name');
+      const product = productEl ? productEl.textContent.trim() : '';
+      const qtyEl = tr.querySelector('.c-sub');
+      let qty = '1';
+      if (qtyEl) {
+        const qtyMatch = qtyEl.textContent.match(/(\d+)/);
+        if (qtyMatch) qty = qtyMatch[1];
+      }
+      const se = tr.cells[3] ? tr.cells[3].textContent.trim() : '';
+
+      // Navigate to Quotations page
+      goPage('quotations');
+
+      // Open New Quote Drawer
+      openNewQuote();
+
+      // Auto-fill Customer
+      const custEl = document.getElementById('qt-cust');
+      if (custEl) {
+        custEl.value = customerName;
+        checkQtCustomer();
+      }
+
+      // Auto-fill SE
+      const seEl = document.getElementById('qt-se');
+      if (seEl) {
+        // Find option that matches
+        for (let i = 0; i < seEl.options.length; i++) {
+          if (seEl.options[i].text.includes(se) || seEl.options[i].value.includes(se)) {
+            seEl.selectedIndex = i;
+            break;
+          }
+        }
+      }
+
+      // Auto-fill Data
+      const tbody = document.getElementById('qt-items-body');
+      if (tbody) {
+        tbody.innerHTML = '';
+        _qtRowIdx = 0; // Reset row index so that row totals IDs are clean
+        qtAddRow(product, qty, '', '0');
+        qtCalc();
+      }
+    }
+
     function openNewQuote() {
       const today = new Date();
       document.getElementById('qt-date').value = today.toISOString().split('T')[0];
@@ -14791,7 +14845,7 @@
           <td><div class="stock-cell"><span class="stock-badge stock-low"><i class="ti ti-package" style="font-size:10px;"></i> Checking stock…</span></div></td>
           <td>0 Days</td>
           <td><span class="pill ${pillMap[priority] || 'pill-blue'}">${priority}</span></td>
-          <td><div class="tbl-btn-group"><button class="tbl-btn gold" onclick="goPage('quotations',this)">Create Quote</button><button class="tbl-btn" onclick="goPage('purch-req',this)">Raise PR</button></div></td>`;
+          <td><div class="tbl-btn-group"><button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button><button class="tbl-btn" onclick="goPage('purch-req',this)">Raise PR</button></div></td>`;
         tbody.insertBefore(tr, tbody.firstChild);
       }
 

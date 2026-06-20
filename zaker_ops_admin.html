@@ -9065,14 +9065,21 @@
             </div>
           </div>
           <div class="filter-bar">
-            <div class="fc on">All (284)</div>
-            <div class="fc">Active (261)</div>
-            <div class="fc"
+            <div class="fc on" onclick="filterCustAccounts('all',this)">All (284)</div>
+            <div class="fc" onclick="filterCustAccounts('active',this)">Active (261)</div>
+            <div class="fc" onclick="filterCustAccounts('hold',this)"
               data-tooltip="Accounts temporarily blocked from new orders — usually due to exceeded credit limit or outstanding overdue invoices">
               On Hold (12)</div>
-            <div class="fc"
+            <div class="fc" onclick="filterCustAccounts('overdue',this)"
               data-tooltip="Accounts with invoices past their payment due date — requires follow-up from the accounts team">
               Overdue (7)</div>
+            <div style="width:1px;background:#dde2ea;margin:4px 6px;"></div>
+            <div class="fc" onclick="filterCustAccounts('new',this)" style="color:#1D9E75;border-color:#1D9E75;"
+              data-tooltip="Customers onboarded within the last 30 days">
+              <i class="ti ti-user-plus" style="font-size:11px;margin-right:4px;"></i>New (8)</div>
+            <div class="fc" onclick="filterCustAccounts('existing',this)" style="color:#378ADD;border-color:#378ADD;"
+              data-tooltip="Established customers with prior purchase history">
+              <i class="ti ti-users" style="font-size:11px;margin-right:4px;"></i>Existing (276)</div>
             <div class="ml-auto">
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search accounts…" /></div>
@@ -9087,6 +9094,7 @@
                   <th>Contact Person</th>
                   <th>Phone</th>
                   <th>Email</th>
+                  <th>Customer Type</th>
                   <th>Credit Limit</th>
                   <th>Outstanding</th>
                   <th>Status</th>
@@ -9094,7 +9102,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr data-ctype="existing" data-status="active">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-001</td>
                   <td>
                     <div class="c-name">Al-Faris Industrial LLC</div>
@@ -9103,6 +9111,7 @@
                   <td style="font-size:12px;">Fahad Al-Faris</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-4-881-2200</td>
                   <td style="font-size:11px;color:#6a7f96;">fahad@alfaris.ae</td>
+                  <td><span class="pill" style="background:#E6F1FB;color:#185FA5;">Existing</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 150,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 42,000</td>
                   <td><span class="pill pill-green">Active</span></td>
@@ -9110,7 +9119,7 @@
                       onclick="openCustDrawer('ACC-001','Al-Faris Industrial LLC','Jebel Ali Free Zone','Fahad Al-Faris','+971-4-881-2200','fahad@alfaris.ae','150000','42000','Active','')">View
                       →</span></td>
                 </tr>
-                <tr>
+                <tr data-ctype="existing" data-status="active">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-002</td>
                   <td>
                     <div class="c-name">Gulf Metals Trading</div>
@@ -9119,6 +9128,7 @@
                   <td style="font-size:12px;">Nasser Al-Ghanim</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-4-883-4100</td>
                   <td style="font-size:11px;color:#6a7f96;">nasser@gulfmetals.ae</td>
+                  <td><span class="pill" style="background:#E6F1FB;color:#185FA5;">Existing</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 100,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 34,000</td>
                   <td><span class="pill pill-green">Active</span></td>
@@ -9126,7 +9136,7 @@
                       onclick="openCustDrawer('ACC-002','Gulf Metals Trading','Dubai Industrial City','Nasser Al-Ghanim','+971-4-883-4100','nasser@gulfmetals.ae','100000','34000','Active','')">View
                       →</span></td>
                 </tr>
-                <tr>
+                <tr data-ctype="existing" data-status="active">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-003</td>
                   <td>
                     <div class="c-name">AeroTech Engineering</div>
@@ -9135,6 +9145,7 @@
                   <td style="font-size:12px;">Saeed Al-Mazrouei</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-2-644-1800</td>
                   <td style="font-size:11px;color:#6a7f96;">saeed@aerotech.ae</td>
+                  <td><span class="pill" style="background:#E6F1FB;color:#185FA5;">Existing</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 200,000</td>
                   <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
                   <td><span class="pill pill-green">Active</span></td>
@@ -9142,15 +9153,16 @@
                       onclick="openCustDrawer('ACC-003','AeroTech Engineering','Abu Dhabi Industrial','Saeed Al-Mazrouei','+971-2-644-1800','saeed@aerotech.ae','200000','0','Active','')">View
                       →</span></td>
                 </tr>
-                <tr>
+                <tr data-ctype="new" data-status="active">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-004</td>
                   <td>
                     <div class="c-name">Desert Shield Safety</div>
-                    <div class="c-sub">Sharjah Industrial Area</div>
+                    <div class="c-sub">Sharjah Industrial Area · Joined Jun 2026</div>
                   </td>
                   <td style="font-size:12px;">Rashid Al-Khalidi</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-6-533-8800</td>
                   <td style="font-size:11px;color:#6a7f96;">rashid@desertshield.ae</td>
+                  <td><span class="pill" style="background:#E1F5EE;color:#1D9E75;">New</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 75,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 18,000</td>
                   <td><span class="pill pill-green">Active</span></td>
@@ -9158,7 +9170,7 @@
                       onclick="openCustDrawer('ACC-004','Desert Shield Safety','Sharjah Industrial Area','Rashid Al-Khalidi','+971-6-533-8800','rashid@desertshield.ae','75000','18000','Active','')">View
                       →</span></td>
                 </tr>
-                <tr>
+                <tr data-ctype="existing" data-status="hold">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#9aaabb;">ACC-005</td>
                   <td>
                     <div class="c-name">PetroGulf Services</div>
@@ -9167,6 +9179,7 @@
                   <td style="font-size:12px;">Tariq Al-Suwaidi</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-4-339-0000</td>
                   <td style="font-size:11px;color:#6a7f96;">tariq@petrogulf.ae</td>
+                  <td><span class="pill" style="background:#E6F1FB;color:#185FA5;">Existing</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 250,000</td>
                   <td style="font-size:12px;font-weight:600;color:#E24B4A;">AED 65,000</td>
                   <td><span class="pill pill-amber">On Hold</span></td>
@@ -9174,15 +9187,16 @@
                       onclick="openCustDrawer('ACC-005','PetroGulf Services','Dubai South','Tariq Al-Suwaidi','+971-4-339-0000','tariq@petrogulf.ae','250000','65000','On Hold','')">View
                       →</span></td>
                 </tr>
-                <tr>
+                <tr data-ctype="new" data-status="active">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-006</td>
                   <td>
                     <div class="c-name">JAFZA Industrial Co. LLC</div>
-                    <div class="c-sub">Jebel Ali Free Zone</div>
+                    <div class="c-sub">Jebel Ali Free Zone · Joined Jun 2026</div>
                   </td>
                   <td style="font-size:12px;">Hamad Al-Mulla</td>
                   <td style="font-size:11px;color:#6a7f96;">+971-4-881-6600</td>
                   <td style="font-size:11px;color:#6a7f96;">hamad@jafzaind.ae</td>
+                  <td><span class="pill" style="background:#E1F5EE;color:#1D9E75;">New</span></td>
                   <td style="font-size:12px;font-weight:600;">AED 80,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 12,000</td>
                   <td><span class="pill pill-green">Active</span></td>
@@ -14200,13 +14214,36 @@
         <td style="font-size:12px;">${contact}</td>
         <td style="font-size:11px;color:#6a7f96;">${phone}</td>
         <td style="font-size:11px;color:#6a7f96;">${email}</td>
+        <td><span class="pill" style="background:#E1F5EE;color:#1D9E75;">New</span></td>
         <td style="font-size:12px;font-weight:600;">${dispCredit}</td>
         <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
         <td><span class="pill ${pillCls}">${status}</span></td>
         <td><span class="tbl-action" onclick="openCustDrawer('${code}','${name}','${location}','${contact}','${phone}','${email}','${credit}','0','${status}','${notes.replace(/'/g, "\\'")}')">View →</span></td>`;
+      tr.dataset.ctype = 'new';
+      tr.dataset.status = status.toLowerCase().replace(' ', '');
+      const newBadge = `<span style="font-size:10px;font-weight:700;color:#1D9E75;background:#E1F5EE;padding:2px 6px;border-radius:4px;border:1px solid #b3e6d3;margin-left:6px;">NEW</span>`;
+      tr.querySelector('.c-name').insertAdjacentHTML('afterend', newBadge);
       tbody.insertBefore(tr, tbody.firstChild);
       _custSeq++;
       closeCustDrawer();
+    }
+
+    function filterCustAccounts(type, el) {
+      document.querySelectorAll('#p-cust-accounts .fc').forEach(f => f.classList.remove('on'));
+      if (el) el.classList.add('on');
+      const rows = document.querySelectorAll('#cust-accounts-table tbody tr');
+      rows.forEach(row => {
+        const ctype  = row.dataset.ctype || 'existing';
+        const status = row.dataset.status || '';
+        let show = false;
+        if (type === 'all')      show = true;
+        else if (type === 'new')      show = ctype === 'new';
+        else if (type === 'existing') show = ctype === 'existing';
+        else if (type === 'active')   show = status === 'active';
+        else if (type === 'hold')     show = status === 'hold' || status === 'onhold';
+        else if (type === 'overdue')  show = status === 'overdue';
+        row.style.display = show ? '' : 'none';
+      });
     }
 
     /* ── VENDOR DRAWER ── */

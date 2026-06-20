@@ -107,7 +107,7 @@
 
     .sb-section {
       font-size: 10px;
-      color: #44403C;
+      color: #6A7280;
       letter-spacing: 1px;
       font-weight: 600;
       padding: 12px 10px 5px;
@@ -122,7 +122,7 @@
       padding: 9px 10px;
       border-radius: 7px;
       cursor: pointer;
-      color: #6a7f96;
+      color: #BCC3CD;
       font-size: 13px;
       font-weight: 500;
       transition: background 0.12s, color 0.12s;
@@ -133,7 +133,7 @@
 
     .nav-link:hover {
       background: #0f1e35;
-      color: #D6D3D1;
+      color: #FAFAF9;
       border-color: #3C3735;
     }
 
@@ -2164,7 +2164,7 @@
       background: #fff;
       box-shadow: -4px 0 24px rgba(0, 0, 0, .12);
       z-index: 1001;
-      transform: translateX(100%);
+      transform: translateX(calc(100% + 30px));
       transition: transform 0.25s cubic-bezier(.4, 0, .2, 1);
       display: flex;
       flex-direction: column;
@@ -3114,7 +3114,7 @@
       background: #fff;
       box-shadow: -4px 0 24px rgba(0, 0, 0, .14);
       z-index: 1002;
-      transform: translateX(100%);
+      transform: translateX(calc(100% + 30px));
       transition: transform 0.25s cubic-bezier(.4, 0, .2, 1);
       display: flex;
       flex-direction: column;
@@ -6633,11 +6633,11 @@
             <div id="att-cal-grid" class="att-cal-main"></div>
 
             <div class="att-cal-legend">
-              <div class="att-leg-item"><span class="att-leg-dot" style="background:#16A34A;"></span>Full attendance
-              </div>
+              <div class="att-leg-item"><span class="att-leg-dot" style="background:#16A34A;"></span>Full attendance</div>
               <div class="att-leg-item"><span class="att-leg-dot" style="background:#F59E0B;"></span>Partial</div>
               <div class="att-leg-item"><span class="att-leg-dot" style="background:#DC2626;"></span>Absences</div>
               <div class="att-leg-item"><span class="att-leg-dot" style="background:#E7E5E4;"></span>No data</div>
+              <div class="att-leg-item"><span style="width:10px;height:10px;border-radius:3px;background:#FFF3F3;border:1px solid #FBBEBE;display:inline-block;margin-right:5px;flex-shrink:0;"></span>Public Holiday</div>
             </div>
           </div>
 
@@ -7494,8 +7494,7 @@
             <div class="stat-mini">
               <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i>
               </div>
-              <div class="stat-mini-ico" style="background:#FCEBEB;color:#A32D2D;"><i class="ti ti-package-off"></i>
-              </div>
+
               <div>
                 <div class="stat-mini-val">5</div>
                 <div class="stat-mini-lbl">Out of Stock Items</div>
@@ -8280,36 +8279,248 @@
               <div class="pg-header-title">Leave & Permission Management</div>
               <div class="pg-header-sub">Multi-tier employee leave approval workflow</div>
             </div>
-            <button class="btn-primary"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Apply
-              Leave</button>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div style="display:flex;border:1px solid #dde2ea;border-radius:7px;overflow:hidden;font-size:12px;">
+                <button id="leave-view-list" onclick="leaveSetView('list')"
+                  style="padding:5px 12px;background:#1a6ef5;color:#fff;border:none;cursor:pointer;font-size:12px;font-weight:600;">List</button>
+                <button id="leave-view-cal" onclick="leaveSetView('cal')"
+                  style="padding:5px 12px;background:#fff;color:#6a7f96;border:none;cursor:pointer;font-size:12px;">Calendar</button>
+              </div>
+              <button class="btn-primary" onclick="openApplyLeavePanel()"><i class="ti ti-plus" style="font-size:13px;margin-right:4px;"></i>Apply Leave</button>
+            </div>
           </div>
-          <div class="two-col">
-            <div class="card">
-              <div class="card-head"><span class="card-title">Pending Approvals</span></div>
-              <div class="act-row">
-                <div class="act-ico" style="background:#E6F1FB;"><i class="ti ti-user" style="color:#185FA5;"></i></div>
-                <div class="act-main"><b>Maryam Al-Hashimi</b> — Sick Leave<div class="act-meta">18 Jun (1 Day) ·
-                    Pending MD</div>
+
+          <!-- KPI strip -->
+          <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px;">
+            <div class="kpi-card gold">
+              <div class="kpi-label">Total Requests</div>
+              <div class="kpi-val">24</div>
+              <div class="kpi-sub">June 2026</div>
+            </div>
+            <div class="kpi-card blue">
+              <div class="kpi-label">Approved</div>
+              <div class="kpi-val">18</div>
+              <div class="kpi-sub up">75% approved</div>
+            </div>
+            <div class="kpi-card amber">
+              <div class="kpi-label">Pending</div>
+              <div class="kpi-val">4</div>
+              <div class="kpi-sub warn">Awaiting approval</div>
+            </div>
+            <div class="kpi-card red">
+              <div class="kpi-label">Rejected</div>
+              <div class="kpi-val">2</div>
+              <div class="kpi-sub dn">This month</div>
+            </div>
+          </div>
+
+          <!-- ── LIST VIEW ── -->
+          <div id="leave-list-view">
+            <div style="display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start;">
+
+              <!-- Leave requests table -->
+              <div class="card" style="padding:0;overflow:hidden;">
+                <div class="card-head" style="padding:12px 16px;border-bottom:1px solid #eef1f5;">
+                  <div class="card-title"><i class="ti ti-plane-departure" style="margin-right:6px;color:#378ADD;"></i>Leave Requests</div>
+                  <div style="display:flex;gap:6px;margin-left:auto;">
+                    <select style="font-size:11px;padding:4px 8px;border:1px solid #dde2ea;border-radius:6px;outline:none;background:#fff;color:#1a2332;">
+                      <option>All Types</option>
+                      <option>Annual Leave</option>
+                      <option>Sick Leave</option>
+                      <option>Emergency Leave</option>
+                      <option>Permission</option>
+                    </select>
+                    <select style="font-size:11px;padding:4px 8px;border:1px solid #dde2ea;border-radius:6px;outline:none;background:#fff;color:#1a2332;">
+                      <option>All Status</option>
+                      <option>Pending</option>
+                      <option>Approved</option>
+                      <option>Rejected</option>
+                    </select>
+                  </div>
                 </div>
-                <div style="display:flex;gap:5px;"><button class="tbl-btn gold">Approve</button><button
-                    class="tbl-btn red">Reject</button></div>
+                <div class="tbl-wrap" style="margin:0;">
+                  <table class="data-tbl">
+                    <thead>
+                      <tr>
+                        <th>Employee</th>
+                        <th>Leave Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Days</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><div class="c-name">Maryam Al-Hashimi</div><div class="c-sub">Accounts</div></td>
+                        <td style="font-size:12px;">Sick Leave</td>
+                        <td style="font-size:11px;color:#6a7f96;">18 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">18 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">1</td>
+                        <td><span class="pill pill-amber">Pending</span></td>
+                        <td>
+                          <div style="display:flex;gap:4px;">
+                            <button class="tbl-btn gold" onclick="alert('Approved')">Approve</button>
+                            <button class="tbl-btn red" onclick="alert('Rejected')">Reject</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><div class="c-name">Ahmed Karimi</div><div class="c-sub">Sales</div></td>
+                        <td style="font-size:12px;">Annual Leave</td>
+                        <td style="font-size:11px;color:#6a7f96;">22 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">25 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">4</td>
+                        <td><span class="pill pill-amber">Pending</span></td>
+                        <td>
+                          <div style="display:flex;gap:4px;">
+                            <button class="tbl-btn gold" onclick="alert('Approved')">Approve</button>
+                            <button class="tbl-btn red" onclick="alert('Rejected')">Reject</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><div class="c-name">Sara Al-Mansouri</div><div class="c-sub">Sales</div></td>
+                        <td style="font-size:12px;">Emergency Leave</td>
+                        <td style="font-size:11px;color:#6a7f96;">10 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">11 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">2</td>
+                        <td><span class="pill pill-green">Approved</span></td>
+                        <td><span class="tbl-action">View →</span></td>
+                      </tr>
+                      <tr>
+                        <td><div class="c-name">Khalid Jaber</div><div class="c-sub">Operations</div></td>
+                        <td style="font-size:12px;">Annual Leave</td>
+                        <td style="font-size:11px;color:#6a7f96;">5 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">7 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">3</td>
+                        <td><span class="pill pill-green">Approved</span></td>
+                        <td><span class="tbl-action">View →</span></td>
+                      </tr>
+                      <tr>
+                        <td><div class="c-name">Fatima Rahman</div><div class="c-sub">HR</div></td>
+                        <td style="font-size:12px;">Permission</td>
+                        <td style="font-size:11px;color:#6a7f96;">16 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">16 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">0.5</td>
+                        <td><span class="pill pill-green">Approved</span></td>
+                        <td><span class="tbl-action">View →</span></td>
+                      </tr>
+                      <tr>
+                        <td><div class="c-name">Omar Al-Suwaidi</div><div class="c-sub">Purchase</div></td>
+                        <td style="font-size:12px;">Sick Leave</td>
+                        <td style="font-size:11px;color:#6a7f96;">3 Jun 2026</td>
+                        <td style="font-size:11px;color:#6a7f96;">4 Jun 2026</td>
+                        <td style="font-weight:700;text-align:center;">2</td>
+                        <td><span class="pill" style="background:#FCEBEB;color:#A32D2D;">Rejected</span></td>
+                        <td><span class="tbl-action">View →</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Right sidebar -->
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <!-- Pending approvals -->
+                <div class="card">
+                  <div class="card-head"><div class="card-title"><i class="ti ti-clock" style="margin-right:5px;color:#F59E0B;"></i>Pending Approvals</div></div>
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div class="act-row" style="padding:0;">
+                      <div class="act-ico" style="background:#E6F1FB;"><i class="ti ti-user" style="color:#185FA5;"></i></div>
+                      <div class="act-main"><b>Maryam Al-Hashimi</b> — Sick Leave<div class="act-meta">18 Jun · 1 Day · Pending MD</div></div>
+                      <div style="display:flex;gap:4px;"><button class="tbl-btn gold" onclick="alert('Approved')">✓</button><button class="tbl-btn red" onclick="alert('Rejected')">✗</button></div>
+                    </div>
+                    <div class="act-row" style="padding:0;">
+                      <div class="act-ico" style="background:#E6F1FB;"><i class="ti ti-user" style="color:#185FA5;"></i></div>
+                      <div class="act-main"><b>Ahmed Karimi</b> — Annual Leave<div class="act-meta">22–25 Jun · 4 Days · Pending HR</div></div>
+                      <div style="display:flex;gap:4px;"><button class="tbl-btn gold" onclick="alert('Approved')">✓</button><button class="tbl-btn red" onclick="alert('Rejected')">✗</button></div>
+                    </div>
+                    <div class="act-row" style="padding:0;">
+                      <div class="act-ico" style="background:#E6F1FB;"><i class="ti ti-user" style="color:#185FA5;"></i></div>
+                      <div class="act-main"><b>Layla Hassan</b> — Permission<div class="act-meta">20 Jun · Half Day · Pending MD</div></div>
+                      <div style="display:flex;gap:4px;"><button class="tbl-btn gold" onclick="alert('Approved')">✓</button><button class="tbl-btn red" onclick="alert('Rejected')">✗</button></div>
+                    </div>
+                    <div class="act-row" style="padding:0;">
+                      <div class="act-ico" style="background:#E6F1FB;"><i class="ti ti-user" style="color:#185FA5;"></i></div>
+                      <div class="act-main"><b>Nour Al-Khalidi</b> — Annual Leave<div class="act-meta">28 Jun–2 Jul · 5 Days</div></div>
+                      <div style="display:flex;gap:4px;"><button class="tbl-btn gold" onclick="alert('Approved')">✓</button><button class="tbl-btn red" onclick="alert('Rejected')">✗</button></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Leave statistics -->
+                <div class="card">
+                  <div class="card-head"><div class="card-title"><i class="ti ti-chart-bar" style="margin-right:5px;color:#378ADD;"></i>Leave Statistics (June)</div></div>
+                  <div class="prog-item">
+                    <div class="prog-row"><span class="prog-name">Annual Leave Used</span><span class="prog-val">11 / 22 days</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:50%;background:#378ADD;"></div></div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-row"><span class="prog-name">Sick Leave</span><span class="prog-val">3 / 6 days</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:50%;background:#E24B4A;"></div></div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-row"><span class="prog-name" data-tooltip="Unused casual leave days that roll over">Casual Leave Carry-over</span><span class="prog-val">84%</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:84%;background:#16A34A;"></div></div>
+                  </div>
+                  <div class="prog-item">
+                    <div class="prog-row"><span class="prog-name">Permissions Granted</span><span class="prog-val">2 / 4</span></div>
+                    <div class="prog-track"><div class="prog-fill" style="width:50%;background:#C9A84C;"></div></div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <div class="card-head"><span class="card-title">Leave Statistics (June)</span></div>
-              <div class="prog-item">
-                <div class="prog-row"><span class="prog-name"><span
-                      data-tooltip="Unused casual leave days that roll over into the next month — high carry-over means team is not taking their entitled leaves">Casual
-                      Leave Carry-over</span></span><span class="prog-val">84%</span></div>
-                <div class="prog-track">
-                  <div class="prog-fill" style="width:84%;background:#16A34A;"></div>
-                </div>
+          </div>
+
+          <!-- ── CALENDAR VIEW ── -->
+          <div id="leave-cal-view" style="display:none;">
+            <div class="att-cal-cnt">
+              <div class="att-cal-hdr">
+                <button class="att-cal-nav-btn" onclick="leaveCalNav(-1)"><i class="ti ti-chevron-left"></i></button>
+                <div id="leave-cal-month-label" class="att-cal-curr">June 2026</div>
+                <button class="att-cal-nav-btn" onclick="leaveCalNav(1)"><i class="ti ti-chevron-right"></i></button>
               </div>
-              <div class="prog-item">
-                <div class="prog-row"><span class="prog-name">Planned vs Actual Sick</span><span
-                    class="prog-val">12%</span></div>
-                <div class="prog-track">
-                  <div class="prog-fill" style="width:12%;background:#378ADD;"></div>
+              <div class="att-cal-grid-hdr">
+                <div class="att-cal-day-name">Mon</div>
+                <div class="att-cal-day-name">Tue</div>
+                <div class="att-cal-day-name">Wed</div>
+                <div class="att-cal-day-name">Thu</div>
+                <div class="att-cal-day-name">Fri</div>
+                <div class="att-cal-day-name">Sat</div>
+                <div class="att-cal-day-name">Sun</div>
+              </div>
+              <div id="leave-cal-grid" class="att-cal-main"></div>
+              <div class="att-cal-legend">
+                <div class="att-leg-item"><span class="att-leg-dot" style="background:#378ADD;"></span>Annual Leave</div>
+                <div class="att-leg-item"><span class="att-leg-dot" style="background:#E24B4A;"></span>Sick Leave</div>
+                <div class="att-leg-item"><span class="att-leg-dot" style="background:#C9A84C;"></span>Emergency</div>
+                <div class="att-leg-item"><span class="att-leg-dot" style="background:#F59E0B;"></span>Pending</div>
+                <div class="att-leg-item"><span class="att-leg-dot" style="background:#9aaabb;"></span>Permission</div>
+              </div>
+            </div>
+
+            <!-- Who's on leave today -->
+            <div class="card" style="margin-top:14px;padding:0;overflow:hidden;">
+              <div class="card-head" style="padding:12px 16px;border-bottom:1px solid #eef1f5;">
+                <div class="card-title"><i class="ti ti-users" style="margin-right:6px;color:#378ADD;"></i>On Leave This Month</div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:14px 16px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#f9fbfd;border-radius:8px;border:1px solid #eef1f5;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:#378ADD;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;">SK</div>
+                  <div><div style="font-size:12px;font-weight:600;color:#1a2332;">Sara Al-Mansouri</div><div style="font-size:10px;color:#6a7f96;">Emergency · 10–11 Jun · Approved</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#f9fbfd;border-radius:8px;border:1px solid #eef1f5;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;">KJ</div>
+                  <div><div style="font-size:12px;font-weight:600;color:#1a2332;">Khalid Jaber</div><div style="font-size:10px;color:#6a7f96;">Annual · 5–7 Jun · Approved</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#f9fbfd;border-radius:8px;border:1px solid #eef1f5;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:#F59E0B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;">MH</div>
+                  <div><div style="font-size:12px;font-weight:600;color:#1a2332;">Maryam Al-Hashimi</div><div style="font-size:10px;color:#F59E0B;">Sick · 18 Jun · Pending</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#f9fbfd;border-radius:8px;border:1px solid #eef1f5;">
+                  <div style="width:36px;height:36px;border-radius:50%;background:#C9A84C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;">AK</div>
+                  <div><div style="font-size:12px;font-weight:600;color:#1a2332;">Ahmed Karimi</div><div style="font-size:10px;color:#F59E0B;">Annual · 22–25 Jun · Pending</div></div>
                 </div>
               </div>
             </div>
@@ -11469,6 +11680,119 @@
           <button class="btn-secondary" style="flex:1;font-size:13px;" onclick="closeAddTaskPanel()">Cancel</button>
           <button class="btn-primary" style="flex:2;font-size:13px;" onclick="submitAddTask()"><i class="ti ti-check"
               style="font-size:13px;margin-right:5px;"></i>Save Task</button>
+        </div>
+      </div>
+
+      <!-- ══ APPLY LEAVE PANEL ══ -->
+      <div class="c360-panel" id="apply-leave-panel" style="width:400px;">
+        <div class="c360p-head">
+          <div>
+            <div class="c360p-name" style="font-size:15px;"><i class="ti ti-plane-departure" style="margin-right:7px;color:#378ADD;"></i>Apply Leave</div>
+            <div class="c360p-seg">Submit a new leave request</div>
+          </div>
+          <i class="ti ti-x c360p-close" onclick="closeApplyLeavePanel()"></i>
+        </div>
+
+        <div class="c360p-body" style="padding:0;overflow-y:auto;display:flex;flex-direction:column;">
+
+          <!-- ── APPLY FORM ── -->
+          <div style="padding:16px 18px;border-bottom:1px solid #eef1f5;">
+            <div style="font-size:11px;font-weight:700;color:#9aaabb;letter-spacing:.6px;margin-bottom:12px;">NEW REQUEST</div>
+
+            <div style="display:flex;flex-direction:column;gap:12px;">
+
+              <!-- Employee -->
+              <div>
+                <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">EMPLOYEE</label>
+                <select id="al-employee" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;" onchange="loadLeaveHistory()">
+                  <option value="sara">Sara Al-Mansouri (Sales)</option>
+                  <option value="ahmed">Ahmed Karimi (Sales)</option>
+                  <option value="khalid">Khalid Jaber (Operations)</option>
+                  <option value="fatima">Fatima Rahman (HR)</option>
+                  <option value="maryam">Maryam Al-Hashimi (Accounts)</option>
+                  <option value="omar">Omar Al-Suwaidi (Purchase)</option>
+                  <option value="layla">Layla Hassan (Sales)</option>
+                </select>
+              </div>
+
+              <!-- Leave type -->
+              <div>
+                <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">LEAVE TYPE</label>
+                <select id="al-type" onchange="updateAIPrediction()" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;">
+                  <option>Annual Leave</option>
+                  <option>Sick Leave</option>
+                  <option>Emergency Leave</option>
+                  <option>Maternity / Paternity</option>
+                  <option>Unpaid Leave</option>
+                  <option>Permission (Half Day)</option>
+                </select>
+              </div>
+
+              <!-- Date range -->
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">FROM</label>
+                  <input type="date" id="al-from" value="2026-06-20" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+                </div>
+                <div>
+                  <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">TO</label>
+                  <input type="date" id="al-to" value="2026-06-20" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+                </div>
+              </div>
+
+              <!-- Days count -->
+              <div style="background:#f4f6f9;border-radius:7px;padding:8px 12px;font-size:12px;color:#6a7f96;">
+                <i class="ti ti-info-circle" style="font-size:12px;margin-right:4px;color:#378ADD;"></i>
+                Duration: <b style="color:#1a2332;">1 working day</b> · Balance remaining: <b style="color:#1D9E75;">12 days</b>
+              </div>
+
+              <!-- Reason -->
+              <div>
+                <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">REASON</label>
+                <textarea id="al-reason" rows="3" placeholder="Brief reason for leave request…" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;outline:none;resize:none;box-sizing:border-box;font-family:inherit;" onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'"></textarea>
+              </div>
+
+              <!-- Contact during leave -->
+              <div>
+                <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:5px;">CONTACT DURING LEAVE</label>
+                <input type="text" id="al-contact" placeholder="+971 50 000 0000" style="width:100%;font-size:13px;padding:8px 11px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+              </div>
+
+              <!-- AI Approval Suggestion -->
+              <div id="al-ai-box" style="background:#0A1628;border-radius:10px;padding:12px 14px;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+                  <i class="ti ti-sparkles" style="color:#C9A84C;font-size:13px;"></i>
+                  <span style="font-size:11px;font-weight:700;color:#C9A84C;letter-spacing:.4px;">AI APPROVAL PREDICTION</span>
+                </div>
+                <!-- Percentage + bar -->
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                  <div id="al-ai-pct" style="font-size:26px;font-weight:800;color:#fff;min-width:52px;">88%</div>
+                  <div style="flex:1;">
+                    <div style="height:7px;background:#1e3050;border-radius:4px;overflow:hidden;">
+                      <div id="al-ai-bar" style="height:100%;width:88%;background:#1D9E75;border-radius:4px;transition:width .4s,background .4s;"></div>
+                    </div>
+                    <div id="al-ai-verdict" style="font-size:10px;color:#1D9E75;font-weight:600;margin-top:4px;">Likely to be Approved</div>
+                  </div>
+                </div>
+                <!-- Reasoning -->
+                <div id="al-ai-reasons" style="font-size:11px;color:#8aa4be;line-height:1.6;"></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── LEAVE HISTORY THIS MONTH ── -->
+          <div style="padding:16px 18px;">
+            <div style="font-size:11px;font-weight:700;color:#9aaabb;letter-spacing:.6px;margin-bottom:12px;">LEAVE HISTORY — JUNE 2026</div>
+            <div id="al-history" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="c360p-foot" style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #eef1f5;flex-shrink:0;">
+          <button class="btn-secondary" style="flex:1;font-size:13px;" onclick="closeApplyLeavePanel()">Cancel</button>
+          <button class="btn-primary" style="flex:2;font-size:13px;" onclick="submitApplyLeave()"><i class="ti ti-send" style="font-size:13px;margin-right:5px;"></i>Submit Request</button>
         </div>
       </div>
 
@@ -15269,6 +15593,105 @@
       document.getElementById('c360-detail-panel').classList.remove('open');
     }
 
+    /* ── APPLY LEAVE PANEL ── */
+    const leaveHistory = {
+      sara:   [
+        { type:'Emergency Leave', from:'10 Jun', to:'11 Jun', days:2, status:'Approved',  color:'pill-green' },
+      ],
+      ahmed:  [
+        { type:'Annual Leave',    from:'22 Jun', to:'25 Jun', days:4, status:'Pending',   color:'pill-amber' },
+      ],
+      khalid: [
+        { type:'Annual Leave',    from:'5 Jun',  to:'7 Jun',  days:3, status:'Approved',  color:'pill-green' },
+      ],
+      fatima: [
+        { type:'Permission',      from:'16 Jun', to:'16 Jun', days:0.5, status:'Approved',color:'pill-green' },
+      ],
+      maryam: [
+        { type:'Sick Leave',      from:'18 Jun', to:'18 Jun', days:1, status:'Pending',   color:'pill-amber' },
+      ],
+      omar:   [
+        { type:'Sick Leave',      from:'3 Jun',  to:'4 Jun',  days:2, status:'Rejected',  color:'pill-red'   },
+      ],
+      layla:  [
+        { type:'Permission',      from:'20 Jun', to:'20 Jun', days:0.5, status:'Pending', color:'pill-amber' },
+      ],
+    };
+
+    function loadLeaveHistory() {
+      const emp  = document.getElementById('al-employee').value;
+      const box  = document.getElementById('al-history');
+      const rows = leaveHistory[emp] || [];
+      if (!rows.length) {
+        box.innerHTML = '<div style="font-size:12px;color:#9aaabb;text-align:center;padding:12px 0;">No leave taken this month.</div>';
+      } else {
+        box.innerHTML = rows.map(r => `
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:#f9fbfd;border:1px solid #eef1f5;border-radius:8px;">
+            <div>
+              <div style="font-size:12px;font-weight:600;color:#1a2332;">${r.type}</div>
+              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">${r.from} → ${r.to} · ${r.days} day${r.days !== 1 ? 's' : ''}</div>
+            </div>
+            <span class="pill ${r.color}" style="font-size:10px;">${r.status}</span>
+          </div>`).join('');
+      }
+      updateAIPrediction();
+    }
+
+    function updateAIPrediction() {
+      const emp  = document.getElementById('al-employee').value;
+      const type = document.getElementById('al-type').value;
+      const hist = leaveHistory[emp] || [];
+
+      const hasPending  = hist.some(r => r.status === 'Pending');
+      const hasRejected = hist.some(r => r.status === 'Rejected');
+      const daysUsed    = hist.filter(r => r.status === 'Approved').reduce((s, r) => s + Number(r.days), 0);
+
+      let pct = 90;
+      const reasons = [];
+
+      if (type === 'Sick Leave')                 { pct = 85; reasons.push('· Sick leave is generally approved with a medical note.'); }
+      else if (type === 'Emergency Leave')       { pct = 92; reasons.push('· Emergency leave has high approval priority.'); }
+      else if (type === 'Annual Leave')          { pct = 88; reasons.push('· Annual leave within entitled balance is routinely approved.'); }
+      else if (type === 'Permission (Half Day)') { pct = 94; reasons.push('· Half-day permissions are rarely declined.'); }
+      else if (type === 'Maternity / Paternity') { pct = 98; reasons.push('· Statutory entitlement — near-certain approval.'); }
+      else if (type === 'Unpaid Leave')          { pct = 60; reasons.push('· Unpaid leave requires MD discretion; lower base chance.'); }
+
+      if (hasPending)        { pct -= 10; reasons.push('· You already have a pending request this month.'); }
+      if (hasRejected)       { pct -= 15; reasons.push('· A prior rejection this month lowers approval likelihood.'); }
+      if (daysUsed >= 5)     { pct -= 8;  reasons.push(`· ${daysUsed} days already taken this month — may raise concern.`); }
+      if (daysUsed === 0 && !hasPending) { pct += 5; reasons.push('· No leave taken yet this month — clean record boosts approval.'); }
+
+      pct = Math.min(98, Math.max(20, pct));
+
+      const barColor = pct >= 75 ? '#1D9E75' : pct >= 50 ? '#F59E0B' : '#E24B4A';
+      const verdict  = pct >= 75 ? 'Likely to be Approved' : pct >= 50 ? 'Uncertain — May Need Justification' : 'High Risk of Rejection';
+
+      document.getElementById('al-ai-pct').textContent      = pct + '%';
+      document.getElementById('al-ai-bar').style.width      = pct + '%';
+      document.getElementById('al-ai-bar').style.background = barColor;
+      document.getElementById('al-ai-verdict').textContent  = verdict;
+      document.getElementById('al-ai-verdict').style.color  = barColor;
+      document.getElementById('al-ai-reasons').innerHTML    = reasons.join('<br>');
+    }
+
+    function openApplyLeavePanel() {
+      document.getElementById('apply-leave-panel').classList.add('open');
+      loadLeaveHistory();
+    }
+
+    function closeApplyLeavePanel() {
+      document.getElementById('apply-leave-panel').classList.remove('open');
+    }
+
+    function submitApplyLeave() {
+      const emp    = document.getElementById('al-employee').options[document.getElementById('al-employee').selectedIndex].text.split(' (')[0];
+      const type   = document.getElementById('al-type').value;
+      const from   = document.getElementById('al-from').value;
+      const to     = document.getElementById('al-to').value;
+      closeApplyLeavePanel();
+      alert(`Leave request submitted!\n\n${emp} — ${type}\n${from} to ${to}\n\nStatus: Pending approval`);
+    }
+
     function openAddTaskPanel() {
       document.getElementById('add-task-panel').classList.add('open');
     }
@@ -15302,23 +15725,109 @@
       document.getElementById('lead-code-preview').textContent = 'LD-' + String(_leadSeq).padStart(4, '0');
     }
 
+    /* ── LEAVE CALENDAR ── */
+    (function () {
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      let lcYear = 2026, lcMonth = 5;
+
+      // Leave data: key "YYYY-M-D" → array of {name, type, color, status}
+      const leaveData = {
+        '2026-6-5':  [{ name:'Khalid Jaber',      type:'Annual',    color:'#378ADD', status:'approved' }],
+        '2026-6-6':  [{ name:'Khalid Jaber',      type:'Annual',    color:'#378ADD', status:'approved' }],
+        '2026-6-7':  [{ name:'Khalid Jaber',      type:'Annual',    color:'#378ADD', status:'approved' }],
+        '2026-6-10': [{ name:'Sara Al-Mansouri',  type:'Emergency', color:'#C9A84C', status:'approved' }],
+        '2026-6-11': [{ name:'Sara Al-Mansouri',  type:'Emergency', color:'#C9A84C', status:'approved' }],
+        '2026-6-16': [{ name:'Fatima Rahman',     type:'Permission',color:'#9aaabb', status:'approved' }],
+        '2026-6-18': [{ name:'Maryam Al-Hashimi', type:'Sick',      color:'#E24B4A', status:'pending'  }],
+        '2026-6-22': [{ name:'Ahmed Karimi',      type:'Annual',    color:'#F59E0B', status:'pending'  }],
+        '2026-6-23': [{ name:'Ahmed Karimi',      type:'Annual',    color:'#F59E0B', status:'pending'  }],
+        '2026-6-24': [{ name:'Ahmed Karimi',      type:'Annual',    color:'#F59E0B', status:'pending'  }],
+        '2026-6-25': [{ name:'Ahmed Karimi',      type:'Annual',    color:'#F59E0B', status:'pending'  }],
+      };
+
+      window.leaveCalNav = function (dir) { lcMonth += dir; if (lcMonth > 11) { lcMonth = 0; lcYear++; } if (lcMonth < 0) { lcMonth = 11; lcYear--; } renderLeaveCal(); };
+
+      window.leaveSetView = function (view) {
+        const isList = view === 'list';
+        document.getElementById('leave-list-view').style.display = isList ? '' : 'none';
+        document.getElementById('leave-cal-view').style.display  = isList ? 'none' : '';
+        document.getElementById('leave-view-list').style.background = isList ? '#1a6ef5' : '#fff';
+        document.getElementById('leave-view-list').style.color    = isList ? '#fff' : '#6a7f96';
+        document.getElementById('leave-view-cal').style.background = isList ? '#fff' : '#1a6ef5';
+        document.getElementById('leave-view-cal').style.color     = isList ? '#6a7f96' : '#fff';
+        if (!isList) renderLeaveCal();
+      };
+
+      function renderLeaveCal() {
+        const grid = document.getElementById('leave-cal-grid');
+        const lbl  = document.getElementById('leave-cal-month-label');
+        if (!grid || !lbl) return;
+        lbl.textContent = MONTHS[lcMonth] + ' ' + lcYear;
+        grid.innerHTML  = '';
+
+        const firstDay    = new Date(lcYear, lcMonth, 1);
+        const startBlank  = (firstDay.getDay() + 6) % 7;
+        const daysInMonth = new Date(lcYear, lcMonth + 1, 0).getDate();
+        const today       = new Date(2026, 5, 20);
+        const isToday     = (d) => lcYear === 2026 && lcMonth === 5 && d === 20;
+        const isWeekend   = (d) => { const dow = (firstDay.getDay() + d - 1) % 7; return dow === 5 || dow === 6; };
+
+        for (let i = 0; i < startBlank; i++) {
+          const b = document.createElement('div');
+          b.className = 'att-cal-day-cell blank';
+          grid.appendChild(b);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const key     = lcYear + '-' + (lcMonth + 1) + '-' + d;
+          const entries = leaveData[key] || [];
+          const cell    = document.createElement('div');
+          cell.className = 'att-cal-day-cell' + (isToday(d) ? ' today' : '') + (isWeekend(d) ? ' weekend' : '');
+
+          let html = `<div class="att-cal-day-num">${d}</div>`;
+          entries.forEach(e => {
+            html += `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}22;color:${e.color};font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;" title="${e.name} · ${e.type}">${e.name.split(' ')[0]}</div>`;
+          });
+          if (entries.length === 0 && !isWeekend(d)) {
+            html += `<div class="att-cal-indicator" style="background:#e2e8f0;"></div>`;
+          }
+          cell.innerHTML = html;
+          grid.appendChild(cell);
+        }
+      }
+    })();
+
     /* ── ATTENDANCE CALENDAR ── */
     (function () {
       const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const today = new Date(2026, 5, 19); // June 19 2026
+      const today = new Date(2026, 5, 20);
 
-      // Mock attendance data keyed by "YYYY-M-D": 'full'|'partial'|'absent'|null
+      // Attendance data: "YYYY-M-D" → 'full'|'partial'|'absent'
       const attData = {
         '2026-6-1': 'full', '2026-6-2': 'full', '2026-6-3': 'full',
         '2026-6-4': 'partial', '2026-6-5': 'full', '2026-6-8': 'full',
         '2026-6-9': 'full', '2026-6-10': 'partial', '2026-6-11': 'full',
         '2026-6-12': 'full', '2026-6-15': 'absent', '2026-6-16': 'partial',
-        '2026-6-17': 'full', '2026-6-18': 'partial', '2026-6-19': 'partial',
+        '2026-6-17': 'full', '2026-6-18': 'partial', '2026-6-19': 'full',
+      };
+
+      // Public & company holidays: "YYYY-M-D" → holiday name
+      const holidays = {
+        '2026-1-1':  'New Year\'s Day',
+        '2026-3-20': 'Prophet\'s Birthday',
+        '2026-4-1':  'Isra Mi\'raj',
+        '2026-6-25': 'Eid Al-Adha (Day 1)',
+        '2026-6-26': 'Eid Al-Adha (Day 2)',
+        '2026-6-27': 'Eid Al-Adha (Day 3)',
+        '2026-6-28': 'Eid Al-Adha (Day 4)',
+        '2026-7-16': 'Islamic New Year',
+        '2026-12-2': 'UAE National Day',
+        '2026-12-3': 'UAE National Day',
       };
 
       const statusColors = { full: '#22c55e', partial: '#f59e0b', absent: '#ef4444' };
 
-      let calYear = 2026, calMonth = 5; // 0-indexed
+      let calYear = 2026, calMonth = 5;
       let selectedDate = null;
 
       window.attCalNav = function (dir) { calMonth += dir; if (calMonth > 11) { calMonth = 0; calYear++; } if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); };
@@ -15336,9 +15845,11 @@
       window.attSelectDay = function (y, m, d, hasData) {
         selectedDate = { y, m, d };
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const hkey = y + '-' + (m + 1) + '-' + d;
         const label = document.getElementById('att-date-label');
         if (label) {
-          if (hasData) label.textContent = d + ' ' + months[m] + ' ' + y + ' — 9 of 12 SEs checked in';
+          if (holidays[hkey]) label.textContent = months[m] + ' ' + d + ', ' + y + ' — 🎉 ' + holidays[hkey];
+          else if (hasData) label.textContent = d + ' ' + months[m] + ' ' + y + ' — 9 of 12 SEs checked in';
           else label.textContent = d + ' ' + months[m] + ' ' + y + ' — No data for this day';
         }
         renderCal();
@@ -15352,33 +15863,33 @@
         grid.innerHTML = '';
 
         const firstDay = new Date(calYear, calMonth, 1);
-        let startBlank = (firstDay.getDay() + 6) % 7;
+        const startBlank = (firstDay.getDay() + 6) % 7;
         const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
 
-        // Blanks
         for (let i = 0; i < startBlank; i++) {
           const blank = document.createElement('div');
           blank.className = 'att-cal-day-cell blank';
           grid.appendChild(blank);
         }
 
-        // Days
         for (let d = 1; d <= daysInMonth; d++) {
-          const key = calYear + '-' + (calMonth + 1) + '-' + d;
-          const status = attData[key];
+          const key     = calYear + '-' + (calMonth + 1) + '-' + d;
+          const status  = attData[key];
+          const holiday = holidays[key];
           const dotColor = status ? statusColors[status] : null;
 
-          const isToday = (d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear());
-          const isSel = selectedDate && selectedDate.y === calYear && selectedDate.m === calMonth && selectedDate.d === d;
-          const isWeekend = (() => { const wd = (new Date(calYear, calMonth, d).getDay()); return wd === 0 || wd === 6; })();
-          const isFuture = new Date(calYear, calMonth, d) > today;
+          const isToday   = (d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear());
+          const isSel     = selectedDate && selectedDate.y === calYear && selectedDate.m === calMonth && selectedDate.d === d;
+          const isWeekend = (() => { const wd = new Date(calYear, calMonth, d).getDay(); return wd === 0 || wd === 6; })();
+          const isFuture  = new Date(calYear, calMonth, d) > today;
 
           const cell = document.createElement('div');
           let classes = ['att-cal-day-cell'];
-          if (isToday) classes.push('today');
-          if (isSel) classes.push('selected');
+          if (isToday)   classes.push('today');
+          if (isSel)     classes.push('selected');
           if (isWeekend) classes.push('weekend');
-          if (isFuture) classes.push('future');
+          if (isFuture)  classes.push('future');
+          if (holiday)   cell.style.cssText = 'background:#FFF3F3;border:1px solid #FBBEBE;border-radius:8px;';
           cell.className = classes.join(' ');
 
           const num = document.createElement('div');
@@ -15386,17 +15897,21 @@
           num.textContent = d;
           cell.appendChild(num);
 
-          if (dotColor) {
+          // Holiday label
+          if (holiday) {
+            const hlbl = document.createElement('div');
+            hlbl.style.cssText = 'font-size:8px;color:#E24B4A;font-weight:700;text-align:center;margin-top:2px;line-height:1.2;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 2px;';
+            hlbl.textContent = holiday;
+            hlbl.title = holiday;
+            cell.appendChild(hlbl);
+          } else if (dotColor) {
             const dotEl = document.createElement('div');
             dotEl.className = 'att-cal-indicator';
             dotEl.style.background = dotColor;
             cell.appendChild(dotEl);
           }
 
-          if (!isFuture) {
-            cell.onclick = () => attSelectDay(calYear, calMonth, d, !!status);
-          }
-
+          if (!isFuture) cell.onclick = () => attSelectDay(calYear, calMonth, d, !!status);
           grid.appendChild(cell);
         }
       }

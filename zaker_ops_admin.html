@@ -7743,6 +7743,9 @@
                   Epicor
                   (View only)</span></div>
             </div>
+            <div>
+              <button class="btn-primary" onclick="openLogReq()"><i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New Requirement</button>
+            </div>
 
           </div>
           <div class="stat-row">
@@ -7796,7 +7799,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewReq('REQ-1092')">
                   <td><span class="tbl-id">REQ-1092</span></td>
                   <td><b>Al-Wasl Industrial Group</b></td>
                   <td>
@@ -7813,14 +7816,14 @@
                   </td>
                   <td class="tbl-row-red">6 Days</td>
                   <td><span class="pill pill-red">High</span></td>
-                  <td>
+                  <td onclick="event.stopPropagation()">
                     <div class="tbl-btn-group">
                       <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewReq('REQ-1095')">
                   <td><span class="tbl-id">REQ-1095</span></td>
                   <td><b>Emirates Global Travels</b></td>
                   <td>
@@ -7837,14 +7840,14 @@
                   </td>
                   <td>2 Days</td>
                   <td><span class="pill pill-blue">Normal</span></td>
-                  <td>
+                  <td onclick="event.stopPropagation()">
                     <div class="tbl-btn-group">
                       <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewReq('REQ-1098')">
                   <td><span class="tbl-id">REQ-1098</span></td>
                   <td><b>Khaleeji Steel Works</b></td>
                   <td>
@@ -7861,13 +7864,13 @@
                   </td>
                   <td>1 Day</td>
                   <td><span class="pill pill-amber">Medium</span></td>
-                  <td>
+                  <td onclick="event.stopPropagation()">
                     <div class="tbl-btn-group">
                       <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                     </div>
                   </td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewReq('REQ-1099')">
                   <td><span class="tbl-id">REQ-1099</span></td>
                   <td><b>Al-Nasr Logistics</b></td>
                   <td>
@@ -7884,7 +7887,7 @@
                   </td>
                   <td class="tbl-row-red">7 Days</td>
                   <td><span class="pill pill-red">High</span></td>
-                  <td>
+                  <td onclick="event.stopPropagation()">
                     <div class="tbl-btn-group">
                       <button class="tbl-btn gold" onclick="createQuoteFromReq(this)">Create Quote</button>
                       <button class="tbl-btn" onclick="goPage('purch-req', this)">Raise PR</button>
@@ -7953,16 +7956,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewQuote('QT-2841')">
                     <td><span class="tbl-id">QT-2841</span></td>
                     <td><b>Khaleeji Steel Works</b></td>
                     <td>AED 52,000</td>
                     <td><span class="pill pill-amber">Awaiting MD</span></td>
                     <td>MD Office</td>
                     <td>17 Jun 2026</td>
-                    <td><span class="ver-badge latest" onclick="toggleVerHist('2841')"
+                    <td onclick="event.stopPropagation()"><span class="ver-badge latest" onclick="toggleVerHist('2841')"
                         title="Click to view version history">v2 ▾</span></td>
-                    <td>
+                    <td onclick="event.stopPropagation()">
                       <div class="tbl-btn-group"><span class="tbl-action">View PDF →</span><button class="tbl-btn gold"
                           onclick="newRevision('QT-2841')">Revise</button></div>
                     </td>
@@ -7988,16 +7991,16 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewQuote('QT-2838')">
                     <td><span class="tbl-id">QT-2838</span></td>
                     <td><b>Al-Zahra Medical Center</b></td>
                     <td>AED 31,500</td>
                     <td><span class="pill pill-green">Approved</span></td>
                     <td>S. Al-Mansouri (Admin)</td>
                     <td>15 Jun 2026</td>
-                    <td><span class="ver-badge latest" onclick="toggleVerHist('2838')"
+                    <td onclick="event.stopPropagation()"><span class="ver-badge latest" onclick="toggleVerHist('2838')"
                         title="Click to view version history">v1 ▾</span></td>
-                    <td>
+                    <td onclick="event.stopPropagation()">
                       <div class="tbl-btn-group"><button class="tbl-btn">Convert to PO</button><button
                           class="tbl-btn gold" onclick="newRevision('QT-2838')">Revise</button></div>
                     </td>
@@ -8031,7 +8034,7 @@
                   <span class="pill" style="background:#eee;color:#6a7f96;">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card draft">
+                  <div class="qt-card draft" style="cursor:pointer;" onclick="openViewQuote('QT-2844')">
                     <div class="qc-id">QT-2844</div>
                     <div class="qc-client">Falcon Safety LLC</div>
                     <div class="qc-amount">AED 28,000</div>
@@ -8039,12 +8042,12 @@
                       <span class="ver-badge" style="cursor:default;">v1</span>
                       <span class="qc-date">18 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <button class="tbl-btn">Edit Draft</button>
                       <button class="tbl-btn gold">Submit</button>
                     </div>
                   </div>
-                  <div class="qt-card draft">
+                  <div class="qt-card draft" style="cursor:pointer;" onclick="openViewQuote('QT-2843')">
                     <div class="qc-id">QT-2843</div>
                     <div class="qc-client">RAK Steel Industries</div>
                     <div class="qc-amount">AED 14,500</div>
@@ -8052,7 +8055,7 @@
                       <span class="ver-badge" style="cursor:default;">v1</span>
                       <span class="qc-date">17 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <button class="tbl-btn">Edit Draft</button>
                       <button class="tbl-btn gold">Submit</button>
                     </div>
@@ -8067,7 +8070,7 @@
                   <span class="pill pill-blue">3</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card padmin">
+                  <div class="qt-card padmin" style="cursor:pointer;" onclick="openViewQuote('QT-2842')">
                     <div class="qc-id">QT-2842</div>
                     <div class="qc-client">Al-Nasr Logistics</div>
                     <div class="qc-amount">AED 19,200</div>
@@ -8075,12 +8078,12 @@
                       <span class="ver-badge" style="cursor:default;">v1</span>
                       <span class="qc-date">16 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View PDF →</span>
                       <button class="tbl-btn gold" onclick="newRevision('QT-2842')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card padmin">
+                  <div class="qt-card padmin" style="cursor:pointer;" onclick="openViewQuote('QT-2840')">
                     <div class="qc-id">QT-2840</div>
                     <div class="qc-client">Sharjah Cement Factory</div>
                     <div class="qc-amount">AED 38,000</div>
@@ -8088,12 +8091,12 @@
                       <span class="ver-badge latest" style="cursor:default;">v2</span>
                       <span class="qc-date">14 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View PDF →</span>
                       <button class="tbl-btn gold" onclick="newRevision('QT-2840')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card padmin">
+                  <div class="qt-card padmin" style="cursor:pointer;" onclick="openViewQuote('QT-2839')">
                     <div class="qc-id">QT-2839</div>
                     <div class="qc-client">Emirates Precision Works</div>
                     <div class="qc-amount">AED 7,800</div>
@@ -8101,7 +8104,7 @@
                       <span class="ver-badge" style="cursor:default;">v1</span>
                       <span class="qc-date">13 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View PDF →</span>
                     </div>
                   </div>
@@ -8115,20 +8118,20 @@
                   <span class="pill pill-amber">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card pmd">
+                  <div class="qt-card pmd" style="cursor:pointer;" onclick="openViewQuote('QT-2841')">
                     <div class="qc-id">QT-2841</div>
                     <div class="qc-client">Khaleeji Steel Works</div>
                     <div class="qc-amount">AED 52,000</div>
                     <div class="qc-meta">
-                      <span class="ver-badge latest" onclick="toggleVerHist('2841')" title="View history">v2 ▾</span>
+                      <span class="ver-badge latest" onclick="event.stopPropagation();toggleVerHist('2841')" title="View history">v2 ▾</span>
                       <span class="qc-date">17 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View PDF →</span>
                       <button class="tbl-btn gold" onclick="newRevision('QT-2841')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card pmd">
+                  <div class="qt-card pmd" style="cursor:pointer;" onclick="openViewQuote('QT-2836')">
                     <div class="qc-id">QT-2836</div>
                     <div class="qc-client">Dubai Ports Authority</div>
                     <div class="qc-amount">AED 89,500</div>
@@ -8136,7 +8139,7 @@
                       <span class="ver-badge" style="cursor:default;">v1</span>
                       <span class="qc-date">11 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View PDF →</span>
                       <button class="tbl-btn gold" onclick="newRevision('QT-2836')">Revise</button>
                     </div>
@@ -8151,20 +8154,20 @@
                   <span class="pill pill-green">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card appr">
+                  <div class="qt-card appr" style="cursor:pointer;" onclick="openViewQuote('QT-2838')">
                     <div class="qc-id">QT-2838</div>
                     <div class="qc-client">Al-Zahra Medical Center</div>
                     <div class="qc-amount">AED 31,500</div>
                     <div class="qc-meta">
-                      <span class="ver-badge latest" onclick="toggleVerHist('2838')" title="View history">v1 ▾</span>
+                      <span class="ver-badge latest" onclick="event.stopPropagation();toggleVerHist('2838')" title="View history">v1 ▾</span>
                       <span class="qc-date">15 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <button class="tbl-btn">Convert to PO</button>
                       <button class="tbl-btn gold" onclick="newRevision('QT-2838')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card appr">
+                  <div class="qt-card appr" style="cursor:pointer;" onclick="openViewQuote('QT-2835')">
                     <div class="qc-id">QT-2835</div>
                     <div class="qc-client">Gulf Metals Trading</div>
                     <div class="qc-amount">AED 22,000</div>
@@ -8172,7 +8175,7 @@
                       <span class="ver-badge latest" style="cursor:default;">v1</span>
                       <span class="qc-date">10 Jun 2026</span>
                     </div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <button class="tbl-btn">Convert to PO</button>
                     </div>
                   </div>
@@ -8186,7 +8189,7 @@
                   <span class="pill pill-purple">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card conv">
+                  <div class="qt-card conv" style="cursor:pointer;" onclick="openViewQuote('QT-2830')">
                     <div class="qc-id">QT-2830</div>
                     <div class="qc-client">AeroTech Engineering</div>
                     <div class="qc-amount">AED 45,200</div>
@@ -8196,11 +8199,11 @@
                     </div>
                     <div style="font-size:10px;color:#7C3AED;font-weight:600;margin-top:6px;"><i
                         class="ti ti-arrow-right" style="font-size:10px;"></i> SO-2026-081</div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View SO →</span>
                     </div>
                   </div>
-                  <div class="qt-card conv">
+                  <div class="qt-card conv" style="cursor:pointer;" onclick="openViewQuote('QT-2828')">
                     <div class="qc-id">QT-2828</div>
                     <div class="qc-client">Dubai Textile Trading LLC</div>
                     <div class="qc-amount">AED 41,000</div>
@@ -8210,7 +8213,7 @@
                     </div>
                     <div style="font-size:10px;color:#7C3AED;font-weight:600;margin-top:6px;"><i
                         class="ti ti-arrow-right" style="font-size:10px;"></i> INV/26/079</div>
-                    <div class="qc-actions">
+                    <div class="qc-actions" onclick="event.stopPropagation()">
                       <span class="tbl-action">View Invoice →</span>
                     </div>
                   </div>
@@ -9679,11 +9682,10 @@
                   <th>Credit Limit</th>
                   <th>Outstanding</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr data-ctype="existing" data-status="active">
+                <tr data-ctype="existing" data-status="active" style="cursor:pointer;" onclick="openCustDrawer('ACC-001','Al-Faris Industrial LLC','Jebel Ali Free Zone','Fahad Al-Faris','+971-4-881-2200','fahad@alfaris.ae','150000','42000','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-001</td>
                   <td>
                     <div class="c-name">Al-Faris Industrial LLC</div>
@@ -9696,11 +9698,8 @@
                   <td style="font-size:12px;font-weight:600;">AED 150,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 42,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-001','Al-Faris Industrial LLC','Jebel Ali Free Zone','Fahad Al-Faris','+971-4-881-2200','fahad@alfaris.ae','150000','42000','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr data-ctype="existing" data-status="active">
+                <tr data-ctype="existing" data-status="active" style="cursor:pointer;" onclick="openCustDrawer('ACC-002','Gulf Metals Trading','Dubai Industrial City','Nasser Al-Ghanim','+971-4-883-4100','nasser@gulfmetals.ae','100000','34000','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-002</td>
                   <td>
                     <div class="c-name">Gulf Metals Trading</div>
@@ -9713,11 +9712,8 @@
                   <td style="font-size:12px;font-weight:600;">AED 100,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 34,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-002','Gulf Metals Trading','Dubai Industrial City','Nasser Al-Ghanim','+971-4-883-4100','nasser@gulfmetals.ae','100000','34000','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr data-ctype="existing" data-status="active">
+                <tr data-ctype="existing" data-status="active" style="cursor:pointer;" onclick="openCustDrawer('ACC-003','AeroTech Engineering','Abu Dhabi Industrial','Saeed Al-Mazrouei','+971-2-644-1800','saeed@aerotech.ae','200000','0','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-003</td>
                   <td>
                     <div class="c-name">AeroTech Engineering</div>
@@ -9730,11 +9726,8 @@
                   <td style="font-size:12px;font-weight:600;">AED 200,000</td>
                   <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-003','AeroTech Engineering','Abu Dhabi Industrial','Saeed Al-Mazrouei','+971-2-644-1800','saeed@aerotech.ae','200000','0','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr data-ctype="new" data-status="active">
+                <tr data-ctype="new" data-status="active" style="cursor:pointer;" onclick="openCustDrawer('ACC-004','Desert Shield Safety','Sharjah Industrial Area','Rashid Al-Khalidi','+971-6-533-8800','rashid@desertshield.ae','75000','18000','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-004</td>
                   <td>
                     <div class="c-name">Desert Shield Safety</div>
@@ -9747,11 +9740,8 @@
                   <td style="font-size:12px;font-weight:600;">AED 75,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 18,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-004','Desert Shield Safety','Sharjah Industrial Area','Rashid Al-Khalidi','+971-6-533-8800','rashid@desertshield.ae','75000','18000','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr data-ctype="existing" data-status="hold">
+                <tr data-ctype="existing" data-status="hold" style="cursor:pointer;" onclick="openCustDrawer('ACC-005','PetroGulf Services','Dubai South','Tariq Al-Suwaidi','+971-4-339-0000','tariq@petrogulf.ae','250000','65000','On Hold','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#9aaabb;">ACC-005</td>
                   <td>
                     <div class="c-name">PetroGulf Services</div>
@@ -9764,11 +9754,8 @@
                   <td style="font-size:12px;font-weight:600;">AED 250,000</td>
                   <td style="font-size:12px;font-weight:600;color:#E24B4A;">AED 65,000</td>
                   <td><span class="pill pill-amber">On Hold</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-005','PetroGulf Services','Dubai South','Tariq Al-Suwaidi','+971-4-339-0000','tariq@petrogulf.ae','250000','65000','On Hold','')">View
-                      →</span></td>
                 </tr>
-                <tr data-ctype="new" data-status="active">
+                <tr data-ctype="new" data-status="active" style="cursor:pointer;" onclick="openCustDrawer('ACC-006','JAFZA Industrial Co. LLC','Jebel Ali Free Zone','Hamad Al-Mulla','+971-4-881-6600','hamad@jafzaind.ae','80000','12000','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">ACC-006</td>
                   <td>
                     <div class="c-name">JAFZA Industrial Co. LLC</div>
@@ -9781,9 +9768,6 @@
                   <td style="font-size:12px;font-weight:600;">AED 80,000</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 12,000</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openCustDrawer('ACC-006','JAFZA Industrial Co. LLC','Jebel Ali Free Zone','Hamad Al-Mulla','+971-4-881-6600','hamad@jafzaind.ae','80000','12000','Active','')">View
-                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -9852,11 +9836,10 @@
                   <th>Payment Terms</th>
                   <th>Outstanding</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-001','Lincoln Electric ME FZE','Jebel Ali, Dubai','James Al-Rashid','Welding','+971-4-884-4400','james@lincolnme.ae','30 days net','24000','Preferred','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-001</td>
                   <td>
                     <div class="c-name">Lincoln Electric ME FZE</div>
@@ -9868,11 +9851,8 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 24,000</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-001','Lincoln Electric ME FZE','Jebel Ali, Dubai','James Al-Rashid','Welding','+971-4-884-4400','james@lincolnme.ae','30 days net','24000','Preferred','')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-002','Pewag International GmbH','Via JAFZA, Dubai','Klaus Weber','Lifting &amp; Rigging','+971-4-887-2200','k.weber@pewag.com','45 days net','12400','Preferred','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-002</td>
                   <td>
                     <div class="c-name">Pewag International GmbH</div>
@@ -9884,11 +9864,8 @@
                   <td style="font-size:11px;">45 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 12,400</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-002','Pewag International GmbH','Via JAFZA, Dubai','Klaus Weber','Lifting &amp; Rigging','+971-4-887-2200','k.weber@pewag.com','45 days net','12400','Preferred','')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-003','3M Gulf FZE','Dubai Airport FZ','Sara Al-Hosani','Safety PPE','+971-4-299-6000','sara.alhosani@3m.com','30 days net','8200','Preferred','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-003</td>
                   <td>
                     <div class="c-name">3M Gulf FZE</div>
@@ -9900,11 +9877,8 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 8,200</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-003','3M Gulf FZE','Dubai Airport FZ','Sara Al-Hosani','Safety PPE','+971-4-299-6000','sara.alhosani@3m.com','30 days net','8200','Preferred','')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-004','Stanley Black &amp; Decker ME','Business Bay, Dubai','David Al-Fahim','Hand Tools','+971-4-369-5800','d.alfahim@sbdme.ae','60 days net','0','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-004</td>
                   <td>
                     <div class="c-name">Stanley Black &amp; Decker ME</div>
@@ -9916,11 +9890,8 @@
                   <td style="font-size:11px;">60 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-004','Stanley Black &amp; Decker ME','Business Bay, Dubai','David Al-Fahim','Hand Tools','+971-4-369-5800','d.alfahim@sbdme.ae','60 days net','0','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-005','Norton Abrasives ME','Sharjah, U.A.E.','Faisal Al-Nasser','Abrasives','+971-6-543-9900','faisal@nortonme.ae','30 days net','6800','Active','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-005</td>
                   <td>
                     <div class="c-name">Norton Abrasives ME</div>
@@ -9932,11 +9903,8 @@
                   <td style="font-size:11px;">30 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 6,800</td>
                   <td><span class="pill pill-green">Active</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-005','Norton Abrasives ME','Sharjah, U.A.E.','Faisal Al-Nasser','Abrasives','+971-6-543-9900','faisal@nortonme.ae','30 days net','6800','Active','')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openVendorDrawer('VND-006','Crosby Group ME FZE','Jebel Ali, Dubai','Ali Al-Rasheed','Safety Lifting','+971-4-884-7700','ali@crosbygroup.ae','45 days net','5600','Preferred','')">
                   <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">VND-006</td>
                   <td>
                     <div class="c-name">Crosby Group ME FZE</div>
@@ -9948,9 +9916,6 @@
                   <td style="font-size:11px;">45 days net</td>
                   <td style="font-size:12px;font-weight:600;color:#EF9F27;">AED 5,600</td>
                   <td><span class="pill pill-green">Preferred</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openVendorDrawer('VND-006','Crosby Group ME FZE','Jebel Ali, Dubai','Ali Al-Rasheed','Safety Lifting','+971-4-884-7700','ali@crosbygroup.ae','45 days net','5600','Preferred','')">View
-                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -10015,7 +9980,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewPR('PR-0084')">
                   <td><span class="tbl-id">PR-0084</span></td>
                   <td>
                     <div class="c-name">Lincoln E6013 Welding Rods 3.2mm</div>
@@ -10027,9 +9992,9 @@
                   <td style="font-weight:600;">AED 8,400</td>
                   <td><span class="pill pill-red">High</span></td>
                   <td><span class="pill pill-amber">Pending</span></td>
-                  <td><button class="tbl-btn gold" onclick="goPage('purch-orders',this)">Create PO</button></td>
+                  <td><button class="tbl-btn gold" onclick="event.stopPropagation();goPage('purch-orders',this)">Create PO</button></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewPR('PR-0083')">
                   <td><span class="tbl-id">PR-0083</span></td>
                   <td>
                     <div class="c-name">3M Full-Face Respirator Series 6000</div>
@@ -10041,9 +10006,9 @@
                   <td style="font-weight:600;">AED 2,200</td>
                   <td><span class="pill pill-blue">Normal</span></td>
                   <td><span class="pill pill-green">Approved</span></td>
-                  <td><button class="tbl-btn gold" onclick="goPage('purch-orders',this)">Create PO</button></td>
+                  <td><button class="tbl-btn gold" onclick="event.stopPropagation();goPage('purch-orders',this)">Create PO</button></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewPR('PR-0082')">
                   <td><span class="tbl-id">PR-0082</span></td>
                   <td>
                     <div class="c-name">Pewag Grade 100 Chain 5T 6mm</div>
@@ -10055,9 +10020,9 @@
                   <td style="font-weight:600;">AED 9,250</td>
                   <td><span class="pill pill-red">High</span></td>
                   <td><span class="pill pill-blue">In Process</span></td>
-                  <td><span class="tbl-action">Track →</span></td>
+                  <td><span class="tbl-action" onclick="event.stopPropagation()">Track →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewPR('PR-0081')">
                   <td><span class="tbl-id">PR-0081</span></td>
                   <td>
                     <div class="c-name">Bahco 24-Piece Tool Set</div>
@@ -10069,9 +10034,9 @@
                   <td style="font-weight:600;">AED 5,700</td>
                   <td><span class="pill pill-blue">Normal</span></td>
                   <td><span class="pill pill-amber">Pending</span></td>
-                  <td><button class="tbl-btn gold" onclick="goPage('purch-orders',this)">Create PO</button></td>
+                  <td><button class="tbl-btn gold" onclick="event.stopPropagation();goPage('purch-orders',this)">Create PO</button></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openViewPR('PR-0080')">
                   <td><span class="tbl-id">PR-0080</span></td>
                   <td>
                     <div class="c-name">Norton Abrasive Grinding Discs 7"</div>
@@ -10083,7 +10048,7 @@
                   <td style="font-weight:600;">AED 1,800</td>
                   <td><span class="pill pill-amber">Medium</span></td>
                   <td><span class="pill pill-amber">Pending</span></td>
-                  <td><button class="tbl-btn gold" onclick="goPage('purch-orders',this)">Create PO</button></td>
+                  <td><button class="tbl-btn gold" onclick="event.stopPropagation();goPage('purch-orders',this)">Create PO</button></td>
                 </tr>
               </tbody>
             </table>
@@ -10175,21 +10140,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewVQ('VQ-2026-018')">
                     <td><span class="tbl-id">VQ-2026-018</span></td>
                     <td><b>Lincoln Electric ME</b></td>
                     <td><span class="tbl-id-grey">PR-0084</span></td>
                     <td style="font-size:11px;color:#5a7080;">Lincoln E6013 3.2mm × 200 pcs</td>
                     <td style="font-weight:600;">AED 7,800</td>
                     <td>25 Jun 2026</td>
-                    <td><span class="ver-badge latest" onclick="toggleVerHist('vq018')" title="View version history">v3
+                    <td><span class="ver-badge latest" onclick="event.stopPropagation();toggleVerHist('vq018')" title="View version history">v3
                         ▾</span></td>
                     <td><span class="pill pill-amber">Pending Review</span></td>
                     <td>
                       <div class="tbl-btn-group">
                         <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                          onclick="goPage('purch-orders',this)">Accept → PO</button>
-                        <button class="tbl-btn gold" onclick="newRevision('VQ-2026-018')">Request Revision</button>
+                          onclick="event.stopPropagation();goPage('purch-orders',this)">Accept → PO</button>
+                        <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-018')">Request Revision</button>
                       </div>
                     </td>
                   </tr>
@@ -10211,21 +10176,21 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewVQ('VQ-2026-016')">
                     <td><span class="tbl-id">VQ-2026-016</span></td>
                     <td><b>3M Gulf FZE</b></td>
                     <td><span class="tbl-id-grey">PR-0083</span></td>
                     <td style="font-size:11px;color:#5a7080;">Full-Face Respirator 6000 × 10 pcs</td>
                     <td style="font-weight:600;">AED 2,150</td>
                     <td>28 Jun 2026</td>
-                    <td><span class="ver-badge latest" onclick="toggleVerHist('vq016')" title="View version history">v2
+                    <td><span class="ver-badge latest" onclick="event.stopPropagation();toggleVerHist('vq016')" title="View version history">v2
                         ▾</span></td>
                     <td><span class="pill pill-blue">Under Review</span></td>
                     <td>
                       <div class="tbl-btn-group">
                         <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                          onclick="goPage('purch-orders',this)">Accept → PO</button>
-                        <button class="tbl-btn gold" onclick="newRevision('VQ-2026-016')">Request Revision</button>
+                          onclick="event.stopPropagation();goPage('purch-orders',this)">Accept → PO</button>
+                        <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-016')">Request Revision</button>
                       </div>
                     </td>
                   </tr>
@@ -10243,17 +10208,17 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewVQ('VQ-2026-014')">
                     <td><span class="tbl-id">VQ-2026-014</span></td>
                     <td><b>Norton Abrasives ME</b></td>
                     <td><span class="tbl-id-grey">PR-0080</span></td>
                     <td style="font-size:11px;color:#5a7080;">Grinding Discs 7" × 100 pcs</td>
                     <td style="font-weight:600;">AED 1,750</td>
                     <td>22 Jun 2026</td>
-                    <td><span class="ver-badge latest" onclick="toggleVerHist('vq014')" title="View version history">v1
+                    <td><span class="ver-badge latest" onclick="event.stopPropagation();toggleVerHist('vq014')" title="View version history">v1
                         ▾</span></td>
                     <td><span class="pill pill-green">Accepted</span></td>
-                    <td><span class="tbl-action">View PO →</span></td>
+                    <td><span class="tbl-action" onclick="event.stopPropagation()">View PO →</span></td>
                   </tr>
                   <tr class="ver-hist-row" id="vh-vq014">
                     <td colspan="9">
@@ -10265,21 +10230,21 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewVQ('VQ-2026-012')">
                     <td><span class="tbl-id">VQ-2026-012</span></td>
                     <td><b>Pewag International</b></td>
                     <td><span class="tbl-id-grey">PR-0082</span></td>
                     <td style="font-size:11px;color:#5a7080;">Grade 100 Chain 5T 6mm × 50 mtr</td>
                     <td style="font-weight:600;">AED 9,250</td>
                     <td>20 Jun 2026</td>
-                    <td><span class="ver-badge" onclick="toggleVerHist('vq012')" title="View version history">v1
+                    <td><span class="ver-badge" onclick="event.stopPropagation();toggleVerHist('vq012')" title="View version history">v1
                         ▾</span></td>
                     <td><span class="pill pill-purple">Revised</span></td>
                     <td>
                       <div class="tbl-btn-group">
                         <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                          onclick="goPage('purch-orders',this)">Accept → PO</button>
-                        <button class="tbl-btn gold" onclick="newRevision('VQ-2026-012')">Request Revision</button>
+                          onclick="event.stopPropagation();goPage('purch-orders',this)">Accept → PO</button>
+                        <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-012')">Request Revision</button>
                       </div>
                     </td>
                   </tr>
@@ -10293,7 +10258,7 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr style="cursor:pointer;" onclick="openViewVQ('VQ-2026-010')">
                     <td><span class="tbl-id">VQ-2026-010</span></td>
                     <td><b>Stanley Black &amp; Decker ME</b></td>
                     <td><span class="tbl-id-grey">PR-0081</span></td>
@@ -10302,7 +10267,7 @@
                     <td style="color:#E24B4A;">15 Jun 2026</td>
                     <td><span class="ver-badge" style="cursor:default;">v1</span></td>
                     <td><span class="pill pill-red">Expired</span></td>
-                    <td><button class="tbl-btn" onclick="openVendorQuote()">Re-request</button></td>
+                    <td><button class="tbl-btn" onclick="event.stopPropagation();openVendorQuote()">Re-request</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -10320,7 +10285,7 @@
                   <span class="pill pill-amber">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card padmin">
+                  <div class="qt-card padmin" style="cursor:pointer;" onclick="openViewVQ('VQ-2026-018')">
                     <div class="qc-id">VQ-2026-018</div>
                     <div class="qc-client">Lincoln Electric ME</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0084 · E6013 3.2mm × 200 pcs</div>
@@ -10331,11 +10296,11 @@
                     </div>
                     <div class="qc-actions">
                       <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                        onclick="goPage('purch-orders',null)">Accept → PO</button>
-                      <button class="tbl-btn gold" onclick="newRevision('VQ-2026-018')">Revise</button>
+                        onclick="event.stopPropagation();goPage('purch-orders',null)">Accept → PO</button>
+                      <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-018')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card padmin">
+                  <div class="qt-card padmin" style="cursor:pointer;" onclick="openViewVQ('VQ-2026-009')">
                     <div class="qc-id">VQ-2026-009</div>
                     <div class="qc-client">Bosch Gulf FZE</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0079 · Angle Grinder GWS × 10 units
@@ -10347,8 +10312,8 @@
                     </div>
                     <div class="qc-actions">
                       <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                        onclick="goPage('purch-orders',null)">Accept → PO</button>
-                      <button class="tbl-btn gold" onclick="newRevision('VQ-2026-009')">Revise</button>
+                        onclick="event.stopPropagation();goPage('purch-orders',null)">Accept → PO</button>
+                      <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-009')">Revise</button>
                     </div>
                   </div>
                 </div>
@@ -10361,7 +10326,7 @@
                   <span class="pill pill-blue">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card" style="border-left:3px solid #185FA5;">
+                  <div class="qt-card" style="border-left:3px solid #185FA5;cursor:pointer;" onclick="openViewVQ('VQ-2026-016')">
                     <div class="qc-id">VQ-2026-016</div>
                     <div class="qc-client">3M Gulf FZE</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0083 · Respirator 6000 × 10 pcs</div>
@@ -10372,11 +10337,11 @@
                     </div>
                     <div class="qc-actions">
                       <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                        onclick="goPage('purch-orders',null)">Accept → PO</button>
-                      <button class="tbl-btn gold" onclick="newRevision('VQ-2026-016')">Revise</button>
+                        onclick="event.stopPropagation();goPage('purch-orders',null)">Accept → PO</button>
+                      <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-016')">Revise</button>
                     </div>
                   </div>
-                  <div class="qt-card" style="border-left:3px solid #185FA5;">
+                  <div class="qt-card" style="border-left:3px solid #185FA5;cursor:pointer;" onclick="openViewVQ('VQ-2026-011')">
                     <div class="qc-id">VQ-2026-011</div>
                     <div class="qc-client">3M Gulf FZE</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0078 · Safety Helmet × 25 pcs</div>
@@ -10387,7 +10352,7 @@
                     </div>
                     <div class="qc-actions">
                       <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                        onclick="goPage('purch-orders',null)">Accept → PO</button>
+                        onclick="event.stopPropagation();goPage('purch-orders',null)">Accept → PO</button>
                     </div>
                   </div>
                 </div>
@@ -10400,7 +10365,7 @@
                   <span class="pill pill-purple">1</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card" style="border-left:3px solid #7C3AED;background:#faf9ff;">
+                  <div class="qt-card" style="border-left:3px solid #7C3AED;background:#faf9ff;cursor:pointer;" onclick="openViewVQ('VQ-2026-012')">
                     <div class="qc-id">VQ-2026-012</div>
                     <div class="qc-client">Pewag International</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0082 · Chain 5T 6mm × 50 mtr</div>
@@ -10411,8 +10376,8 @@
                     </div>
                     <div class="qc-actions">
                       <button class="tbl-btn" style="background:#E1F5EE;border-color:#a7d4c5;color:#0F6E56;"
-                        onclick="goPage('purch-orders',null)">Accept → PO</button>
-                      <button class="tbl-btn gold" onclick="newRevision('VQ-2026-012')">Revise</button>
+                        onclick="event.stopPropagation();goPage('purch-orders',null)">Accept → PO</button>
+                      <button class="tbl-btn gold" onclick="event.stopPropagation();newRevision('VQ-2026-012')">Revise</button>
                     </div>
                   </div>
                 </div>
@@ -10425,7 +10390,7 @@
                   <span class="pill pill-green">2</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card appr">
+                  <div class="qt-card appr" style="cursor:pointer;" onclick="openViewVQ('VQ-2026-014')">
                     <div class="qc-id">VQ-2026-014</div>
                     <div class="qc-client">Norton Abrasives ME</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0080 · Discs 7" × 100 pcs</div>
@@ -10434,9 +10399,9 @@
                       <span class="ver-badge latest" style="cursor:default;">v1</span>
                       <span class="qc-date">PO-2026-078</span>
                     </div>
-                    <div class="qc-actions"><span class="tbl-action">View PO →</span></div>
+                    <div class="qc-actions"><span class="tbl-action" onclick="event.stopPropagation()">View PO →</span></div>
                   </div>
-                  <div class="qt-card appr">
+                  <div class="qt-card appr" style="cursor:pointer;" onclick="openViewVQ('VQ-2026-008')">
                     <div class="qc-id">VQ-2026-008</div>
                     <div class="qc-client">Lincoln Electric ME</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0076 · E7018 Rods × 100 pcs</div>
@@ -10445,7 +10410,7 @@
                       <span class="ver-badge latest" style="cursor:default;">v2</span>
                       <span class="qc-date">PO-2026-074</span>
                     </div>
-                    <div class="qc-actions"><span class="tbl-action">View PO →</span></div>
+                    <div class="qc-actions"><span class="tbl-action" onclick="event.stopPropagation()">View PO →</span></div>
                   </div>
                 </div>
               </div>
@@ -10457,7 +10422,7 @@
                   <span class="pill pill-red">1</span>
                 </div>
                 <div class="qt-kb-body">
-                  <div class="qt-card" style="border-left:3px solid #E24B4A;opacity:0.75;">
+                  <div class="qt-card" style="border-left:3px solid #E24B4A;opacity:0.75;cursor:pointer;" onclick="openViewVQ('VQ-2026-010')">
                     <div class="qc-id">VQ-2026-010</div>
                     <div class="qc-client">Stanley Black &amp; Decker ME</div>
                     <div style="font-size:10px;color:#9aaabb;margin:2px 0 4px;">PR-0081 · Bahco Tool Set × 15 kits</div>
@@ -10467,7 +10432,7 @@
                       <span class="qc-date" style="color:#E24B4A;">Exp: 15 Jun</span>
                     </div>
                     <div class="qc-actions">
-                      <button class="tbl-btn" onclick="openVendorQuote()">Re-request</button>
+                      <button class="tbl-btn" onclick="event.stopPropagation();openVendorQuote()">Re-request</button>
                     </div>
                   </div>
                 </div>
@@ -10537,11 +10502,10 @@
                   <th>Total Amount</th>
                   <th>Fulfillment</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openPODrawer('PO-2026-081','Lincoln Electric ME FZE','Welding','14 Jun 2026','21 Jun 2026','45200','60','Partial','Lincoln E6013 welding rods × 200 pcs, MIG wire 0.8mm × 50 rolls')">
                   <td><span class="tbl-id">PO-2026-081</span></td>
                   <td><b>Lincoln Electric ME FZE</b></td>
                   <td><span class="pill pill-amber">Welding</span></td>
@@ -10555,11 +10519,8 @@
                     <div style="font-size:10px;color:#6a7f96;margin-top:2px;">60%</div>
                   </td>
                   <td><span class="pill pill-amber">Partial</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openPODrawer('PO-2026-081','Lincoln Electric ME FZE','Welding','14 Jun 2026','21 Jun 2026','45200','60','Partial','Lincoln E6013 welding rods × 200 pcs, MIG wire 0.8mm × 50 rolls')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openPODrawer('PO-2026-079','Pewag International GmbH','Lifting','12 Jun 2026','16 Jun 2026','28000','0','Delayed','Pewag Grade 100 chain 5T × 200m. Vendor reported shipment delay from Austria.')">
                   <td><span class="tbl-id">PO-2026-079</span></td>
                   <td><b>Pewag International GmbH</b></td>
                   <td><span class="pill pill-blue">Lifting</span></td>
@@ -10573,11 +10534,8 @@
                     <div style="font-size:10px;color:#E24B4A;margin-top:2px;">Delayed</div>
                   </td>
                   <td><span class="pill pill-red">Delayed</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openPODrawer('PO-2026-079','Pewag International GmbH','Lifting','12 Jun 2026','16 Jun 2026','28000','0','Delayed','Pewag Grade 100 chain 5T × 200m. Vendor reported shipment delay from Austria.')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openPODrawer('PO-2026-078','3M Gulf FZE','Safety PPE','10 Jun 2026','17 Jun 2026','12400','100','Delivered','3M P100 respirator cartridges × 200 units, safety glasses × 50 pairs.')">
                   <td><span class="tbl-id">PO-2026-078</span></td>
                   <td><b>3M Gulf FZE</b></td>
                   <td><span class="pill pill-green">Safety PPE</span></td>
@@ -10591,11 +10549,8 @@
                     <div style="font-size:10px;color:#1D9E75;margin-top:2px;">100%</div>
                   </td>
                   <td><span class="pill pill-green">Delivered</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openPODrawer('PO-2026-078','3M Gulf FZE','Safety PPE','10 Jun 2026','17 Jun 2026','12400','100','Delivered','3M P100 respirator cartridges × 200 units, safety glasses × 50 pairs.')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openPODrawer('PO-2026-075','Norton Abrasives ME','Abrasives','08 Jun 2026','14 Jun 2026','8400','100','Delivered','Norton 7&quot; cutting discs × 500 pcs, grinding wheels × 100 pcs.')">
                   <td><span class="tbl-id">PO-2026-075</span></td>
                   <td><b>Norton Abrasives ME</b></td>
                   <td><span class="pill pill-red">Abrasives</span></td>
@@ -10609,11 +10564,8 @@
                     <div style="font-size:10px;color:#1D9E75;margin-top:2px;">100%</div>
                   </td>
                   <td><span class="pill pill-green">Delivered</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openPODrawer('PO-2026-075','Norton Abrasives ME','Abrasives','08 Jun 2026','14 Jun 2026','8400','100','Delivered','Norton 7&quot; cutting discs × 500 pcs, grinding wheels × 100 pcs.')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openPODrawer('PO-2026-072','Crosby Group ME FZE','Safety Lifting','05 Jun 2026','19 Jun 2026','18600','30','Partial','Crosby shackles × 50 pcs, safety harness sets × 10 units.')">
                   <td><span class="tbl-id">PO-2026-072</span></td>
                   <td><b>Crosby Group ME FZE</b></td>
                   <td><span class="pill pill-blue">Safety Lifting</span></td>
@@ -10627,9 +10579,6 @@
                     <div style="font-size:10px;color:#6a7f96;margin-top:2px;">30%</div>
                   </td>
                   <td><span class="pill pill-amber">Partial</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openPODrawer('PO-2026-072','Crosby Group ME FZE','Safety Lifting','05 Jun 2026','19 Jun 2026','18600','30','Partial','Crosby shackles × 50 pcs, safety harness sets × 10 units.')">View
-                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -10694,11 +10643,10 @@
                   <th>Amount</th>
                   <th>PO Reference</th>
                   <th>Payment Status</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr style="background:#fff8f8;">
+                <tr style="background:#fff8f8;cursor:pointer;" onclick="openInvDrawer('PINV-2026-041','Lincoln Electric ME FZE','Welding','14 Jun 2026','14 Jul 2026','45200','PO-2026-081','Unpaid')">
                   <td><span class="tbl-id">PINV-2026-041</span></td>
                   <td><b>Lincoln Electric ME FZE</b></td>
                   <td><span class="pill pill-amber">Welding</span></td>
@@ -10707,12 +10655,8 @@
                   <td style="font-weight:600;">AED 45,200</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-081</td>
                   <td><span class="pill pill-red">Unpaid</span></td>
-                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
-                      Now</button><span class="tbl-action"
-                      onclick="openInvDrawer('PINV-2026-041','Lincoln Electric ME FZE','Welding','14 Jun 2026','14 Jul 2026','45200','PO-2026-081','Unpaid')">View
-                      →</span></td>
                 </tr>
-                <tr style="background:#fff8ec;">
+                <tr style="background:#fff8ec;cursor:pointer;" onclick="openInvDrawer('PINV-2026-039','Pewag International GmbH','Lifting','05 Jun 2026','16 Jun 2026','28000','PO-2026-079','Overdue')">
                   <td><span class="tbl-id">PINV-2026-039</span></td>
                   <td><b>Pewag International GmbH</b></td>
                   <td><span class="pill pill-blue">Lifting</span></td>
@@ -10721,12 +10665,8 @@
                   <td style="font-weight:600;">AED 28,000</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-079</td>
                   <td><span class="pill pill-red">Overdue</span></td>
-                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
-                      Now</button><span class="tbl-action"
-                      onclick="openInvDrawer('PINV-2026-039','Pewag International GmbH','Lifting','05 Jun 2026','16 Jun 2026','28000','PO-2026-079','Overdue')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openInvDrawer('PINV-2026-038','3M Gulf FZE','Safety PPE','10 Jun 2026','10 Jul 2026','12400','PO-2026-078','Paid')">
                   <td><span class="tbl-id">PINV-2026-038</span></td>
                   <td><b>3M Gulf FZE</b></td>
                   <td><span class="pill pill-green">Safety PPE</span></td>
@@ -10735,11 +10675,8 @@
                   <td style="font-weight:600;">AED 12,400</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-078</td>
                   <td><span class="pill pill-green">Paid</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openInvDrawer('PINV-2026-038','3M Gulf FZE','Safety PPE','10 Jun 2026','10 Jul 2026','12400','PO-2026-078','Paid')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openInvDrawer('PINV-2026-035','Norton Abrasives ME','Abrasives','08 Jun 2026','08 Jul 2026','8400','PO-2026-075','Paid')">
                   <td><span class="tbl-id">PINV-2026-035</span></td>
                   <td><b>Norton Abrasives ME</b></td>
                   <td><span class="pill pill-red">Abrasives</span></td>
@@ -10748,11 +10685,8 @@
                   <td style="font-weight:600;">AED 8,400</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-075</td>
                   <td><span class="pill pill-green">Paid</span></td>
-                  <td><span class="tbl-action"
-                      onclick="openInvDrawer('PINV-2026-035','Norton Abrasives ME','Abrasives','08 Jun 2026','08 Jul 2026','8400','PO-2026-075','Paid')">View
-                      →</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openInvDrawer('PINV-2026-032','Crosby Group ME FZE','Safety Lifting','01 Jun 2026','01 Jul 2026','18600','PO-2026-072','Unpaid')">
                   <td><span class="tbl-id">PINV-2026-032</span></td>
                   <td><b>Crosby Group ME FZE</b></td>
                   <td><span class="pill pill-blue">Safety Lifting</span></td>
@@ -10761,10 +10695,6 @@
                   <td style="font-weight:600;">AED 18,600</td>
                   <td style="font-size:11px;font-family:monospace;color:#6a7f96;">PO-2026-072</td>
                   <td><span class="pill pill-red">Unpaid</span></td>
-                  <td style="display:flex;gap:6px;align-items:center;"><button class="tbl-btn gold">Pay
-                      Now</button><span class="tbl-action"
-                      onclick="openInvDrawer('PINV-2026-032','Crosby Group ME FZE','Safety Lifting','01 Jun 2026','01 Jul 2026','18600','PO-2026-072','Unpaid')">View
-                      →</span></td>
                 </tr>
               </tbody>
             </table>
@@ -13453,6 +13383,116 @@
   <!-- ══ ADD LEAD DRAWER ══ -->
 
   <!-- ── PURCHASE ORDER VIEW DRAWER ── -->
+  <!-- ── SALES QUOTE VIEW DRAWER ── -->
+  <div class="drawer-overlay" id="sqv-overlay" onclick="closeViewQuote()"></div>
+  <div class="lead-drawer" id="sqv-drawer">
+
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#C9A84C;"></i>Quotation Details</div>
+        <div class="drawer-sub">Ref: <span class="d-code-preview" id="sqv-code">QT-0000</span>&nbsp;·&nbsp;<span id="sqv-version" style="font-size:11px;color:#6a7f96;"></span>&nbsp;<span id="sqv-status-badge"></span></div>
+      </div>
+      <button class="drawer-close" onclick="closeViewQuote()"><i class="ti ti-x"></i></button>
+    </div>
+
+    <div class="drawer-body">
+
+      <div class="drawer-section-title">Customer Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Customer Name</label>
+          <input class="d-input" id="sqv-cust" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Quote Date</label>
+          <input class="d-input" id="sqv-date" type="date" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Territory</label>
+          <input class="d-input" id="sqv-territory" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Assigned SE</label>
+          <input class="d-input" id="sqv-se" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Validity</label>
+          <input class="d-input" id="sqv-validity" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="sqv-contact" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="sqv-phone" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="sqv-email" type="email" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Quote Terms</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <input class="d-input" id="sqv-payment" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Delivery Terms</label>
+          <input class="d-input" id="sqv-delivery" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Currency</label>
+          <input class="d-input" id="sqv-currency" type="text" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Line Items</div>
+      <table class="qt-items-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="width:38%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Disc %</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="sqv-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="sqv-subtotal">AED 0</td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="5" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="sqv-vat">AED 0</td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="5" style="text-align:right;">Grand Total</td>
+            <td id="sqv-grand" style="color:#C9A84C;font-weight:700;">AED 0</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="sqv-notes" readonly></textarea>
+      </div>
+
+    </div><!-- /drawer-body -->
+
+    <div class="drawer-foot" id="sqv-foot"></div>
+
+  </div><!-- /sqv-drawer -->
+
   <div class="drawer-overlay" id="po-overlay" onclick="closePODrawer()"></div>
   <div class="lead-drawer" id="po-drawer">
     <div class="drawer-head">
@@ -14435,7 +14475,163 @@
 
   </div><!-- /pr-drawer -->
 
-  <!-- ── LOG REQUIREMENT DRAWER ── -->
+  <!-- ── SALES REQ VIEW DRAWER ── -->
+  <div class="drawer-overlay" id="vreq-overlay" onclick="closeViewReq()"></div>
+  <div class="lead-drawer" id="vreq-drawer">
+
+    <!-- HEAD -->
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-clipboard-list" style="margin-right:6px;color:#C9A84C;"></i>Requirement Details</div>
+        <div class="drawer-sub">Ref: <span class="d-code-preview" id="vreq-code">REQ-0000</span></div>
+      </div>
+      <button class="drawer-close" onclick="closeViewReq()"><i class="ti ti-x"></i></button>
+    </div>
+
+    <!-- BODY -->
+    <div class="drawer-body">
+
+      <div class="drawer-section-title">Client Info</div>
+
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Client Name <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="vreq-client" type="text" placeholder="e.g. Al-Wasl Industrial Group" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Location</label>
+          <input class="d-input" id="vreq-location" type="text" placeholder="e.g. Jebel Ali FZ" />
+        </div>
+      </div>
+
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Territory <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="vreq-territory">
+            <option value="">— Select —</option>
+            <option>Dubai North</option>
+            <option>Dubai South</option>
+            <option>Abu Dhabi</option>
+            <option>Sharjah</option>
+            <option>RAK / Northern Emirates</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Assigned SE <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="vreq-se">
+            <option value="">— Select SE —</option>
+            <option>Ahmed M.</option>
+            <option>Fatima R.</option>
+            <option>Noor Z.</option>
+            <option>Waleed H.</option>
+            <option>Khalid J.</option>
+            <option>Hana Q.</option>
+            <option>S. Al-Rashidi</option>
+            <option>M. Al-Hamdan</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Priority <span style="color:#E24B4A;">*</span></label>
+          <select class="d-select" id="vreq-priority">
+            <option value="">— Select —</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Normal</option>
+            <option>Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Requirement Details</div>
+
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Product / Item Description <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="vreq-product" type="text" placeholder="e.g. Quanta 100AH Batteries" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Brand / Make</label>
+          <input class="d-input" id="vreq-brand" type="text" placeholder="e.g. Quanta" />
+        </div>
+      </div>
+
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Quantity <span style="color:#E24B4A;">*</span></label>
+          <input class="d-input" id="vreq-qty" type="number" min="1" placeholder="e.g. 12" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Unit of Measure</label>
+          <select class="d-select" id="vreq-uom">
+            <option>Units</option>
+            <option>Packs</option>
+            <option>Kg</option>
+            <option>Meters</option>
+            <option>Sets</option>
+            <option>Boxes</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Required By</label>
+          <input class="d-input" id="vreq-date" type="date" />
+        </div>
+      </div>
+
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Category</label>
+          <select class="d-select" id="vreq-category">
+            <option value="">— Select —</option>
+            <option>Welding Consumables</option>
+            <option>Safety PPE</option>
+            <option>Lifting Equipment</option>
+            <option>Hand Tools</option>
+            <option>Abrasives</option>
+            <option>Power Tools</option>
+            <option>Batteries &amp; UPS</option>
+            <option>Industrial Supplies</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="d-field">
+          <label class="d-label">Estimated Value (AED)</label>
+          <input class="d-input" id="vreq-value" type="number" min="0" placeholder="e.g. 4800" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Source</label>
+          <select class="d-select" id="vreq-source">
+            <option>Customer Visit</option>
+            <option>Phone / WhatsApp</option>
+            <option>Email</option>
+            <option>Walk-in</option>
+            <option>Tender</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+
+      <div class="d-field">
+        <label class="d-label">Remarks / Context</label>
+        <textarea class="d-textarea" id="vreq-notes"
+          placeholder="e.g. Customer needs delivery by end of month · compare with Lincoln alternative"></textarea>
+      </div>
+
+    </div><!-- /drawer-body -->
+
+    <!-- FOOT -->
+    <div class="drawer-foot">
+      <button class="btn-primary" style="flex:1;" id="vreq-quote-btn" onclick="createQuoteFromViewReq()">
+        <i class="ti ti-file-invoice" style="font-size:13px;margin-right:4px;"></i>Create Quote
+      </button>
+      <button class="tbl-btn" style="padding:9px 16px;" id="vreq-pr-btn" onclick="closeViewReq();goPage('purch-req',null)">
+        <i class="ti ti-shopping-bag" style="font-size:13px;margin-right:4px;"></i>Raise PR
+      </button>
+      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeViewReq()">Close</button>
+    </div>
+
+  </div><!-- /vreq-drawer -->
+
   <div class="drawer-overlay" id="req-overlay" onclick="closeLogReq()"></div>
   <div class="lead-drawer" id="req-drawer">
 
@@ -14816,6 +15012,146 @@
 
   </div><!-- /lead-drawer -->
 
+  <!-- ══ PURCHASE REQUIREMENT VIEW PANEL ══ -->
+  <div class="drawer-overlay" id="pr-view-overlay" onclick="closeViewPR()"></div>
+  <div class="lead-drawer" id="pr-view-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-clipboard-list" style="margin-right:6px;color:#C9A84C;"></i>Purchase Requirement</div>
+        <div class="drawer-sub">Ref: <span class="d-code-preview" id="prv-code">PR-0000</span>&nbsp;·&nbsp;<span id="prv-status-badge"></span></div>
+      </div>
+      <button class="drawer-close" onclick="closeViewPR()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-section-title">Item Details</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Item Description</label>
+          <input class="d-input" id="prv-item" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Category / Sub-type</label>
+          <input class="d-input" id="prv-sub" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Quantity</label>
+          <input class="d-input" id="prv-qty" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Est. Value</label>
+          <input class="d-input" id="prv-value" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Priority</label>
+          <input class="d-input" id="prv-priority" type="text" readonly />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Sourcing & Vendor</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Preferred Vendor</label>
+          <input class="d-input" id="prv-vendor" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Requested By</label>
+          <input class="d-input" id="prv-reqby" type="text" readonly />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="prv-notes" readonly></textarea>
+      </div>
+    </div>
+    <div class="drawer-foot" id="prv-foot"></div>
+  </div><!-- /pr-view-drawer -->
+
+  <!-- ══ VENDOR QUOTATION VIEW PANEL ══ -->
+  <div class="drawer-overlay" id="vq-view-overlay" onclick="closeViewVQ()"></div>
+  <div class="lead-drawer" id="vq-view-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-file-invoice" style="margin-right:6px;color:#C9A84C;"></i>Vendor Quotation</div>
+        <div class="drawer-sub">Ref: <span class="d-code-preview" id="vqv-code">VQ-0000</span>&nbsp;·&nbsp;<span id="vqv-version" style="font-size:11px;color:#6a7f96;"></span>&nbsp;<span id="vqv-status-badge"></span></div>
+      </div>
+      <button class="drawer-close" onclick="closeViewVQ()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-section-title">Vendor Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Vendor Name</label>
+          <input class="d-input" id="vqv-vendor" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Quote Date</label>
+          <input class="d-input" id="vqv-date" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">PR Reference</label>
+          <input class="d-input" id="vqv-pr" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Validity</label>
+          <input class="d-input" id="vqv-validity" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <input class="d-input" id="vqv-payment" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="vqv-contact" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="vqv-phone" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="vqv-email" type="email" readonly />
+        </div>
+      </div>
+      <div class="drawer-section-title" style="margin-top:4px;">Line Items</div>
+      <table class="qt-items-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="width:40%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="vqv-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="vqv-subtotal">AED 0</td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="vqv-vat">AED 0</td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="4" style="text-align:right;">Grand Total</td>
+            <td id="vqv-grand" style="color:#C9A84C;font-weight:700;">AED 0</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="vqv-notes" readonly></textarea>
+      </div>
+    </div>
+    <div class="drawer-foot" id="vqv-foot"></div>
+  </div><!-- /vq-view-drawer -->
+
   <script>
     /* ── PURCHASE ORDER VIEW DRAWER ── */
     function openPODrawer(poNum, vendor, category, poDate, delivery, amount, fulfillment, status, items) {
@@ -15039,6 +15375,8 @@
       const tbody = document.querySelector('#vendor-accounts-table tbody');
       if (!tbody) { closeVendorDrawer(); return; }
       const tr = document.createElement('tr');
+      tr.style.cursor = 'pointer';
+      tr.setAttribute('onclick', `openVendorDrawer('${code}','${name}','${location}','${contact}','${category}','${phone}','${email}','${terms}','0','${status}','${notes.replace(/'/g, "\\'")}')` );
       tr.innerHTML = `
         <td style="font-family:monospace;font-size:11px;font-weight:700;color:#C9A84C;">${code}</td>
         <td>
@@ -15050,8 +15388,7 @@
         <td style="font-size:11px;color:#6a7f96;">${phone}</td>
         <td style="font-size:11px;">${terms}</td>
         <td style="font-size:12px;font-weight:600;color:#1D9E75;">AED 0</td>
-        <td><span class="pill ${stPill}">${status}</span></td>
-        <td><span class="tbl-action" onclick="openVendorDrawer('${code}','${name}','${location}','${contact}','${category}','${phone}','${email}','${terms}','0','${status}','${notes.replace(/'/g, "\\'")}')">View →</span></td>`;
+        <td><span class="pill ${stPill}">${status}</span></td>`;
       tbody.insertBefore(tr, tbody.firstChild);
       _vendorSeq++;
       closeVendorDrawer();
@@ -15559,6 +15896,259 @@
       document.getElementById('req-overlay').classList.remove('open');
       document.getElementById('req-drawer').classList.remove('open');
       resetReqDrawer();
+    }
+
+    var REQ_VIEW_DATA = {
+      'REQ-1092': { client:'Al-Wasl Industrial Group', location:'Dubai Industrial City', territory:'Dubai North', se:'S. Al-Rashidi', priority:'High', product:'Quanta 100AH Batteries', brand:'Quanta', qty:'12', uom:'Units', date:'', category:'Batteries & UPS', value:'', source:'Customer Visit', notes:'', showPR:true },
+      'REQ-1095': { client:'Emirates Global Travels', location:'Deira, Dubai', territory:'Dubai North', se:'M. Al-Hamdan', priority:'Normal', product:'Microtek 5KVA Online UPS', brand:'Microtek', qty:'2', uom:'Units', date:'', category:'Batteries & UPS', value:'', source:'Email', notes:'', showPR:true },
+      'REQ-1098': { client:'Khaleeji Steel Works', location:'Sharjah Industrial Area', territory:'Sharjah', se:'S. Al-Rashidi', priority:'Medium', product:'Lincoln E6013 Welding Rods 3.2mm', brand:'Lincoln Electric', qty:'50', uom:'Packs', date:'', category:'Welding Consumables', value:'', source:'Customer Visit', notes:'', showPR:false },
+      'REQ-1099': { client:'Al-Nasr Logistics', location:'Abu Dhabi', territory:'Abu Dhabi', se:'M. Al-Hamdan', priority:'High', product:'3M Full-Face Respirator 6000', brand:'3M', qty:'10', uom:'Units', date:'', category:'Safety PPE', value:'', source:'Phone / WhatsApp', notes:'', showPR:true }
+    };
+
+    function openViewReq(code) {
+      var d = REQ_VIEW_DATA[code];
+      if (!d) return;
+      document.getElementById('vreq-code').textContent = code;
+      document.getElementById('vreq-client').value = d.client;
+      document.getElementById('vreq-location').value = d.location;
+      document.getElementById('vreq-product').value = d.product;
+      document.getElementById('vreq-brand').value = d.brand;
+      document.getElementById('vreq-qty').value = d.qty;
+      document.getElementById('vreq-date').value = d.date;
+      document.getElementById('vreq-value').value = d.value;
+      document.getElementById('vreq-notes').value = d.notes;
+      setSelectVal('vreq-territory', d.territory);
+      setSelectVal('vreq-se', d.se);
+      setSelectVal('vreq-priority', d.priority);
+      setSelectVal('vreq-uom', d.uom);
+      setSelectVal('vreq-category', d.category);
+      setSelectVal('vreq-source', d.source);
+      document.getElementById('vreq-pr-btn').style.display = d.showPR ? '' : 'none';
+      document.getElementById('vreq-overlay').classList.add('open');
+      document.getElementById('vreq-drawer').classList.add('open');
+    }
+
+    function closeViewReq() {
+      document.getElementById('vreq-overlay').classList.remove('open');
+      document.getElementById('vreq-drawer').classList.remove('open');
+    }
+
+    function createQuoteFromViewReq() {
+      var customer = document.getElementById('vreq-client').value.trim();
+      var product  = document.getElementById('vreq-product').value.trim();
+      var qty      = document.getElementById('vreq-qty').value.trim() || '1';
+      var se       = document.getElementById('vreq-se').value;
+
+      closeViewReq();
+
+      goPage('quotations');
+      openNewQuote();
+
+      var custEl = document.getElementById('qt-cust');
+      if (custEl) { custEl.value = customer; checkQtCustomer(); }
+
+      var seEl = document.getElementById('qt-se');
+      if (seEl) {
+        for (var i = 0; i < seEl.options.length; i++) {
+          if (seEl.options[i].text.includes(se) || seEl.options[i].value.includes(se)) {
+            seEl.selectedIndex = i; break;
+          }
+        }
+      }
+
+      var tbody = document.getElementById('qt-items-body');
+      if (tbody) {
+        tbody.innerHTML = '';
+        _qtRowIdx = 0;
+        qtAddRow(product, qty, '', '0');
+        qtCalc();
+      }
+    }
+
+    var QUOTE_DATA = {
+      'QT-2844':{ customer:'Falcon Safety LLC', date:'2026-06-18', territory:'Dubai South', se:'Khalid J.', validity:'30 days', payment:'30 days credit', delivery:'Delivered to site', currency:'AED', contact:'Khalid Jassim', phone:'+971 50 112 2334', email:'khalid@falcon.ae', status:'Draft', statusClass:'pill-grey', version:'v1', soRef:'', items:[{desc:'Safety Harness Full Body',qty:50,price:380,disc:0},{desc:'3M Respirator Cartridge P100',qty:100,price:79,disc:0}], notes:'' },
+      'QT-2843':{ customer:'RAK Steel Industries', date:'2026-06-17', territory:'RAK / Northern Emirates', se:'Waleed H.', validity:'30 days', payment:'Cash on delivery', delivery:'Ex-works DIP 2', currency:'AED', contact:'Sales Manager', phone:'+971 7 244 5566', email:'sales@raksteel.ae', status:'Draft', statusClass:'pill-grey', version:'v1', soRef:'', items:[{desc:'Welding Cable 35mm²',qty:100,price:82,disc:5},{desc:'Electrode Holder 500A',qty:20,price:185,disc:0}], notes:'' },
+      'QT-2842':{ customer:'Al-Nasr Logistics', date:'2026-06-16', territory:'Abu Dhabi', se:'Fatima R.', validity:'30 days', payment:'30 days credit', delivery:'Delivered to site', currency:'AED', contact:'M. Al-Hamdan', phone:'+971 2 556 7788', email:'procurement@alnasr.ae', status:'Pending Admin', statusClass:'pill-blue', version:'v1', soRef:'', items:[{desc:'3M Full-Face Respirator 6000',qty:10,price:1680,disc:0},{desc:'P100 Filter Cartridge (pair)',qty:20,price:120,disc:0}], notes:'' },
+      'QT-2840':{ customer:'Sharjah Cement Factory', date:'2026-06-14', territory:'Sharjah', se:'Hana Q.', validity:'45 days', payment:'60 days credit', delivery:'FOB Dubai', currency:'AED', contact:'Procurement Dept.', phone:'+971 6 533 1122', email:'info@shj-cement.ae', status:'Pending Admin', statusClass:'pill-blue', version:'v2', soRef:'', items:[{desc:'Lincoln Electric E6013 3.2mm',qty:500,price:76,disc:0}], notes:'Revised — added expedited delivery. Original v1 was AED 33,000.' },
+      'QT-2839':{ customer:'Emirates Precision Works', date:'2026-06-13', territory:'Dubai North', se:'Waleed H.', validity:'15 days', payment:'Advance payment', delivery:'Ex-works DIP 2', currency:'AED', contact:'EPW Admin', phone:'+971 4 881 2233', email:'info@epw.ae', status:'Pending Admin', statusClass:'pill-blue', version:'v1', soRef:'', items:[{desc:'Precision Abrasive Disc 5"',qty:200,price:39,disc:0}], notes:'' },
+      'QT-2841':{ customer:'Khaleeji Steel Works', date:'2026-06-17', territory:'Sharjah', se:'Ahmed M.', validity:'30 days', payment:'30 days credit', delivery:'Delivered to site', currency:'AED', contact:'Mohammed Khaleeji', phone:'+971 50 775 3388', email:'mkhaleeji@khaleeji.ae', status:'Pending MD', statusClass:'pill-amber', version:'v2', soRef:'', items:[{desc:'Quanta 100AH Battery',qty:12,price:3250,disc:0},{desc:'Lincoln E6013 Welding Rods 3.2mm',qty:50,price:76,disc:12}], notes:'Revised — added 50 units Lincoln E6013, updated delivery terms.' },
+      'QT-2836':{ customer:'Dubai Ports Authority', date:'2026-06-11', territory:'Dubai North', se:'Ahmed M.', validity:'60 days', payment:'LC / Bank guarantee', delivery:'CIF', currency:'AED', contact:'Port Admin', phone:'+971 4 390 1122', email:'info@dpa.ae', status:'Pending MD', statusClass:'pill-amber', version:'v1', soRef:'', items:[{desc:'Pewag Lifting Chain Grade 100 5T',qty:50,price:1200,disc:0},{desc:'Fall Arrest Device',qty:30,price:985,disc:0},{desc:'Safety Helmet Type II',qty:200,price:85,disc:0}], notes:'' },
+      'QT-2838':{ customer:'Al-Zahra Medical Center', date:'2026-06-15', territory:'Abu Dhabi', se:'Fatima R.', validity:'30 days', payment:'30 days credit', delivery:'Delivered to site', currency:'AED', contact:'Dr. Layla Hamdan', phone:'+971 55 334 9012', email:'lhamdan@alzahra.ae', status:'Approved', statusClass:'pill-green', version:'v1', soRef:'', items:[{desc:'Microtek 5KVA Online UPS',qty:2,price:15000,disc:0}], notes:'' },
+      'QT-2835':{ customer:'Gulf Metals Trading', date:'2026-06-10', territory:'Dubai North', se:'Ahmed M.', validity:'30 days', payment:'30 days credit', delivery:'Ex-works DIP 2', currency:'AED', contact:'Tariq Al-Mansoori', phone:'+971 50 812 3344', email:'tariq@gulfmetals.ae', status:'Approved', statusClass:'pill-green', version:'v1', soRef:'', items:[{desc:'Lincoln E6013 Welding Rods 3.2mm',qty:200,price:76,disc:5},{desc:'Norton Abrasive Disc 5"',qty:100,price:39,disc:0}], notes:'Approved by Admin — cleared for dispatch.' },
+      'QT-2830':{ customer:'AeroTech Engineering', date:'2026-06-05', territory:'Abu Dhabi', se:'Fatima R.', validity:'30 days', payment:'30 days credit', delivery:'Delivered to site', currency:'AED', contact:'Saeed Al-Mazrouei', phone:'+971 2 644 1800', email:'saeed@aerotech.ae', status:'Converted', statusClass:'pill-purple', version:'v1', soRef:'SO-2026-081', items:[{desc:'3M Full-Face Respirator 6000',qty:20,price:1680,disc:5},{desc:'Safety Harness Full Body',qty:15,price:380,disc:0}], notes:'' },
+      'QT-2828':{ customer:'Dubai Textile Trading LLC', date:'2026-06-02', territory:'Dubai North', se:'Noor Z.', validity:'30 days', payment:'60 days credit', delivery:'Delivered to site', currency:'AED', contact:'Textile Admin', phone:'+971 4 221 7744', email:'admin@dttlc.ae', status:'Converted', statusClass:'pill-purple', version:'v1', soRef:'INV/26/079', items:[{desc:'Industrial Safety Boot (pair)',qty:100,price:285,disc:0},{desc:'High-Vis Vest',qty:200,price:48,disc:0}], notes:'' }
+    };
+
+    function openViewQuote(code) {
+      var d = QUOTE_DATA[code];
+      if (!d) return;
+
+      document.getElementById('sqv-code').textContent = code;
+      document.getElementById('sqv-version').textContent = d.version;
+      document.getElementById('sqv-status-badge').innerHTML = '<span class="pill ' + d.statusClass + '" style="font-size:10px;">' + d.status + '</span>';
+      document.getElementById('sqv-cust').value = d.customer;
+      document.getElementById('sqv-date').value = d.date;
+      document.getElementById('sqv-territory').value = d.territory;
+      document.getElementById('sqv-se').value = d.se;
+      document.getElementById('sqv-validity').value = d.validity;
+      document.getElementById('sqv-contact').value = d.contact;
+      document.getElementById('sqv-phone').value = d.phone;
+      document.getElementById('sqv-email').value = d.email;
+      document.getElementById('sqv-payment').value = d.payment;
+      document.getElementById('sqv-delivery').value = d.delivery;
+      document.getElementById('sqv-currency').value = d.currency;
+      document.getElementById('sqv-notes').value = d.notes;
+
+      // Build line items
+      var tbody = document.getElementById('sqv-items-body');
+      tbody.innerHTML = '';
+      var subtotal = 0;
+      d.items.forEach(function(item, i) {
+        var lineTotal = item.qty * item.price * (1 - item.disc / 100);
+        subtotal += lineTotal;
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td style="color:#6a7f96;font-size:11px;">' + (i+1) + '</td>' +
+          '<td style="font-size:12px;">' + item.desc + '</td>' +
+          '<td style="font-size:12px;">' + item.qty + '</td>' +
+          '<td style="font-size:12px;">AED ' + item.price.toLocaleString() + '</td>' +
+          '<td style="font-size:12px;">' + (item.disc || '—') + '</td>' +
+          '<td style="font-size:12px;font-weight:600;">AED ' + Math.round(lineTotal).toLocaleString() + '</td>';
+        tbody.appendChild(tr);
+      });
+      var vat = subtotal * 0.05;
+      var grand = subtotal + vat;
+      document.getElementById('sqv-subtotal').textContent = 'AED ' + Math.round(subtotal).toLocaleString();
+      document.getElementById('sqv-vat').textContent = 'AED ' + Math.round(vat).toLocaleString();
+      document.getElementById('sqv-grand').textContent = 'AED ' + Math.round(grand).toLocaleString();
+
+      // Build footer based on status
+      var foot = document.getElementById('sqv-foot');
+      var btns = '';
+      if (d.status === 'Draft') {
+        btns = '<button class="btn-primary" style="flex:1;"><i class="ti ti-edit" style="font-size:13px;margin-right:4px;"></i>Edit Draft</button>' +
+               '<button class="btn-primary" style="flex:1;background:#C9A84C;color:#0A1628;"><i class="ti ti-send" style="font-size:13px;margin-right:4px;"></i>Submit</button>';
+      } else if (d.status === 'Pending Admin' || d.status === 'Pending MD') {
+        btns = '<span class="tbl-action" style="padding:9px 0;font-size:13px;">View PDF →</span>' +
+               '<button class="btn-primary" style="flex:1;background:#C9A84C;color:#0A1628;"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Revise</button>';
+      } else if (d.status === 'Approved') {
+        btns = '<button class="btn-primary" style="flex:1;"><i class="ti ti-file-check" style="font-size:13px;margin-right:4px;"></i>Convert to PO</button>' +
+               '<button class="btn-primary" style="flex:1;background:#C9A84C;color:#0A1628;"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Revise</button>';
+      } else if (d.status === 'Converted') {
+        var soLabel = d.soRef.startsWith('INV') ? 'View Invoice →' : 'View SO →';
+        btns = '<span class="tbl-action" style="padding:9px 0;font-size:13px;">' + soLabel + '</span>';
+      }
+      foot.innerHTML = btns + '<button class="btn-secondary" style="padding:8px 14px;" onclick="closeViewQuote()">Close</button>';
+
+      document.getElementById('sqv-overlay').classList.add('open');
+      document.getElementById('sqv-drawer').classList.add('open');
+    }
+
+    function closeViewQuote() {
+      document.getElementById('sqv-overlay').classList.remove('open');
+      document.getElementById('sqv-drawer').classList.remove('open');
+    }
+
+    /* ── PURCHASE REQUIREMENT VIEW PANEL ── */
+    var PR_VIEW_DATA = {
+      'PR-0084': { item:'Lincoln E6013 Welding Rods 3.2mm', sub:'5kg pack · Stock replenishment', qty:'200 pcs', value:'AED 8,400', priority:'High', vendor:'Lincoln Electric ME', reqby:'Ahmed Malik', status:'Pending', statusClass:'pill-amber', notes:'Urgent reorder — stock below safety level. Last purchased April 2026 at AED 40/pack.' },
+      'PR-0083': { item:'3M Full-Face Respirator Series 6000', sub:'PPE · service stock', qty:'10 pcs', value:'AED 2,200', priority:'Normal', vendor:'3M Gulf FZE', reqby:'Hana Al-Qasimi', status:'Approved', statusClass:'pill-green', notes:'Approved for immediate sourcing. Vendor quote received — see VQ-2026-016.' },
+      'PR-0082': { item:'Pewag Grade 100 Chain 5T 6mm', sub:'Lifting · customer order fulfilment', qty:'50 mtr', value:'AED 9,250', priority:'High', vendor:'Pewag International', reqby:'Waleed Al-Hosani', status:'In Process', statusClass:'pill-blue', notes:'Required for customer order. Vendor confirmed 5-day delivery from Austria.' },
+      'PR-0081': { item:'Bahco 24-Piece Tool Set', sub:'Demo & sales stock', qty:'15 kits', value:'AED 5,700', priority:'Normal', vendor:'Stanley Black & Decker ME', reqby:'Noor Al-Zaabi', status:'Pending', statusClass:'pill-amber', notes:'Quote expired — re-request from vendor required.' },
+      'PR-0080': { item:'Norton Abrasive Grinding Discs 7"', sub:'Abrasives · low stock alert', qty:'100 pcs', value:'AED 1,800', priority:'Medium', vendor:'Norton Abrasives ME', reqby:'Khalid Jaber', status:'Pending', statusClass:'pill-amber', notes:'Low stock alert triggered. Vendor quote pending.' }
+    };
+
+    function openViewPR(code) {
+      var d = PR_VIEW_DATA[code];
+      if (!d) return;
+      document.getElementById('prv-code').textContent = code;
+      document.getElementById('prv-status-badge').innerHTML = '<span class="pill ' + d.statusClass + '" style="font-size:10px;">' + d.status + '</span>';
+      document.getElementById('prv-item').value = d.item;
+      document.getElementById('prv-sub').value = d.sub;
+      document.getElementById('prv-qty').value = d.qty;
+      document.getElementById('prv-value').value = d.value;
+      document.getElementById('prv-priority').value = d.priority;
+      document.getElementById('prv-vendor').value = d.vendor;
+      document.getElementById('prv-reqby').value = d.reqby;
+      document.getElementById('prv-notes').value = d.notes;
+      var btns = '';
+      if (d.status === 'Pending' || d.status === 'Approved') {
+        btns = '<button class="btn-primary" style="flex:1;" onclick="closeViewPR();goPage(\'purch-orders\',null)"><i class="ti ti-file-plus" style="font-size:13px;margin-right:4px;"></i>Create PO</button>';
+      } else if (d.status === 'In Process') {
+        btns = '<span class="tbl-action" style="padding:9px 0;font-size:13px;">Track Order →</span>';
+      }
+      document.getElementById('prv-foot').innerHTML = btns + '<button class="btn-secondary" style="padding:8px 14px;" onclick="closeViewPR()">Close</button>';
+      document.getElementById('pr-view-overlay').classList.add('open');
+      document.getElementById('pr-view-drawer').classList.add('open');
+    }
+
+    function closeViewPR() {
+      document.getElementById('pr-view-overlay').classList.remove('open');
+      document.getElementById('pr-view-drawer').classList.remove('open');
+    }
+
+    /* ── VENDOR QUOTATION VIEW PANEL ── */
+    var VQ_VIEW_DATA = {
+      'VQ-2026-018': { vendor:'Lincoln Electric ME', date:'18 Jun 2026', pr:'PR-0084', validity:'25 Jun 2026', payment:'30 days net', contact:'James Al-Rashid', phone:'+971-4-884-4400', email:'james@lincolnme.ae', version:'v3', status:'Pending Review', statusClass:'pill-amber', poRef:'', items:[{desc:'Lincoln E6013 Welding Rods 3.2mm (5kg)',qty:200,price:39}], notes:'Price reduced 5% after negotiation. v1: AED 8,400 → v2: AED 8,200 → v3: AED 7,800.' },
+      'VQ-2026-016': { vendor:'3M Gulf FZE', date:'17 Jun 2026', pr:'PR-0083', validity:'28 Jun 2026', payment:'30 days net', contact:'Sara Al-Hosani', phone:'+971-4-299-6000', email:'sara.alhosani@3m.com', version:'v2', status:'Under Review', statusClass:'pill-blue', poRef:'', items:[{desc:'3M Full-Face Respirator Series 6000',qty:10,price:215}], notes:'v2 includes free delivery to DIP 2 warehouse. v1 delivery charges were excluded.' },
+      'VQ-2026-014': { vendor:'Norton Abrasives ME', date:'11 Jun 2026', pr:'PR-0080', validity:'22 Jun 2026', payment:'30 days net', contact:'Faisal Al-Nasser', phone:'+971-6-543-9900', email:'faisal@nortonme.ae', version:'v1', status:'Accepted', statusClass:'pill-green', poRef:'PO-2026-078', items:[{desc:'Norton Grinding Discs 7" — 100 pack',qty:100,price:17.5}], notes:'Accepted — PO-2026-078 raised.' },
+      'VQ-2026-012': { vendor:'Pewag International', date:'10 Jun 2026', pr:'PR-0082', validity:'20 Jun 2026', payment:'45 days net', contact:'Klaus Weber', phone:'+971-4-887-2200', email:'k.weber@pewag.com', version:'v1', status:'Revised', statusClass:'pill-purple', poRef:'', items:[{desc:'Pewag Grade 100 Chain 5T 6mm',qty:50,price:185}], notes:'Revision requested on delivery lead time — vendor to respond within 2 days.' },
+      'VQ-2026-010': { vendor:'Stanley Black & Decker ME', date:'01 Jun 2026', pr:'PR-0081', validity:'15 Jun 2026', payment:'60 days net', contact:'David Al-Fahim', phone:'+971-4-369-5800', email:'d.alfahim@sbdme.ae', version:'v1', status:'Expired', statusClass:'pill-red', poRef:'', items:[{desc:'Bahco 24-Piece Professional Tool Set',qty:15,price:360}], notes:'Quote expired 15 Jun 2026. Re-request needed from vendor.' },
+      'VQ-2026-009': { vendor:'Bosch Gulf FZE', date:'09 Jun 2026', pr:'PR-0079', validity:'24 Jun 2026', payment:'30 days net', contact:'Bosch Gulf Sales', phone:'+971-4-454-6600', email:'gulf@bosch.ae', version:'v1', status:'Pending Review', statusClass:'pill-amber', poRef:'', items:[{desc:'Bosch GWS Angle Grinder 850W',qty:10,price:460}], notes:'First quote received. Competitive pricing — within market range.' },
+      'VQ-2026-011': { vendor:'3M Gulf FZE', date:'08 Jun 2026', pr:'PR-0078', validity:'22 Jun 2026', payment:'30 days net', contact:'Sara Al-Hosani', phone:'+971-4-299-6000', email:'sara.alhosani@3m.com', version:'v1', status:'Under Review', statusClass:'pill-blue', poRef:'', items:[{desc:'3M Safety Helmet Type II',qty:25,price:75}], notes:'Under review by procurement team.' },
+      'VQ-2026-008': { vendor:'Lincoln Electric ME', date:'02 Jun 2026', pr:'PR-0076', validity:'16 Jun 2026', payment:'30 days net', contact:'James Al-Rashid', phone:'+971-4-884-4400', email:'james@lincolnme.ae', version:'v2', status:'Accepted', statusClass:'pill-green', poRef:'PO-2026-074', items:[{desc:'Lincoln E7018 Welding Rods 3.2mm (5kg)',qty:100,price:32}], notes:'Accepted at revised v2 price. PO-2026-074 raised.' }
+    };
+
+    function openViewVQ(code) {
+      var d = VQ_VIEW_DATA[code];
+      if (!d) return;
+      document.getElementById('vqv-code').textContent = code;
+      document.getElementById('vqv-version').textContent = d.version;
+      document.getElementById('vqv-status-badge').innerHTML = '<span class="pill ' + d.statusClass + '" style="font-size:10px;">' + d.status + '</span>';
+      document.getElementById('vqv-vendor').value = d.vendor;
+      document.getElementById('vqv-date').value = d.date;
+      document.getElementById('vqv-pr').value = d.pr;
+      document.getElementById('vqv-validity').value = d.validity;
+      document.getElementById('vqv-payment').value = d.payment;
+      document.getElementById('vqv-contact').value = d.contact;
+      document.getElementById('vqv-phone').value = d.phone;
+      document.getElementById('vqv-email').value = d.email;
+      document.getElementById('vqv-notes').value = d.notes;
+      var tbody = document.getElementById('vqv-items-body');
+      tbody.innerHTML = '';
+      var subtotal = 0;
+      d.items.forEach(function(item, i) {
+        var lineTotal = item.qty * item.price;
+        subtotal += lineTotal;
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td style="color:#6a7f96;font-size:11px;">' + (i+1) + '</td>' +
+          '<td style="font-size:12px;">' + item.desc + '</td>' +
+          '<td style="font-size:12px;">' + item.qty + '</td>' +
+          '<td style="font-size:12px;">AED ' + item.price.toLocaleString() + '</td>' +
+          '<td style="font-size:12px;font-weight:600;">AED ' + Math.round(lineTotal).toLocaleString() + '</td>';
+        tbody.appendChild(tr);
+      });
+      var vat = subtotal * 0.05;
+      var grand = subtotal + vat;
+      document.getElementById('vqv-subtotal').textContent = 'AED ' + Math.round(subtotal).toLocaleString();
+      document.getElementById('vqv-vat').textContent = 'AED ' + Math.round(vat).toLocaleString();
+      document.getElementById('vqv-grand').textContent = 'AED ' + Math.round(grand).toLocaleString();
+      var btns = '';
+      if (d.status === 'Pending Review' || d.status === 'Under Review' || d.status === 'Revised') {
+        btns = '<button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="closeViewVQ();goPage(\'purch-orders\',null)"><i class="ti ti-check" style="font-size:13px;margin-right:4px;"></i>Accept → PO</button>' +
+               '<button class="btn-primary" style="flex:1;background:#C9A84C;color:#0A1628;" onclick="closeViewVQ();newRevision(\'' + code + '\')"><i class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Request Revision</button>';
+      } else if (d.status === 'Accepted') {
+        btns = '<span class="tbl-action" style="padding:9px 0;font-size:13px;">View PO: ' + d.poRef + ' →</span>';
+      } else if (d.status === 'Expired') {
+        btns = '<button class="btn-primary" style="flex:1;" onclick="closeViewVQ();openVendorQuote()"><i class="ti ti-send" style="font-size:13px;margin-right:4px;"></i>Re-request Quote</button>';
+      }
+      document.getElementById('vqv-foot').innerHTML = btns + '<button class="btn-secondary" style="padding:8px 14px;" onclick="closeViewVQ()">Close</button>';
+      document.getElementById('vq-view-overlay').classList.add('open');
+      document.getElementById('vq-view-drawer').classList.add('open');
+    }
+
+    function closeViewVQ() {
+      document.getElementById('vq-view-overlay').classList.remove('open');
+      document.getElementById('vq-view-drawer').classList.remove('open');
     }
 
     function aiFillReq() {

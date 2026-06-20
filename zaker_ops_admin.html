@@ -9076,10 +9076,12 @@
             <div style="width:1px;background:#dde2ea;margin:4px 6px;"></div>
             <div class="fc" onclick="filterCustAccounts('new',this)" style="color:#1D9E75;border-color:#1D9E75;"
               data-tooltip="Customers onboarded within the last 30 days">
-              <i class="ti ti-user-plus" style="font-size:11px;margin-right:4px;"></i>New (8)</div>
+              <i class="ti ti-user-plus" style="font-size:11px;margin-right:4px;"></i>New (8)
+            </div>
             <div class="fc" onclick="filterCustAccounts('existing',this)" style="color:#378ADD;border-color:#378ADD;"
               data-tooltip="Established customers with prior purchase history">
-              <i class="ti ti-users" style="font-size:11px;margin-right:4px;"></i>Existing (276)</div>
+              <i class="ti ti-users" style="font-size:11px;margin-right:4px;"></i>Existing (276)
+            </div>
             <div class="ml-auto">
               <div class="topbar-search" style="width:200px;"><i class="ti ti-search"></i><input
                   placeholder="Search accounts…" /></div>
@@ -12538,8 +12540,8 @@
     <div class="drawer-foot">
       <button class="btn-primary" style="flex:1;" onclick="submitNewQuote('draft')"><i class="ti ti-device-floppy"
           style="font-size:13px;margin-right:4px;"></i>Save Draft</button>
-      <button class="btn-primary" style="flex:1;background:#0F6E56;" onclick="submitNewQuote('submit')"><i
-          class="ti ti-send" style="font-size:13px;margin-right:4px;"></i>Submit for Approval</button>
+      <button class="btn-primary" style="flex:1;background:#C9A84C;color:#0A1628;" onclick="submitNewQuote('sync')"><i
+          class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Sync with Epicor</button>
       <button class="btn-secondary" style="padding:8px 12px;display:flex;align-items:center;gap:5px;"
         onclick="toggleQtEmail()" title="Send Email"><i class="ti ti-mail" style="font-size:13px;"></i></button>
       <button class="btn-secondary" style="padding:8px 14px;" onclick="closeNewQuote()">Cancel</button>
@@ -14233,15 +14235,15 @@
       if (el) el.classList.add('on');
       const rows = document.querySelectorAll('#cust-accounts-table tbody tr');
       rows.forEach(row => {
-        const ctype  = row.dataset.ctype || 'existing';
+        const ctype = row.dataset.ctype || 'existing';
         const status = row.dataset.status || '';
         let show = false;
-        if (type === 'all')      show = true;
-        else if (type === 'new')      show = ctype === 'new';
+        if (type === 'all') show = true;
+        else if (type === 'new') show = ctype === 'new';
         else if (type === 'existing') show = ctype === 'existing';
-        else if (type === 'active')   show = status === 'active';
-        else if (type === 'hold')     show = status === 'hold' || status === 'onhold';
-        else if (type === 'overdue')  show = status === 'overdue';
+        else if (type === 'active') show = status === 'active';
+        else if (type === 'hold') show = status === 'hold' || status === 'onhold';
+        else if (type === 'overdue') show = status === 'overdue';
         row.style.display = show ? '' : 'none';
       });
     }

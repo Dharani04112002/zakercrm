@@ -3384,7 +3384,7 @@
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
         <div style="display:none;padding-left:18px;" id="sub-crm">
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('followups',this)"><i
-              class="ti ti-bell" style="font-size:13px;"></i>Follow-ups <span class="nav-badge red">7</span></a>
+              class="ti ti-bell" style="font-size:13px;"></i>Activity <span class="nav-badge red">7</span></a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('cust-view',this)"><i
               class="ti ti-user-search" style="font-size:13px;"></i>Leads</a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('pipeline',this)"><i
@@ -4171,7 +4171,7 @@
               <div class="ml-auto">
                 <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;"
                   onclick="openNewFollowup()">
-                  <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
+                  <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New activity
                 </button>
               </div>
             </div>
@@ -4458,7 +4458,7 @@
               <div class="ml-auto">
                 <button class="btn-primary" style="padding:7px 16px;font-size:12px;border-radius:7px;"
                   onclick="openNewFollowup()">
-                  <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New follow-up
+                  <i class="ti ti-plus" style="font-size:13px;vertical-align:-2px;margin-right:4px;"></i>New activity
                 </button>
               </div>
             </div>
@@ -11962,7 +11962,7 @@
       mapview: 'SE Map View',
       'cust-view': 'Leads',
       visits: 'Visit Reports',
-      followups: 'Follow-ups',
+      followups: 'Activity',
       reports: 'Reports',
       pipeline: 'Sales Pipeline',
       'sales-req': 'Sales Requirements',
@@ -12518,134 +12518,131 @@
     });
   </script>
 
-  <!-- ══ NEW FOLLOW-UP DRAWER ══ -->
+  <!-- ══ NEW ACTIVITY DRAWER ══ -->
+  <style>
+    .task-type-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+    .task-type-opt  { display:flex; align-items:center; gap:6px; padding:7px 14px; border:1.5px solid #D1D5DB; border-radius:8px; cursor:pointer; font-size:12px; font-weight:600; color:#374151; transition:all .15s; user-select:none; }
+    .task-type-opt:has(input:checked) { border-color:#378ADD; background:#EBF4FF; color:#1a5fa8; }
+    .task-type-opt input { accent-color:#378ADD; cursor:pointer; }
+    .priority-row   { display:flex; gap:8px; margin-top:6px; }
+    .prio-opt       { display:flex; align-items:center; gap:6px; padding:7px 18px; border:1.5px solid #D1D5DB; border-radius:8px; cursor:pointer; font-size:12px; font-weight:600; color:#374151; transition:all .15s; user-select:none; }
+    .prio-opt:has(input:checked) { border-color:#378ADD; background:#EBF4FF; color:#1a5fa8; }
+    .prio-opt input { accent-color:#378ADD; cursor:pointer; }
+    .at-label       { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:#6B7280; margin-bottom:6px; margin-top:14px; }
+  </style>
+
   <div class="drawer-overlay" id="fu-overlay" onclick="closeNewFollowup()"></div>
   <div class="lead-drawer" id="fu-drawer">
 
     <div class="drawer-head">
       <div>
-        <div class="drawer-title"><i class="ti ti-bell-ringing" style="margin-right:6px;color:#C9A84C;"></i>New
-          Follow-up</div>
-        <div class="drawer-sub">Schedule a task, call, visit or reminder</div>
+        <div class="drawer-title"><i class="ti ti-checkbox" style="margin-right:6px;color:#C9A84C;"></i>Add Activity</div>
+        <div class="drawer-sub">Schedule a visit, call, or follow-up</div>
       </div>
       <button class="drawer-close" onclick="closeNewFollowup()"><i class="ti ti-x"></i></button>
     </div>
 
     <div class="drawer-body">
 
-      <div class="drawer-section-title">Customer</div>
-      <div class="d-field">
-        <label class="d-label">Customer Name <span style="color:#E24B4A;">*</span></label>
-        <select class="d-select" id="fu-customer">
-          <option value="">— Select customer —</option>
-          <option>Al-Faris Industrial LLC</option>
-          <option>Gulf Metals Trading</option>
-          <option>AeroTech Engineering</option>
-          <option>PetroGulf Services</option>
-          <option>Desert Shield Safety</option>
-          <option>Khaleeji Steel Works</option>
-          <option>Al-Zahra Medical Center</option>
-          <option>Al-Nasr Logistics</option>
-          <option>Dubai Ports Authority</option>
-          <option>Sharjah Cement Factory</option>
-          <option>Emirates Steel LLC</option>
-        </select>
+      <!-- ACTIVITY TYPE -->
+      <div class="at-label">Activity Type</div>
+      <div class="task-type-grid">
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="visit" checked />
+          <i class="ti ti-map-pin" style="font-size:13px;color:#378ADD;"></i> Visit
+        </label>
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="call" />
+          <i class="ti ti-phone" style="font-size:13px;color:#16A34A;"></i> Call
+        </label>
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="followup" />
+          <i class="ti ti-bell" style="font-size:13px;color:#C9A84C;"></i> Follow-up
+        </label>
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="task" />
+          <i class="ti ti-checklist" style="font-size:13px;color:#7C3AED;"></i> Task
+        </label>
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="meeting" />
+          <i class="ti ti-users" style="font-size:13px;color:#0369A1;"></i> Meeting
+        </label>
+        <label class="task-type-opt">
+          <input type="radio" name="fu-task-type" value="other" />
+          <i class="ti ti-dots" style="font-size:13px;color:#6B7280;"></i> Other
+        </label>
       </div>
 
-      <div class="drawer-section-title" style="margin-top:2px;">Task Details</div>
-      <div class="d-field">
-        <label class="d-label">Task / Description <span style="color:#E24B4A;">*</span></label>
-        <textarea class="d-textarea" id="fu-task" style="min-height:64px;"
-          placeholder="e.g. Send revised quotation for Lincoln E6013 × 500 units"></textarea>
-      </div>
+      <!-- CUSTOMER -->
+      <div class="at-label" style="margin-top:16px;">Customer</div>
+      <select class="d-select" id="fu-customer">
+        <option value="">— Select customer —</option>
+        <option>Al-Faris Industrial LLC</option>
+        <option>Gulf Metals Trading</option>
+        <option>AeroTech Engineering</option>
+        <option>PetroGulf Services</option>
+        <option>Desert Shield Safety</option>
+        <option>Khaleeji Steel Works</option>
+        <option>Al-Zahra Medical Center</option>
+        <option>Al-Nasr Logistics</option>
+        <option>Dubai Ports Authority</option>
+        <option>Sharjah Cement Factory</option>
+        <option>Emirates Steel LLC</option>
+      </select>
 
-      <div class="d-row">
-        <div class="d-field">
-          <label class="d-label">Follow-up Type <span style="color:#E24B4A;">*</span></label>
-          <select class="d-select" id="fu-type">
-            <option value="">— Select type —</option>
-            <option value="call">📞 Call</option>
-            <option value="whatsapp">💬 WhatsApp</option>
-            <option value="visit">🏢 Site Visit</option>
-            <option value="email">✉ Email</option>
-            <option value="quote">📄 Send Quotation</option>
-            <option value="demo">🖥 Demo</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="d-field">
-          <label class="d-label">Priority</label>
-          <select class="d-select" id="fu-priority">
-            <option value="high">🔴 High</option>
-            <option value="normal" selected>🟡 Normal</option>
-            <option value="low">🟢 Low</option>
-          </select>
-        </div>
-      </div>
+      <!-- ACTIVITY TITLE -->
+      <div class="at-label">Activity Title</div>
+      <input class="d-input" id="fu-task" type="text" placeholder="e.g. Quarterly account review" />
 
-      <div class="d-row">
+      <!-- DATE + TIME -->
+      <div class="d-row" style="margin-top:0;">
         <div class="d-field">
-          <label class="d-label">Due Date <span style="color:#E24B4A;">*</span></label>
+          <div class="at-label" style="margin-top:0;">Date</div>
           <input class="d-input" id="fu-due" type="date" />
         </div>
         <div class="d-field">
-          <label class="d-label">Assigned SE</label>
-          <select class="d-select" id="fu-se">
-            <option value="">— Select SE —</option>
-            <option>Ahmed M.</option>
-            <option>Fatima R.</option>
-            <option>Noor Z.</option>
-            <option>Waleed H.</option>
-            <option>Khalid J.</option>
-            <option>Hana Q.</option>
-          </select>
+          <div class="at-label" style="margin-top:0;">Time</div>
+          <input class="d-input" id="fu-time" type="time" value="09:00" />
         </div>
       </div>
 
-      <div class="drawer-section-title" style="margin-top:2px;">Linked Reference</div>
-      <div class="d-row">
-        <div class="d-field">
-          <label class="d-label">Ref Type</label>
-          <select class="d-select" id="fu-ref-type" onchange="fuRefTypeChange()">
-            <option value="">None</option>
-            <option value="quote">Quotation</option>
-            <option value="req">Sales Requirement</option>
-            <option value="invoice">Invoice</option>
-            <option value="visit">Visit Report</option>
-          </select>
-        </div>
-        <div class="d-field">
-          <label class="d-label">Ref Number</label>
-          <input class="d-input" id="fu-ref-num" type="text" placeholder="e.g. QT-2841" disabled style="opacity:.5;" />
-        </div>
+      <!-- ASSIGNED TO -->
+      <div class="at-label">Assigned To</div>
+      <select class="d-select" id="fu-se">
+        <option value="">— Select —</option>
+        <option selected>Sara Al-Mansouri</option>
+        <option>Ahmed M.</option>
+        <option>Fatima R.</option>
+        <option>Noor Z.</option>
+        <option>Waleed H.</option>
+        <option>Khalid J.</option>
+        <option>Hana Q.</option>
+      </select>
+
+      <!-- PRIORITY -->
+      <div class="at-label">Priority</div>
+      <div class="priority-row">
+        <label class="prio-opt">
+          <input type="radio" name="fu-priority" value="high" /> High
+        </label>
+        <label class="prio-opt">
+          <input type="radio" name="fu-priority" value="medium" checked /> Medium
+        </label>
+        <label class="prio-opt">
+          <input type="radio" name="fu-priority" value="low" /> Low
+        </label>
       </div>
 
-      <div class="drawer-section-title" style="margin-top:2px;">Notes</div>
-      <div class="d-field">
-        <textarea class="d-textarea" id="fu-notes"
-          placeholder="Additional context, talking points, background…"></textarea>
-      </div>
-
-      <!-- REMINDER -->
-      <div
-        style="display:flex;align-items:center;gap:10px;background:#F8FAFC;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;">
-        <input type="checkbox" id="fu-remind" style="width:15px;height:15px;accent-color:#C9A84C;cursor:pointer;" />
-        <label for="fu-remind" style="font-size:12px;font-weight:600;color:#1a2332;cursor:pointer;flex:1;">Set reminder
-          notification</label>
-        <select class="d-select" id="fu-remind-when" style="width:auto;padding:5px 10px;font-size:11px;">
-          <option>1 hour before</option>
-          <option>3 hours before</option>
-          <option selected>1 day before</option>
-          <option>2 days before</option>
-        </select>
-      </div>
+      <!-- NOTES -->
+      <div class="at-label">Notes</div>
+      <textarea class="d-textarea" id="fu-notes" placeholder="Additional context, talking points, background…"></textarea>
 
     </div>
 
     <div class="drawer-foot">
-      <button class="btn-primary" style="flex:1;" onclick="submitNewFollowup()"><i class="ti ti-bell-plus"
-          style="font-size:13px;margin-right:4px;"></i>Save Follow-up</button>
-      <button class="btn-secondary" style="padding:8px 14px;" onclick="closeNewFollowup()">Cancel</button>
+      <button class="btn-secondary" style="padding:8px 18px;" onclick="closeNewFollowup()">Cancel</button>
+      <button class="btn-primary" style="flex:1;" onclick="submitNewFollowup()"><i class="ti ti-check"
+          style="font-size:13px;margin-right:4px;"></i>Save Activity</button>
     </div>
 
   </div>
@@ -12653,8 +12650,8 @@
   <script>
     function openNewFollowup() {
       const today = new Date();
-      today.setDate(today.getDate() + 1);
       document.getElementById('fu-due').value = today.toISOString().split('T')[0];
+      document.getElementById('fu-time').value = '09:00';
       document.getElementById('fu-overlay').classList.add('open');
       document.getElementById('fu-drawer').classList.add('open');
       setTimeout(() => document.getElementById('fu-customer').focus(), 250);
@@ -12666,43 +12663,38 @@
       resetFuDrawer();
     }
 
-    function fuRefTypeChange() {
-      const inp = document.getElementById('fu-ref-num');
-      const has = !!document.getElementById('fu-ref-type').value;
-      inp.disabled = !has; inp.style.opacity = has ? '1' : '.5';
-      if (!has) inp.value = '';
-    }
-
     function submitNewFollowup() {
       const cust = document.getElementById('fu-customer').value;
       const task = document.getElementById('fu-task').value.trim();
-      const type = document.getElementById('fu-type').value;
-      const due = document.getElementById('fu-due').value;
+      const due  = document.getElementById('fu-due').value;
 
       if (!cust) { document.getElementById('fu-customer').style.borderColor = '#E24B4A'; return; }
       if (!task) { document.getElementById('fu-task').style.borderColor = '#E24B4A'; document.getElementById('fu-task').focus(); return; }
-      if (!type) { document.getElementById('fu-type').style.borderColor = '#E24B4A'; return; }
-      if (!due) { document.getElementById('fu-due').style.borderColor = '#E24B4A'; return; }
+      if (!due)  { document.getElementById('fu-due').style.borderColor = '#E24B4A'; return; }
 
-      const priority = document.getElementById('fu-priority').value;
+      const typeEl    = document.querySelector('input[name="fu-task-type"]:checked');
+      const priorityEl = document.querySelector('input[name="fu-priority"]:checked');
+      const priority  = priorityEl ? priorityEl.value : 'medium';
+      const taskType  = typeEl ? typeEl.value : 'visit';
+
       const dueDate = new Date(due);
       const today = new Date(); today.setHours(0, 0, 0, 0);
       const diff = Math.round((dueDate - today) / 86400000);
 
       let duePill, statusPill;
-      if (diff < 0) { duePill = `<span class="pill pill-red">${Math.abs(diff)} day${Math.abs(diff) > 1 ? 's' : ''} overdue</span>`; statusPill = '<span class="pill pill-red">Overdue</span>'; }
+      if (diff < 0)      { duePill = `<span class="pill pill-red">${Math.abs(diff)} day${Math.abs(diff)>1?'s':''} overdue</span>`; statusPill = '<span class="pill pill-red">Overdue</span>'; }
       else if (diff === 0) { duePill = '<span class="pill pill-amber">Today</span>'; statusPill = '<span class="pill pill-amber">Due today</span>'; }
-      else if (diff <= 7) { duePill = `<span class="pill pill-blue">In ${diff} day${diff > 1 ? 's' : ''}</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
-      else { duePill = `<span class="pill pill-blue">Next week</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+      else if (diff <= 7)  { duePill = `<span class="pill pill-blue">In ${diff} day${diff>1?'s':''}</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
+      else                 { duePill = `<span class="pill pill-blue">Next week</span>`; statusPill = '<span class="pill pill-blue">Upcoming</span>'; }
 
       const priorityBadge = priority === 'high' ? '<span class="pill pill-red" style="font-size:9px;">High</span>' : priority === 'low' ? '<span class="pill pill-green" style="font-size:9px;">Low</span>' : '';
+      const typeLabel = { visit:'Visit', call:'Call', followup:'Follow-up', other:'Other', task:'Task', meeting:'Meeting' }[taskType] || taskType;
 
-      // Insert into BOTH follow-up tables
       document.querySelectorAll('.page[id="p-followups"] table tbody').forEach(tbody => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td style="font-size:13px;font-weight:600;color:#0A1628;">${cust}<br>${priorityBadge}</td>
-          <td style="font-size:12px;color:#5a7080;max-width:240px;">${task}</td>
+          <td style="font-size:12px;color:#5a7080;max-width:240px;"><span style="font-size:10px;color:#378ADD;font-weight:700;">${typeLabel}</span><br>${task}</td>
           <td>${duePill}</td>
           <td>${statusPill}</td>
           <td><div style="display:flex;gap:6px;padding-top:11px;">
@@ -12717,13 +12709,17 @@
     }
 
     function resetFuDrawer() {
-      ['fu-customer', 'fu-type', 'fu-priority', 'fu-se', 'fu-ref-type', 'fu-remind-when'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-      ['fu-task', 'fu-ref-num', 'fu-notes'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
-      ['fu-customer', 'fu-type', 'fu-due'].forEach(id => { const el = document.getElementById(id); if (el) el.style.borderColor = ''; });
-      document.getElementById('fu-remind').checked = false;
-      document.getElementById('fu-ref-num').disabled = true;
-      document.getElementById('fu-ref-num').style.opacity = '.5';
-      document.getElementById('fu-priority').value = 'normal';
+      document.getElementById('fu-customer').value = '';
+      document.getElementById('fu-customer').style.borderColor = '';
+      document.getElementById('fu-task').value = '';
+      document.getElementById('fu-task').style.borderColor = '';
+      document.getElementById('fu-due').style.borderColor = '';
+      document.getElementById('fu-notes').value = '';
+      document.getElementById('fu-time').value = '09:00';
+      const visitRadio = document.querySelector('input[name="fu-task-type"][value="visit"]');
+      if (visitRadio) visitRadio.checked = true;
+      const medRadio = document.querySelector('input[name="fu-priority"][value="medium"]');
+      if (medRadio) medRadio.checked = true;
     }
   </script>
 

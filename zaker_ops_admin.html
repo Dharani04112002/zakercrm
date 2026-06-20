@@ -8631,7 +8631,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSalesInvView('INV/26/084','Marriott Hotel Al Jaddaf','Al Jaddaf, Dubai','Finance Manager','+971 4 230 8888','finance@marriott-jaddaf.ae','18 Jun 2026','02 Jul 2026','Service','Unpaid','SO-2026-077','30 days net',9200,[{desc:'AMC Service Visit – HVAC Safety Inspection',qty:1,price:5500},{desc:'Spare Parts – Filter Cartridges x6',qty:6,price:280},{desc:'Labour – On-site Technician (4 hrs)',qty:4,price:230}],'Overdue follow-up required. Client requested extension to 2 Jul.')">
                   <td><span class="tbl-id">INV/26/084</span></td>
                   <td><b>Marriott Hotel Al Jaddaf</b></td>
                   <td>AED 9,200</td>
@@ -8639,7 +8639,7 @@
                   <td><span class="pill pill-red">Unpaid</span></td>
                   <td>18 Jun 2026</td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSalesInvView('INV/26/079','Dubai Textile Trading LLC','Al Quoz Industrial, Dubai','Accounts Dept.','+971 4 347 9900','accounts@dtt.ae','16 Jun 2026','16 Jun 2026','Solar','Paid','SO-2026-071','Cash on delivery',41000,[{desc:'Solar Panel – Novsys 540W Mono (x40)',qty:40,price:680},{desc:'Deye Hybrid Inverter 10kW',qty:2,price:4200},{desc:'ACDB Panel – Feston 3-String',qty:1,price:3800},{desc:'DC Cabling – Lapp Solar 4mm² (per metre)',qty:120,price:18}],'Payment received in full on delivery. Closed.')">
                   <td><span class="tbl-id">INV/26/079</span></td>
                   <td><b>Dubai Textile Trading LLC</b></td>
                   <td>AED 41,000</td>
@@ -9682,7 +9682,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSOView('SO-2026-081','Al-Faris Industrial LLC','Jebel Ali Free Zone','Saif Al-Faris','+971 50 441 9900','saif@alfaris.ae','14 Jun 2026','30 days net','Delivered to site','AED','45,200','Partial','60',[{desc:'Lincoln Electric MIG Wire 1.2mm',qty:50,price:280},{desc:'Safety Harness Full Body (MSA)',qty:30,price:380},{desc:'3M Respirator 8210 N95',qty:60,price:95}],'Partial shipment — harness batch pending warehouse release.')">
                   <td><span class="tbl-id">SO-2026-081</span></td>
                   <td><b>Al-Faris Industrial LLC</b></td>
                   <td>14 Jun 2026</td>
@@ -9694,7 +9694,7 @@
                   </td>
                   <td><span class="pill pill-amber">Partial</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSOView('SO-2026-078','Gulf Metals Trading','Dubai Industrial City','Tariq Al-Mansoori','+971 50 812 3344','tariq@gulfmetals.ae','10 Jun 2026','45 days net','Delivered to site','AED','22,000','Delivered','100',[{desc:'Angle Grinder 7\" (Bosch)',qty:12,price:450},{desc:'Welding Rods E6013 (Lincoln)',qty:20,price:185},{desc:'Norton Abrasive Disc 7\"',qty:100,price:32}],'All items delivered to Dubai Industrial City site. POD signed.')">
                   <td><span class="tbl-id">SO-2026-078</span></td>
                   <td><b>Gulf Metals Trading</b></td>
                   <td>10 Jun 2026</td>
@@ -9706,7 +9706,7 @@
                   </td>
                   <td><span class="pill pill-green">Delivered</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSOView('SO-2026-074','AeroTech Engineering','Abu Dhabi','Saeed Al-Mazrouei','+971 2 644 1800','saeed@aerotech.ae','08 Jun 2026','30 days net','Ex-works warehouse','AED','18,500','Delayed','30',[{desc:'3M Full-Face Respirator 6000 Series',qty:20,price:680},{desc:'Safety Harness Full Body (MSA)',qty:15,price:380}],'Delayed — logistics hold at Abu Dhabi checkpoint. Escalated to ops.')">
                   <td><span class="tbl-id">SO-2026-074</span></td>
                   <td><b>AeroTech Engineering</b></td>
                   <td>08 Jun 2026</td>
@@ -9718,7 +9718,7 @@
                   </td>
                   <td><span class="pill pill-red">Delayed</span></td>
                 </tr>
-                <tr>
+                <tr style="cursor:pointer;" onclick="openSOView('SO-2026-071','Desert Shield Safety','Sharjah Industrial Area','Sales Team','+971 6 544 0099','info@desert-shield.ae','05 Jun 2026','Cash on delivery','Delivered to site','AED','8,000','Delivered','100',[{desc:'Anchor Safety Boots S3 (Size 40–44)',qty:20,price:250},{desc:'Hard Hat Type 1 (MSA V-Gard)',qty:30,price:65},{desc:'Hi-Vis Safety Vest (Class 2)',qty:50,price:28}],'Delivered and confirmed. Invoice settled on delivery.')">
                   <td><span class="tbl-id">SO-2026-071</span></td>
                   <td><b>Desert Shield Safety</b></td>
                   <td>05 Jun 2026</td>
@@ -11905,6 +11905,9 @@
             </table>
           </div>
         </div>
+
+        <!-- shared backdrop for all c360 side panels -->
+        <div class="drawer-overlay" id="c360-overlay" onclick="closeAllC360Panels()"></div>
 
         <!-- ── CUSTOMER 360 DETAIL PANEL ── -->
         <div class="c360-panel" id="c360-detail-panel">
@@ -15517,6 +15520,216 @@
     <div class="drawer-foot" id="vqv-foot"></div>
   </div><!-- /vq-view-drawer -->
 
+  <!-- ══ SALES INVOICE VIEW PANEL ══ -->
+  <div class="drawer-overlay" id="sinv-overlay" onclick="closeSalesInvView()"></div>
+  <div class="lead-drawer" id="sinv-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-receipt-2" style="margin-right:6px;color:#D97706;"></i>Sales Invoice</div>
+        <div class="drawer-sub">Invoice: <span class="d-code-preview" id="sinv-code">—</span>&nbsp;·&nbsp;<span id="sinv-status-badge"></span></div>
+      </div>
+      <button class="drawer-close" onclick="closeSalesInvView()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="drawer-body">
+
+      <div class="drawer-section-title">Client Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Client Name</label>
+          <input class="d-input" id="sinv-client" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Location</label>
+          <input class="d-input" id="sinv-location" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact</label>
+          <input class="d-input" id="sinv-contact" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="sinv-phone" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="sinv-email" type="email" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Invoice Details</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Invoice Date</label>
+          <input class="d-input" id="sinv-date" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Due Date</label>
+          <input class="d-input" id="sinv-due" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Type</label>
+          <input class="d-input" id="sinv-type" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">SO Reference</label>
+          <input class="d-input" id="sinv-soref" type="text" readonly style="font-family:monospace;" />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <input class="d-input" id="sinv-terms" type="text" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Line Items</div>
+      <table class="qt-items-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="width:46%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="sinv-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="sinv-subtotal">AED 0</td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="sinv-vat">AED 0</td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="4" style="text-align:right;">Grand Total</td>
+            <td id="sinv-grand" style="color:#D97706;font-weight:700;">AED 0</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="sinv-notes" readonly style="min-height:64px;"></textarea>
+      </div>
+
+    </div>
+    <div class="drawer-foot">
+      <button class="btn-secondary" style="flex:1;" onclick="closeSalesInvView()">Close</button>
+    </div>
+  </div><!-- /sinv-drawer -->
+
+  <!-- ══ SALES ORDER VIEW PANEL ══ -->
+  <div class="drawer-overlay" id="so-view-overlay" onclick="closeSOView()"></div>
+  <div class="lead-drawer" id="so-view-drawer">
+    <div class="drawer-head">
+      <div>
+        <div class="drawer-title"><i class="ti ti-shopping-cart" style="margin-right:6px;color:#378ADD;"></i>Sales Order</div>
+        <div class="drawer-sub">Ref: <span class="d-code-preview" id="sov-code">SO-0000</span>&nbsp;·&nbsp;<span id="sov-status-badge"></span></div>
+      </div>
+      <button class="drawer-close" onclick="closeSOView()"><i class="ti ti-x"></i></button>
+    </div>
+
+    <div class="drawer-body">
+
+      <!-- Delivery progress bar -->
+      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px 16px;margin-bottom:4px;display:flex;align-items:center;gap:14px;">
+        <div style="flex:1;">
+          <div style="font-size:11px;font-weight:700;color:#6a7f96;margin-bottom:6px;letter-spacing:.5px;">DELIVERY PROGRESS</div>
+          <div class="prog-track" style="height:7px;border-radius:4px;">
+            <div id="sov-prog-fill" class="prog-fill" style="border-radius:4px;transition:width 0.4s;"></div>
+          </div>
+        </div>
+        <div id="sov-prog-pct" style="font-size:20px;font-weight:800;color:#1a2332;min-width:44px;text-align:right;"></div>
+      </div>
+
+      <div class="drawer-section-title">Customer Info</div>
+      <div class="d-grid-3">
+        <div class="d-field d-col-2">
+          <label class="d-label">Customer Name</label>
+          <input class="d-input" id="sov-cust" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Location</label>
+          <input class="d-input" id="sov-location" type="text" readonly />
+        </div>
+      </div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Contact Person</label>
+          <input class="d-input" id="sov-contact" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Phone</label>
+          <input class="d-input" id="sov-phone" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Email</label>
+          <input class="d-input" id="sov-email" type="email" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Order Terms</div>
+      <div class="d-grid-3">
+        <div class="d-field">
+          <label class="d-label">Order Date</label>
+          <input class="d-input" id="sov-date" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Payment Terms</label>
+          <input class="d-input" id="sov-payment" type="text" readonly />
+        </div>
+        <div class="d-field">
+          <label class="d-label">Delivery Terms</label>
+          <input class="d-input" id="sov-delivery" type="text" readonly />
+        </div>
+      </div>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Line Items</div>
+      <table class="qt-items-tbl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th style="width:46%;">Description</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="sov-items-body"></tbody>
+        <tfoot>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">Subtotal</td>
+            <td id="sov-subtotal">AED 0</td>
+          </tr>
+          <tr class="qt-total-row">
+            <td colspan="4" style="text-align:right;font-size:11px;color:#6a7f96;">VAT (5%)</td>
+            <td id="sov-vat">AED 0</td>
+          </tr>
+          <tr class="qt-total-row" style="font-size:13px;">
+            <td colspan="4" style="text-align:right;">Grand Total</td>
+            <td id="sov-grand" style="color:#378ADD;font-weight:700;">AED 0</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="drawer-section-title" style="margin-top:4px;">Notes</div>
+      <div class="d-field">
+        <textarea class="d-textarea" id="sov-notes" readonly style="min-height:70px;"></textarea>
+      </div>
+
+    </div><!-- /drawer-body -->
+
+    <div class="drawer-foot">
+      <button class="btn-secondary" style="flex:1;" onclick="closeSOView()">Close</button>
+    </div>
+
+  </div><!-- /so-view-drawer -->
+
   <script>
     /* ── PURCHASE ORDER VIEW DRAWER ── */
     function openPODrawer(poNum, vendor, category, poDate, delivery, amount, fulfillment, status, items) {
@@ -16964,10 +17177,12 @@
       document.getElementById('c360p-cluster-badge').innerHTML = CLUSTER_BADGES[cluster] || cluster;
       document.getElementById('c360p-ai-txt').textContent = C360_AI[cluster] || '';
       document.getElementById('c360-detail-panel').classList.add('open');
+      document.getElementById('c360-overlay').classList.add('open');
     }
 
     function closeC360Panel() {
       document.getElementById('c360-detail-panel').classList.remove('open');
+      document.getElementById('c360-overlay').classList.remove('open');
     }
 
     /* ── APPLY LEAVE PANEL ── */
@@ -17053,11 +17268,13 @@
 
     function openApplyLeavePanel() {
       document.getElementById('apply-leave-panel').classList.add('open');
+      document.getElementById('c360-overlay').classList.add('open');
       loadLeaveHistory();
     }
 
     function closeApplyLeavePanel() {
       document.getElementById('apply-leave-panel').classList.remove('open');
+      document.getElementById('c360-overlay').classList.remove('open');
     }
 
     function submitApplyLeave() {
@@ -17082,10 +17299,97 @@
 
     function openAddTaskPanel() {
       document.getElementById('add-task-panel').classList.add('open');
+      document.getElementById('c360-overlay').classList.add('open');
     }
 
     function closeAddTaskPanel() {
       document.getElementById('add-task-panel').classList.remove('open');
+      document.getElementById('c360-overlay').classList.remove('open');
+    }
+
+    /* ── SALES INVOICE VIEW ── */
+    function openSalesInvView(invNum, client, location, contact, phone, email, invDate, dueDate, type, payStatus, soRef, terms, subtotal, items, notes) {
+      document.getElementById('sinv-code').textContent = invNum;
+      const statusMap = { Paid: 'pill-green', Unpaid: 'pill-red', Partial: 'pill-amber', Overdue: 'pill-red' };
+      document.getElementById('sinv-status-badge').innerHTML = `<span class="pill ${statusMap[payStatus] || 'pill-blue'}">${payStatus}</span>`;
+      document.getElementById('sinv-client').value = client;
+      document.getElementById('sinv-location').value = location;
+      document.getElementById('sinv-contact').value = contact;
+      document.getElementById('sinv-phone').value = phone;
+      document.getElementById('sinv-email').value = email;
+      document.getElementById('sinv-date').value = invDate;
+      document.getElementById('sinv-due').value = dueDate;
+      document.getElementById('sinv-type').value = type;
+      document.getElementById('sinv-soref').value = soRef;
+      document.getElementById('sinv-terms').value = terms;
+      document.getElementById('sinv-notes').value = notes || '';
+      const tbody = document.getElementById('sinv-items-body');
+      let calcSub = 0;
+      tbody.innerHTML = items.map((it, i) => {
+        const line = it.qty * it.price;
+        calcSub += line;
+        return `<tr><td>${i + 1}</td><td>${it.desc}</td><td>${it.qty}</td><td>AED ${it.price.toLocaleString()}</td><td>AED ${line.toLocaleString()}</td></tr>`;
+      }).join('');
+      const vat = Math.round(calcSub * 0.05);
+      const grand = calcSub + vat;
+      document.getElementById('sinv-subtotal').textContent = `AED ${calcSub.toLocaleString()}`;
+      document.getElementById('sinv-vat').textContent = `AED ${vat.toLocaleString()}`;
+      document.getElementById('sinv-grand').textContent = `AED ${grand.toLocaleString()}`;
+      document.getElementById('sinv-overlay').classList.add('open');
+      document.getElementById('sinv-drawer').classList.add('open');
+    }
+
+    function closeSalesInvView() {
+      document.getElementById('sinv-overlay').classList.remove('open');
+      document.getElementById('sinv-drawer').classList.remove('open');
+    }
+
+    /* ── SALES ORDER VIEW ── */
+    function openSOView(soNum, customer, location, contact, phone, email, date, payment, delivery, currency, totalAmt, status, pct, items, notes) {
+      document.getElementById('sov-code').textContent = soNum;
+      const statusMap = { Delivered: 'pill-green', Partial: 'pill-amber', Delayed: 'pill-red', Processing: 'pill-blue' };
+      document.getElementById('sov-status-badge').innerHTML = `<span class="pill ${statusMap[status] || 'pill-blue'}">${status}</span>`;
+      document.getElementById('sov-cust').value = customer;
+      document.getElementById('sov-location').value = location;
+      document.getElementById('sov-contact').value = contact;
+      document.getElementById('sov-phone').value = phone;
+      document.getElementById('sov-email').value = email;
+      document.getElementById('sov-date').value = date;
+      document.getElementById('sov-payment').value = payment;
+      document.getElementById('sov-delivery').value = delivery;
+      document.getElementById('sov-notes').value = notes || '';
+      const pctNum = parseInt(pct, 10);
+      const fillColor = pctNum === 100 ? '#16A34A' : pctNum < 50 ? '#E24B4A' : '#F59E0B';
+      document.getElementById('sov-prog-fill').style.width = pctNum + '%';
+      document.getElementById('sov-prog-fill').style.background = fillColor;
+      document.getElementById('sov-prog-pct').textContent = pctNum + '%';
+      document.getElementById('sov-prog-pct').style.color = fillColor;
+      let subtotal = 0;
+      const tbody = document.getElementById('sov-items-body');
+      tbody.innerHTML = items.map((it, i) => {
+        const line = it.qty * it.price;
+        subtotal += line;
+        return `<tr><td>${i + 1}</td><td>${it.desc}</td><td>${it.qty}</td><td>${currency} ${it.price.toLocaleString()}</td><td>${currency} ${line.toLocaleString()}</td></tr>`;
+      }).join('');
+      const vat = Math.round(subtotal * 0.05);
+      const grand = subtotal + vat;
+      document.getElementById('sov-subtotal').textContent = `${currency} ${subtotal.toLocaleString()}`;
+      document.getElementById('sov-vat').textContent = `${currency} ${vat.toLocaleString()}`;
+      document.getElementById('sov-grand').textContent = `${currency} ${grand.toLocaleString()}`;
+      document.getElementById('so-view-overlay').classList.add('open');
+      document.getElementById('so-view-drawer').classList.add('open');
+    }
+
+    function closeSOView() {
+      document.getElementById('so-view-overlay').classList.remove('open');
+      document.getElementById('so-view-drawer').classList.remove('open');
+    }
+
+    function closeAllC360Panels() {
+      ['c360-detail-panel', 'add-task-panel', 'apply-leave-panel'].forEach(id => {
+        document.getElementById(id).classList.remove('open');
+      });
+      document.getElementById('c360-overlay').classList.remove('open');
     }
 
     function submitAddTask() {

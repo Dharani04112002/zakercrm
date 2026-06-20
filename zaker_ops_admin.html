@@ -3364,8 +3364,7 @@
       </div>
 
       <div class="sb-nav">
-        <a class="nav-link active" onclick="goPage('dashboard',this)"><i
-            class="ti ti-layout-dashboard"></i>Dashboard</a>
+
 
         <a class="nav-link" id="nl-cust360" onclick="toggleSub('sub-cust360','arr-c360',this)">
           <i class="ti ti-chart-bubble"></i>Customer 360
@@ -3496,7 +3495,18 @@
 
       <!-- TOPBAR -->
       <div class="topbar">
-        <div class="topbar-title" id="page-title">Dashboard</div><span class="topbar-date">Thu, 18 Jun 2026</span>
+        <div class="topbar-title" style="display:flex;align-items:center;gap:16px;">
+          <span id="page-title" style="margin-right:8px;">Dashboard</span>
+          <div style="display:flex;align-items:center;background:#f4f6f9;border:1px solid #E7E5E4;border-radius:8px;padding:4px;">
+            <div id="tb-dashboard" class="active-tb" onclick="goPage('dashboard', null)" style="padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;color:#0A1628;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.05);transition:all 0.2s;" onmouseover="if(!this.classList.contains('active-tb'))this.style.background='rgba(0,0,0,0.04)'" onmouseout="if(!this.classList.contains('active-tb'))this.style.background='transparent'">
+              <i class="ti ti-layout-dashboard" style="font-size:14px;"></i>Main Dashboard
+            </div>
+            <div style="width:1px;height:14px;background:#d1d5db;margin:0 4px;"></div>
+            <div id="tb-launcher" onclick="goPage('launcher', null)" style="padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;color:#6a7f96;background:transparent;transition:all 0.2s;" onmouseover="if(!this.classList.contains('active-tb'))this.style.background='rgba(0,0,0,0.04)'" onmouseout="if(!this.classList.contains('active-tb'))this.style.background='transparent'">
+              <i class="ti ti-apps" style="font-size:14px;"></i>Launcher
+            </div>
+          </div>
+        </div><span class="topbar-date">Thu, 18 Jun 2026</span>
         <span
           style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:5px;background:#E6F1FB;color:#185FA5;border:1px solid #b5d4f4;"><i
             class="ti ti-shield-check" style="font-size:10px;vertical-align:-1px;margin-right:3px;"></i>Admin</span>
@@ -3516,6 +3526,393 @@
       <!-- CONTENT + AI PANEL row -->
       <div class="content-wrap">
         <div class="screen-content">
+          <!-- -- LAUNCHER DASHBOARD -- -->
+          <div class="page" id="p-launcher">
+            
+
+
+            <!-- Launcher Grid Container -->
+            <div style="display:flex;flex-direction:column;gap:32px;padding-bottom:40px;">
+
+              <!-- Customer 360 -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(55,138,221,0.1);color:#378ADD;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-chart-bubble"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Customer 360</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('c360-plan',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#378ADD';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(55,138,221,0.15), 0 4px 8px -2px rgba(55,138,221,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(55,138,221,0.12) 0%, rgba(55,138,221,0.02) 100%);border:1px solid rgba(55,138,221,0.1);display:flex;align-items:center;justify-content:center;color:#378ADD;font-size:20px;">
+                        <i class="ti ti-calendar-event"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#378ADD;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Today's Plan</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Daily routes & visits overview.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('cust360',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#378ADD';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(55,138,221,0.15), 0 4px 8px -2px rgba(55,138,221,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(55,138,221,0.12) 0%, rgba(55,138,221,0.02) 100%);border:1px solid rgba(55,138,221,0.1);display:flex;align-items:center;justify-content:center;color:#378ADD;font-size:20px;">
+                        <i class="ti ti-users"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#378ADD;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Customers 360</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Master directory of all clients.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('c360-personas',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#378ADD';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(55,138,221,0.15), 0 4px 8px -2px rgba(55,138,221,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(55,138,221,0.12) 0%, rgba(55,138,221,0.02) 100%);border:1px solid rgba(55,138,221,0.1);display:flex;align-items:center;justify-content:center;color:#378ADD;font-size:20px;">
+                        <i class="ti ti-chart-pie-2"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#378ADD;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Personas</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Detailed customer segmentations.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- CRM & Leads -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(29,158,117,0.1);color:#1D9E75;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-users"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">CRM & Leads</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('followups',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#1D9E75';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(29,158,117,0.15), 0 4px 8px -2px rgba(29,158,117,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(29,158,117,0.12) 0%, rgba(29,158,117,0.02) 100%);border:1px solid rgba(29,158,117,0.1);display:flex;align-items:center;justify-content:center;color:#1D9E75;font-size:20px;">
+                        <i class="ti ti-bell"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#1D9E75;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Activity & Follow-ups</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Manage your pending tasks.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('cust-view',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#1D9E75';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(29,158,117,0.15), 0 4px 8px -2px rgba(29,158,117,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(29,158,117,0.12) 0%, rgba(29,158,117,0.02) 100%);border:1px solid rgba(29,158,117,0.1);display:flex;align-items:center;justify-content:center;color:#1D9E75;font-size:20px;">
+                        <i class="ti ti-user-search"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#1D9E75;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Leads</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Track early-stage prospects.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('pipeline',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#1D9E75';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(29,158,117,0.15), 0 4px 8px -2px rgba(29,158,117,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(29,158,117,0.12) 0%, rgba(29,158,117,0.02) 100%);border:1px solid rgba(29,158,117,0.1);display:flex;align-items:center;justify-content:center;color:#1D9E75;font-size:20px;">
+                        <i class="ti ti-git-merge"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#1D9E75;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Sales Pipeline</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Monitor active deal progression.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('visits',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#1D9E75';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(29,158,117,0.15), 0 4px 8px -2px rgba(29,158,117,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(29,158,117,0.12) 0%, rgba(29,158,117,0.02) 100%);border:1px solid rgba(29,158,117,0.1);display:flex;align-items:center;justify-content:center;color:#1D9E75;font-size:20px;">
+                        <i class="ti ti-clipboard-check"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#1D9E75;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Visit Reports</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Log and review meeting notes.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Sales & Operations -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(217,119,6,0.1);color:#D97706;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-currency-dollar"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Sales & Operations</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('mapview',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#D97706';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(217,119,6,0.15), 0 4px 8px -2px rgba(217,119,6,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.02) 100%);border:1px solid rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;color:#D97706;font-size:20px;">
+                        <i class="ti ti-map-pin"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#D97706;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">SE Map View</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Live field team tracking.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('sales-req',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#D97706';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(217,119,6,0.15), 0 4px 8px -2px rgba(217,119,6,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.02) 100%);border:1px solid rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;color:#D97706;font-size:20px;">
+                        <i class="ti ti-clipboard-list"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#D97706;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Requirements</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Capture client demands.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('quotations',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#D97706';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(217,119,6,0.15), 0 4px 8px -2px rgba(217,119,6,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.02) 100%);border:1px solid rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;color:#D97706;font-size:20px;">
+                        <i class="ti ti-file-description"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#D97706;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Quotations</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Draft and send sales quotes.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('purchase-orders',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#D97706';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(217,119,6,0.15), 0 4px 8px -2px rgba(217,119,6,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.02) 100%);border:1px solid rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;color:#D97706;font-size:20px;">
+                        <i class="ti ti-shopping-cart"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#D97706;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Sales Orders</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Process confirmed client orders.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('invoices',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#D97706';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(217,119,6,0.15), 0 4px 8px -2px rgba(217,119,6,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(217,119,6,0.12) 0%, rgba(217,119,6,0.02) 100%);border:1px solid rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;color:#D97706;font-size:20px;">
+                        <i class="ti ti-receipt"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#D97706;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Invoices</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Manage billing and payments.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Accounts & Ledger -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(83,74,183,0.1);color:#534AB7;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-book-2"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Accounts & Ledger</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('cust-accounts',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#534AB7';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(83,74,183,0.15), 0 4px 8px -2px rgba(83,74,183,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(83,74,183,0.12) 0%, rgba(83,74,183,0.02) 100%);border:1px solid rgba(83,74,183,0.1);display:flex;align-items:center;justify-content:center;color:#534AB7;font-size:20px;">
+                        <i class="ti ti-building-store"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#534AB7;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Customer Accounts</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Receivables and credits.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('vendor-accounts',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#534AB7';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(83,74,183,0.15), 0 4px 8px -2px rgba(83,74,183,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(83,74,183,0.12) 0%, rgba(83,74,183,0.02) 100%);border:1px solid rgba(83,74,183,0.1);display:flex;align-items:center;justify-content:center;color:#534AB7;font-size:20px;">
+                        <i class="ti ti-truck"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#534AB7;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Vendor Accounts</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Payables and supplier ledger.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Purchase & Procurement -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(226,75,74,0.1);color:#E24B4A;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-shopping-bag"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Purchase & Procurement</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('purch-req',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#E24B4A';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(226,75,74,0.15), 0 4px 8px -2px rgba(226,75,74,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(226,75,74,0.12) 0%, rgba(226,75,74,0.02) 100%);border:1px solid rgba(226,75,74,0.1);display:flex;align-items:center;justify-content:center;color:#E24B4A;font-size:20px;">
+                        <i class="ti ti-clipboard-list"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#E24B4A;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Requirements</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Internal inventory needs.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('purch-quotes',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#E24B4A';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(226,75,74,0.15), 0 4px 8px -2px rgba(226,75,74,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(226,75,74,0.12) 0%, rgba(226,75,74,0.02) 100%);border:1px solid rgba(226,75,74,0.1);display:flex;align-items:center;justify-content:center;color:#E24B4A;font-size:20px;">
+                        <i class="ti ti-file-invoice"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#E24B4A;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Vendor Quotes</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Review supplier bids.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('purch-orders',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#E24B4A';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(226,75,74,0.15), 0 4px 8px -2px rgba(226,75,74,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(226,75,74,0.12) 0%, rgba(226,75,74,0.02) 100%);border:1px solid rgba(226,75,74,0.1);display:flex;align-items:center;justify-content:center;color:#E24B4A;font-size:20px;">
+                        <i class="ti ti-shopping-cart"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#E24B4A;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Purchase Orders</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Issue approved POs to vendors.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('purch-invoices',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#E24B4A';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(226,75,74,0.15), 0 4px 8px -2px rgba(226,75,74,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(226,75,74,0.12) 0%, rgba(226,75,74,0.02) 100%);border:1px solid rgba(226,75,74,0.1);display:flex;align-items:center;justify-content:center;color:#E24B4A;font-size:20px;">
+                        <i class="ti ti-receipt"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#E24B4A;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Purchase Invoices</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Process incoming supplier bills.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Service & Demo Management -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(239,159,39,0.1);color:#EF9F27;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-tools"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Service & Demo Management</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('tickets',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#EF9F27';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(239,159,39,0.15), 0 4px 8px -2px rgba(239,159,39,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(239,159,39,0.12) 0%, rgba(239,159,39,0.02) 100%);border:1px solid rgba(239,159,39,0.1);display:flex;align-items:center;justify-content:center;color:#EF9F27;font-size:20px;">
+                        <i class="ti ti-ticket"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#EF9F27;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Service Tickets</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Manage SLA and support requests.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('service-cal',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#EF9F27';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(239,159,39,0.15), 0 4px 8px -2px rgba(239,159,39,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(239,159,39,0.12) 0%, rgba(239,159,39,0.02) 100%);border:1px solid rgba(239,159,39,0.1);display:flex;align-items:center;justify-content:center;color:#EF9F27;font-size:20px;">
+                        <i class="ti ti-calendar-event"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#EF9F27;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Visit Schedule</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Dispatch service technicians.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('machines',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#EF9F27';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(239,159,39,0.15), 0 4px 8px -2px rgba(239,159,39,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(239,159,39,0.12) 0%, rgba(239,159,39,0.02) 100%);border:1px solid rgba(239,159,39,0.1);display:flex;align-items:center;justify-content:center;color:#EF9F27;font-size:20px;">
+                        <i class="ti ti-cpu"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#EF9F27;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Asset Tracking</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">History of installed machines.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('demo-mgmt',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#EF9F27';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(239,159,39,0.15), 0 4px 8px -2px rgba(239,159,39,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(239,159,39,0.12) 0%, rgba(239,159,39,0.02) 100%);border:1px solid rgba(239,159,39,0.1);display:flex;align-items:center;justify-content:center;color:#EF9F27;font-size:20px;">
+                        <i class="ti ti-device-laptop"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#EF9F27;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Demo Equipment</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Monitor loaner units.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Contracts, HR & System -->
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+                  <div style="width:28px;height:28px;border-radius:8px;background:rgba(14,165,233,0.1);color:#0ea5e9;display:flex;align-items:center;justify-content:center;font-size:16px;">
+                    <i class="ti ti-shield-check"></i>
+                  </div>
+                  <div style="font-size:15px;font-weight:700;color:#0A1628;letter-spacing:-0.3px;">Contracts, HR & System</div>
+                  <div style="flex:1;height:1px;background:linear-gradient(90deg, #E7E5E4, transparent);"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));gap:16px;">
+                  <div onclick="goPage('amc-active',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#0ea5e9';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(14,165,233,0.15), 0 4px 8px -2px rgba(14,165,233,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(14,165,233,0.02) 100%);border:1px solid rgba(14,165,233,0.1);display:flex;align-items:center;justify-content:center;color:#0ea5e9;font-size:20px;">
+                        <i class="ti ti-shield-check"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#0ea5e9;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">AMC Contracts</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Annual maintenance agreements.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('att-today',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#0ea5e9';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(14,165,233,0.15), 0 4px 8px -2px rgba(14,165,233,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(14,165,233,0.02) 100%);border:1px solid rgba(14,165,233,0.1);display:flex;align-items:center;justify-content:center;color:#0ea5e9;font-size:20px;">
+                        <i class="ti ti-clock"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#0ea5e9;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">HR & Attendance</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Staff tracking and leaves.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('usagelog',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#0ea5e9';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(14,165,233,0.15), 0 4px 8px -2px rgba(14,165,233,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(14,165,233,0.12) 0%, rgba(14,165,233,0.02) 100%);border:1px solid rgba(14,165,233,0.1);display:flex;align-items:center;justify-content:center;color:#0ea5e9;font-size:20px;">
+                        <i class="ti ti-list-details"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#0ea5e9;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Usage Log</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">System audit and history.</div>
+                    </div>
+                  </div>                  <div onclick="goPage('settings',null)" style="background:#fff;border:1px solid #E7E5E4;border-radius:14px;padding:18px;cursor:pointer;position:relative;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);display:flex;flex-direction:column;justify-content:space-between;min-height:120px;overflow:hidden;" onmouseover="this.style.borderColor='#0A1628';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 24px -4px rgba(10,22,40,0.15), 0 4px 8px -2px rgba(10,22,40,0.05)';this.querySelector('.arr-ico').style.transform='translateX(4px)';this.querySelector('.arr-ico').style.opacity='1';" onmouseout="this.style.borderColor='#E7E5E4';this.style.transform='none';this.style.boxShadow='none';this.querySelector('.arr-ico').style.transform='translateX(0)';this.querySelector('.arr-ico').style.opacity='0';">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;">
+                      <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg, rgba(10,22,40,0.12) 0%, rgba(10,22,40,0.02) 100%);border:1px solid rgba(10,22,40,0.1);display:flex;align-items:center;justify-content:center;color:#0A1628;font-size:20px;">
+                        <i class="ti ti-settings"></i>
+                      </div>
+                      <i class="ti ti-arrow-right arr-ico" style="color:#0A1628;font-size:16px;opacity:0;transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"></i>
+                    </div>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#0A1628;margin-bottom:4px;letter-spacing:-0.2px;">Master Settings</div>
+                      <div style="font-size:12px;color:#64748B;line-height:1.4;">Global system configuration.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- ── ADMIN DASHBOARD ── -->
           <div class="page active" id="p-dashboard">

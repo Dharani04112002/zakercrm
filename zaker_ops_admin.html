@@ -387,6 +387,31 @@
 
     .kpi-card.green {
       border-top-color: #16A34A;
+      background: #f0fdf4;
+    }
+
+    .kpi-card.unique-emerald {
+      background: #ecfdf5;
+      border: 1px solid #d1fae5;
+      border-left: 4px solid #10b981;
+    }
+
+    .kpi-card.unique-saffron {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-left: 4px solid #f59e0b;
+    }
+
+    .kpi-card.unique-crimson {
+      background: #fef2f2;
+      border: 1px solid #fee2e2;
+      border-left: 4px solid #ef4444;
+    }
+
+    .kpi-card.unique-azure {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-left: 4px solid #3b82f6;
     }
 
     .kpi-label {
@@ -1342,6 +1367,178 @@
       font-weight: 600;
       color: #0A1628;
       margin-bottom: 4px;
+    }
+
+    /* ── ATTENDANCE CALENDAR REDESIGN ── */
+    .att-cal-cnt {
+      background: #fff;
+      border: 1px solid #E7E5E4;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .att-cal-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .att-cal-curr {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1C1917;
+      letter-spacing: -0.2px;
+    }
+
+    .att-cal-nav-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #E7E5E4;
+      background: #FAFAF9;
+      color: #1C1917;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .att-cal-nav-btn:hover {
+      background: #FFFFFF;
+      border-color: #C9A84C;
+      color: #C9A84C;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .att-cal-grid-hdr {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #E7E5E4;
+      border: 1px solid #E7E5E4;
+      border-radius: 8px 8px 0 0;
+      overflow: hidden;
+    }
+
+    .att-cal-day-name {
+      background: #F5F5F4;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #78716C;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .att-cal-main {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #E7E5E4;
+      border: 1px solid #E7E5E4;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+    }
+
+    .att-cal-day-cell {
+      background: #fff;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .att-cal-day-cell:hover:not(.blank):not(.selected) {
+      background: #F0F9FF;
+      z-index: 2;
+      box-shadow: inset 0 0 0 1px #0EA5E9;
+    }
+
+    .att-cal-day-cell.blank {
+      background: #FAFAF9;
+      cursor: default;
+    }
+
+    .att-cal-day-num {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1C1917;
+      z-index: 3;
+    }
+
+    .att-cal-day-cell.today {
+      background: #FEFCE8;
+    }
+
+    .att-cal-day-cell.today .att-cal-day-num {
+      color: #C9A84C;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .att-cal-day-cell.selected {
+      background: #E0F2FE;
+      box-shadow: inset 0 0 0 1px #0EA5E9;
+    }
+
+    .att-cal-day-cell.selected .att-cal-day-num {
+      color: #0369A1;
+    }
+
+    .att-cal-day-cell.weekend .att-cal-day-num {
+      color: #A8A29E;
+    }
+
+    .att-cal-day-cell.future {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    .att-cal-day-cell.future .att-cal-day-num {
+      color: #D6D3D1;
+    }
+
+    .att-cal-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 6px;
+    }
+
+    .att-cal-legend {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #E7E5E4;
+      flex-wrap: wrap;
+    }
+
+    .att-leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #78716C;
+      font-weight: 500;
+    }
+
+    .att-leg-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
     }
 
     .cat-brands {
@@ -3105,6 +3302,47 @@
     }
 
     /* Tooltip boxes are rendered as real divs via JS — see bottom of file */
+
+    /* ── MASTER SETTINGS — gold theme for all primary action buttons ── */
+    #p-settings .btn-p,
+    #p-roles-access .btn-p,
+    #p-sys-config .btn-p,
+    #p-notif-settings .btn-p,
+    #p-accounts .btn-p,
+    #p-parts-view .btn-p,
+    #p-m-prodservice .btn-p,
+    #p-m-custtype .btn-p,
+    #p-m-territory .btn-p,
+    #p-m-hr .btn-p,
+    #p-m-mgmt .btn-p {
+      background: #C9A84C;
+      color: #0A1628;
+      border: none;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.12s;
+    }
+
+    #p-settings .btn-p:hover,
+    #p-roles-access .btn-p:hover,
+    #p-sys-config .btn-p:hover,
+    #p-notif-settings .btn-p:hover,
+    #p-accounts .btn-p:hover,
+    #p-parts-view .btn-p:hover,
+    #p-m-prodservice .btn-p:hover,
+    #p-m-custtype .btn-p:hover,
+    #p-m-territory .btn-p:hover,
+    #p-m-hr .btn-p:hover,
+    #p-m-mgmt .btn-p:hover {
+      background: #b8963e;
+    }
   </style>
 </head>
 
@@ -3126,6 +3364,22 @@
         <a class="nav-link active" onclick="goPage('dashboard',this)"><i
             class="ti ti-layout-dashboard"></i>Dashboard</a>
 
+        <a class="nav-link" id="nl-cust360" onclick="toggleSub('sub-cust360','arr-c360',this)">
+          <i class="ti ti-chart-bubble"></i>Customer 360
+          <i class="ti ti-chevron-right" id="arr-c360"
+            style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i>
+        </a>
+        <div style="display:none;padding-left:18px;" id="sub-cust360">
+          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('c360-plan',this)"><i
+              class="ti ti-calendar-event" style="font-size:13px;"></i>Today's Plan</a>
+          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('cust360',this)"><i
+              class="ti ti-users" style="font-size:13px;"></i>Customers360</a>
+          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('c360-analysis',this)"><i
+              class="ti ti-brain" style="font-size:13px;"></i>Analysis</a>
+          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('c360-personas',this)"><i
+              class="ti ti-chart-bubble" style="font-size:13px;"></i>Personas</a>
+        </div>
+
         <a class="nav-link" id="nl-crm" onclick="toggleSub('sub-crm','arr-crm',this)"><i class="ti ti-users"></i>CRM<i
             class="ti ti-chevron-right" id="arr-crm"
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
@@ -3144,8 +3398,6 @@
             class="ti ti-currency-dollar"></i>Sales<i class="ti ti-chevron-right" id="arr-sales"
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
         <div style="display:none;padding-left:18px;" id="sub-sales">
-          <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('cust360',this)"><i
-              class="ti ti-chart-bubble" style="font-size:13px;"></i>Customer 360</a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('mapview',this)"><i
               class="ti ti-map-pin" style="font-size:13px;"></i>SE Map View</a>
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('sales-req',this)"><i
@@ -3277,10 +3529,10 @@
                 </div>
               </div>
               <div style="display:flex;gap:8px;">
-                <button class="btn-secondary" style="font-size:12px;padding:7px 14px;"><i class="ti ti-file-export"
-                    style="font-size:13px;margin-right:4px;"></i>Export report</button>
-                <button class="btn-p" style="font-size:12px;padding:7px 14px;" onclick="showAISummary()"><i
-                    class="ti ti-sparkles" style="font-size:13px;margin-right:4px;"></i><span
+                <button class="btn-primary" style="background:#FACC15; font-size:12px;padding:7px 14px;"><i
+                    class="ti ti-file-export" style="font-size:13px;margin-right:4px;"></i>Export report</button>
+                <button class="btn-primary" style="background:#FACC15; font-size:12px;padding:7px 14px;"
+                  onclick="showAISummary()"><i class="ti ti-sparkles" style="font-size:13px;margin-right:4px;"></i><span
                     data-tooltip="AI-generated daily briefing: SLA breaches, overdue demos, top pipeline deals &amp; SE performance highlights">AI
                     summary</span></button>
               </div>
@@ -5198,8 +5450,9 @@
 
         <!-- ACCOUNT CREATION -->
         <div class="page" id="p-accounts">
-          <div style="margin-bottom:14px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
             <div style="font-size:15px;font-weight:700;color:#1a2332;">Account Creation</div>
+            <button class="btn-p">+ New SE</button>
           </div>
           <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;">
             <div>
@@ -5207,7 +5460,6 @@
                 <div class="fc on">All (12)</div>
                 <div class="fc">Active</div>
                 <div class="fc">Inactive</div>
-                <div class="ml"><button class="btn-p">+ New SE</button></div>
               </div>
               <div class="tbl-wrap">
                 <table class="data-tbl">
@@ -5905,8 +6157,8 @@
               <div style="font-size:15px;font-weight:700;color:#1a2332;">View Part Master</div>
               <div style="font-size:11px;color:#6a7f96;margin-top:2px;">409 parts · 5 categories</div>
             </div>
-            <div style="display:flex;gap:8px;"><button class="btn-secondary">Export</button><button class="btn-p">+ Add
-                part</button></div>
+            <div style="display:flex;gap:8px;align-items:center;"><button class="btn-secondary"
+                style="padding:6px 12px;">Export</button><button class="btn-p">+ Add part</button></div>
           </div>
           <div class="filter-bar">
             <div class="fc on">All (409)</div>
@@ -6323,101 +6575,145 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
             <div>
               <div style="font-size:15px;font-weight:700;color:#1a2332;">Today's Attendance</div>
-              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">18 Jun 2026 — 9 of 12 SEs checked in</div>
-            </div><button class="btn-secondary">Export</button>
+              <div id="att-date-label" style="font-size:11px;color:#6a7f96;margin-top:2px;">19 Jun 2026 — 9 of 12 SEs
+                checked in</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div style="display:flex;border:1px solid #dde2ea;border-radius:7px;overflow:hidden;font-size:12px;">
+                <button id="att-view-day" onclick="attSetView('day')"
+                  style="padding:5px 12px;background:#1a6ef5;color:#fff;border:none;cursor:pointer;font-size:12px;font-weight:600;">Day
+                  Log</button>
+                <button id="att-view-cal" onclick="attSetView('cal')"
+                  style="padding:5px 12px;background:#fff;color:#6a7f96;border:none;cursor:pointer;font-size:12px;">Calendar</button>
+              </div>
+              <button class="btn-secondary">Export</button>
+            </div>
           </div>
+
           <div class="kpi-grid">
-            <div class="kpi-card green">
+            <div class="kpi-card unique-emerald">
               <div class="kpi-label">Checked in</div>
               <div style="font-size:26px;font-weight:700;color:#1a2332;margin:6px 0;">9</div>
               <div class="kpi-sub up">On time: 7</div>
             </div>
-            <div class="kpi-card red">
+            <div class="kpi-card unique-crimson">
               <div class="kpi-label">Late</div>
               <div style="font-size:26px;font-weight:700;color:#1a2332;margin:6px 0;">2</div>
               <div class="kpi-sub dn">&gt;30 min late</div>
             </div>
-            <div class="kpi-card amber">
+            <div class="kpi-card unique-saffron">
               <div class="kpi-label">Not checked in</div>
               <div style="font-size:26px;font-weight:700;color:#1a2332;margin:6px 0;">3</div>
               <div class="kpi-sub w">No GPS</div>
             </div>
-            <div class="kpi-card blue">
+            <div class="kpi-card unique-azure">
               <div class="kpi-label">Checked out</div>
               <div style="font-size:26px;font-weight:700;color:#1a2332;margin:6px 0;">1</div>
               <div class="kpi-sub up">Early finish</div>
             </div>
           </div>
-          <div class="tbl-wrap">
-            <table class="data-tbl">
-              <thead>
-                <tr>
-                  <th>SE Name</th>
-                  <th><span
-                      data-tooltip="Unique employee code assigned to each SE (e.g. ZAK-001) — used for payroll, attendance &amp; system access">Code</span>
-                  </th>
-                  <th><span
-                      data-tooltip="Time the SE tapped in from their mobile app — GPS coordinates are captured at this moment">Check-in</span>
-                  </th>
-                  <th><span
-                      data-tooltip="Time the SE tapped out at end of day — required to calculate total working hours">Check-out</span>
-                  </th>
-                  <th><span
-                      data-tooltip="Location coordinates captured automatically when the SE checks in — verifies they are at an approved work location">GPS
-                      Location</span></th>
-                  <th>Hours</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="c-name">Ahmed Malik</td>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-001</td>
-                  <td style="font-size:11px;">08:47 AM</td>
-                  <td style="font-size:11px;color:#9aaabb;">—</td>
-                  <td style="font-size:10px;color:#6a7f96;">Deira, Dubai · 25.2701°N, 55.3094°E</td>
-                  <td style="font-weight:600;">6h 52m</td>
-                  <td><span class="pill pg">On time</span></td>
-                </tr>
-                <tr>
-                  <td class="c-name">Fatima Rahman</td>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-002</td>
-                  <td style="font-size:11px;">09:12 AM</td>
-                  <td style="font-size:11px;color:#9aaabb;">—</td>
-                  <td style="font-size:10px;color:#6a7f96;">Abu Dhabi Industrial · 24.4539°N</td>
-                  <td style="font-weight:600;">6h 27m</td>
-                  <td><span class="pill pg">On time</span></td>
-                </tr>
-                <tr>
-                  <td class="c-name">Khalid Jaber</td>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-003</td>
-                  <td style="font-size:11px;">09:48 AM</td>
-                  <td style="font-size:11px;color:#9aaabb;">—</td>
-                  <td style="font-size:10px;color:#6a7f96;">Sharjah Industrial · 25.3463°N</td>
-                  <td style="font-weight:600;">5h 51m</td>
-                  <td><span class="pill pa">Late</span></td>
-                </tr>
-                <tr>
-                  <td class="c-name">Noor Al-Zaabi</td>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-004</td>
-                  <td style="font-size:11px;">08:55 AM</td>
-                  <td style="font-size:11px;">02:30 PM</td>
-                  <td style="font-size:10px;color:#6a7f96;">Dubai South · 24.9964°N</td>
-                  <td style="font-weight:600;">5h 35m</td>
-                  <td><span class="pill pb">Checked out</span></td>
-                </tr>
-                <tr>
-                  <td class="c-name">Omar Hassan</td>
-                  <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-005</td>
-                  <td style="font-size:11px;color:#9aaabb;">—</td>
-                  <td style="font-size:11px;color:#9aaabb;">—</td>
-                  <td style="font-size:10px;color:#E24B4A;">No GPS signal</td>
-                  <td style="color:#9aaabb;">—</td>
-                  <td><span class="pill pr">Absent</span></td>
-                </tr>
-              </tbody>
-            </table>
+
+          <!-- NEW CALENDAR PANEL -->
+          <div id="att-cal-panel" class="att-cal-cnt" style="display:none;">
+            <div class="att-cal-hdr">
+              <button class="att-cal-nav-btn" onclick="attCalNav(-1)"><i class="ti ti-chevron-left"></i></button>
+              <div id="att-cal-month-label" class="att-cal-curr">June 2026</div>
+              <button class="att-cal-nav-btn" onclick="attCalNav(1)"><i class="ti ti-chevron-right"></i></button>
+            </div>
+
+            <div class="att-cal-grid-hdr">
+              <div class="att-cal-day-name">Mon</div>
+              <div class="att-cal-day-name">Tue</div>
+              <div class="att-cal-day-name">Wed</div>
+              <div class="att-cal-day-name">Thu</div>
+              <div class="att-cal-day-name">Fri</div>
+              <div class="att-cal-day-name">Sat</div>
+              <div class="att-cal-day-name">Sun</div>
+            </div>
+            <div id="att-cal-grid" class="att-cal-main"></div>
+
+            <div class="att-cal-legend">
+              <div class="att-leg-item"><span class="att-leg-dot" style="background:#16A34A;"></span>Full attendance
+              </div>
+              <div class="att-leg-item"><span class="att-leg-dot" style="background:#F59E0B;"></span>Partial</div>
+              <div class="att-leg-item"><span class="att-leg-dot" style="background:#DC2626;"></span>Absences</div>
+              <div class="att-leg-item"><span class="att-leg-dot" style="background:#E7E5E4;"></span>No data</div>
+            </div>
           </div>
+
+          <!-- DAY LOG CONTENT -->
+          <div id="att-day-content">
+            <div class="tbl-wrap">
+              <table class="data-tbl">
+                <thead>
+                  <tr>
+                    <th>SE Name</th>
+                    <th><span
+                        data-tooltip="Unique employee code assigned to each SE (e.g. ZAK-001) — used for payroll, attendance &amp; system access">Code</span>
+                    </th>
+                    <th><span
+                        data-tooltip="Time the SE tapped in from their mobile app — GPS coordinates are captured at this moment">Check-in</span>
+                    </th>
+                    <th><span
+                        data-tooltip="Time the SE tapped out at end of day — required to calculate total working hours">Check-out</span>
+                    </th>
+                    <th><span
+                        data-tooltip="Location coordinates captured automatically when the SE checks in — verifies they are at an approved work location">GPS
+                        Location</span></th>
+                    <th>Hours</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="c-name">Ahmed Malik</td>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-001</td>
+                    <td style="font-size:11px;">08:47 AM</td>
+                    <td style="font-size:11px;color:#9aaabb;">—</td>
+                    <td style="font-size:10px;color:#6a7f96;">Deira, Dubai · 25.2701°N, 55.3094°E</td>
+                    <td style="font-weight:600;">6h 52m</td>
+                    <td><span class="pill pg">On time</span></td>
+                  </tr>
+                  <tr>
+                    <td class="c-name">Fatima Rahman</td>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-002</td>
+                    <td style="font-size:11px;">09:12 AM</td>
+                    <td style="font-size:11px;color:#9aaabb;">—</td>
+                    <td style="font-size:10px;color:#6a7f96;">Abu Dhabi Industrial · 24.4539°N</td>
+                    <td style="font-weight:600;">6h 27m</td>
+                    <td><span class="pill pg">On time</span></td>
+                  </tr>
+                  <tr>
+                    <td class="c-name">Khalid Jaber</td>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-003</td>
+                    <td style="font-size:11px;">09:48 AM</td>
+                    <td style="font-size:11px;color:#9aaabb;">—</td>
+                    <td style="font-size:10px;color:#6a7f96;">Sharjah Industrial · 25.3463°N</td>
+                    <td style="font-weight:600;">5h 51m</td>
+                    <td><span class="pill pa">Late</span></td>
+                  </tr>
+                  <tr>
+                    <td class="c-name">Noor Al-Zaabi</td>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-004</td>
+                    <td style="font-size:11px;">08:55 AM</td>
+                    <td style="font-size:11px;">02:30 PM</td>
+                    <td style="font-size:10px;color:#6a7f96;">Dubai South · 24.9964°N</td>
+                    <td style="font-weight:600;">5h 35m</td>
+                    <td><span class="pill pb">Checked out</span></td>
+                  </tr>
+                  <tr>
+                    <td class="c-name">Omar Hassan</td>
+                    <td style="font-family:monospace;font-size:11px;font-weight:700;">ZAK-005</td>
+                    <td style="font-size:11px;color:#9aaabb;">—</td>
+                    <td style="font-size:11px;color:#9aaabb;">—</td>
+                    <td style="font-size:10px;color:#E24B4A;">No GPS signal</td>
+                    <td style="color:#9aaabb;">—</td>
+                    <td><span class="pill pr">Absent</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- end att-day-content -->
         </div>
 
         <!-- ATTENDANCE HISTORY -->
@@ -7077,15 +7373,15 @@
                   activity log</span></div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;"><input type="date" value="2026-06-01"
-                style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;" /><input
+                style="font-size:12px;padding:6px 10px;border:1.5px solid #C9A84C;border-radius:7px;outline:none;color:#1a2332;" /><input
                 type="date" value="2026-06-18"
-                style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;" /><select
-                style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;">
+                style="font-size:12px;padding:6px 10px;border:1.5px solid #C9A84C;border-radius:7px;outline:none;color:#1a2332;" /><select
+                style="font-size:12px;padding:6px 10px;border:1.5px solid #C9A84C;border-radius:7px;outline:none;color:#1a2332;">
                 <option>All SEs</option>
                 <option>Ahmed Malik</option>
                 <option>Fatima Rahman</option>
-              </select><button class="btn-p" style="padding:6px 14px;">Search</button><button class="btn-secondary"
-                style="padding:6px 12px;">Export</button></div>
+              </select><button class="btn-primary" style="padding:6px 14px;">Search</button><button
+                class="btn-secondary" style="padding:6px 12px;">Export</button></div>
           </div>
           <div class="tbl-wrap">
             <table class="data-tbl">
@@ -9872,10 +10168,6 @@
           <div class="c360-tabs">
             <button class="c360-tab on" onclick="c360Tab('overview',this)"><i class="ti ti-building"
                 style="font-size:13px;margin-right:5px;"></i>Overview</button>
-            <button class="c360-tab" onclick="c360Tab('personas',this)"><i class="ti ti-chart-bubble"
-                style="font-size:13px;margin-right:5px;"></i>Personas</button>
-            <button class="c360-tab" onclick="c360Tab('analysis',this)"><i class="ti ti-brain"
-                style="font-size:13px;margin-right:5px;"></i>Analysis</button>
           </div>
 
           <!-- ═══ TAB 1 — OVERVIEW ═══ -->
@@ -9929,7 +10221,7 @@
             <div class="cluster-grid">
 
               <div class="cluster-card champions"
-                onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                onclick="goPage('c360-personas',document.querySelector('#sub-cust360 .nav-link:last-child'))">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                   <div style="width:10px;height:10px;border-radius:50%;background:#C9A84C;flex-shrink:0;"></div>
                   <div class="cluster-name">Champions</div>
@@ -9946,7 +10238,7 @@
               </div>
 
               <div class="cluster-card loyal"
-                onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                onclick="goPage('c360-personas',document.querySelector('#sub-cust360 .nav-link:last-child'))">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                   <div style="width:10px;height:10px;border-radius:50%;background:#378ADD;flex-shrink:0;"></div>
                   <div class="cluster-name">Loyal Customers</div>
@@ -9963,7 +10255,7 @@
               </div>
 
               <div class="cluster-card need-att"
-                onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                onclick="goPage('c360-personas',document.querySelector('#sub-cust360 .nav-link:last-child'))">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                   <div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;flex-shrink:0;"></div>
                   <div class="cluster-name">Need Attention</div>
@@ -9980,7 +10272,7 @@
               </div>
 
               <div class="cluster-card at-risk"
-                onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                onclick="goPage('c360-personas',document.querySelector('#sub-cust360 .nav-link:last-child'))">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                   <div style="width:10px;height:10px;border-radius:50%;background:#E24B4A;flex-shrink:0;"></div>
                   <div class="cluster-name">At Risk</div>
@@ -9997,7 +10289,7 @@
               </div>
 
               <div class="cluster-card lost"
-                onclick="c360Tab('personas',document.querySelector('.c360-tab:nth-child(2)'))">
+                onclick="goPage('c360-personas',document.querySelector('#sub-cust360 .nav-link:last-child'))">
                 <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                   <div style="width:10px;height:10px;border-radius:50%;background:#9aaabb;flex-shrink:0;"></div>
                   <div class="cluster-name">Hibernating / Lost</div>
@@ -10049,476 +10341,851 @@
           </div><!-- /c360-overview -->
 
           <!-- ═══ TAB 2 — PERSONAS ═══ -->
-          <div class="c360-tab-panel" id="c360-personas">
-
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-              <div>
-                <div style="font-size:14px;font-weight:700;color:#1a2332;">Customer Universe</div>
-                <div style="font-size:11px;color:#6a7f96;margin-top:2px;">284 customers mapped · 5 clusters · bubble
-                  size = revenue</div>
-              </div>
-              <div style="display:flex;gap:8px;">
-                <select
-                  style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;cursor:pointer;">
-                  <option>All Clusters</option>
-                  <option>Champions</option>
-                  <option>Loyal Customers</option>
-                  <option>Need Attention</option>
-                  <option>At Risk</option>
-                  <option>Hibernating / Lost</option>
-                </select>
-                <button class="btn-primary" style="font-size:12px;"
-                  onclick="alert('Export customer universe data as CSV.')"><i class="ti ti-download"
-                    style="font-size:13px;margin-right:4px;"></i>Export</button>
-              </div>
-            </div>
-
-            <!-- Stats row -->
-            <div class="stat-row" style="margin-bottom:14px;">
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i>
-                </div>
-                <div>
-                  <div class="stat-mini-val">284</div>
-                  <div class="stat-mini-lbl">Customers</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-chart-bubble"></i>
-                </div>
-                <div>
-                  <div class="stat-mini-val">5</div>
-                  <div class="stat-mini-lbl">Clusters</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#E6F1FB;color:#378ADD;"><i class="ti ti-coins"></i></div>
-                <div>
-                  <div class="stat-mini-val" style="font-size:16px;">AED 135.7M</div>
-                  <div class="stat-mini-lbl">Revenue Mapped</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-radar"></i></div>
-                <div>
-                  <div class="stat-mini-val">38</div>
-                  <div class="stat-mini-lbl">Outreach Targets</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bubble chart -->
-            <div class="bubble-arena" id="bubble-arena">
-              <!-- Champions cluster (gold/large) -->
-              <div class="bubble"
-                style="width:110px;height:110px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:12%;top:15%;"
-                onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Stable')">
-                Al-Faris<br>Industrial</div>
-              <div class="bubble"
-                style="width:90px;height:90px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:26%;top:8%;"
-                onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Growing')">
-                Gulf Metals<br>Trading</div>
-              <div class="bubble"
-                style="width:80px;height:80px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:36%;top:26%;"
-                onclick="openC360Panel('Jebel Ali Steel Works','Champions · Abrasives & Welding','AED 11.8M','AED 145K/yr','Champions','4.5','Stable')">
-                Jebel Ali<br>Steel</div>
-              <div class="bubble"
-                style="width:72px;height:72px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:48%;top:12%;"
-                onclick="openC360Panel('DIC Engineering LLC','Champions · Industrial Tools','AED 9.6M','AED 120K/yr','Champions','4.3','Stable')">
-                DIC Engg</div>
-
-              <!-- Loyal cluster (blue) -->
-              <div class="bubble"
-                style="width:65px;height:65px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:62%;top:8%;"
-                onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Stable')">
-                AeroTech</div>
-              <div class="bubble"
-                style="width:58px;height:58px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:74%;top:18%;"
-                onclick="openC360Panel('Dubai Steel Works','Loyal · Lifting Equipment','AED 2.6M','AED 34K/yr','Loyal','3.7','Stable')">
-                Dubai Steel</div>
-              <div class="bubble"
-                style="width:52px;height:52px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:58%;top:32%;"
-                onclick="openC360Panel('Al-Wasl Industrial','Loyal · Safety PPE','AED 1.9M','AED 24K/yr','Loyal','3.5','Declining')">
-                Al-Wasl<br>Ind.</div>
-
-              <!-- Need Attention cluster (amber) -->
-              <div class="bubble"
-                style="width:50px;height:50px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:20%;top:52%;"
-                onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">
-                Khaleeji</div>
-              <div class="bubble"
-                style="width:44px;height:44px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:34%;top:58%;"
-                onclick="openC360Panel('Sharjah Tech Hub','Need Attention · Hand Tools','AED 218K','AED 12K/yr','Need Attention','2.1','Declining')">
-                Sharjah<br>Tech</div>
-
-              <!-- At Risk cluster (red) -->
-              <div class="bubble"
-                style="width:40px;height:40px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:54%;top:56%;"
-                onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Declining')">
-                Al-Rashid</div>
-              <div class="bubble"
-                style="width:36px;height:36px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:67%;top:52%;"
-                onclick="openC360Panel('Gulf Star Supplies','At Risk · Abrasives','AED 72K','AED 2K/yr','At Risk','1.4','Inactive')">
-                Gulf<br>Star</div>
-
-              <!-- Hibernating (grey, small) -->
-              <div class="bubble"
-                style="width:30px;height:30px;background:#c8d0da;color:#fff;left:78%;top:50%;font-size:9px;"
-                onclick="openC360Panel('Deira Builders LLC','Hibernating · Hand Tools','AED 18K','AED 0/yr','Hibernating','1.0','Inactive')">
-                Deira</div>
-              <div class="bubble"
-                style="width:26px;height:26px;background:#c8d0da;color:#fff;left:85%;top:42%;font-size:9px;"
-                onclick="openC360Panel('Bur Dubai Tools','Hibernating · Abrasives','AED 12K','AED 0/yr','Hibernating','1.0','Inactive')">
-                BDT</div>
-
-              <!-- Legend -->
-              <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:10px;flex-wrap:wrap;">
-                <span
-                  style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
-                    style="width:10px;height:10px;border-radius:50%;background:#C9A84C;display:inline-block;"></span>Champions</span>
-                <span
-                  style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
-                    style="width:10px;height:10px;border-radius:50%;background:#378ADD;display:inline-block;"></span>Loyal</span>
-                <span
-                  style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
-                    style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Need
-                  Attention</span>
-                <span
-                  style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
-                    style="width:10px;height:10px;border-radius:50%;background:#E24B4A;display:inline-block;"></span>At
-                  Risk</span>
-                <span
-                  style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
-                    style="width:10px;height:10px;border-radius:50%;background:#c8d0da;display:inline-block;"></span>Hibernating</span>
-              </div>
-              <div style="position:absolute;bottom:10px;right:12px;font-size:10px;color:#9aaabb;">Click a bubble to view
-                details</div>
-            </div><!-- /bubble-arena -->
-
-            <!-- Key accounts table below bubble chart -->
-            <div class="tbl-wrap">
-              <table class="data-tbl">
-                <thead>
-                  <tr>
-                    <th>Customer</th>
-                    <th>Cluster</th>
-                    <th>Lifetime Value</th>
-                    <th>Avg Annual</th>
-                    <th>RFM Score</th>
-                    <th>Trend</th>
-                    <th>Last Order</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="cust-cell">
-                        <div class="c-av" style="background:#C9A84C;color:#0A1628;">AF</div>
-                        <div>
-                          <div class="c-name">Al-Faris Industrial LLC</div>
-                          <div class="c-sub">Dubai North</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
-                    <td style="font-weight:700;">AED 18.4M</td>
-                    <td style="color:#6a7f96;">AED 220K</td>
-                    <td><span class="score-h">4.8</span></td>
-                    <td><span class="pill pill-green">Growing</span></td>
-                    <td style="font-size:11px;color:#6a7f96;">2 days ago</td>
-                    <td><span class="tbl-action"
-                        onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Growing')">Profile
-                        →</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="cust-cell">
-                        <div class="c-av" style="background:#378ADD;color:#fff;">GM</div>
-                        <div>
-                          <div class="c-name">Gulf Metals Trading</div>
-                          <div class="c-sub">Abu Dhabi</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
-                    <td style="font-weight:700;">AED 14.2M</td>
-                    <td style="color:#6a7f96;">AED 180K</td>
-                    <td><span class="score-h">4.6</span></td>
-                    <td><span class="pill pill-green">Stable</span></td>
-                    <td style="font-size:11px;color:#6a7f96;">Today</td>
-                    <td><span class="tbl-action"
-                        onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Stable')">Profile
-                        →</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="cust-cell">
-                        <div class="c-av" style="background:#1D9E75;color:#fff;">AT</div>
-                        <div>
-                          <div class="c-name">AeroTech Engineering</div>
-                          <div class="c-sub">Sharjah</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="pill pill-blue">Loyal</span></td>
-                    <td style="font-weight:700;">AED 3.2M</td>
-                    <td style="color:#6a7f96;">AED 42K</td>
-                    <td><span class="score-m">3.9</span></td>
-                    <td><span class="pill pill-amber">Declining</span></td>
-                    <td style="font-size:11px;color:#6a7f96;">12 days ago</td>
-                    <td><span class="tbl-action"
-                        onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Declining')">Profile
-                        →</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="cust-cell">
-                        <div class="c-av" style="background:#F59E0B;color:#fff;">KM</div>
-                        <div>
-                          <div class="c-name">Khaleeji Metals LLC</div>
-                          <div class="c-sub">Dubai South</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="pill pill-amber">Need Attention</span></td>
-                    <td style="font-weight:700;">AED 340K</td>
-                    <td style="color:#6a7f96;">AED 28K</td>
-                    <td><span class="score-m">2.4</span></td>
-                    <td><span class="pill pill-red">Declining</span></td>
-                    <td style="font-size:11px;color:#E24B4A;">32 days ago</td>
-                    <td><span class="tbl-action"
-                        onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">Profile
-                        →</span></td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="cust-cell">
-                        <div class="c-av" style="background:#E24B4A;color:#fff;">AR</div>
-                        <div>
-                          <div class="c-name">Al-Rashid Trading</div>
-                          <div class="c-sub">Ajman</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td><span class="pill pill-red">At Risk</span></td>
-                    <td style="font-weight:700;">AED 98K</td>
-                    <td style="color:#6a7f96;">AED 4K</td>
-                    <td><span class="score-l">1.6</span></td>
-                    <td><span class="pill pill-red">Inactive</span></td>
-                    <td style="font-size:11px;color:#E24B4A;">78 days ago</td>
-                    <td><span class="tbl-action"
-                        onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Inactive')">Profile
-                        →</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div><!-- /c360-personas -->
-
-          <!-- ═══ TAB 3 — ANALYSIS ═══ -->
-          <div class="c360-tab-panel" id="c360-analysis">
-
-            <!-- KPI row -->
-            <div class="stat-row" style="margin-bottom:16px;">
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i>
-                </div>
-                <div>
-                  <div class="stat-mini-val">284</div>
-                  <div class="stat-mini-lbl">Total Customers</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-brain"></i></div>
-                <div>
-                  <div class="stat-mini-val">5</div>
-                  <div class="stat-mini-lbl">Archetypes Detected</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i
-                    class="ti ti-alert-triangle"></i></div>
-                <div>
-                  <div class="stat-mini-val" style="color:#E24B4A;">12</div>
-                  <div class="stat-mini-lbl">At Risk</div>
-                </div>
-              </div>
-              <div class="stat-mini">
-                <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i
-                    class="ti ti-currency-dirham"></i></div>
-                <div>
-                  <div class="stat-mini-val" style="font-size:15px;color:#1D9E75;">AED 8.4M</div>
-                  <div class="stat-mini-lbl">Recovery Opportunity</div>
-                </div>
-              </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-
-              <!-- Archetypes panel -->
-              <div class="card">
-                <div class="card-head">
-                  <div>
-                    <div class="card-title"><i class="ti ti-brain" style="margin-right:5px;color:#C9A84C;"></i>Customer
-                      Archetypes</div>
-                    <div style="font-size:10px;color:#9aaabb;margin-top:2px;">AI-detected behavioral patterns across
-                      your customer base</div>
-                  </div>
-                </div>
-                <div class="arch-row">
-                  <div class="arch-label-row">
-                    <span class="arch-name" style="color:#C9A84C;">Strategic Accounts</span>
-                    <span class="arch-count">18 · 6%</span>
-                  </div>
-                  <div class="arch-bar-wrap">
-                    <div class="arch-bar" style="width:6%;background:#C9A84C;"></div>
-                  </div>
-                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">High-frequency, high-value, multi-category
-                    buyers</div>
-                </div>
-                <div class="arch-row">
-                  <div class="arch-label-row">
-                    <span class="arch-name" style="color:#378ADD;">Consistent Loyals</span>
-                    <span class="arch-count">54 · 19%</span>
-                  </div>
-                  <div class="arch-bar-wrap">
-                    <div class="arch-bar" style="width:19%;background:#378ADD;"></div>
-                  </div>
-                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Regular reorders, single/dual category focus
-                  </div>
-                </div>
-                <div class="arch-row">
-                  <div class="arch-label-row">
-                    <span class="arch-name" style="color:#F59E0B;">Seasonal Buyers</span>
-                    <span class="arch-count">42 · 15%</span>
-                  </div>
-                  <div class="arch-bar-wrap">
-                    <div class="arch-bar" style="width:15%;background:#F59E0B;"></div>
-                  </div>
-                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Project-based ordering, infrequent but
-                    sizable</div>
-                </div>
-                <div class="arch-row">
-                  <div class="arch-label-row">
-                    <span class="arch-name" style="color:#E24B4A;">At-Risk / Churning</span>
-                    <span class="arch-count">12 · 4%</span>
-                  </div>
-                  <div class="arch-bar-wrap">
-                    <div class="arch-bar" style="width:4%;background:#E24B4A;"></div>
-                  </div>
-                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Declining order frequency, competitor
-                    signals</div>
-                </div>
-                <div class="arch-row">
-                  <div class="arch-label-row">
-                    <span class="arch-name" style="color:#9aaabb;">Dormant / Lost</span>
-                    <span class="arch-count">158 · 56%</span>
-                  </div>
-                  <div class="arch-bar-wrap">
-                    <div class="arch-bar" style="width:56%;background:#9aaabb;"></div>
-                  </div>
-                  <div style="font-size:10px;color:#9aaabb;margin-top:3px;">No orders in 90+ days, likely inactive</div>
-                </div>
-              </div>
-
-              <!-- RFM segments panel -->
-              <div class="card">
-                <div class="card-head">
-                  <div>
-                    <div class="card-title"><i class="ti ti-chart-bar" style="margin-right:5px;color:#378ADD;"></i>RFM
-                      Segments</div>
-                    <div style="font-size:10px;color:#9aaabb;margin-top:2px;">Recency, Frequency, Amount analysis of
-                      customer value</div>
-                  </div>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A84C;margin-right:6px;"></span>Champions</span>
-                  <span class="rfm-cnt">18</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:88%;background:#C9A84C;"></div>
-                  </div>
-                  <span class="rfm-pct">88%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#378ADD;margin-right:6px;"></span>Loyal
-                    Customers</span>
-                  <span class="rfm-cnt">54</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:19%;background:#378ADD;"></div>
-                  </div>
-                  <span class="rfm-pct">19%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1D9E75;margin-right:6px;"></span>Potential
-                    Loyalists</span>
-                  <span class="rfm-cnt">42</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:15%;background:#1D9E75;"></div>
-                  </div>
-                  <span class="rfm-pct">15%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F59E0B;margin-right:6px;"></span>Need
-                    Attention</span>
-                  <span class="rfm-cnt">14</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:5%;background:#F59E0B;"></div>
-                  </div>
-                  <span class="rfm-pct">5%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E24B4A;margin-right:6px;"></span>At
-                    Risk</span>
-                  <span class="rfm-cnt">12</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:4%;background:#E24B4A;"></div>
-                  </div>
-                  <span class="rfm-pct">4%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aaabb;margin-right:6px;"></span>Hibernating</span>
-                  <span class="rfm-cnt">88</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:31%;background:#9aaabb;"></div>
-                  </div>
-                  <span class="rfm-pct">31%</span>
-                </div>
-                <div class="rfm-row">
-                  <span class="rfm-seg"><span
-                      style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E7E5E4;margin-right:6px;"></span>Lost</span>
-                  <span class="rfm-cnt">56</span>
-                  <div class="rfm-bar-wrap">
-                    <div class="rfm-bar" style="width:20%;background:#c8d0da;"></div>
-                  </div>
-                  <span class="rfm-pct">20%</span>
-                </div>
-              </div>
-
-            </div><!-- /2-col grid -->
-
-            <!-- AI recommendations -->
-            <div class="ai-hint-bar" style="margin-top:16px;">
-              <i class="ti ti-sparkles"></i>
-              <div class="ai-hint-txt">
-                <b>AI Recommendations:</b>
-                <br>1. Schedule re-engagement visits to the 12 At-Risk accounts — assign to senior SEs with personalized
-                offers.
-                <br>2. Upsell safety PPE to 9 Champions who currently buy only welding consumables (AED 2.1M potential).
-                <br>3. Al-Rashid Trading (78 days silent) — trigger WhatsApp campaign with 5% loyalty discount before
-                final churn.
-              </div>
-            </div>
-
-          </div><!-- /c360-analysis -->
-
         </div><!-- /p-cust360 -->
+
+        <!-- ── CUSTOMER 360: TODAY'S PLAN ── -->
+        <div class="page" id="p-c360-plan">
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Today's Plan</div>
+              <div class="pg-header-sub">Priority customer engagements and scheduled health checks — Fri, 20 Jun 2026
+              </div>
+            </div>
+            <div class="pg-header-actions">
+              <button class="btn-secondary" style="font-size:12px;"
+                onclick="alert('Exporting today\'s plan as PDF…')"><i class="ti ti-download"
+                  style="font-size:13px;margin-right:4px;"></i>Export</button>
+              <button class="btn-primary" style="font-size:12px;" onclick="openAddTaskPanel()"><i class="ti ti-plus"
+                  style="font-size:13px;margin-right:4px;"></i>Add Task</button>
+            </div>
+          </div>
+
+          <!-- KPI strip -->
+          <div class="stat-row" style="margin-bottom:16px;">
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E6F1FB;color:#378ADD;"><i class="ti ti-map-pin"></i></div>
+              <div>
+                <div class="stat-mini-val">6</div>
+                <div class="stat-mini-lbl">Visits Scheduled</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-check"></i></div>
+              <div>
+                <div class="stat-mini-val" style="color:#1D9E75;">2</div>
+                <div class="stat-mini-lbl">Completed</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-alert-triangle"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val" style="color:#E24B4A;">3</div>
+                <div class="stat-mini-lbl">At-Risk Follow-ups</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-phone"></i></div>
+              <div>
+                <div class="stat-mini-val">4</div>
+                <div class="stat-mini-lbl">Calls Pending</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start;">
+
+            <!-- Visit schedule -->
+            <div class="card" style="padding:0;overflow:hidden;">
+              <div class="card-head" style="padding:14px 16px;border-bottom:1px solid #eef1f5;">
+                <div class="card-title"><i class="ti ti-calendar-event"
+                    style="margin-right:6px;color:#378ADD;"></i>Visit Schedule</div>
+              </div>
+              <div style="display:flex;flex-direction:column;">
+
+                <!-- Item 1 — completed -->
+                <div
+                  style="display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid #f4f6f9;background:#f9fbfd;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#1D9E75;">08:30</div>
+                    <div style="font-size:10px;color:#9aaabb;">AM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#1D9E75;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">Al-Faris Industrial LLC</div>
+                      <span class="pill" style="background:#E1F5EE;color:#1D9E75;font-size:10px;"><i class="ti ti-check"
+                          style="font-size:10px;margin-right:2px;"></i>Done</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">Quarterly account review · Champions cluster · Dubai
+                      Industrial City</div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-user"
+                          style="font-size:10px;margin-right:3px;"></i>Sara Al-Mansouri</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>DIC, Dubai</span>
+                    </div>
+                  </div>
+                  <span class="score-h" style="align-self:center;">4.8</span>
+                </div>
+
+                <!-- Item 2 — completed -->
+                <div
+                  style="display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid #f4f6f9;background:#f9fbfd;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#1D9E75;">10:00</div>
+                    <div style="font-size:10px;color:#9aaabb;">AM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#1D9E75;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">Gulf Metals Trading</div>
+                      <span class="pill" style="background:#E1F5EE;color:#1D9E75;font-size:10px;"><i class="ti ti-check"
+                          style="font-size:10px;margin-right:2px;"></i>Done</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">New product demo — Safety PPE line · Champions · Abu
+                      Dhabi</div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-user"
+                          style="font-size:10px;margin-right:3px;"></i>Ahmed Karimi</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>Mussafah, AD</span>
+                    </div>
+                  </div>
+                  <span class="score-h" style="align-self:center;">4.6</span>
+                </div>
+
+                <!-- Item 3 — in progress -->
+                <div
+                  style="display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid #f4f6f9;border-left:3px solid #378ADD;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#378ADD;">12:30</div>
+                    <div style="font-size:10px;color:#9aaabb;">PM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#378ADD;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">AeroTech Engineering</div>
+                      <span class="pill" style="background:#E6F1FB;color:#378ADD;font-size:10px;"><i class="ti ti-clock"
+                          style="font-size:10px;margin-right:2px;"></i>Now</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">Upsell opportunity — Abrasives & Hand Tools · Loyal ·
+                      Sharjah</div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-user"
+                          style="font-size:10px;margin-right:3px;"></i>Sara Al-Mansouri</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>SAIF Zone, Sharjah</span>
+                    </div>
+                  </div>
+                  <span class="score-m" style="align-self:center;">3.9</span>
+                </div>
+
+                <!-- Item 4 — at risk -->
+                <div style="display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid #f4f6f9;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#1a2332;">14:00</div>
+                    <div style="font-size:10px;color:#9aaabb;">PM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#E24B4A;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">Al-Rashid Trading</div>
+                      <span class="pill pill-red" style="font-size:10px;"><i class="ti ti-alert-triangle"
+                          style="font-size:10px;margin-right:2px;"></i>At Risk</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">Re-engagement visit — 78 days silent · Safety PPE · Ajman
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-user"
+                          style="font-size:10px;margin-right:3px;"></i>Ahmed Karimi</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>Ajman Free Zone</span>
+                    </div>
+                  </div>
+                  <span class="score-l" style="align-self:center;">1.6</span>
+                </div>
+
+                <!-- Item 5 -->
+                <div style="display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid #f4f6f9;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#1a2332;">15:30</div>
+                    <div style="font-size:10px;color:#9aaabb;">PM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#F59E0B;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">Khaleeji Metals LLC</div>
+                      <span class="pill pill-amber" style="font-size:10px;">Need Attention</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">Health check — Welding Consumables · Dubai South</div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-user"
+                          style="font-size:10px;margin-right:3px;"></i>Sara Al-Mansouri</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>Dubai South</span>
+                    </div>
+                  </div>
+                  <span class="score-m" style="align-self:center;">2.4</span>
+                </div>
+
+                <!-- Item 6 -->
+                <div style="display:flex;gap:14px;padding:14px 16px;">
+                  <div style="text-align:center;min-width:48px;">
+                    <div style="font-size:11px;font-weight:700;color:#1a2332;">17:00</div>
+                    <div style="font-size:10px;color:#9aaabb;">PM</div>
+                  </div>
+                  <div style="width:3px;border-radius:3px;background:#9aaabb;flex-shrink:0;"></div>
+                  <div style="flex:1;">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+                      <div style="font-size:13px;font-weight:600;color:#1a2332;">Jebel Ali Steel Works</div>
+                      <span class="pill" style="background:#FBF5E8;color:#7A5C1A;font-size:10px;">Champions</span>
+                    </div>
+                    <div style="font-size:11px;color:#6a7f96;">Monthly check-in call — Abrasives & Welding · Jebel Ali
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:6px;">
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-phone"
+                          style="font-size:10px;margin-right:3px;"></i>Call only</span>
+                      <span style="font-size:10px;color:#6a7f96;"><i class="ti ti-map-pin"
+                          style="font-size:10px;margin-right:3px;"></i>Jebel Ali, Dubai</span>
+                    </div>
+                  </div>
+                  <span class="score-h" style="align-self:center;">4.5</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Right column -->
+            <div style="display:flex;flex-direction:column;gap:14px;">
+
+              <!-- Pending tasks -->
+              <div class="card">
+                <div class="card-head">
+                  <div class="card-title"><i class="ti ti-checkbox" style="margin-right:6px;color:#C9A84C;"></i>Pending
+                    Tasks</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;accent-color:#378ADD;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Send quotation to DIC Engineering</div>
+                      <div style="font-size:11px;color:#9aaabb;">Industrial Tools · Due today</div>
+                    </div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;accent-color:#378ADD;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Follow up on PPE order — Dubai Steel
+                      </div>
+                      <div style="font-size:11px;color:#9aaabb;">Lifting Equipment · Overdue 1 day</div>
+                    </div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;accent-color:#378ADD;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Update RFM score — Sharjah Tech Hub
+                      </div>
+                      <div style="font-size:11px;color:#9aaabb;">Hand Tools · Due today</div>
+                    </div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                    <input type="checkbox" checked style="margin-top:2px;accent-color:#1D9E75;">
+                    <div style="text-decoration:line-through;opacity:0.5;">
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Log visit report — Al-Faris Industrial
+                      </div>
+                      <div style="font-size:11px;color:#9aaabb;">Completed 08:30</div>
+                    </div>
+                  </label>
+                  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                    <input type="checkbox" style="margin-top:2px;accent-color:#378ADD;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">WhatsApp loyalty offer — Al-Rashid
+                      </div>
+                      <div style="font-size:11px;color:#9aaabb;color:#E24B4A;">At Risk · 5% discount campaign</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- AI hint -->
+              <div class="ai-hint-bar" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#C9A84C;">
+                  <i class="ti ti-sparkles"></i> AI Priorities for Today
+                </div>
+                <div style="font-size:11px;color:#fff;line-height:1.6;">
+                  1. <b>Al-Rashid Trading</b> — 78 days silent, send WhatsApp offer before visit.<br>
+                  2. <b>AeroTech Engineering</b> — declining trend, pitch Hand Tools bundle during 12:30 visit.<br>
+                  3. <b>DIC Engineering</b> — quotation pending 3 days, close today or risk losing order.
+                </div>
+              </div>
+
+              <!-- Calls pending -->
+              <div class="card">
+                <div class="card-head">
+                  <div class="card-title"><i class="ti ti-phone" style="margin-right:6px;color:#378ADD;"></i>Calls
+                    Pending</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Al-Wasl Industrial</div>
+                      <div style="font-size:11px;color:#9aaabb;">Safety PPE · Declining</div>
+                    </div>
+                    <button class="btn-primary" style="font-size:11px;padding:4px 10px;"
+                      onclick="alert('Calling Al-Wasl Industrial…')"><i class="ti ti-phone"
+                        style="font-size:11px;"></i></button>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Gulf Star Supplies</div>
+                      <div style="font-size:11px;color:#E24B4A;">At Risk · Abrasives</div>
+                    </div>
+                    <button class="btn-primary" style="font-size:11px;padding:4px 10px;"
+                      onclick="alert('Calling Gulf Star Supplies…')"><i class="ti ti-phone"
+                        style="font-size:11px;"></i></button>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Bur Dubai Tools</div>
+                      <div style="font-size:11px;color:#9aaabb;">Hibernating · Abrasives</div>
+                    </div>
+                    <button class="btn-primary" style="font-size:11px;padding:4px 10px;"
+                      onclick="alert('Calling Bur Dubai Tools…')"><i class="ti ti-phone"
+                        style="font-size:11px;"></i></button>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                      <div style="font-size:12px;font-weight:600;color:#1a2332;">Deira Builders LLC</div>
+                      <div style="font-size:11px;color:#9aaabb;">Hibernating · Hand Tools</div>
+                    </div>
+                    <button class="btn-primary" style="font-size:11px;padding:4px 10px;"
+                      onclick="alert('Calling Deira Builders…')"><i class="ti ti-phone"
+                        style="font-size:11px;"></i></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CUSTOMER 360: SEQUENCES ── -->
+        <div class="page" id="p-c360-seq">
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Sequences</div>
+              <div class="pg-header-sub">Automated outreach and nurture sequences for customer clusters</div>
+            </div>
+          </div>
+          <div class="card"
+            style="height:300px; display:flex; align-items:center; justify-content:center; color:#9aaabb;">
+            Customer nurture sequences and automation workflows.
+          </div>
+        </div>
+
+        <!-- ── CUSTOMER 360: UPLOAD DATA ── -->
+        <div class="page" id="p-c360-upload">
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Upload Data</div>
+              <div class="pg-header-sub">Import customer data, transactions, and interaction logs</div>
+            </div>
+          </div>
+          <div class="card" style="padding:40px; text-align:center;">
+            <i class="ti ti-upload" style="font-size:48px; color:#C9A84C; margin-bottom:16px;"></i>
+            <div style="font-size:16px; font-weight:600; color:#1a2332; margin-bottom:8px;">Drag & Drop Customer Data
+            </div>
+            <p style="color:#6a7f96; margin-bottom:24px;">Upload CSV or Excel files to sync customer records with the
+              360-degree engine.</p>
+            <button class="btn-primary">Browse Files</button>
+          </div>
+        </div>
+
+        <!-- ── CUSTOMER 360: ANALYSIS ── -->
+        <div class="page" id="p-c360-analysis">
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Customer Analysis</div>
+              <div class="pg-header-sub">Deep dive into customer behavioral patterns and RFM segments</div>
+            </div>
+          </div>
+
+          <!-- KPI row -->
+          <div class="stat-row" style="margin-bottom:16px;">
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val">284</div>
+                <div class="stat-mini-lbl">Total Customers</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-brain"></i></div>
+              <div>
+                <div class="stat-mini-val">5</div>
+                <div class="stat-mini-lbl">Archetypes Detected</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-alert-triangle"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val" style="color:#E24B4A;">12</div>
+                <div class="stat-mini-lbl">At Risk</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-currency-dirham"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val" style="font-size:15px;color:#1D9E75;">AED 8.4M</div>
+                <div class="stat-mini-lbl">Recovery Opportunity</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+            <!-- Archetypes panel -->
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <div class="card-title"><i class="ti ti-brain" style="margin-right:5px;color:#C9A84C;"></i>Customer
+                    Archetypes</div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:2px;">AI-detected behavioral patterns across
+                    your customer base</div>
+                </div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-label-row">
+                  <span class="arch-name" style="color:#C9A84C;">Strategic Accounts</span>
+                  <span class="arch-count">18 · 6%</span>
+                </div>
+                <div class="arch-bar-wrap">
+                  <div class="arch-bar" style="width:6%;background:#C9A84C;"></div>
+                </div>
+                <div style="font-size:10px;color:#9aaabb;margin-top:3px;">High-frequency, high-value, multi-category
+                  buyers</div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-label-row">
+                  <span class="arch-name" style="color:#378ADD;">Consistent Loyals</span>
+                  <span class="arch-count">54 · 19%</span>
+                </div>
+                <div class="arch-bar-wrap">
+                  <div class="arch-bar" style="width:19%;background:#378ADD;"></div>
+                </div>
+                <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Regular reorders, single/dual category focus
+                </div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-label-row">
+                  <span class="arch-name" style="color:#F59E0B;">Seasonal Buyers</span>
+                  <span class="arch-count">42 · 15%</span>
+                </div>
+                <div class="arch-bar-wrap">
+                  <div class="arch-bar" style="width:15%;background:#F59E0B;"></div>
+                </div>
+                <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Project-based ordering, infrequent but
+                  sizable</div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-label-row">
+                  <span class="arch-name" style="color:#E24B4A;">At-Risk / Churning</span>
+                  <span class="arch-count">12 · 4%</span>
+                </div>
+                <div class="arch-bar-wrap">
+                  <div class="arch-bar" style="width:4%;background:#E24B4A;"></div>
+                </div>
+                <div style="font-size:10px;color:#9aaabb;margin-top:3px;">Declining order frequency, competitor
+                  signals</div>
+              </div>
+              <div class="arch-row">
+                <div class="arch-label-row">
+                  <span class="arch-name" style="color:#9aaabb;">Dormant / Lost</span>
+                  <span class="arch-count">158 · 56%</span>
+                </div>
+                <div class="arch-bar-wrap">
+                  <div class="arch-bar" style="width:56%;background:#9aaabb;"></div>
+                </div>
+                <div style="font-size:10px;color:#9aaabb;margin-top:3px;">No orders in 90+ days, likely inactive</div>
+              </div>
+            </div>
+
+            <!-- RFM segments panel -->
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <div class="card-title"><i class="ti ti-chart-bar" style="margin-right:5px;color:#378ADD;"></i>RFM
+                    Segments</div>
+                  <div style="font-size:10px;color:#9aaabb;margin-top:2px;">Recency, Frequency, Amount analysis of
+                    customer value</div>
+                </div>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#C9A84C;margin-right:6px;"></span>Champions</span>
+                <span class="rfm-cnt">18</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:88%;background:#C9A84C;"></div>
+                </div>
+                <span class="rfm-pct">88%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#378ADD;margin-right:6px;"></span>Loyal
+                  Customers</span>
+                <span class="rfm-cnt">54</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:19%;background:#378ADD;"></div>
+                </div>
+                <span class="rfm-pct">19%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1D9E75;margin-right:6px;"></span>Potential
+                  Loyalists</span>
+                <span class="rfm-cnt">42</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:15%;background:#1D9E75;"></div>
+                </div>
+                <span class="rfm-pct">15%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F59E0B;margin-right:6px;"></span>Need
+                  Attention</span>
+                <span class="rfm-cnt">14</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:5%;background:#F59E0B;"></div>
+                </div>
+                <span class="rfm-pct">5%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E24B4A;margin-right:6px;"></span>At
+                  Risk</span>
+                <span class="rfm-cnt">12</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:4%;background:#E24B4A;"></div>
+                </div>
+                <span class="rfm-pct">4%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#9aaabb;margin-right:6px;"></span>Hibernating</span>
+                <span class="rfm-cnt">88</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:31%;background:#9aaabb;"></div>
+                </div>
+                <span class="rfm-pct">31%</span>
+              </div>
+              <div class="rfm-row">
+                <span class="rfm-seg"><span
+                    style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#E7E5E4;margin-right:6px;"></span>Lost</span>
+                <span class="rfm-cnt">56</span>
+                <div class="rfm-bar-wrap">
+                  <div class="rfm-bar" style="width:20%;background:#c8d0da;"></div>
+                </div>
+                <span class="rfm-pct">20%</span>
+              </div>
+            </div>
+
+          </div><!-- /2-col grid -->
+
+          <!-- AI recommendations -->
+          <div class="ai-hint-bar" style="margin-top:16px;">
+            <i class="ti ti-sparkles"></i>
+            <div class="ai-hint-txt">
+              <b>AI Recommendations:</b>
+              <br>1. Schedule re-engagement visits to the 12 At-Risk accounts — assign to senior SEs with personalized
+              offers.
+              <br>2. Upsell safety PPE to 9 Champions who currently buy only welding consumables (AED 2.1M potential).
+              <br>3. Al-Rashid Trading (78 days silent) — trigger WhatsApp campaign with 5% loyalty discount before
+              final churn.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── CUSTOMER 360: PERSONAS ── -->
+        <div class="page" id="p-c360-personas">
+          <div class="pg-header">
+            <div>
+              <div class="pg-header-title">Customer Personas</div>
+              <div class="pg-header-sub">AI-powered customer intelligence — clusters, personas & RFM analysis</div>
+            </div>
+            <div class="pg-header-actions">
+              <span
+                style="font-size:11px;color:#6a7f96;padding:5px 10px;background:#f4f6f9;border:1px solid #dde2ea;border-radius:7px;">Last
+                analyzed: 18 Jun 2026, 09:30</span>
+              <button class="btn-primary" style="font-size:12px;"
+                onclick="alert('Triggering AI re-analysis…\n\nIn production this runs the RFM + clustering pipeline on fresh order data.')"><i
+                  class="ti ti-refresh" style="font-size:13px;margin-right:4px;"></i>Refresh Analysis</button>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#1a2332;">Customer Universe</div>
+              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">284 customers mapped · 5 clusters · bubble
+                size = revenue</div>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <select
+                style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;cursor:pointer;">
+                <option>All Clusters</option>
+                <option>Champions</option>
+                <option>Loyal Customers</option>
+                <option>Need Attention</option>
+                <option>At Risk</option>
+                <option>Hibernating / Lost</option>
+              </select>
+              <button class="btn-primary" style="font-size:12px;"
+                onclick="alert('Export customer universe data as CSV.')"><i class="ti ti-download"
+                  style="font-size:13px;margin-right:4px;"></i>Export</button>
+            </div>
+          </div>
+
+          <!-- Stats row -->
+          <div class="stat-row" style="margin-bottom:14px;">
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E1F5EE;color:#1D9E75;"><i class="ti ti-building"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val">284</div>
+                <div class="stat-mini-lbl">Customers</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FBF5E8;color:#C9A84C;"><i class="ti ti-chart-bubble"></i>
+              </div>
+              <div>
+                <div class="stat-mini-val">5</div>
+                <div class="stat-mini-lbl">Clusters</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#E6F1FB;color:#378ADD;"><i class="ti ti-coins"></i></div>
+              <div>
+                <div class="stat-mini-val" style="font-size:16px;">AED 135.7M</div>
+                <div class="stat-mini-lbl">Revenue Mapped</div>
+              </div>
+            </div>
+            <div class="stat-mini">
+              <div class="stat-mini-ico" style="background:#FCEBEB;color:#E24B4A;"><i class="ti ti-radar"></i></div>
+              <div>
+                <div class="stat-mini-val">38</div>
+                <div class="stat-mini-lbl">Outreach Targets</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bubble chart -->
+          <div class="bubble-arena" id="bubble-arena-personas">
+            <!-- Champions cluster (gold/large) -->
+            <div class="bubble"
+              style="width:110px;height:110px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:12%;top:15%;"
+              onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Stable')">
+              Al-Faris<br>Industrial</div>
+            <div class="bubble"
+              style="width:90px;height:90px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:26%;top:8%;"
+              onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Growing')">
+              Gulf Metals<br>Trading</div>
+            <div class="bubble"
+              style="width:80px;height:80px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:36%;top:26%;"
+              onclick="openC360Panel('Jebel Ali Steel Works','Champions · Abrasives & Welding','AED 11.8M','AED 145K/yr','Champions','4.5','Stable')">
+              Jebel Ali<br>Steel</div>
+            <div class="bubble"
+              style="width:72px;height:72px;background:radial-gradient(circle at 35% 35%,#e8c56a,#C9A84C);color:#3a2400;left:48%;top:12%;"
+              onclick="openC360Panel('DIC Engineering LLC','Champions · Industrial Tools','AED 9.6M','AED 120K/yr','Champions','4.3','Stable')">
+              DIC Engg</div>
+
+            <!-- Loyal cluster (blue) -->
+            <div class="bubble"
+              style="width:65px;height:65px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:62%;top:8%;"
+              onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Stable')">
+              AeroTech</div>
+            <div class="bubble"
+              style="width:58px;height:58px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:74%;top:18%;"
+              onclick="openC360Panel('Dubai Steel Works','Loyal · Lifting Equipment','AED 2.6M','AED 34K/yr','Loyal','3.7','Stable')">
+              Dubai Steel</div>
+            <div class="bubble"
+              style="width:52px;height:52px;background:radial-gradient(circle at 35% 35%,#6bb3ed,#378ADD);color:#fff;left:58%;top:32%;"
+              onclick="openC360Panel('Al-Wasl Industrial','Loyal · Safety PPE','AED 1.9M','AED 24K/yr','Loyal','3.5','Declining')">
+              Al-Wasl<br>Ind.</div>
+
+            <!-- Need Attention cluster (amber) -->
+            <div class="bubble"
+              style="width:50px;height:50px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:20%;top:52%;"
+              onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">
+              Khaleeji</div>
+            <div class="bubble"
+              style="width:44px;height:44px;background:radial-gradient(circle at 35% 35%,#fcd069,#F59E0B);color:#5a2d00;left:34%;top:58%;"
+              onclick="openC360Panel('Sharjah Tech Hub','Need Attention · Hand Tools','AED 218K','AED 12K/yr','Need Attention','2.1','Declining')">
+              Sharjah<br>Tech</div>
+
+            <!-- At Risk cluster (red) -->
+            <div class="bubble"
+              style="width:40px;height:40px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:54%;top:56%;"
+              onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Declining')">
+              Al-Rashid</div>
+            <div class="bubble"
+              style="width:36px;height:36px;background:radial-gradient(circle at 35% 35%,#ef7e7e,#E24B4A);color:#fff;left:67%;top:52%;"
+              onclick="openC360Panel('Gulf Star Supplies','At Risk · Abrasives','AED 72K','AED 2K/yr','At Risk','1.4','Inactive')">
+              Gulf<br>Star</div>
+
+            <!-- Hibernating (grey, small) -->
+            <div class="bubble"
+              style="width:30px;height:30px;background:#c8d0da;color:#fff;left:78%;top:50%;font-size:9px;"
+              onclick="openC360Panel('Deira Builders LLC','Hibernating · Hand Tools','AED 18K','AED 0/yr','Hibernating','1.0','Inactive')">
+              Deira</div>
+            <div class="bubble"
+              style="width:26px;height:26px;background:#c8d0da;color:#fff;left:85%;top:42%;font-size:9px;"
+              onclick="openC360Panel('Bur Dubai Tools','Hibernating · Abrasives','AED 12K','AED 0/yr','Hibernating','1.0','Inactive')">
+              BDT</div>
+
+            <!-- Legend -->
+            <div style="position:absolute;bottom:10px;left:12px;display:flex;gap:10px;flex-wrap:wrap;">
+              <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
+                  style="width:10px;height:10px;border-radius:50%;background:#C9A84C;display:inline-block;"></span>Champions</span>
+              <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
+                  style="width:10px;height:10px;border-radius:50%;background:#378ADD;display:inline-block;"></span>Loyal</span>
+              <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
+                  style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Need
+                Attention</span>
+              <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
+                  style="width:10px;height:10px;border-radius:50%;background:#E24B4A;display:inline-block;"></span>At
+                Risk</span>
+              <span style="font-size:10px;font-weight:600;color:#6a7f96;display:flex;align-items:center;gap:4px;"><span
+                  style="width:10px;height:10px;border-radius:50%;background:#c8d0da;display:inline-block;"></span>Hibernating</span>
+            </div>
+            <div style="position:absolute;bottom:10px;right:12px;font-size:10px;color:#9aaabb;">Click a bubble to view
+              details</div>
+          </div><!-- /bubble-arena-personas -->
+
+          <!-- Key accounts table below bubble chart -->
+          <div class="tbl-wrap">
+            <table class="data-tbl">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Cluster</th>
+                  <th>Lifetime Value</th>
+                  <th>Avg Annual</th>
+                  <th>RFM Score</th>
+                  <th>Trend</th>
+                  <th>Last Order</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="cust-cell">
+                      <div class="c-av" style="background:#C9A84C;color:#0A1628;">AF</div>
+                      <div>
+                        <div class="c-name">Al-Faris Industrial LLC</div>
+                        <div class="c-sub">Dubai North</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
+                  <td style="font-weight:700;">AED 18.4M</td>
+                  <td style="color:#6a7f96;">AED 220K</td>
+                  <td><span class="score-h">4.8</span></td>
+                  <td><span class="pill pill-green">Growing</span></td>
+                  <td style="font-size:11px;color:#6a7f96;">2 days ago</td>
+                  <td><span class="tbl-action"
+                      onclick="openC360Panel('Al-Faris Industrial LLC','Champions · Welding & Lifting','AED 18.4M','AED 220K/yr','Champions','4.8','Growing')">Profile
+                      →</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cust-cell">
+                      <div class="c-av" style="background:#378ADD;color:#fff;">GM</div>
+                      <div>
+                        <div class="c-name">Gulf Metals Trading</div>
+                        <div class="c-sub">Abu Dhabi</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="pill" style="background:#FBF5E8;color:#7A5C1A;">Champions</span></td>
+                  <td style="font-weight:700;">AED 14.2M</td>
+                  <td style="color:#6a7f96;">AED 180K</td>
+                  <td><span class="score-h">4.6</span></td>
+                  <td><span class="pill pill-green">Stable</span></td>
+                  <td style="font-size:11px;color:#6a7f96;">Today</td>
+                  <td><span class="tbl-action"
+                      onclick="openC360Panel('Gulf Metals Trading','Champions · Safety PPE & Lifting','AED 14.2M','AED 180K/yr','Champions','4.6','Stable')">Profile
+                      →</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cust-cell">
+                      <div class="c-av" style="background:#1D9E75;color:#fff;">AT</div>
+                      <div>
+                        <div class="c-name">AeroTech Engineering</div>
+                        <div class="c-sub">Sharjah</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="pill pill-blue">Loyal</span></td>
+                  <td style="font-weight:700;">AED 3.2M</td>
+                  <td style="color:#6a7f96;">AED 42K</td>
+                  <td><span class="score-m">3.9</span></td>
+                  <td><span class="pill pill-amber">Declining</span></td>
+                  <td style="font-size:11px;color:#6a7f96;">12 days ago</td>
+                  <td><span class="tbl-action"
+                      onclick="openC360Panel('AeroTech Engineering','Loyal · Abrasives & Hand Tools','AED 3.2M','AED 42K/yr','Loyal','3.9','Declining')">Profile
+                      →</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cust-cell">
+                      <div class="c-av" style="background:#F59E0B;color:#fff;">KM</div>
+                      <div>
+                        <div class="c-name">Khaleeji Metals LLC</div>
+                        <div class="c-sub">Dubai South</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="pill pill-amber">Need Attention</span></td>
+                  <td style="font-weight:700;">AED 340K</td>
+                  <td style="color:#6a7f96;">AED 28K</td>
+                  <td><span class="score-m">2.4</span></td>
+                  <td><span class="pill pill-red">Declining</span></td>
+                  <td style="font-size:11px;color:#E24B4A;">32 days ago</td>
+                  <td><span class="tbl-action"
+                      onclick="openC360Panel('Khaleeji Metals LLC','Need Attention · Welding Consumables','AED 340K','AED 28K/yr','Need Attention','2.4','Declining')">Profile
+                      →</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="cust-cell">
+                      <div class="c-av" style="background:#E24B4A;color:#fff;">AR</div>
+                      <div>
+                        <div class="c-name">Al-Rashid Trading</div>
+                        <div class="c-sub">Ajman</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td><span class="pill pill-red">At Risk</span></td>
+                  <td style="font-weight:700;">AED 98K</td>
+                  <td style="color:#6a7f96;">AED 4K</td>
+                  <td><span class="score-l">1.6</span></td>
+                  <td><span class="pill pill-red">Inactive</span></td>
+                  <td style="font-size:11px;color:#E24B4A;">78 days ago</td>
+                  <td><span class="tbl-action"
+                      onclick="openC360Panel('Al-Rashid Trading','At Risk · Safety PPE','AED 98K','AED 4K/yr','At Risk','1.6','Inactive')">Profile
+                      →</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         <!-- ── CUSTOMER 360 DETAIL PANEL ── -->
         <div class="c360-panel" id="c360-detail-panel">
@@ -10617,6 +11284,151 @@
 
 
 
+      <!-- ══ ADD TASK PANEL ══ -->
+      <div class="c360-panel" id="add-task-panel" style="width:380px;">
+        <div class="c360p-head">
+          <div>
+            <div class="c360p-name" style="font-size:15px;">Add Task</div>
+            <div class="c360p-seg">Schedule a visit, call, or follow-up</div>
+          </div>
+          <i class="ti ti-x c360p-close" onclick="closeAddTaskPanel()"></i>
+        </div>
+        <div class="c360p-body" style="padding:18px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;">
+
+          <!-- Task type -->
+          <div>
+            <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">TASK
+              TYPE</label>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <label
+                style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border:1px solid #dde2ea;border-radius:7px;font-size:12px;font-weight:500;color:#1a2332;background:#fff;"
+                id="tt-visit">
+                <input type="radio" name="task-type" value="visit" checked style="accent-color:#378ADD;"
+                  onchange="highlightTaskType()">
+                <i class="ti ti-map-pin" style="font-size:13px;color:#378ADD;"></i> Visit
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border:1px solid #dde2ea;border-radius:7px;font-size:12px;font-weight:500;color:#1a2332;background:#fff;"
+                id="tt-call">
+                <input type="radio" name="task-type" value="call" style="accent-color:#378ADD;"
+                  onchange="highlightTaskType()">
+                <i class="ti ti-phone" style="font-size:13px;color:#1D9E75;"></i> Call
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border:1px solid #dde2ea;border-radius:7px;font-size:12px;font-weight:500;color:#1a2332;background:#fff;"
+                id="tt-followup">
+                <input type="radio" name="task-type" value="followup" style="accent-color:#378ADD;"
+                  onchange="highlightTaskType()">
+                <i class="ti ti-bell" style="font-size:13px;color:#C9A84C;"></i> Follow-up
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:7px 12px;border:1px solid #dde2ea;border-radius:7px;font-size:12px;font-weight:500;color:#1a2332;background:#fff;"
+                id="tt-other">
+                <input type="radio" name="task-type" value="other" style="accent-color:#378ADD;"
+                  onchange="highlightTaskType()">
+                <i class="ti ti-dots" style="font-size:13px;color:#9aaabb;"></i> Other
+              </label>
+            </div>
+          </div>
+
+          <!-- Customer -->
+          <div>
+            <label
+              style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">CUSTOMER</label>
+            <select
+              style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;">
+              <option value="">— Select customer —</option>
+              <option>Al-Faris Industrial LLC</option>
+              <option>Gulf Metals Trading</option>
+              <option>Jebel Ali Steel Works</option>
+              <option>DIC Engineering LLC</option>
+              <option>AeroTech Engineering</option>
+              <option>Dubai Steel Works</option>
+              <option>Al-Wasl Industrial</option>
+              <option>Khaleeji Metals LLC</option>
+              <option>Sharjah Tech Hub</option>
+              <option>Al-Rashid Trading</option>
+              <option>Gulf Star Supplies</option>
+              <option>Deira Builders LLC</option>
+              <option>Bur Dubai Tools</option>
+            </select>
+          </div>
+
+          <!-- Title -->
+          <div>
+            <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">TASK
+              TITLE</label>
+            <input type="text" placeholder="e.g. Quarterly account review"
+              style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;"
+              onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+          </div>
+
+          <!-- Date & Time row -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div>
+              <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">DATE</label>
+              <input type="date" value="2026-06-20"
+                style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+            </div>
+            <div>
+              <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">TIME</label>
+              <input type="time" value="09:00"
+                style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;outline:none;box-sizing:border-box;"
+                onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'">
+            </div>
+          </div>
+
+          <!-- Assigned SE -->
+          <div>
+            <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">ASSIGNED
+              TO</label>
+            <select
+              style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#1a2332;outline:none;">
+              <option>Sara Al-Mansouri</option>
+              <option>Ahmed Karimi</option>
+              <option>Mohammed Al-Rashidi</option>
+              <option>Layla Hassan</option>
+            </select>
+          </div>
+
+          <!-- Priority -->
+          <div>
+            <label
+              style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">PRIORITY</label>
+            <div style="display:flex;gap:8px;">
+              <label
+                style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;padding:6px 12px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#E24B4A;font-weight:600;">
+                <input type="radio" name="task-priority" value="high" style="accent-color:#E24B4A;"> High
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;padding:6px 12px;border:1px solid #378ADD;border-radius:7px;background:#E6F1FB;color:#378ADD;font-weight:600;">
+                <input type="radio" name="task-priority" value="medium" checked style="accent-color:#378ADD;"> Medium
+              </label>
+              <label
+                style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:12px;padding:6px 12px;border:1px solid #dde2ea;border-radius:7px;background:#fff;color:#6a7f96;font-weight:600;">
+                <input type="radio" name="task-priority" value="low" style="accent-color:#9aaabb;"> Low
+              </label>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div>
+            <label style="font-size:11px;font-weight:600;color:#6a7f96;display:block;margin-bottom:6px;">NOTES</label>
+            <textarea rows="3" placeholder="Add context, agenda, or special instructions…"
+              style="width:100%;font-size:13px;padding:9px 12px;border:1px solid #dde2ea;border-radius:7px;outline:none;resize:vertical;box-sizing:border-box;font-family:inherit;"
+              onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#dde2ea'"></textarea>
+          </div>
+
+        </div>
+        <!-- Footer -->
+        <div class="c360p-foot" style="display:flex;gap:10px;padding:14px 18px;border-top:1px solid #eef1f5;">
+          <button class="btn-secondary" style="flex:1;font-size:13px;" onclick="closeAddTaskPanel()">Cancel</button>
+          <button class="btn-primary" style="flex:2;font-size:13px;" onclick="submitAddTask()"><i class="ti ti-check"
+              style="font-size:13px;margin-right:5px;"></i>Save Task</button>
+        </div>
+      </div>
+
       <!-- ══ AI PANEL ══ -->
       <div class="ai-panel hidden" id="ai-panel">
         <div class="ai-panel-head">
@@ -10699,7 +11511,12 @@
       accounts: 'User Accounts',
       usagelog: 'Usage Log',
       settings: 'Master Settings',
-      cust360: 'Customer 360'
+      cust360: 'Customer 360',
+      'c360-plan': "Today's Plan",
+      'c360-seq': 'Sequences',
+      'c360-upload': 'Upload Data',
+      'c360-analysis': 'Customer Analysis',
+      'c360-personas': 'Customer Personas'
     };
 
     function goPage(id, el) {
@@ -14337,6 +15154,26 @@
       document.getElementById('c360-detail-panel').classList.remove('open');
     }
 
+    function openAddTaskPanel() {
+      document.getElementById('add-task-panel').classList.add('open');
+    }
+
+    function closeAddTaskPanel() {
+      document.getElementById('add-task-panel').classList.remove('open');
+    }
+
+    function submitAddTask() {
+      closeAddTaskPanel();
+      alert('Task saved successfully!');
+    }
+
+    function highlightTaskType() {
+      ['tt-visit', 'tt-call', 'tt-followup', 'tt-other'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.borderColor = el.querySelector('input').checked ? '#378ADD' : '#dde2ea';
+      });
+    }
+
     function resetDrawer() {
       ['ld-name', 'ld-location', 'ld-contact', 'ld-phone', 'ld-email', 'ld-notes', 'email-to', 'email-subject', 'email-body'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
       ['ld-type', 'ld-territory', 'ld-se', 'email-template'].forEach(id => { const el = document.getElementById(id); if (el) { el.value = ''; el.style.borderColor = ''; } });
@@ -14349,6 +15186,106 @@
       document.getElementById('ai-fill-loading').style.display = 'none';
       document.getElementById('lead-code-preview').textContent = 'LD-' + String(_leadSeq).padStart(4, '0');
     }
+
+    /* ── ATTENDANCE CALENDAR ── */
+    (function () {
+      const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const today = new Date(2026, 5, 19); // June 19 2026
+
+      // Mock attendance data keyed by "YYYY-M-D": 'full'|'partial'|'absent'|null
+      const attData = {
+        '2026-6-1': 'full', '2026-6-2': 'full', '2026-6-3': 'full',
+        '2026-6-4': 'partial', '2026-6-5': 'full', '2026-6-8': 'full',
+        '2026-6-9': 'full', '2026-6-10': 'partial', '2026-6-11': 'full',
+        '2026-6-12': 'full', '2026-6-15': 'absent', '2026-6-16': 'partial',
+        '2026-6-17': 'full', '2026-6-18': 'partial', '2026-6-19': 'partial',
+      };
+
+      const statusColors = { full: '#22c55e', partial: '#f59e0b', absent: '#ef4444' };
+
+      let calYear = 2026, calMonth = 5; // 0-indexed
+      let selectedDate = null;
+
+      window.attCalNav = function (dir) { calMonth += dir; if (calMonth > 11) { calMonth = 0; calYear++; } if (calMonth < 0) { calMonth = 11; calYear--; } renderCal(); };
+      window.attSetView = function (view) {
+        const isDay = view === 'day';
+        document.getElementById('att-day-content').style.display = isDay ? '' : 'none';
+        document.getElementById('att-cal-panel').style.display = isDay ? 'none' : '';
+        document.getElementById('att-view-day').style.background = isDay ? '#1a6ef5' : '#fff';
+        document.getElementById('att-view-day').style.color = isDay ? '#fff' : '#6a7f96';
+        document.getElementById('att-view-cal').style.background = isDay ? '#fff' : '#1a6ef5';
+        document.getElementById('att-view-cal').style.color = isDay ? '#6a7f96' : '#fff';
+        if (!isDay) renderCal();
+      };
+
+      window.attSelectDay = function (y, m, d, hasData) {
+        selectedDate = { y, m, d };
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const label = document.getElementById('att-date-label');
+        if (label) {
+          if (hasData) label.textContent = d + ' ' + months[m] + ' ' + y + ' — 9 of 12 SEs checked in';
+          else label.textContent = d + ' ' + months[m] + ' ' + y + ' — No data for this day';
+        }
+        renderCal();
+      };
+
+      function renderCal() {
+        const grid = document.getElementById('att-cal-grid');
+        const lbl = document.getElementById('att-cal-month-label');
+        if (!grid || !lbl) return;
+        lbl.textContent = MONTHS[calMonth] + ' ' + calYear;
+        grid.innerHTML = '';
+
+        const firstDay = new Date(calYear, calMonth, 1);
+        let startBlank = (firstDay.getDay() + 6) % 7;
+        const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+        // Blanks
+        for (let i = 0; i < startBlank; i++) {
+          const blank = document.createElement('div');
+          blank.className = 'att-cal-day-cell blank';
+          grid.appendChild(blank);
+        }
+
+        // Days
+        for (let d = 1; d <= daysInMonth; d++) {
+          const key = calYear + '-' + (calMonth + 1) + '-' + d;
+          const status = attData[key];
+          const dotColor = status ? statusColors[status] : null;
+
+          const isToday = (d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear());
+          const isSel = selectedDate && selectedDate.y === calYear && selectedDate.m === calMonth && selectedDate.d === d;
+          const isWeekend = (() => { const wd = (new Date(calYear, calMonth, d).getDay()); return wd === 0 || wd === 6; })();
+          const isFuture = new Date(calYear, calMonth, d) > today;
+
+          const cell = document.createElement('div');
+          let classes = ['att-cal-day-cell'];
+          if (isToday) classes.push('today');
+          if (isSel) classes.push('selected');
+          if (isWeekend) classes.push('weekend');
+          if (isFuture) classes.push('future');
+          cell.className = classes.join(' ');
+
+          const num = document.createElement('div');
+          num.className = 'att-cal-day-num';
+          num.textContent = d;
+          cell.appendChild(num);
+
+          if (dotColor) {
+            const dotEl = document.createElement('div');
+            dotEl.className = 'att-cal-indicator';
+            dotEl.style.background = dotColor;
+            cell.appendChild(dotEl);
+          }
+
+          if (!isFuture) {
+            cell.onclick = () => attSelectDay(calYear, calMonth, d, !!status);
+          }
+
+          grid.appendChild(cell);
+        }
+      }
+    })();
   </script>
 
   <!-- ── AI SUMMARY MODAL ── -->

@@ -913,7 +913,11 @@
       border: 1px solid #E7E5E4;
       border-radius: 10px;
       padding: 14px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
+    .vc:hover { border-color: #C9A84C; box-shadow: 0 2px 8px rgba(201,168,76,0.12); }
+    .vc.vc-sel { border-color: #C9A84C; box-shadow: 0 0 0 3px rgba(201,168,76,0.18); background: #FFFDF5; }
 
     .vc-head {
       display: flex;
@@ -4758,7 +4762,7 @@
                   <div class="fc">Today</div>
                 </div>
                 <div class="visit-list">
-                  <div class="vc">
+                  <div class="vc vc-sel" onclick="fillVisitForm(this,'Al-Faris Industrial LLC','Product pitch',['Welding','Lifting'],'Esab','Customer wants 500 units Lincoln E6013, budget AED 8k, deciding next week.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">Al-Faris Industrial LLC</div>
@@ -4776,7 +4780,7 @@
                       <div class="vc-tag">GPS verified</div>
                     </div>
                   </div>
-                  <div class="vc">
+                  <div class="vc" onclick="fillVisitForm(this,'Gulf Metals Trading','Follow-up',['Safety PPE','Lifting'],'None','Client wants demo unit before committing. Price negotiation ongoing, target AED 22,000. Send samples by end of this week.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">Gulf Metals Trading</div>
@@ -4792,7 +4796,7 @@
                       <div class="vc-tag">GPS verified</div>
                     </div>
                   </div>
-                  <div class="vc">
+                  <div class="vc" onclick="fillVisitForm(this,'AeroTech Engineering','Product pitch',['Abrasives','Hand tools'],'None','Introduced new abrasive grinding discs range. Very positive response — will include in next quarterly tender submission.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">AeroTech Engineering</div>
@@ -4811,18 +4815,18 @@
               </div>
               <div>
                 <div class="form-card">
-                  <div class="form-title"><i class="ti ti-plus"
+                  <div class="form-title"><i class="ti ti-pencil"
                       style="font-size:14px;margin-right:6px;vertical-align:-2px;"></i>Log new visit</div>
 
                   <div class="fg"><label>Customer</label>
-                    <select>
+                    <select class="vf-customer">
                       <option>Al-Faris Industrial LLC</option>
                       <option>Gulf Metals Trading</option>
                       <option>AeroTech Engineering</option>
                     </select>
                   </div>
                   <div class="fg"><label>Visit purpose</label>
-                    <select>
+                    <select class="vf-purpose">
                       <option>Product pitch</option>
                       <option>Follow-up</option>
                       <option>Quotation delivery</option>
@@ -4831,24 +4835,23 @@
                   </div>
                   <div class="fg"><label>Products discussed</label>
                     <div class="chips-row">
-                      <div class="chip sel" onclick="this.classList.toggle('sel')">Welding</div>
-                      <div class="chip sel" onclick="this.classList.toggle('sel')">Lifting</div>
+                      <div class="chip" onclick="this.classList.toggle('sel')">Welding</div>
+                      <div class="chip" onclick="this.classList.toggle('sel')">Lifting</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Safety PPE</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Abrasives</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Hand tools</div>
                     </div>
                   </div>
                   <div class="fg"><label>Competitor mentioned</label>
-                    <select>
+                    <select class="vf-competitor">
                       <option>None</option>
-                      <option selected>Esab</option>
+                      <option>Esab</option>
                       <option>Würth</option>
                       <option>Al-Futtaim Tools</option>
                     </select>
                   </div>
                   <div class="fg"><label>Quick notes</label>
-                    <textarea
-                      placeholder="Enter 2–3 bullet points…">Customer wants 500 units Lincoln E6013, budget AED 8k, deciding next week.</textarea>
+                    <textarea class="vf-notes" placeholder="Enter 2–3 bullet points…"></textarea>
                   </div>
                   <div class="gps-bar">
                     <div class="gps-dot"></div>
@@ -5039,7 +5042,7 @@
                   <div class="fc">Today</div>
                 </div>
                 <div class="visit-list">
-                  <div class="vc">
+                  <div class="vc vc-sel" onclick="fillVisitForm(this,'Al-Faris Industrial LLC','Product pitch',['Welding','Lifting'],'Esab','Customer wants 500 units Lincoln E6013, budget AED 8k, deciding next week.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">Al-Faris Industrial LLC</div>
@@ -5057,7 +5060,7 @@
                       <div class="vc-tag">GPS verified</div>
                     </div>
                   </div>
-                  <div class="vc">
+                  <div class="vc" onclick="fillVisitForm(this,'Gulf Metals Trading','Follow-up',['Safety PPE','Lifting'],'None','Client wants demo unit before committing. Price negotiation ongoing, target AED 22,000. Send samples by end of this week.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">Gulf Metals Trading</div>
@@ -5073,7 +5076,7 @@
                       <div class="vc-tag">GPS verified</div>
                     </div>
                   </div>
-                  <div class="vc">
+                  <div class="vc" onclick="fillVisitForm(this,'AeroTech Engineering','Product pitch',['Abrasives','Hand tools'],'None','Introduced new abrasive grinding discs range. Very positive response — will include in next quarterly tender submission.')">
                     <div class="vc-head">
                       <div>
                         <div class="vc-name">AeroTech Engineering</div>
@@ -5092,18 +5095,18 @@
               </div>
               <div>
                 <div class="form-card">
-                  <div class="form-title"><i class="ti ti-plus"
+                  <div class="form-title"><i class="ti ti-pencil"
                       style="font-size:14px;margin-right:6px;vertical-align:-2px;"></i>Log new visit</div>
 
                   <div class="fg"><label>Customer</label>
-                    <select>
+                    <select class="vf-customer">
                       <option>Al-Faris Industrial LLC</option>
                       <option>Gulf Metals Trading</option>
                       <option>AeroTech Engineering</option>
                     </select>
                   </div>
                   <div class="fg"><label>Visit purpose</label>
-                    <select>
+                    <select class="vf-purpose">
                       <option>Product pitch</option>
                       <option>Follow-up</option>
                       <option>Quotation delivery</option>
@@ -5112,24 +5115,23 @@
                   </div>
                   <div class="fg"><label>Products discussed</label>
                     <div class="chips-row">
-                      <div class="chip sel" onclick="this.classList.toggle('sel')">Welding</div>
-                      <div class="chip sel" onclick="this.classList.toggle('sel')">Lifting</div>
+                      <div class="chip" onclick="this.classList.toggle('sel')">Welding</div>
+                      <div class="chip" onclick="this.classList.toggle('sel')">Lifting</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Safety PPE</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Abrasives</div>
                       <div class="chip" onclick="this.classList.toggle('sel')">Hand tools</div>
                     </div>
                   </div>
                   <div class="fg"><label>Competitor mentioned</label>
-                    <select>
+                    <select class="vf-competitor">
                       <option>None</option>
-                      <option selected>Esab</option>
+                      <option>Esab</option>
                       <option>Würth</option>
                       <option>Al-Futtaim Tools</option>
                     </select>
                   </div>
                   <div class="fg"><label>Quick notes</label>
-                    <textarea
-                      placeholder="Enter 2–3 bullet points…">Customer wants 500 units Lincoln E6013, budget AED 8k, deciding next week.</textarea>
+                    <textarea class="vf-notes" placeholder="Enter 2–3 bullet points…"></textarea>
                   </div>
                   <div class="gps-bar">
                     <div class="gps-dot"></div>
@@ -13309,6 +13311,29 @@
       'apv-leave': 'Leave Approval'
     };
 
+    function fillVisitForm(card, customer, purpose, products, competitor, notes) {
+      const layout = card.closest('.visit-layout');
+      /* highlight selected card */
+      layout.querySelectorAll('.vc').forEach(c => c.classList.remove('vc-sel'));
+      card.classList.add('vc-sel');
+      /* customer */
+      const custSel = layout.querySelector('.vf-customer');
+      if (custSel) Array.from(custSel.options).forEach(o => { o.selected = o.text === customer; });
+      /* purpose */
+      const purSel = layout.querySelector('.vf-purpose');
+      if (purSel) Array.from(purSel.options).forEach(o => { o.selected = o.text === purpose; });
+      /* product chips */
+      layout.querySelectorAll('.chips-row .chip').forEach(c => {
+        c.classList.toggle('sel', products.includes(c.textContent.trim()));
+      });
+      /* competitor */
+      const compSel = layout.querySelector('.vf-competitor');
+      if (compSel) Array.from(compSel.options).forEach(o => { o.selected = o.text === competitor; });
+      /* notes */
+      const ta = layout.querySelector('.vf-notes');
+      if (ta) ta.value = notes;
+    }
+
     function doApproval(statusId, actionsId, decision) {
       const stEl = document.getElementById(statusId);
       const actEl = document.getElementById(actionsId);
@@ -14320,6 +14345,11 @@
     document.addEventListener('DOMContentLoaded', () => {
       const prSel = document.getElementById('vq-pr');
       if (prSel) prSel.addEventListener('change', updateVqAiPanel);
+      /* pre-populate visit form with first card */
+      document.querySelectorAll('.visit-layout').forEach(layout => {
+        const firstCard = layout.querySelector('.vc.vc-sel');
+        if (firstCard) firstCard.click();
+      });
     });
   </script>
 

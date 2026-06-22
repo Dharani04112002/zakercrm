@@ -4311,7 +4311,7 @@
         </div>
 
         <a class="nav-link" id="nl-sales" onclick="toggleSub('sub-sales','arr-sales',this)"><i
-            class="ti ti-currency-dollar"></i>Sales<i class="ti ti-chevron-right" id="arr-sales"
+            class="ti ti-briefcase"></i>Sales<i class="ti ti-chevron-right" id="arr-sales"
             style="margin-left:auto;font-size:11px;transition:transform 0.2s;"></i></a>
         <div style="display:none;padding-left:18px;" id="sub-sales">
           <a class="nav-link" style="font-size:13px;padding:6px 8px;" onclick="goPage('pipeline',this)"><i
@@ -9163,12 +9163,38 @@
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
             <div>
               <div style="font-size:15px;font-weight:700;color:#1a2332;display:flex;align-items:center;gap:8px;">Demand Forecast <span style="font-size:9px;font-weight:700;background:#EDE9FE;color:#7C3AED;padding:2px 8px;border-radius:10px;letter-spacing:0.4px;"><i class="ti ti-sparkles" style="font-size:9px;"></i> AI</span></div>
-              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Predicted product demand for the next 90 days · model trained on 24 months of Epicor sales history</div>
+              <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Model trained on 24 months of Epicor sales history</div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-              <select style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;"><option>Next 30 days</option><option selected>Next 90 days</option><option>Next 6 months</option></select>
+              <!-- Enhanced Date Filter -->
+              <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                <span style="padding:6px 10px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:13px;display:flex;align-items:center;">
+                  <i class="ti ti-calendar"></i>
+                </span>
+                <select id="df-period-select" onchange="toggleDFCustomRange(this.value)" style="font-size:12px;padding:6px 10px;border:none;outline:none;background:#fff;color:#1a2332;font-weight:500;cursor:pointer;min-width:130px;">
+                  <option value="7">Next 7 days</option>
+                  <option value="30">Next 30 days</option>
+                  <option value="90" selected>Next 90 days</option>
+                  <option value="180">Next 6 months</option>
+                  <option value="365">Next 12 months</option>
+                  <option value="custom">Custom Range</option>
+                </select>
+              </div>
+              <!-- Custom Range Inputs (hidden by default) -->
+              <div id="df-custom-range" style="display:none;align-items:center;gap:6px;">
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">From</span>
+                  <input type="date" id="df-from-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">To</span>
+                  <input type="date" id="df-to-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <button onclick="applyDFCustomRange()" style="padding:6px 12px;font-size:12px;background:#378ADD;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Apply</button>
+              </div>
               <select style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;"><option>All Categories</option><option>Safety Equipment</option><option>Compressors</option><option>Welding</option></select>
               <button class="btn-secondary" style="padding:6px 12px;">Export</button>
+              <button onclick="this.innerHTML='<i class=\'ti ti-loader-2\' style=\'font-size:13px;margin-right:5px;animation:spin 1s linear infinite;vertical-align:-2px;\'></i>Refreshing…';setTimeout(()=>this.innerHTML='<i class=\'ti ti-refresh\' style=\'font-size:13px;margin-right:5px;vertical-align:-2px;\'></i>Refresh Analysis',1800)" style="padding:6px 14px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#e0b85a);color:#000;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(201,168,76,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;"><i class="ti ti-refresh" style="font-size:13px;margin-right:5px;vertical-align:-2px;"></i>Refresh Analysis</button>
             </div>
           </div>
 
@@ -9215,7 +9241,34 @@
             </div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
               <span style="display:inline-flex;align-items:center;gap:5px;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#1D4ED8;"><span style="width:6px;height:6px;border-radius:50%;background:#16A34A;"></span> Epicor · synced 9:38 AM</span>
+              <!-- Enhanced Date Filter -->
+              <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                <span style="padding:6px 10px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:13px;display:flex;align-items:center;">
+                  <i class="ti ti-calendar"></i>
+                </span>
+                <select id="ii-period-select" onchange="toggleIICustomRange(this.value)" style="font-size:12px;padding:6px 10px;border:none;outline:none;background:#fff;color:#1a2332;font-weight:500;cursor:pointer;min-width:130px;">
+                  <option value="7">Next 7 days</option>
+                  <option value="30">Next 30 days</option>
+                  <option value="90" selected>Next 90 days</option>
+                  <option value="180">Next 6 months</option>
+                  <option value="365">Next 12 months</option>
+                  <option value="custom">Custom Range</option>
+                </select>
+              </div>
+              <!-- Custom Range Inputs (hidden by default) -->
+              <div id="ii-custom-range" style="display:none;align-items:center;gap:6px;">
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">From</span>
+                  <input type="date" id="ii-from-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">To</span>
+                  <input type="date" id="ii-to-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <button onclick="applyIICustomRange()" style="padding:6px 12px;font-size:12px;background:#378ADD;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Apply</button>
+              </div>
               <button class="btn-secondary" style="padding:6px 12px;">Export</button>
+              <button onclick="this.innerHTML='<i class=\'ti ti-loader-2\' style=\'font-size:13px;margin-right:5px;animation:spin 1s linear infinite;vertical-align:-2px;\'></i>Refreshing…';setTimeout(()=>this.innerHTML='<i class=\'ti ti-refresh\' style=\'font-size:13px;margin-right:5px;vertical-align:-2px;\'></i>Refresh Analysis',1800)" style="padding:6px 14px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#e0b85a);color:#000;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(201,168,76,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;"><i class="ti ti-refresh" style="font-size:13px;margin-right:5px;vertical-align:-2px;"></i>Refresh Analysis</button>
             </div>
           </div>
 
@@ -9259,8 +9312,35 @@
               <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Vendor performance, reliability &amp; risk · scored on delivery, quality, pricing &amp; responsiveness</div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+              <!-- Enhanced Date Filter -->
+              <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                <span style="padding:6px 10px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:13px;display:flex;align-items:center;">
+                  <i class="ti ti-calendar"></i>
+                </span>
+                <select id="ss-period-select" onchange="toggleSSCustomRange(this.value)" style="font-size:12px;padding:6px 10px;border:none;outline:none;background:#fff;color:#1a2332;font-weight:500;cursor:pointer;min-width:130px;">
+                  <option value="7">Next 7 days</option>
+                  <option value="30">Next 30 days</option>
+                  <option value="90" selected>Next 90 days</option>
+                  <option value="180">Next 6 months</option>
+                  <option value="365">Next 12 months</option>
+                  <option value="custom">Custom Range</option>
+                </select>
+              </div>
+              <!-- Custom Range Inputs (hidden by default) -->
+              <div id="ss-custom-range" style="display:none;align-items:center;gap:6px;">
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">From</span>
+                  <input type="date" id="ss-from-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">To</span>
+                  <input type="date" id="ss-to-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <button onclick="applySSCustomRange()" style="padding:6px 12px;font-size:12px;background:#378ADD;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Apply</button>
+              </div>
               <select style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;"><option>All Suppliers</option><option>Safety Equipment</option><option>Compressors</option></select>
               <button class="btn-secondary" style="padding:6px 12px;">Export</button>
+              <button onclick="this.innerHTML='<i class=\'ti ti-loader-2\' style=\'font-size:13px;margin-right:5px;animation:spin 1s linear infinite;vertical-align:-2px;\'></i>Refreshing…';setTimeout(()=>this.innerHTML='<i class=\'ti ti-refresh\' style=\'font-size:13px;margin-right:5px;vertical-align:-2px;\'></i>Refresh Analysis',1800)" style="padding:6px 14px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#e0b85a);color:#000;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(201,168,76,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;"><i class="ti ti-refresh" style="font-size:13px;margin-right:5px;vertical-align:-2px;"></i>Refresh Analysis</button>
             </div>
           </div>
 
@@ -9300,8 +9380,35 @@
               <div style="font-size:11px;color:#6a7f96;margin-top:2px;">Customer credit exposure, payment behaviour &amp; risk scoring · balances from Epicor</div>
             </div>
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+              <!-- Enhanced Date Filter -->
+              <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                <span style="padding:6px 10px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:13px;display:flex;align-items:center;">
+                  <i class="ti ti-calendar"></i>
+                </span>
+                <select id="cr-period-select" onchange="toggleCRCustomRange(this.value)" style="font-size:12px;padding:6px 10px;border:none;outline:none;background:#fff;color:#1a2332;font-weight:500;cursor:pointer;min-width:130px;">
+                  <option value="7">Next 7 days</option>
+                  <option value="30">Next 30 days</option>
+                  <option value="90" selected>Next 90 days</option>
+                  <option value="180">Next 6 months</option>
+                  <option value="365">Next 12 months</option>
+                  <option value="custom">Custom Range</option>
+                </select>
+              </div>
+              <!-- Custom Range Inputs (hidden by default) -->
+              <div id="cr-custom-range" style="display:none;align-items:center;gap:6px;">
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">From</span>
+                  <input type="date" id="cr-from-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <div style="display:flex;align-items:center;gap:0;border:1px solid #dde2ea;border-radius:8px;overflow:hidden;background:#fff;">
+                  <span style="padding:6px 8px;background:#F8F9FB;border-right:1px solid #dde2ea;color:#6a7f96;font-size:11px;white-space:nowrap;">To</span>
+                  <input type="date" id="cr-to-date" style="font-size:12px;padding:6px 10px;border:none;outline:none;color:#1a2332;cursor:pointer;" />
+                </div>
+                <button onclick="applyCRCustomRange()" style="padding:6px 12px;font-size:12px;background:#378ADD;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;">Apply</button>
+              </div>
               <select style="font-size:12px;padding:6px 10px;border:1px solid #dde2ea;border-radius:7px;outline:none;"><option>All Customers</option><option>High Risk</option><option>Over Limit</option></select>
               <button class="btn-secondary" style="padding:6px 12px;">Export</button>
+              <button onclick="this.innerHTML='<i class=\'ti ti-loader-2\' style=\'font-size:13px;margin-right:5px;animation:spin 1s linear infinite;vertical-align:-2px;\'></i>Refreshing…';setTimeout(()=>this.innerHTML='<i class=\'ti ti-refresh\' style=\'font-size:13px;margin-right:5px;vertical-align:-2px;\'></i>Refresh Analysis',1800)" style="padding:6px 14px;font-size:12px;font-weight:700;background:linear-gradient(135deg,#C9A84C,#e0b85a);color:#000;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(201,168,76,0.35);display:flex;align-items:center;gap:4px;white-space:nowrap;"><i class="ti ti-refresh" style="font-size:13px;margin-right:5px;vertical-align:-2px;"></i>Refresh Analysis</button>
             </div>
           </div>
 
@@ -14943,6 +15050,125 @@
     }
 
     const _rptChartInited = {};
+    function toggleCRCustomRange(val) {
+      const customRange = document.getElementById('cr-custom-range');
+      if (val === 'custom') {
+        customRange.style.display = 'flex';
+        const today = new Date();
+        const yyyy = today.getFullYear(), mm = String(today.getMonth()+1).padStart(2,'0'), dd = String(today.getDate()).padStart(2,'0');
+        document.getElementById('cr-from-date').value = `${yyyy}-${mm}-${dd}`;
+        const future = new Date(today);
+        future.setDate(future.getDate() + 90);
+        const fy = future.getFullYear(), fm = String(future.getMonth()+1).padStart(2,'0'), fd = String(future.getDate()).padStart(2,'0');
+        document.getElementById('cr-to-date').value = `${fy}-${fm}-${fd}`;
+      } else {
+        customRange.style.display = 'none';
+      }
+    }
+    function applyCRCustomRange() {
+      const from = document.getElementById('cr-from-date').value;
+      const to = document.getElementById('cr-to-date').value;
+      if (!from || !to) return;
+      const f = new Date(from), t = new Date(to);
+      if (t <= f) { alert('End date must be after start date.'); return; }
+      document.getElementById('cr-custom-range').style.display = 'none';
+      const sel = document.getElementById('cr-period-select');
+      let opt = sel.querySelector('option[value="applied"]');
+      if (!opt) { opt = document.createElement('option'); opt.value = 'applied'; sel.appendChild(opt); }
+      opt.text = `${f.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})} – ${t.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+      sel.value = 'applied';
+    }
+
+    function toggleSSCustomRange(val) {
+      const customRange = document.getElementById('ss-custom-range');
+      if (val === 'custom') {
+        customRange.style.display = 'flex';
+        const today = new Date();
+        const yyyy = today.getFullYear(), mm = String(today.getMonth()+1).padStart(2,'0'), dd = String(today.getDate()).padStart(2,'0');
+        document.getElementById('ss-from-date').value = `${yyyy}-${mm}-${dd}`;
+        const future = new Date(today);
+        future.setDate(future.getDate() + 90);
+        const fy = future.getFullYear(), fm = String(future.getMonth()+1).padStart(2,'0'), fd = String(future.getDate()).padStart(2,'0');
+        document.getElementById('ss-to-date').value = `${fy}-${fm}-${fd}`;
+      } else {
+        customRange.style.display = 'none';
+      }
+    }
+    function applySSCustomRange() {
+      const from = document.getElementById('ss-from-date').value;
+      const to = document.getElementById('ss-to-date').value;
+      if (!from || !to) return;
+      const f = new Date(from), t = new Date(to);
+      if (t <= f) { alert('End date must be after start date.'); return; }
+      document.getElementById('ss-custom-range').style.display = 'none';
+      const sel = document.getElementById('ss-period-select');
+      let opt = sel.querySelector('option[value="applied"]');
+      if (!opt) { opt = document.createElement('option'); opt.value = 'applied'; sel.appendChild(opt); }
+      opt.text = `${f.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})} – ${t.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+      sel.value = 'applied';
+    }
+
+    function toggleIICustomRange(val) {
+      const customRange = document.getElementById('ii-custom-range');
+      if (val === 'custom') {
+        customRange.style.display = 'flex';
+        const today = new Date();
+        const yyyy = today.getFullYear(), mm = String(today.getMonth()+1).padStart(2,'0'), dd = String(today.getDate()).padStart(2,'0');
+        document.getElementById('ii-from-date').value = `${yyyy}-${mm}-${dd}`;
+        const future = new Date(today);
+        future.setDate(future.getDate() + 90);
+        const fy = future.getFullYear(), fm = String(future.getMonth()+1).padStart(2,'0'), fd = String(future.getDate()).padStart(2,'0');
+        document.getElementById('ii-to-date').value = `${fy}-${fm}-${fd}`;
+      } else {
+        customRange.style.display = 'none';
+      }
+    }
+    function applyIICustomRange() {
+      const from = document.getElementById('ii-from-date').value;
+      const to = document.getElementById('ii-to-date').value;
+      if (!from || !to) return;
+      const f = new Date(from), t = new Date(to);
+      if (t <= f) { alert('End date must be after start date.'); return; }
+      document.getElementById('ii-custom-range').style.display = 'none';
+      const sel = document.getElementById('ii-period-select');
+      let opt = sel.querySelector('option[value="applied"]');
+      if (!opt) { opt = document.createElement('option'); opt.value = 'applied'; sel.appendChild(opt); }
+      opt.text = `${f.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})} – ${t.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+      sel.value = 'applied';
+    }
+
+    function toggleDFCustomRange(val) {
+      const customRange = document.getElementById('df-custom-range');
+      if (val === 'custom') {
+        customRange.style.display = 'flex';
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        document.getElementById('df-from-date').value = `${yyyy}-${mm}-${dd}`;
+        const future = new Date(today);
+        future.setDate(future.getDate() + 90);
+        const fy = future.getFullYear(), fm = String(future.getMonth()+1).padStart(2,'0'), fd = String(future.getDate()).padStart(2,'0');
+        document.getElementById('df-to-date').value = `${fy}-${fm}-${fd}`;
+      } else {
+        customRange.style.display = 'none';
+      }
+    }
+    function applyDFCustomRange() {
+      const from = document.getElementById('df-from-date').value;
+      const to = document.getElementById('df-to-date').value;
+      if (!from || !to) return;
+      const f = new Date(from), t = new Date(to);
+      if (t <= f) { alert('End date must be after start date.'); return; }
+      const days = Math.round((t - f) / (1000 * 60 * 60 * 24));
+      document.getElementById('df-custom-range').style.display = 'none';
+      const sel = document.getElementById('df-period-select');
+      let opt = sel.querySelector('option[value="applied"]');
+      if (!opt) { opt = document.createElement('option'); opt.value = 'applied'; sel.appendChild(opt); }
+      opt.text = `${f.toLocaleDateString('en-GB',{day:'2-digit',month:'short'})} – ${t.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}`;
+      sel.value = 'applied';
+    }
+
     function goPage(id, el) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
